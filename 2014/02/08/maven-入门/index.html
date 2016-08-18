@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Joseph Pei" />
+
+
+
+<meta name="description" content="Maven是构建Java应用的优秀管理工具，是Apache软件基金会的顶级项目。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。
+官网地址  http://maven.apache.org/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven 入门">
+<meta property="og:url" content="http://josephpei.github.io/2014/02/08/maven-入门/index.html">
+<meta property="og:site_name" content="有翅膀的天狼">
+<meta property="og:description" content="Maven是构建Java应用的优秀管理工具，是Apache软件基金会的顶级项目。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。
+官网地址  http://maven.apache.org/">
+<meta property="og:updated_time" content="2015-02-06T03:41:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Maven 入门">
+<meta name="twitter:description" content="Maven是构建Java应用的优秀管理工具，是Apache软件基金会的顶级项目。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。
+官网地址  http://maven.apache.org/">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="有翅膀的天狼" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Maven 入门 | 有翅膀的天狼</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Joseph Pei</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:josephpei@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/josephpei" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FP/">FP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinuxDriver/">LinuxDriver</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cpp/">cpp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-pattern/">design pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mooc/">mooc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/poj/">poj</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Joseph Pei</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Joseph Pei</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:josephpei@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/josephpei" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-maven-入门" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/02/08/maven-入门/" class="article-date">
+      <time datetime="2014-02-08T03:23:47.000Z" itemprop="datePublished">2014-02-08</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Maven 入门
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Maven是构建Java应用的优秀管理工具，是Apache软件基金会的顶级项目。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。</p>
+<p>官网地址  <a href="http://maven.apache.org/" target="_blank" rel="external">http://maven.apache.org/</a> <a id="more"></a></p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>Windows 添加环境变量 M2_HOME -&gt; D:\JavaApp\apache-maven-3.0.5（改成自己的哦）</p>
+<p>在Path中加入 ;%M2_HOME%\bin</p>
+<p>修改依赖包下载保存位置</p>
+<p>默认是 ~/.m2/repository，修改M2_HOME/conf/settings.xml</p>
+<localrepository>/path/to/local/repo</localrepository>
+
+<h2 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h2><h3 id="使用命令行"><a href="#使用命令行" class="headerlink" title="使用命令行"></a>使用命令行</h3><p>没有定制之前，所有的项目都有如下的结构</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>${basedir}</td>
+<td>存放 pom.xml和所有的子目录</td>
+</tr>
+<tr>
+<td>${basedir}/src/main/java</td>
+<td>项目的 java源代码</td>
+</tr>
+<tr>
+<td>${basedir}/src/main/resources</td>
+<td>项目的资源，比如说 property文件</td>
+</tr>
+<tr>
+<td>${basedir}/src/test/java</td>
+<td>项目的测试类，比如说 JUnit代码</td>
+</tr>
+<tr>
+<td>${basedir}/src/test/resources</td>
+<td>测试使用的资源</td>
+</tr>
+</tbody>
+</table>
+<p>接下来我们用 maven 来建立最著名的“Hello World!”程序 :)</p>
+<pre><code>mvn archetype:generate [-DgroupId=com.mycompany.helloworld -DartifactId=helloworld -Dpackage=com.mycompany.helloworld -Dversion=1.0-SNAPSHOT]
+</code></pre><p>archetype:generate 目标会列出一系列的 archetype 让你选择。 Archetype 可以理解成项目的模型。 Maven 为我们提供了很多种的项目模型，包括从简单的 Swing 到复杂的 Web 应用。我们选择默认的 maven-archetype-quickstart (类型太多，看得眼花，可以加上 -DarchetypeCatalog=internal)。回车，这时候让你确定项目属性的配置</p>
+<p>maven 的 archetype 插件建立了一个 helloworld 目录，这个名字来自 artifactId 。在这个目录下面，有一个 Project Object Model(POM) 文件 pom.xml 。这个文件用于描述项目，配置插件和管理依赖关系。源代码和资源文件放在 src/main 下面，而测试代码和资源放在 src/test 下面。</p>
+<p>Maven 已经为我们建立了一个 App.java 文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.mycompany.helloworld;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Hello world!</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span></div><div class="line">&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">( String[] args )</span></span></div><div class="line">    &#123;</div><div class="line">        System.out.println( <span class="string">"Hello World!"</span> );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>开始构建</p>
+<pre><code>cd helloworld
+mvn package
+</code></pre><p> 这个时候， maven 在 helloworld 下面建立了一个新的目录 target/ ，构建打包后的 jar 文件 helloworld-1.0-SNAPSHOT.jar 就存放在这个目录下。编译后的 class 文件放在 target/classes/ 目录下面，测试 class 文件放在 target/test-classes/ 目录下面。</p>
+<p> 为了验证我们的程序能运行，执行下面的命令</p>
+<pre><code>java -cp target/helloworld-1.0-SNAPSHOT.jar com.mycompany.helloworld.App
+</code></pre><h3 id="使用-eclipse"><a href="#使用-eclipse" class="headerlink" title="使用 eclipse"></a>使用 eclipse</h3><p>Maven天生就对Eclipse做了集成，我们使用mvn eclipse:eclipse就得到了一个Eclipse的项目结构，在Eclipse中使用import功能就能直接导入到IDE中了。</p>
+<p>安装eclipse插件 Maven Integration for Eclipse，新版eclispe可以从eclipse market中直接安装，旧版的源地址为</p>
+<p><a href="http://download.eclipse.org/technology/m2e/releases" target="_blank" rel="external">http://download.eclipse.org/technology/m2e/releases</a></p>
+<h2 id="Maven基础概念"><a href="#Maven基础概念" class="headerlink" title="Maven基础概念"></a>Maven基础概念</h2><h3 id="POM-Project-Object-Model"><a href="#POM-Project-Object-Model" class="headerlink" title="POM (Project Object Model)"></a>POM (Project Object Model)</h3><p>一个项目所有的配置都放置在 POM 文件中：定义项目的类型、名字，管理依赖关系，定制插件的行为等等。比如说，你可以配置 compiler 插件让它使用 java 1.5 来编译。</p>
+<p>在 POM 中，groupId, artifactId, packaging, version 叫作 maven 坐标，它能唯一的确定一个项目。有了 maven 坐标，我们就可以用它来指定我们的项目所依赖的其他项目，插件，或者父项目。一般 maven 坐标写成如下的格式：</p>
+<pre><code>groupId:artifactId:packaging:version
+</code></pre><p>大项目一般会分成几个子项目。在这种情况下，每个子项目就会有自己的 POM 文件，然后它们会有一个共同的父项目。这样只要构建父项目就能够构建所有的子项目了。子项目的 POM 会继承父项目的 POM。另外，所有的 POM都继承了一个 Super-POM。Super-POM 设置了一些默认值。果你想看到运行时候的 POM 的全部内容的话，可以运行下面的命令</p>
+<pre><code>mvn help:effective-pom
+</code></pre><h3 id="Maven-插件"><a href="#Maven-插件" class="headerlink" title="Maven 插件"></a>Maven 插件</h3><p>在上文中，我们用了 mvn archetype:generate 命令来生成一个项目。那么这里的 archetype:generate 是什么意思呢？archetype 是一个插件的名字，generate是目标(goal)的名字。这个命令的意思是告诉 maven 执行 archetype 插件的 generate 目标。插件目标通常会写成 pluginId:goalId</p>
+<p>一个目标是一个工作单元，而插件则是一个或者多个目标的集合。比如说Jar插件，Compiler插件，Surefire插件等。从看名字就能知道，Jar 插件包含建立Jar文件的目标， Compiler 插件包含编译源代码和单元测试代码的目标。Surefire 插件的话，则是运行单元测试。</p>
+<h3 id="Maven-生命周期"><a href="#Maven-生命周期" class="headerlink" title="Maven 生命周期"></a>Maven 生命周期</h3><p>我们用的第二个命令是：mvn package。这里的 package 是一个maven的生命周期阶段 (lifecycle phase )。生命周期指项目的构建过程，它包含了一系列的有序的阶段 (phase)，而一个阶段就是构建过程中的一个步骤。</p>
+<p>那么生命周期阶段和上面说的插件目标之间是什么关系呢？插件目标可以绑定到生命周期阶段上。一个生命周期阶段可以绑定多个插件目标。当 maven 在构建过程中逐步的通过每个阶段时，会执行该阶段所有的插件目标。</p>
+<p>maven 能支持不同的生命周期，但是最常用的是默认的Maven生命周期 (default Maven lifecycle )。如果你没有对它进行任何的插件配置或者定制的话，那么上面的命令 mvn package 会依次执行默认生命周期中直到包括 package 阶段前的所有阶段的插件目标：</p>
+<pre><code>process-resources 阶段：resources:resources
+compile 阶段：compiler:compile
+process-classes 阶段：(默认无目标)
+process-test-resources 阶段：resources:testResources
+test-compile 阶段：compiler:testCompile
+test 阶段：surefire:test
+prepare-package 阶段：(默认无目标)
+package 阶段：jar:jar
+</code></pre><h3 id="Maven-依赖管理"><a href="#Maven-依赖管理" class="headerlink" title="Maven 依赖管理"></a>Maven 依赖管理</h3><p>maven 坐标能够确定一个项目。换句话说，我们可以用它来解决依赖关系。在 POM 中，依赖关系是在 dependencies 部分中定义的。</p>
+<p>在 POM 的 dependencies 部分中，scope 决定了依赖关系的适用范围。我们的例子中 junit 的 scope 是 test，那么它只会在执行 compiler:testCompile and surefire:test 目标的时候才会被加到 classpath 中，在执行 compiler:compile 目标时是拿不到 junit 的。</p>
+<p>我们还可以指定 scope 为 provided，意思是 JDK 或者容器会提供所需的jar文件。比如说在做web应用开发的时候，我们在编译的时候需要 servlet API jar 文件，但是在打包的时候不需要把这个 jar 文件打在 WAR 中，因为servlet容器或者应用服务器会提供的。</p>
+<p>scope 的默认值是 compile，即任何时候都会被包含在 classpath 中，在打包的时候也会被包括进去。</p>
+<h3 id="Maven-库"><a href="#Maven-库" class="headerlink" title="Maven 库"></a>Maven 库</h3><p>当 maven 查找需要的 jar 文件时，它会先在本地库中寻找，只有在找不到的情况下，才会去远程库中找。</p>
+<p>运行下面的命令能把我们的 helloworld 项目安装到本地库</p>
+<pre><code>mvn install
+</code></pre><p>一旦一个项目被安装到了本地库后，你别的项目就可以通过 maven 坐标和这个项目建立依赖关系。比如如果我现在有一个新项目需要用到 helloworld，那么在运行了上面的 mvn install 命令后，我就可以如下所示来建立依赖关系</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mycompany.helloworld<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>helloworld<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2014/02/08/maven-入门/">Maven 入门</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Joseph Pei</a></p>
+        <p><span>发布时间:</span>2014-02-08, 11:23:47</p>
+        <p><span>最后更新:</span>2015-02-06, 11:41:19</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2014/02/08/maven-入门/" title="Maven 入门">http://josephpei.github.io/2014/02/08/maven-入门/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://josephpei.github.io/2014/02/08/maven-入门/　　作者: Joseph Pei" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2014/02/08/eclipse中使用maven-tomcat构建web应用/">
+                    Eclipse中使用Maven Tomcat构建Web应用
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2014/01/09/用python秒掉八皇后问题/">
+                    用Python秒掉八皇后问题
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境配置"><span class="toc-number">1.</span> <span class="toc-text">环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建应用"><span class="toc-number">2.</span> <span class="toc-text">创建应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用命令行"><span class="toc-number">2.1.</span> <span class="toc-text">使用命令行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-eclipse"><span class="toc-number">2.2.</span> <span class="toc-text">使用 eclipse</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven基础概念"><span class="toc-number">3.</span> <span class="toc-text">Maven基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POM-Project-Object-Model"><span class="toc-number">3.1.</span> <span class="toc-text">POM (Project Object Model)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven-插件"><span class="toc-number">3.2.</span> <span class="toc-text">Maven 插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven-生命周期"><span class="toc-number">3.3.</span> <span class="toc-text">Maven 生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven-依赖管理"><span class="toc-number">3.4.</span> <span class="toc-text">Maven 依赖管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven-库"><span class="toc-number">3.5.</span> <span class="toc-text">Maven 库</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Maven 入门　| 有翅膀的天狼　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2014/02/08/maven-入门/" data-title="Maven 入门" data-url="http://josephpei.github.io/2014/02/08/maven-入门/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"josephpei"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2014/02/08/eclipse中使用maven-tomcat构建web应用/" title="上一篇: Eclipse中使用Maven Tomcat构建Web应用">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2014/01/09/用python秒掉八皇后问题/" title="下一篇: 用Python秒掉八皇后问题">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/18/PyCharm-使用-Windows-10-WSL-Ubuntu-子系统中的-Python/">PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/05/Django之路-Python-Decouple/">Django之路: Python Decouple</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/19/Linux驱动开发之一-Hello-World/">Linux驱动开发之一 Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/24/Linux-Ubuntu-下为-Android-创建无线分享热点/">Linux/Ubuntu 下为 Android 创建无线分享热点</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/09/04/Spring-MVC-学习笔记10-AJAX-图片上传/">Spring MVC 学习笔记10 AJAX 图片上传</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/09/01/Spring-MVC-学习笔记9-JQuery-验证/">Spring MVC 学习笔记9 JQuery 验证</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/31/Spring-MVC-学习笔记8-Spring-Security/">Spring MVC 学习笔记8 Spring Security</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/30/Spring-MVC-学习笔记7-表现层-Tiles-Sitemesh/">Spring MVC 学习笔记7 表现层 Tiles Sitemesh</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/25/Spring-MVC-学习笔记6-SLF4J-Logback-日志/">Spring MVC 学习笔记6 SLF4J Logback 日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/24/Spring-MVC-学习笔记5-REST与AJAX/">Spring MVC 学习笔记5 REST与AJAX</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/20/Spring-MVC-学习笔记4-数据库之整合Hibernate/">Spring MVC 学习笔记4 数据库之整合Hibernate</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/18/Spring-MVC-学习笔记3-验证Validator/">Spring MVC 学习笔记3 验证Validator</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/17/Spring-MVC-学习笔记2-数据库之JDBC/">Spring MVC 学习笔记2 数据库之JDBC</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/16/Spring-MVC-学习笔记1-入门/">Spring MVC 学习笔记1 入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/06/动态规划-DP-应用之-01-背包/">动态规划 DP 应用之 01 背包</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/05/动态规划-DP-应用-HamiltonPath-及-TSP/">动态规划 DP 应用 HamiltonPath 及 TSP</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/02/UW-软硬件接口lab3-bufbomb/">UW 软硬件接口lab3 bufbomb</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/02/UW-软硬件接口lab2-bomb/">UW 软硬件接口lab2 bomb</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/05/04/leetcode---two-sum/">leetcode - two-sum</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/02/21/设计模式之工厂模式(java实现)/">设计模式之工厂模式(Java实现)</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/02/16/tomcat-编码设定/">Tomcat 编码设定</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/02/08/eclipse中使用maven-tomcat构建web应用/">Eclipse中使用Maven Tomcat构建Web应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/02/08/maven-入门/">Maven 入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/09/用python秒掉八皇后问题/">用Python秒掉八皇后问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/01/string-hash-字符串散列/">String Hash 字符串散列</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/23/minmaxheap-最小最大堆/">MinMaxHeap 最小最大堆</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/20/算法：线段树/">算法：线段树</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/20/poj-2388-寻找中位数/">poj 2388 寻找中位数</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/20/poj-3164-最小树形图-朱刘算法/">poj 3164 最小树形图 朱刘算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/16/实现自己的stl-iterator/">实现自己的STL Iterator</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/05/windows-cmd替代/">Windows CMD替代</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/02/poj-3630-phone-list/">poj 3630 phone list</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/02/poj-2524-ubiquitous-religions/">poj 2524 ubiquitous religions</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/02/poj-3437-tree-grafting/">POJ 3437 Tree Grafting</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/11/13/算法：工作分配/">算法：工作分配</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/11/12/二叉树的重建/">二叉树的重建</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/11/01/poj-2820-ancient-cipher-古代密码/">POJ 2820 Ancient Cipher 古代密码</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/30/poj-1961-求某串中所有循环前缀串的长度和循环次数/">poj 1961 求某串中所有循环前缀串的长度和循环次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/29/约瑟夫问题-josephus-problem/">约瑟夫问题 Josephus Problem</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/29/vim-youcompleteme-on-64bit-windows/">vim Youcompleteme on 64bit Windows</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/29/递归算法转换为非递归算法/">递归算法转换为非递归算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/26/vim-插件配置攻略/">vim 插件配置攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/23/中缀表达式求值/">中缀表达式求值</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/21/快速排序-quicksort/">快速排序 QuickSort</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/20/poj-1664-放苹果/">POJ 1664 放苹果</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/28/mac-osx-下-java-环境/">Mac OSX 下 java 环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/27/poj-1007-dna逆序对/">POJ 1007 DNA逆序对</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/26/poj-1006-biorhythms/">POJ 1006 Biorhythms</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/26/generate-ctags-files/">Generate Ctags Files</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/26/poj-1002-电话号码/">POJ 1002 电话号码</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/25/poj-1001-求高精度幂/">POJ 1001 求高精度幂</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/16/python-中的装饰器(decorator)/">Python 中的装饰器(decorator)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/15/zsh与oh-my-zsh/">zsh与oh-my-zsh</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Joseph Pei
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
