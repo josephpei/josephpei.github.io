@@ -259,6 +259,70 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-poj-1002-电话号码" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2013/09/26/poj-1002-电话号码/" class="article-date">
+      <time datetime="2013-09-26T04:39:11.000Z" itemprop="datePublished">2013-09-26</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/09/26/poj-1002-电话号码/">POJ 1002 电话号码</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Input</p>
+<p>输入的格式是，第一行是一个正整数，指定电话号码薄中号码的数量（最多100000）。余下的每行是一个电话号码。每个电话号码由数字，大写字母（除了Q和Z）以及连接符组成。每个电话号码中只会刚好有7个数字或者字母。<br>Output</p>
+<p>对于每个出现重复的号码产生一行输出，输出是号码的标准格式紧跟一个空格然后是它的重复次数。如果存在多个重复的号码，则按照号码的字典升序输出。如果输入数据中没有重复的号码，输出一行：</p>
+<p>No duplicates.</p>
+<p><a href="http://poj.org/problem?id=1002" target="_blank" rel="external">http://poj.org/problem?id=1002</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> SIZE 10000000</span></div><div class="line"><span class="keyword">int</span> num[SIZE];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">trans</span><span class="params">(<span class="keyword">char</span> x)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (x &gt;= <span class="string">'0'</span> &amp;&amp; x &lt;= <span class="string">'9'</span>) <span class="keyword">return</span> x - <span class="string">'0'</span>;</div><div class="line">    <span class="keyword">if</span> (x == <span class="string">'A'</span> || x == <span class="string">'B'</span> || x == <span class="string">'C'</span>) <span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">    <span class="keyword">if</span> (x == <span class="string">'D'</span> || x == <span class="string">'E'</span> || x == <span class="string">'F'</span>) <span class="keyword">return</span> <span class="number">3</span>;</div><div class="line">    <span class="keyword">if</span> (x == <span class="string">'G'</span> || x == <span class="string">'H'</span> || x == <span class="string">'I'</span>) <span class="keyword">return</span> <span class="number">4</span>;</div><div class="line">    <span class="keyword">if</span> (x == <span class="string">'J'</span> || x == <span class="string">'K'</span> || x == <span class="string">'L'</span>) <span class="keyword">return</span> <span class="number">5</span>;</div><div class="line">    <span class="keyword">if</span> (x == <span class="string">'M'</span> || x == <span class="string">'N'</span> || x == <span class="string">'O'</span>) <span class="keyword">return</span> <span class="number">6</span>;</div><div class="line">    <span class="keyword">if</span> (x == <span class="string">'P'</span> || x == <span class="string">'R'</span> || x == <span class="string">'S'</span>) <span class="keyword">return</span> <span class="number">7</span>;</div><div class="line">    <span class="keyword">if</span> (x == <span class="string">'T'</span> || x == <span class="string">'U'</span> || x == <span class="string">'V'</span>) <span class="keyword">return</span> <span class="number">8</span>;</div><div class="line">    <span class="keyword">if</span> (x == <span class="string">'W'</span> || x == <span class="string">'X'</span> || x == <span class="string">'Y'</span>) <span class="keyword">return</span> <span class="number">9</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> n;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</div><div class="line"></div><div class="line">    <span class="keyword">int</span> i, j;</div><div class="line">    <span class="keyword">char</span> x[<span class="number">1000</span>];</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>, x);</div><div class="line">        <span class="keyword">int</span> base =<span class="number">1</span>, sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (j = <span class="built_in">strlen</span>(x) - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (x[j] == <span class="string">'-'</span>) <span class="keyword">continue</span>;</div><div class="line">            sum += base * trans(x[j]);</div><div class="line">            base = base * <span class="number">10</span>;</div><div class="line">        &#125;</div><div class="line">        num[sum]++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> p = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; SIZE; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (num[i] &gt; <span class="number">1</span>)</div><div class="line">        &#123;</div><div class="line">            p = <span class="number">1</span>;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%03d-%04d %d\n"</span>, i / <span class="number">10000</span>, i % <span class="number">10000</span>, num[i]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (!p) <span class="built_in">printf</span>(<span class="string">"No duplicates.\n"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/poj/">poj</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-poj-1001-求高精度幂" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -484,7 +548,7 @@ DEFAULT_USER=&quot;xilaideng&quot;
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2016 Joseph Pei
+                2016-2018 Joseph Pei
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
