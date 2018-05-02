@@ -1,316 +1,167 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
-<head>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    <meta name="keywords" content="Life, Linux, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="有翅膀的天狼" type="application/atom+xml" />
+    
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
 
-    <!--[if lt IE 9]>
-        <style>body {display: none; background: none !important} </style>
-        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
-    <![endif]-->
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta name="author" content="Joseph Pei" />
-
-
-
-<meta name="description" content="网友 k-vim 的配置 https://github.com/wklken
-
-给人一条Vim 命令，他能折腾一晚上；告诉他怎么自定义Vim 命令，他能捣腾一辈子
-生命不息,折腾不止 (╯‵□′)╯︵┻━┻)
-编辑器之神 = 生产力(效率为王) + 性感(界面快捷键) + 装x神器
-
-vim基本用法初学者: vim训练稿几年前的三月份,第一次正儿八经开始使用vim,后来整理了一份,对着敲几遍,训练">
-<meta property="og:type" content="article">
-<meta property="og:title" content="vim 插件配置攻略">
-<meta property="og:url" content="http://josephpei.github.io/2013/10/26/vim-插件配置攻略/index.html">
-<meta property="og:site_name" content="有翅膀的天狼">
-<meta property="og:description" content="网友 k-vim 的配置 https://github.com/wklken
-
-给人一条Vim 命令，他能折腾一晚上；告诉他怎么自定义Vim 命令，他能捣腾一辈子
-生命不息,折腾不止 (╯‵□′)╯︵┻━┻)
-编辑器之神 = 生产力(效率为王) + 性感(界面快捷键) + 装x神器
-
-vim基本用法初学者: vim训练稿几年前的三月份,第一次正儿八经开始使用vim,后来整理了一份,对着敲几遍,训练">
-<meta property="og:updated_time" content="2015-02-06T03:41:19.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vim 插件配置攻略">
-<meta name="twitter:description" content="网友 k-vim 的配置 https://github.com/wklken
-
-给人一条Vim 命令，他能折腾一晚上；告诉他怎么自定义Vim 命令，他能捣腾一辈子
-生命不息,折腾不止 (╯‵□′)╯︵┻━┻)
-编辑器之神 = 生产力(效率为王) + 性感(界面快捷键) + 装x神器
-
-vim基本用法初学者: vim训练稿几年前的三月份,第一次正儿八经开始使用vim,后来整理了一份,对着敲几遍,训练">
-
-<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
-
-
-    <link rel="alternate" href="/atom.xml" title="有翅膀的天狼" type="application/atom+xml">
-
-
-
-    <link rel="shortcut icon" href="/favicon.png">
-
-
-
-    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
-
-
-
-    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
-
-
-
-    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
-
-
-<link rel="stylesheet" href="/css/style.css">
-
-
-
-<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-
-
-<title>vim 插件配置攻略 | 有翅膀的天狼</title>
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-
-<script>
-    var yiliaConfig = {
-        fancybox: true,
-        animate: true,
-        isHome: false,
-        isPost: true,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
-        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: undefined
-    }
-</script>
-
-
-    <script> yiliaConfig.jquery_ui = [false]; </script>
-
-
-
-    <script> yiliaConfig.rootUrl = "\/";</script>
-
-
-
-
-
-
-</head>
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-    <header id="header" class="inner">
-        <a href="/" class="profilepic">
-            <img src="/img/avatar.png" class="animated zoomIn">
-        </a>
-        <hgroup>
-          <h1 class="header-author"><a href="/">Joseph Pei</a></h1>
-        </hgroup>
-
-        
-
-        
-
-
-        
-            <div id="switch-btn" class="switch-btn">
-                <div class="icon">
-                    <div class="icon-ctn">
-                        <div class="icon-wrap icon-house" data-idx="0">
-                            <div class="birdhouse"></div>
-                            <div class="birdhouse_holes"></div>
-                        </div>
-                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
-                            <div class="ribbon"></div>
-                        </div>
-                        
-                        <div class="icon-wrap icon-link hide" data-idx="2">
-                            <div class="loopback_l"></div>
-                            <div class="loopback_r"></div>
-                        </div>
-                        
-                        
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                <div class="tips-box hide">
-                    <div class="tips-arrow"></div>
-                    <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
-                        
-                        <li>友情链接</li>
-                        
-                        
-                        <li>关于我</li>
-                        
-                    </ul>
-                </div>
-            </div>
-        
-
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a href="/">主页</a></li>
-                        
-                            <li><a href="/archives/">所有文章</a></li>
-                        
-                            <li><a href="/tags/">标签云</a></li>
-                        
-                            <li><a href="/about/">关于我</a></li>
-                        
-                        </ul>
-                    </nav>
-                    <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" href="mailto:josephpei@gmail.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" href="https://github.com/josephpei" title="GitHub"></a>
-                            
-                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-                    </nav>
-                </section>
-                
-                
-                <section class="switch-part switch-part2">
-                    <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FP/">FP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinuxDriver/">LinuxDriver</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cpp/">cpp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-pattern/">design pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mooc/">mooc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/poj/">poj</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
-                    </div>
-                </section>
-                
-                
-                
-                <section class="switch-part switch-part3">
-                    <div id="js-friends">
-                    
-                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
-                    
-                    </div>
-                </section>
-                
-
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">专注于前端</div>
-                </section>
-                
-            </div>
-        </div>
-    </header>                
-</div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Joseph Pei</a></h1>
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>vim 插件配置攻略 | 有翅膀的天狼 - Whisper to the world</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
+        <h2 class="subtitle">Whisper to the world</h2>
       </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/" class="profilepic">
-                <img src="/img/avatar.png" class="animated zoomIn">
-            </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页">Joseph Pei</a></h1>
-            </hgroup>
-            
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
-                
-                    <li><a href="/tags/">标签云</a></li>
-                
-                    <li><a href="/about/">关于我</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
-            <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" target="_blank" href="mailto:josephpei@gmail.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" target="_blank" href="https://github.com/josephpei" title="GitHub"></a>
-                            
-                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-            </nav>
-        </header>                
+      <div class="logo">
+        <img src="/img/logo.png" alt="logo">
+      </div>
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    
+<nav id="nav" class="nav">
+  <a id="nav-toggle" class="nav-toggle"><i class="fas fa-bars"></i></a>
+  <ul id="menu">
+    
+    <li><a href="/">Home</a></li>
+    
+    <li><a href="/archives/">Archives</a></li>
+    
+    <li><a href="/categories/">Categories</a></li>
+    
+    <li><a href="/tags/">Tags</a></li>
+    
+    <li><a href="/about/">About</a></li>
+    
+  </ul>
 </nav>
-      <div class="body-wrap"><article id="post-vim-插件配置攻略" class="article article-type-post" itemscope itemprop="blogPost">
+
+
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<section id="post" class="post">
   
-    <div class="article-meta">
-      <a href="/2013/10/26/vim-插件配置攻略/" class="article-date">
-      <time datetime="2013-10-26T07:54:56.000Z" itemprop="datePublished">2013-10-26</time>
-</a>
-
-
+  <article class="post-container card " itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/26/vim-插件配置攻略/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Joseph Pei">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="有翅膀的天狼">
+      </span>
     </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+       <span class="">vim 插件配置攻略</span>
+      </h1>
+      <div class="post-meta">
         
-  
-    <h1 class="article-title" itemprop="name">
-      vim 插件配置攻略
-    </h1>
-  
-
-      </header>
-      
-      <div class="article-info article-info-post">
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-10-26T15:54:56+08:00">2013-10-26</time>
+        </span>
         
-
         
-        <div class="clearfix"></div>
+        
+        
+        
+        <span class="post-meta-divider"> | </span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i> <a href="/2013/10/26/vim-插件配置攻略/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/10/26/vim-插件配置攻略/" itemprop="commentCount"></span></a>
+        </span>
+        
+        
       </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>网友 k-vim 的配置 <a href="https://github.com/wklken" target="_blank" rel="external">https://github.com/wklken</a></p>
+    </header>
+    <main class="post-body" itemprop="articleBody">
+      <p>网友 k-vim 的配置 <a href="https://github.com/wklken" target="_blank" rel="external">https://github.com/wklken</a></p>
 <blockquote>
 <p>给人一条Vim 命令，他能折腾一晚上；告诉他怎么自定义Vim 命令，他能捣腾一辈子</p>
 <p>生命不息,折腾不止 (╯‵□′)╯︵┻━┻)</p>
@@ -324,259 +175,237 @@ vim基本用法初学者: vim训练稿几年前的三月份,第一次正儿八�
 你遇到的问题,一定别人也遇到了,大部分可解决,少部分无解….
 </code></pre><p>   文章: <a href="http://www.kunli.info/2013/08/13/vim/" target="_blank" rel="external">不要复杂化vim</a></p>
 
+    </main>
+    <footer class="post-footer">
+      
+      
+    </footer>
+  </article>
+  
+  
+<div class="reward" id="reward">
+  <p>坚持原创技术分享，您的鼓励将是我继续前进的动力！</p>
+  <button id="reward-button" class="button" disable="enable">Reward</button>
+  <div id="qr" class="qr" style="display: none;">
+    
+    <div id="wechat">
+      <img id="wechat_qr" src="/images/WeChatPay.png" alt="WechatPay"/>
+      <span>WechatPay</span>
+    </div>
+    
+    
+    <div id="alipay">
+      <img id="alipay_qr" src="/images/AliPay.png" alt="AliPay"/>
+      <span>AliPay</span>
+    </div>
+    
+    
+  </div>
+</div>
+
+
+  
+  
+  <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+      
+      <a href="/2013/10/23/中缀表达式求值/" rel="next" title="中缀表达式求值">
+        <i class="fas fa-angle-left"></i>
+        <span class="nav-title">中缀表达式求值</span>
+      </a>
       
     </div>
-    
+    <div class="post-nav-prev post-nav-item">
+      
+      <a href="/2013/10/29/递归算法转换为非递归算法/" rel="prev" title="递归算法转换为非递归算法">
+        <span class="nav-title">递归算法转换为非递归算法</span>
+        <i class="fas fa-angle-right"></i>
+      </a>
+      
+    </div>
   </div>
   
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2013/10/26/vim-插件配置攻略/">vim 插件配置攻略</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">Joseph Pei</a></p>
-        <p><span>发布时间:</span>2013-10-26, 15:54:56</p>
-        <p><span>最后更新:</span>2015-02-06, 11:41:19</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2013/10/26/vim-插件配置攻略/" title="vim 插件配置攻略">http://josephpei.github.io/2013/10/26/vim-插件配置攻略/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://josephpei.github.io/2013/10/26/vim-插件配置攻略/　　作者: Joseph Pei" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-        </p>
-    </div>
-
-
-
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2013/10/29/递归算法转换为非递归算法/">
-                    递归算法转换为非递归算法
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2013/10/23/中缀表达式求值/">
-                    中缀表达式求值
-                </a>
-            </div>
-        
-    </nav>
-
   
-</article>
+  
 
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#vim基本用法"><span class="toc-number">1.</span> <span class="toc-text">vim基本用法</span></a></li></ol>
-        
-    </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-3 i,
-        .toc-level-3 ol {
-            display: none !important;
-        }
-    </style>
-
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
-
-    <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
-    </script>
-
-
-
-    
-<div class="share">
-    
-        <div class="bdsharebuttonbox">
-            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
-            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
-            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
-        </div>
-        <script>
-            window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"vim 插件配置攻略　| 有翅膀的天狼　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
-    
-
-    
+<div class="comments" id="comments">
+  
+  <script defer id="dsq-count-scr" src="//josephpei-github-io.disqus.com/count.js"></script>
+  
+  <div id="disqus_thread" class="disqus_thread"></div>
+  <script type="text/javascript">
+  var disqus_config = function () {
+    this.page.url = "http://josephpei.github.io/2013/10/26/vim-插件配置攻略/";
+    this.page.identifier = "2013/10/26/vim-插件配置攻略/";
+  };
+  (function() {
+    var d = document, s = d.createElement("script");
+    s.src = "https://josephpei-github-io.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  
+  
 </div>
 
 
 
-
-
-
-
-    
-        <section id="comments">
-    <style> aside.comment-bar { margin: auto 30px; }</style>
-    <div id="disqus_thread"></div>
-    <script>
-        var disqus_config = function(){
-            this.page.url = 'http://josephpei.github.io/2013/10/26/vim-插件配置攻略/';
-            this.page.identifier = '2013/10/26/vim-插件配置攻略/';
-        };
-        var loadComment = function(){
-            var d = document, s = d.createElement('script');
-            s.src = '//josephpei-github-io.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        }
-    </script>
-    
-    <script> loadComment(); </script>
-
+  
 </section>
 
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i> <input type="text" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
+  
+  <p class="author-name">Joseph Pei</p>
+  <p class="author-description"> </p>
+  <div class="site-count">
+    
+    <div class="archives-count">
+      <p>Archives</p>
+      <p><a href="/archives/">54</a></p>
+    </div>
+    
+    
+    
+    <span class="site-count-divider"> | </span>
+    
+    <div class="categories-count">
+      <p>Categories</p>
+      <p><a href="/categories/">0</a></p>
+    </div>
+    
+    
+    
+    <span class="site-count-divider"> | </span>
+    
+    <div class="tags-count">
+      <p>Tags</p>
+      <p><a href="/tags/">15</a></p>
+    </div>
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i> RSS</a>
+  </div>
+  
+</div>
 
+
+  <div class="sidebar-sticky">
+    
     
 
 
 
 
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2013/10/29/递归算法转换为非递归算法/" title="上一篇: 递归算法转换为非递归算法">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2013/10/23/中缀表达式求值/" title="下一篇: 中缀表达式求值">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/04/28/ubuntu-awesome-terminal/">ubuntu awesome terminal</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/18/PyCharm-使用-Windows-10-WSL-Ubuntu-子系统中的-Python/">PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/05/Django之路-Python-Decouple/">Django之路: Python Decouple</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/19/Linux驱动开发之一-Hello-World/">Linux驱动开发之一 Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/24/Linux-Ubuntu-下为-Android-创建无线分享热点/">Linux/Ubuntu 下为 Android 创建无线分享热点</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/09/04/Spring-MVC-学习笔记10-AJAX-图片上传/">Spring MVC 学习笔记10 AJAX 图片上传</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/09/01/Spring-MVC-学习笔记9-JQuery-验证/">Spring MVC 学习笔记9 JQuery 验证</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/31/Spring-MVC-学习笔记8-Spring-Security/">Spring MVC 学习笔记8 Spring Security</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/30/Spring-MVC-学习笔记7-表现层-Tiles-Sitemesh/">Spring MVC 学习笔记7 表现层 Tiles Sitemesh</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/25/Spring-MVC-学习笔记6-SLF4J-Logback-日志/">Spring MVC 学习笔记6 SLF4J Logback 日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/24/Spring-MVC-学习笔记5-REST与AJAX/">Spring MVC 学习笔记5 REST与AJAX</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/20/Spring-MVC-学习笔记4-数据库之整合Hibernate/">Spring MVC 学习笔记4 数据库之整合Hibernate</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/18/Spring-MVC-学习笔记3-验证Validator/">Spring MVC 学习笔记3 验证Validator</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/17/Spring-MVC-学习笔记2-数据库之JDBC/">Spring MVC 学习笔记2 数据库之JDBC</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/16/Spring-MVC-学习笔记1-入门/">Spring MVC 学习笔记1 入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/06/动态规划-DP-应用之-01-背包/">动态规划 DP 应用之 01 背包</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/05/动态规划-DP-应用-HamiltonPath-及-TSP/">动态规划 DP 应用 HamiltonPath 及 TSP</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/02/UW-软硬件接口lab3-bufbomb/">UW 软硬件接口lab3 bufbomb</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/02/UW-软硬件接口lab2-bomb/">UW 软硬件接口lab2 bomb</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/05/04/leetcode---two-sum/">leetcode - two-sum</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/02/21/设计模式之工厂模式(java实现)/">设计模式之工厂模式(Java实现)</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/02/16/tomcat-编码设定/">Tomcat 编码设定</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/02/08/eclipse中使用maven-tomcat构建web应用/">Eclipse中使用Maven Tomcat构建Web应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/02/08/maven-入门/">Maven 入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/09/用python秒掉八皇后问题/">用Python秒掉八皇后问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/01/01/string-hash-字符串散列/">String Hash 字符串散列</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/23/minmaxheap-最小最大堆/">MinMaxHeap 最小最大堆</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/20/算法：线段树/">算法：线段树</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/20/poj-2388-寻找中位数/">poj 2388 寻找中位数</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/20/poj-3164-最小树形图-朱刘算法/">poj 3164 最小树形图 朱刘算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/16/实现自己的stl-iterator/">实现自己的STL Iterator</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/05/windows-cmd替代/">Windows CMD替代</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/02/poj-3630-phone-list/">poj 3630 phone list</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/02/poj-2524-ubiquitous-religions/">poj 2524 ubiquitous religions</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/12/02/poj-3437-tree-grafting/">POJ 3437 Tree Grafting</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/11/13/算法：工作分配/">算法：工作分配</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/11/12/二叉树的重建/">二叉树的重建</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/11/01/poj-2820-ancient-cipher-古代密码/">POJ 2820 Ancient Cipher 古代密码</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/30/poj-1961-求某串中所有循环前缀串的长度和循环次数/">poj 1961 求某串中所有循环前缀串的长度和循环次数</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/29/约瑟夫问题-josephus-problem/">约瑟夫问题 Josephus Problem</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/29/vim-youcompleteme-on-64bit-windows/">vim Youcompleteme on 64bit Windows</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/29/递归算法转换为非递归算法/">递归算法转换为非递归算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/26/vim-插件配置攻略/">vim 插件配置攻略</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/23/中缀表达式求值/">中缀表达式求值</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/21/快速排序-quicksort/">快速排序 QuickSort</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/10/20/poj-1664-放苹果/">POJ 1664 放苹果</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/28/mac-osx-下-java-环境/">Mac OSX 下 java 环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/27/poj-1007-dna逆序对/">POJ 1007 DNA逆序对</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/26/poj-1006-biorhythms/">POJ 1006 Biorhythms</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/26/generate-ctags-files/">Generate Ctags Files</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/26/poj-1002-电话号码/">POJ 1002 电话号码</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/25/poj-1001-求高精度幂/">POJ 1001 求高精度幂</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/16/python-中的装饰器(decorator)/">Python 中的装饰器(decorator)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/09/15/zsh与oh-my-zsh/">zsh与oh-my-zsh</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
+<hr>
+<div class="post-toc sidebar-item" id="toc-div">
+  <p><i class="fas fa-list-ol"></i> Table of Contents</p>
+  <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#vim基本用法"><span class="toc-text">vim基本用法</span></a></li></ol></div>
 </div>
-      <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
-                2016-2018 Joseph Pei
-            </div>
-            <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
-            </div>
+
+
+
+    
+    
+    
+<hr>
+<div class="social-link sidebar-item">
+  <p><i class="far fa-address-card"></i> Social Links</p>
+  <ul>
+    
+    <li><i class="fab fa-github"></i> <a href="https://josephpei.github.com/" target="_blank">GitHub</a></li>
+    
+    <li><i class="fab fa-weibo"></i> <a href="https://josephpei.weibo.com/" target="_blank">Weibo</a></li>
+    
+  </ul>
+</div>
+
+
+    
+    
+    
+<hr>
+<div class="blogroll sidebar-item">
+  <p><i class="fas fa-link"></i> Blogroll</p>
+  <ul>
+    
+    <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+    
+    <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+    
+    <li><a href="http://stylus-lang.com/" target="_blank">Stylus</a></li>
+    
+  </ul>
+</div>
+
+
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <a id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Joseph Pei</span>
+          <span class="year"><i class="far fa-copyright"></i> 2016 - 2018</span>
+          
+          <span class="creative-commons"><i class="fab fa-creative-commons"></i> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
+          
         </div>
         
-            <div class="visit">
-                
-                    <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
-                        </span>
-                    </span>
-                
-                
-                    <span>| </span>
-                
-                
-                    <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
-                        </span>
-                    </span>
-                
-            </div>
         
-    </div>
-</footer>
-    </div>
-    
-<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 5;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
-
-
-
-
-
-    <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-<div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+<div class="busuanzi">
+  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+  <span id="busuanzi_container_site_uv"><i class="fas fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+  <span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i> <span id="busuanzi_value_page_pv"></span></span>
 </div>
-<script>
-    // Open in New Window
-    
-        var oOpenInNew = {
-            
-            
-            
-            
-            
-            
-             archives: ".archive-article-title", 
-             miniArchives: "a.post-list-link", 
-            
-             friends: "#js-friends a", 
-             socail: ".social a" 
-        }
-        for (var x in oOpenInNew) {
-            $(oOpenInNew[x]).attr("target", "_blank");
-        }
-    
-</script>
 
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
+
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于 <i class="fab fa-github-alt"></i> <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          Proudly Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> | Theme is <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
   </div>
-</body>
+</footer>
+
+
+  </body>
 </html>

@@ -1,419 +1,275 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
-<head>
-
-    <!--[if lt IE 9]>
-        <style>body {display: none; background: none !important} </style>
-        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
-    <![endif]-->
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta name="author" content="Joseph Pei" />
-
-
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
     
     
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="有翅膀的天狼">
-<meta property="og:url" content="http://josephpei.github.io/page/5/index.html">
-<meta property="og:site_name" content="有翅膀的天狼">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="有翅膀的天狼">
-
-<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
-
-
-    <link rel="alternate" href="/atom.xml" title="有翅膀的天狼" type="application/atom+xml">
-
-
-
-    <link rel="shortcut icon" href="/favicon.png">
-
-
-
-    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
-
-
-
-    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
-
-
-
-    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
-
-
-<link rel="stylesheet" href="/css/style.css">
-
-
-    <style> .article { opacity: 0;} </style>
-
-
-<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-
-
-<title>有翅膀的天狼</title>
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-
-<script>
-    var yiliaConfig = {
-        fancybox: true,
-        animate: true,
-        isHome: true,
-        isPost: false,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
-        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: undefined
-    }
-</script>
-
-
-    <script> yiliaConfig.jquery_ui = [false]; </script>
-
-
-
-    <script> yiliaConfig.rootUrl = "\/";</script>
-
-
-
-
-
-
-</head>
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-    <header id="header" class="inner">
-        <a href="/" class="profilepic">
-            <img src="/img/avatar.png" class="animated zoomIn">
-        </a>
-        <hgroup>
-          <h1 class="header-author"><a href="/">Joseph Pei</a></h1>
-        </hgroup>
-
-        
-
-        
-
-
-        
-            <div id="switch-btn" class="switch-btn">
-                <div class="icon">
-                    <div class="icon-ctn">
-                        <div class="icon-wrap icon-house" data-idx="0">
-                            <div class="birdhouse"></div>
-                            <div class="birdhouse_holes"></div>
-                        </div>
-                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
-                            <div class="ribbon"></div>
-                        </div>
-                        
-                        <div class="icon-wrap icon-link hide" data-idx="2">
-                            <div class="loopback_l"></div>
-                            <div class="loopback_r"></div>
-                        </div>
-                        
-                        
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                <div class="tips-box hide">
-                    <div class="tips-arrow"></div>
-                    <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
-                        
-                        <li>友情链接</li>
-                        
-                        
-                        <li>关于我</li>
-                        
-                    </ul>
-                </div>
-            </div>
-        
-
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a href="/">主页</a></li>
-                        
-                            <li><a href="/archives/">所有文章</a></li>
-                        
-                            <li><a href="/tags/">标签云</a></li>
-                        
-                            <li><a href="/about/">关于我</a></li>
-                        
-                        </ul>
-                    </nav>
-                    <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" href="mailto:josephpei@gmail.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" href="https://github.com/josephpei" title="GitHub"></a>
-                            
-                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-                    </nav>
-                </section>
-                
-                
-                <section class="switch-part switch-part2">
-                    <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FP/">FP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinuxDriver/">LinuxDriver</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cpp/">cpp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-pattern/">design pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mooc/">mooc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/poj/">poj</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
-                    </div>
-                </section>
-                
-                
-                
-                <section class="switch-part switch-part3">
-                    <div id="js-friends">
-                    
-                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
-                    
-                    </div>
-                </section>
-                
-
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">专注于前端</div>
-                </section>
-                
-            </div>
-        </div>
-    </header>                
-</div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Joseph Pei</a></h1>
+    
+    <meta name="keywords" content="Life, Linux, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="有翅膀的天狼" type="application/atom+xml" />
+    
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>有翅膀的天狼 - Whisper to the world</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
+        <h2 class="subtitle">Whisper to the world</h2>
       </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/" class="profilepic">
-                <img src="/img/avatar.png" class="animated zoomIn">
-            </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页">Joseph Pei</a></h1>
-            </hgroup>
-            
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
-                
-                    <li><a href="/tags/">标签云</a></li>
-                
-                    <li><a href="/about/">关于我</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
-            <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" target="_blank" href="mailto:josephpei@gmail.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" target="_blank" href="https://github.com/josephpei" title="GitHub"></a>
-                            
-                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-            </nav>
-        </header>                
+      <div class="logo">
+        <img src="/img/logo.png" alt="logo">
+      </div>
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+    
+<nav id="nav" class="nav">
+  <a id="nav-toggle" class="nav-toggle"><i class="fas fa-bars"></i></a>
+  <ul id="menu">
+    
+    <li><a href="/">Home</a></li>
+    
+    <li><a href="/archives/">Archives</a></li>
+    
+    <li><a href="/categories/">Categories</a></li>
+    
+    <li><a href="/tags/">Tags</a></li>
+    
+    <li><a href="/about/">About</a></li>
+    
+  </ul>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-vim-youcompleteme-on-64bit-windows" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2013/10/29/vim-youcompleteme-on-64bit-windows/" class="article-date">
-      <time datetime="2013-10-29T07:13:42.000Z" itemprop="datePublished">2013-10-29</time>
-</a>
 
 
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/10/29/vim-youcompleteme-on-64bit-windows/">vim Youcompleteme on 64bit Windows</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>摘要：64bit vim, YCM, 64bit clang VS 2012, 64bit Widnows<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2013/10/29/vim-youcompleteme-on-64bit-windows/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+
+<section id="index" class="index">
   
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-递归算法转换为非递归算法" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2013/10/29/递归算法转换为非递归算法/" class="article-date">
-      <time datetime="2013-10-29T06:39:46.000Z" itemprop="datePublished">2013-10-29</time>
-</a>
-
-
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/29/vim-youcompleteme-on-64bit-windows/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Joseph Pei">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="有翅膀的天狼">
+      </span>
     </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <header class="post-header">
+      <h2 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2013/10/29/vim-youcompleteme-on-64bit-windows/" itemprop="url">vim Youcompleteme on 64bit Windows</a>
+      </h2>
+      <div class="post-meta">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/10/29/递归算法转换为非递归算法/">递归算法转换为非递归算法</a>
-    </h1>
-  
-
-      </header>
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-10-29T15:13:42+08:00">2013-10-29</time>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider"> | </span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i> <a href="/2013/10/29/vim-youcompleteme-on-64bit-windows/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/10/29/vim-youcompleteme-on-64bit-windows/" itemprop="commentCount"></span></a>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-body" itemprop="articleBody">
       
-    
-    <div class="article-entry" itemprop="articleBody">
+      <p>摘要：64bit vim, YCM, 64bit clang VS 2012, 64bit Widnows<br>
+      <div class="post-readmore">
+        <a class="readmore button" href="/2013/10/29/vim-youcompleteme-on-64bit-windows/#more">Read More <i class="fas fa-angle-double-right"></i></a>
+      </div>
       
-          
-              <p>递归算法实际上是一种分而治之的方法，它把复杂问题分解为简单问题来求解。对于某些复杂问题(例如hanio塔问题)，递归算法是一种自然且合乎逻辑的解决问题的方式，但是递归算法的执行效率通常比较差。因此，在求解某些问题时，常采用递归算法来分析问题，用非递归算法来求解问题；另外，有些程序设计语言不支持递归，这就需要把递归算法转换为非递归算法。</p>
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/29/递归算法转换为非递归算法/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Joseph Pei">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="有翅膀的天狼">
+      </span>
+    </div>
+    <header class="post-header">
+      <h2 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2013/10/29/递归算法转换为非递归算法/" itemprop="url">递归算法转换为非递归算法</a>
+      </h2>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-10-29T14:39:46+08:00">2013-10-29</time>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider"> | </span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i> <a href="/2013/10/29/递归算法转换为非递归算法/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/10/29/递归算法转换为非递归算法/" itemprop="commentCount"></span></a>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-body" itemprop="articleBody">
+      
+      <p>递归算法实际上是一种分而治之的方法，它把复杂问题分解为简单问题来求解。对于某些复杂问题(例如hanio塔问题)，递归算法是一种自然且合乎逻辑的解决问题的方式，但是递归算法的执行效率通常比较差。因此，在求解某些问题时，常采用递归算法来分析问题，用非递归算法来求解问题；另外，有些程序设计语言不支持递归，这就需要把递归算法转换为非递归算法。</p>
 <p>将递归算法转换为非递归算法有两种方法，一种是直接求值，不需要回溯；另一种是不能直接求值，需要回溯。前者使用一些变量保存中间结果，称为直接转换法；后者使用栈保存中间结果，称为间接转换法，下面分别讨论这两种方法。<br>
-          
+      <div class="post-readmore">
+        <a class="readmore button" href="/2013/10/29/递归算法转换为非递归算法/#more">Read More <i class="fas fa-angle-double-right"></i></a>
+      </div>
       
-    </div>
-    
-    <div class="article-info article-info-index">
+    </main>
+    <footer class="post-footer">
       
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2013/10/29/递归算法转换为非递归算法/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-vim-插件配置攻略" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2013/10/26/vim-插件配置攻略/" class="article-date">
-      <time datetime="2013-10-26T07:54:56.000Z" itemprop="datePublished">2013-10-26</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+      <div class="post-tags">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/10/26/vim-插件配置攻略/">vim 插件配置攻略</a>
-    </h1>
-  
-
-      </header>
+        
+        
+        
+        
+        
+        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> algorithm</a>
+        
+        
+      </div>
       
-    
-    <div class="article-entry" itemprop="articleBody">
+    </footer>
+  </article>
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/26/vim-插件配置攻略/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Joseph Pei">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="有翅膀的天狼">
+      </span>
+    </div>
+    <header class="post-header">
+      <h2 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2013/10/26/vim-插件配置攻略/" itemprop="url">vim 插件配置攻略</a>
+      </h2>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-10-26T15:54:56+08:00">2013-10-26</time>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider"> | </span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i> <a href="/2013/10/26/vim-插件配置攻略/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/10/26/vim-插件配置攻略/" itemprop="commentCount"></span></a>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-body" itemprop="articleBody">
       
-          
-        <p>网友 k-vim 的配置 <a href="https://github.com/wklken" target="_blank" rel="external">https://github.com/wklken</a></p>
+      <p>网友 k-vim 的配置 <a href="https://github.com/wklken" target="_blank" rel="external">https://github.com/wklken</a></p>
 <blockquote>
 <p>给人一条Vim 命令，他能折腾一晚上；告诉他怎么自定义Vim 命令，他能捣腾一辈子</p>
 <p>生命不息,折腾不止 (╯‵□′)╯︵┻━┻)</p>
@@ -428,125 +284,111 @@
 </code></pre><p>   文章: <a href="http://www.kunli.info/2013/08/13/vim/" target="_blank" rel="external">不要复杂化vim</a></p>
 
       
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/23/中缀表达式求值/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Joseph Pei">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="有翅膀的天狼">
+      </span>
     </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-中缀表达式求值" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2013/10/23/中缀表达式求值/" class="article-date">
-      <time datetime="2013-10-23T08:53:43.000Z" itemprop="datePublished">2013-10-23</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <header class="post-header">
+      <h2 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2013/10/23/中缀表达式求值/" itemprop="url">中缀表达式求值</a>
+      </h2>
+      <div class="post-meta">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/10/23/中缀表达式求值/">中缀表达式求值</a>
-    </h1>
-  
-
-      </header>
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-10-23T16:53:43+08:00">2013-10-23</time>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider"> | </span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i> <a href="/2013/10/23/中缀表达式求值/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/10/23/中缀表达式求值/" itemprop="commentCount"></span></a>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-body" itemprop="articleBody">
       
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>给定一个中缀表达式，求出该表达式的值。</p>
+      <p>给定一个中缀表达式，求出该表达式的值。</p>
 <p>要求支持“加减乘除 + - * /、取余 %、幂运算 ^、一元正负号 + -、括号 ()、数的科学表示法符号 E e”，其中含有一元操作符’+ -‘，也含有从右向左结合性的操作符’^’，注意操作数的位数可以为多位。<br>
-          
+      <div class="post-readmore">
+        <a class="readmore button" href="/2013/10/23/中缀表达式求值/#more">Read More <i class="fas fa-angle-double-right"></i></a>
+      </div>
       
-    </div>
-    
-    <div class="article-info article-info-index">
+    </main>
+    <footer class="post-footer">
       
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2013/10/23/中缀表达式求值/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-快速排序-quicksort" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2013/10/21/快速排序-quicksort/" class="article-date">
-      <time datetime="2013-10-21T03:34:49.000Z" itemprop="datePublished">2013-10-21</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+      <div class="post-tags">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/10/21/快速排序-quicksort/">快速排序 QuickSort</a>
-    </h1>
-  
-
-      </header>
+        
+        
+        
+        
+        
+        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> algorithm</a>
+        
+        
+      </div>
       
-    
-    <div class="article-entry" itemprop="articleBody">
+    </footer>
+  </article>
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/21/快速排序-quicksort/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Joseph Pei">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="有翅膀的天狼">
+      </span>
+    </div>
+    <header class="post-header">
+      <h2 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2013/10/21/快速排序-quicksort/" itemprop="url">快速排序 QuickSort</a>
+      </h2>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-10-21T11:34:49+08:00">2013-10-21</time>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider"> | </span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i> <a href="/2013/10/21/快速排序-quicksort/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/10/21/快速排序-quicksort/" itemprop="commentCount"></span></a>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-body" itemprop="articleBody">
       
-          
-        <p>7-4 快速排序中的堆栈深度</p>
+      <p>7-4 快速排序中的堆栈深度</p>
 <p>7.1节中QUICKSORT算法包含有两个对其自身的递归调用。在调用PARTITION后，左边的子数组和右边的子数组分别被递归调用。QUICKSORT中的第二次递归调用并不是必须的；可以用迭代控制来代替它。这种技术称作尾递归，大多数的编译程序都加以了采用。考虑下面这个快速排序的版本，它模拟了尾递归：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">QUICKSORT&apos;(A, p, r)</div><div class="line">1  while p&lt;r</div><div class="line">2      do q &lt;- PARTITION(A, p, r)</div><div class="line">3         QUICKSORT(A, p, q-1)</div><div class="line">4         p &lt;- q+1</div></pre></td></tr></table></figure>
 <p>a) 论证QUICKSORT’(A, 1, Length[A])能正确地对数组A进行排序。</p>
@@ -560,129 +402,127 @@
 <p>c) 修改QUICKSORT’的代码，使其最坏情况栈深度为Θ(lgn)。保持算法的O(nlgn)期望运行时间不变。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">QUICKSORT&apos;&apos;(A, p, r)</div><div class="line">1 while p&lt;r</div><div class="line">2     do q &lt;- PARTITION(A, p, r)</div><div class="line">3        if q-p&lt;r-q</div><div class="line">4            then QUICKSORT&apos;&apos;(A, p, q-1)</div><div class="line">5                 p &lt;- q+1</div><div class="line">6            else QUICKSORT&apos;&apos;(A, q+1, r)</div><div class="line">7                 r &lt;- q-1</div></pre></td></tr></table></figure>
       
-    </div>
-    
-    <div class="article-info article-info-index">
+    </main>
+    <footer class="post-footer">
       
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-poj-1664-放苹果" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2013/10/20/poj-1664-放苹果/" class="article-date">
-      <time datetime="2013-10-20T02:50:57.000Z" itemprop="datePublished">2013-10-20</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+      <div class="post-tags">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/10/20/poj-1664-放苹果/">POJ 1664 放苹果</a>
-    </h1>
-  
-
-      </header>
+        
+        
+        
+        
+        
+        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> algorithm</a>
+        
+        
+      </div>
       
-    
-    <div class="article-entry" itemprop="articleBody">
+    </footer>
+  </article>
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/20/poj-1664-放苹果/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Joseph Pei">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="有翅膀的天狼">
+      </span>
+    </div>
+    <header class="post-header">
+      <h2 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2013/10/20/poj-1664-放苹果/" itemprop="url">POJ 1664 放苹果</a>
+      </h2>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-10-20T10:50:57+08:00">2013-10-20</time>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider"> | </span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i> <a href="/2013/10/20/poj-1664-放苹果/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/10/20/poj-1664-放苹果/" itemprop="commentCount"></span></a>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-body" itemprop="articleBody">
       
-          
-              <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>把M个同样的苹果放在N个同样的盘子里，允许有的盘子空着不放，问共有多少种不同的分法？（用K表示）5，1，1和1，5，1 是同一种分法。</p>
+      <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>把M个同样的苹果放在N个同样的盘子里，允许有的盘子空着不放，问共有多少种不同的分法？（用K表示）5，1，1和1，5，1 是同一种分法。</p>
 <p>自己想了半天，什么排列组合之类的，后来去搜题解，才知道是用递归……<br>
-          
+      <div class="post-readmore">
+        <a class="readmore button" href="/2013/10/20/poj-1664-放苹果/#more">Read More <i class="fas fa-angle-double-right"></i></a>
+      </div>
       
-    </div>
-    
-    <div class="article-info article-info-index">
+    </main>
+    <footer class="post-footer">
       
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/poj/">poj</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2013/10/20/poj-1664-放苹果/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-mac-osx-下-java-环境" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2013/09/28/mac-osx-下-java-环境/" class="article-date">
-      <time datetime="2013-09-28T05:37:52.000Z" itemprop="datePublished">2013-09-28</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+      <div class="post-tags">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/09/28/mac-osx-下-java-环境/">Mac OSX 下 java 环境</a>
-    </h1>
-  
-
-      </header>
+        
+        
+        
+        
+        
+        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> algorithm</a>
+        
+        
+        
+        <a class="post-tag button" href="/tags/poj/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i> poj</a>
+        
+        
+      </div>
       
-    
-    <div class="article-entry" itemprop="articleBody">
+    </footer>
+  </article>
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/09/28/mac-osx-下-java-环境/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Joseph Pei">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="有翅膀的天狼">
+      </span>
+    </div>
+    <header class="post-header">
+      <h2 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2013/09/28/mac-osx-下-java-环境/" itemprop="url">Mac OSX 下 java 环境</a>
+      </h2>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-09-28T13:37:52+08:00">2013-09-28</time>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider"> | </span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i> <a href="/2013/09/28/mac-osx-下-java-环境/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/09/28/mac-osx-下-java-环境/" itemprop="commentCount"></span></a>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-body" itemprop="articleBody">
       
-          
-        <h2 id="解决javac和java命令在Mac-OSX终端里的乱码问题"><a href="#解决javac和java命令在Mac-OSX终端里的乱码问题" class="headerlink" title="解决javac和java命令在Mac OSX终端里的乱码问题"></a>解决javac和java命令在Mac OSX终端里的乱码问题</h2><p>解决方法有3个：</p>
+      <h2 id="解决javac和java命令在Mac-OSX终端里的乱码问题"><a href="#解决javac和java命令在Mac-OSX终端里的乱码问题" class="headerlink" title="解决javac和java命令在Mac OSX终端里的乱码问题"></a>解决javac和java命令在Mac OSX终端里的乱码问题</h2><p>解决方法有3个：</p>
 <p>1）指定输出的编码为UTF-8</p>
 <pre><code>javac -J-Dfile.encoding=UTF-8
 </code></pre><p>.profile添加</p>
@@ -699,125 +539,121 @@
 }
 </code></pre>
       
-    </div>
-    
-    <div class="article-info article-info-index">
+    </main>
+    <footer class="post-footer">
       
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-poj-1007-dna逆序对" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2013/09/27/poj-1007-dna逆序对/" class="article-date">
-      <time datetime="2013-09-27T08:21:38.000Z" itemprop="datePublished">2013-09-27</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+      <div class="post-tags">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/09/27/poj-1007-dna逆序对/">POJ 1007 DNA逆序对</a>
-    </h1>
-  
-
-      </header>
+        
+        
+        
+        
+        
+        <a class="post-tag button" href="/tags/java/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> java</a>
+        
+        
+      </div>
       
-    
-    <div class="article-entry" itemprop="articleBody">
+    </footer>
+  </article>
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/09/27/poj-1007-dna逆序对/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Joseph Pei">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="有翅膀的天狼">
+      </span>
+    </div>
+    <header class="post-header">
+      <h2 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2013/09/27/poj-1007-dna逆序对/" itemprop="url">POJ 1007 DNA逆序对</a>
+      </h2>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-09-27T16:21:38+08:00">2013-09-27</time>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider"> | </span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i> <a href="/2013/09/27/poj-1007-dna逆序对/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/09/27/poj-1007-dna逆序对/" itemprop="commentCount"></span></a>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-body" itemprop="articleBody">
       
-          
-        <p>题意就是让你求逆序对，然后按照逆序对的大小将字符串输出，如果逆序对数目一样，则不要改变原来的顺序输出。</p>
+      <p>题意就是让你求逆序对，然后按照逆序对的大小将字符串输出，如果逆序对数目一样，则不要改变原来的顺序输出。</p>
 <p>至于逆序对数…对于”ZWQM”，因为Z&gt;W&gt;Q&gt;M，则一共有6个逆序对:ZW、ZQ、ZM、WQ、WM、QM…就这样暴力算出每个字符串的逆序对数目，然后排序就行了。下面程序中用的是最简单的冒泡排序。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> n, m;</div><div class="line">    <span class="keyword">int</span> max = <span class="number">0</span>, min;</div><div class="line">    <span class="keyword">int</span> i, j, k;</div><div class="line">    <span class="keyword">char</span> item[<span class="number">101</span>][<span class="number">51</span>];</div><div class="line">    <span class="keyword">int</span> len[<span class="number">101</span>] = &#123;<span class="number">0</span>&#125;;</div><div class="line">    <span class="keyword">int</span> flag[<span class="number">101</span>] = &#123;<span class="number">0</span>&#125;;</div><div class="line"></div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</div><div class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; m; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>, item[i]);</div><div class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++)</div><div class="line">            <span class="keyword">for</span> (k = j + <span class="number">1</span>; k &lt; n; k++)</div><div class="line">                <span class="keyword">if</span> (item[i][j] &gt; item[i][k]) len[i]++;</div><div class="line">        <span class="keyword">if</span> (len[i] &gt; max) max = len[i];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; m; i++)</div><div class="line">    &#123;</div><div class="line">        min = max + <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; m; j++)</div><div class="line">            <span class="keyword">if</span> (len[j] &lt; min &amp;&amp; (flag[j] == <span class="number">0</span>))</div><div class="line">            &#123;</div><div class="line">                min = len[j];</div><div class="line">                k = j;</div><div class="line">            &#125;</div><div class="line">        flag[k] = <span class="number">1</span>;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, item[k]);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
-    </div>
-    
-    <div class="article-info article-info-index">
+    </main>
+    <footer class="post-footer">
       
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/poj/">poj</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-poj-1006-biorhythms" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2013/09/26/poj-1006-biorhythms/" class="article-date">
-      <time datetime="2013-09-26T06:37:21.000Z" itemprop="datePublished">2013-09-26</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+      <div class="post-tags">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/09/26/poj-1006-biorhythms/">POJ 1006 Biorhythms</a>
-    </h1>
-  
-
-      </header>
+        
+        
+        
+        
+        
+        <a class="post-tag button" href="/tags/poj/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> poj</a>
+        
+        
+      </div>
       
-    
-    <div class="article-entry" itemprop="articleBody">
+    </footer>
+  </article>
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/09/26/poj-1006-biorhythms/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Joseph Pei">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="有翅膀的天狼">
+      </span>
+    </div>
+    <header class="post-header">
+      <h2 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2013/09/26/poj-1006-biorhythms/" itemprop="url">POJ 1006 Biorhythms</a>
+      </h2>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-09-26T14:37:21+08:00">2013-09-26</time>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider"> | </span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i> <a href="/2013/09/26/poj-1006-biorhythms/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/09/26/poj-1006-biorhythms/" itemprop="commentCount"></span></a>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-body" itemprop="articleBody">
       
-          
-        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>人自出生起就有体力，情感和智力三个生理周期，分别为23，28和33天。一个周期内有一天为峰值，在这一天，人在对应的方面（体力，情感或智力）表现最好。通常这三个周期的峰值不会是同一天。现在给出三个日期，分别对应于体力，情感，智力出现峰值的日期。然后再给出一个起始日期，要求从这一天开始，算出最少再过多少天后三个峰值同时出现。</p>
+      <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>人自出生起就有体力，情感和智力三个生理周期，分别为23，28和33天。一个周期内有一天为峰值，在这一天，人在对应的方面（体力，情感或智力）表现最好。通常这三个周期的峰值不会是同一天。现在给出三个日期，分别对应于体力，情感，智力出现峰值的日期。然后再给出一个起始日期，要求从这一天开始，算出最少再过多少天后三个峰值同时出现。</p>
 <h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>首先我们要知道，任意两个峰值之间一定相距整数倍的周期。假设一年的第N天达到峰值，则下次达到峰值的时间为N+Tk(T是周期，k是任意正整数)。所以，三个峰值同时出现的那一天(S)应满足</p>
 <pre><code>S = N1 + T1*k1 = N2 + T2*k2 = N3 + T3*k3
 </code></pre><p>N1,N2,N3分别为为体力，情感，智力出现峰值的日期， T1，T2,T3分别为体力，情感，智力周期。 我们需要求出k1,k2,k3三个非负整数使上面的等式成立。</p>
@@ -865,204 +701,230 @@
 <p><a href="http://www.cnblogs.com/walker01/archive/2010/01/23/1654880.html" target="_blank" rel="external">http://www.cnblogs.com/walker01/archive/2010/01/23/1654880.html</a></p>
 
       
-    </div>
-    
-    <div class="article-info article-info-index">
+    </main>
+    <footer class="post-footer">
       
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/poj/">poj</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-generate-ctags-files" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2013/09/26/generate-ctags-files/" class="article-date">
-      <time datetime="2013-09-26T04:52:15.000Z" itemprop="datePublished">2013-09-26</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+      <div class="post-tags">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/09/26/generate-ctags-files/">Generate Ctags Files</a>
-    </h1>
-  
-
-      </header>
+        
+        
+        
+        
+        
+        <a class="post-tag button" href="/tags/poj/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> poj</a>
+        
+        
+      </div>
       
-    
-    <div class="article-entry" itemprop="articleBody">
+    </footer>
+  </article>
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/09/26/generate-ctags-files/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Joseph Pei">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="有翅膀的天狼">
+      </span>
+    </div>
+    <header class="post-header">
+      <h2 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2013/09/26/generate-ctags-files/" itemprop="url">Generate Ctags Files</a>
+      </h2>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-09-26T12:52:15+08:00">2013-09-26</time>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider"> | </span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i> <a href="/2013/09/26/generate-ctags-files/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/09/26/generate-ctags-files/" itemprop="commentCount"></span></a>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-body" itemprop="articleBody">
       
-          
-        <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .</div></pre></td></tr></table></figure>
+      <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ctags -I __THROW -I __attribute_pure__ -I __nonnull -I __attribute__ --file-scope=yes --langmap=c:+.h --languages=c,c++ --links=yes --c-kinds=+p --c++-kinds=+p --fields=+iaS --extra=+q  <span class="_">-f</span> ~/.vim/systags /usr/include/* /usr/include/sys/* /usr/include/bits/*  /usr/include/netinet/* /usr/include/arpa/* /usr/include/mysql/*</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"></div><div class="line"><span class="comment"># ./ctags_with_dep.sh file1.c file2.c ... to generate a tags file for these files.</span></div><div class="line"></div><div class="line">gcc -M $* | sed <span class="_">-e</span> <span class="string">'s/[\\ ]/\n/g'</span> | \</div><div class="line">        sed <span class="_">-e</span> <span class="string">'/^$/d'</span> <span class="_">-e</span> <span class="string">'/\.o:[ \t]*$/d'</span> | \</div><div class="line">        ctags -L - --c++-kinds=+p --fields=+iaS --extra=+q</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">gcc -M -I ~/include $* | sed <span class="_">-e</span> <span class="string">'s/[\\ ]/\n/g'</span> | \</div><div class="line">sed <span class="_">-e</span> <span class="string">'/^$/d'</span> <span class="_">-e</span> <span class="string">'/\.o:[ \t]*$/d'</span> | \</div><div class="line">ctags -L - --c++-kinds=+p --fields=+iaS --extra=+q</div></pre></td></tr></table></figure>
       
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fas fa-angle-right"></i></a>
+  </nav>
+  
+  
+  
+
+<div class="comments" id="comments">
+  
+  <script defer id="dsq-count-scr" src="//josephpei-github-io.disqus.com/count.js"></script>
+  
+  
+</div>
+
+
+
+  
+</section>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i> <input type="text" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
+  
+  <p class="author-name">Joseph Pei</p>
+  <p class="author-description"> </p>
+  <div class="site-count">
+    
+    <div class="archives-count">
+      <p>Archives</p>
+      <p><a href="/archives/">54</a></p>
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
+    
+    
+    <span class="site-count-divider"> | </span>
+    
+    <div class="categories-count">
+      <p>Categories</p>
+      <p><a href="/categories/">0</a></p>
+    </div>
+    
+    
+    
+    <span class="site-count-divider"> | </span>
+    
+    <div class="tags-count">
+      <p>Tags</p>
+      <p><a href="/tags/">15</a></p>
     </div>
     
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
-    </nav>
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i> RSS</a>
+  </div>
   
 </div>
-      <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
-                2016-2018 Joseph Pei
-            </div>
-            <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
-            </div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+<hr>
+<div class="social-link sidebar-item">
+  <p><i class="far fa-address-card"></i> Social Links</p>
+  <ul>
+    
+    <li><i class="fab fa-github"></i> <a href="https://josephpei.github.com/" target="_blank">GitHub</a></li>
+    
+    <li><i class="fab fa-weibo"></i> <a href="https://josephpei.weibo.com/" target="_blank">Weibo</a></li>
+    
+  </ul>
+</div>
+
+
+    
+    
+    
+<hr>
+<div class="blogroll sidebar-item">
+  <p><i class="fas fa-link"></i> Blogroll</p>
+  <ul>
+    
+    <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+    
+    <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+    
+    <li><a href="http://stylus-lang.com/" target="_blank">Stylus</a></li>
+    
+  </ul>
+</div>
+
+
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <a id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Joseph Pei</span>
+          <span class="year"><i class="far fa-copyright"></i> 2016 - 2018</span>
+          
+          <span class="creative-commons"><i class="fab fa-creative-commons"></i> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
+          
         </div>
         
-            <div class="visit">
-                
-                    <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
-                        </span>
-                    </span>
-                
-                
-                    <span>| </span>
-                
-                
-                    <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
-                        </span>
-                    </span>
-                
-            </div>
         
-    </div>
-</footer>
-    </div>
-    
-<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 5;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
-
-
-
-
-
-    <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-<div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+<div class="busuanzi">
+  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+  <span id="busuanzi_container_site_uv"><i class="fas fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+  <span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i> <span id="busuanzi_value_page_pv"></span></span>
 </div>
-<script>
-    // Open in New Window
-    
-        var oOpenInNew = {
-            
-            
-            
-            
-            
-            
-             archives: ".archive-article-title", 
-             miniArchives: "a.post-list-link", 
-            
-             friends: "#js-friends a", 
-             socail: ".social a" 
-        }
-        for (var x in oOpenInNew) {
-            $(oOpenInNew[x]).attr("target", "_blank");
-        }
-    
-</script>
 
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
+
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于 <i class="fab fa-github-alt"></i> <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          Proudly Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> | Theme is <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
   </div>
-</body>
+</footer>
+
+
+  </body>
 </html>

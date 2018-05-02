@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>有翅膀的天狼</title>
   
-  
+  <subtitle>Whisper to the world</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://josephpei.github.io/"/>
