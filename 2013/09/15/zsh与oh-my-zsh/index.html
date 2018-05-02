@@ -414,24 +414,27 @@ DEFAULT_USER=&quot;xilaideng&quot;
 
 
     
-      <div class="duoshuo" id="comments">
-    <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2013/09/15/zsh与oh-my-zsh/" data-title="zsh与oh-my-zsh" data-url="http://josephpei.github.io/2013/09/15/zsh与oh-my-zsh/"></div>
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
     <script>
-        var duoshuoQuery = {short_name:"josephpei"};
+        var disqus_config = function(){
+            this.page.url = 'http://josephpei.github.io/2013/09/15/zsh与oh-my-zsh/';
+            this.page.identifier = '2013/09/15/zsh与oh-my-zsh/';
+        };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
-            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-            s.async = true; s.charset = 'UTF-8';
+            s.src = '//josephpei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
         }
-
-        
     </script>
     
     <script> loadComment(); </script>
 
-</div>
+</section>
+
+
     
 
 

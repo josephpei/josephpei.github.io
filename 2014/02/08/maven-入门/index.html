@@ -477,24 +477,27 @@ package 阶段：jar:jar
 
 
     
-      <div class="duoshuo" id="comments">
-    <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2014/02/08/maven-入门/" data-title="Maven 入门" data-url="http://josephpei.github.io/2014/02/08/maven-入门/"></div>
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
     <script>
-        var duoshuoQuery = {short_name:"josephpei"};
+        var disqus_config = function(){
+            this.page.url = 'http://josephpei.github.io/2014/02/08/maven-入门/';
+            this.page.identifier = '2014/02/08/maven-入门/';
+        };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
-            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-            s.async = true; s.charset = 'UTF-8';
+            s.src = '//josephpei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
         }
-
-        
     </script>
     
     <script> loadComment(); </script>
 
-</div>
+</section>
+
+
     
 
 

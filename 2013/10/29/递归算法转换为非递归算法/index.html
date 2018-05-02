@@ -428,24 +428,27 @@ LINES;（其中LINESw为第k个递归调用语句）
 
 
     
-      <div class="duoshuo" id="comments">
-    <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2013/10/29/递归算法转换为非递归算法/" data-title="递归算法转换为非递归算法" data-url="http://josephpei.github.io/2013/10/29/递归算法转换为非递归算法/"></div>
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
     <script>
-        var duoshuoQuery = {short_name:"josephpei"};
+        var disqus_config = function(){
+            this.page.url = 'http://josephpei.github.io/2013/10/29/递归算法转换为非递归算法/';
+            this.page.identifier = '2013/10/29/递归算法转换为非递归算法/';
+        };
         var loadComment = function(){
             var d = document, s = d.createElement('script');
-            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-            s.async = true; s.charset = 'UTF-8';
+            s.src = '//josephpei.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
         }
-
-        
     </script>
     
     <script> loadComment(); </script>
 
-</div>
+</section>
+
+
     
 
 
