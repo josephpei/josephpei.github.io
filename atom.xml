@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://josephpei.github.io/"/>
-  <updated>2018-04-28T03:29:59.083Z</updated>
+  <updated>2018-05-02T08:53:11.506Z</updated>
   <id>http://josephpei.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://josephpei.github.io/2018/04/28/ubuntu-awesome-terminal/"/>
     <id>http://josephpei.github.io/2018/04/28/ubuntu-awesome-terminal/</id>
     <published>2018-04-28T02:53:07.000Z</published>
-    <updated>2018-04-28T03:29:59.083Z</updated>
+    <updated>2018-05-02T08:53:11.506Z</updated>
     
     <summary type="html">
     
@@ -30,6 +30,8 @@
     
     </summary>
     
+    
+      <category term="ubuntu" scheme="http://josephpei.github.io/tags/ubuntu/"/>
     
   </entry>
   
