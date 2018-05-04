@@ -125,6 +125,54 @@
   
   <article class="index-post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/09/26/generate-ctags-files/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Joseph Pei">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="有翅膀的天狼">
+      </span>
+    </div>
+    <header class="post-header">
+      <h2 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2013/09/26/generate-ctags-files/" itemprop="url">Generate Ctags Files</a>
+      </h2>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-09-26T12:52:15+08:00">2013-09-26</time>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider"> | </span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i> <a href="/2013/09/26/generate-ctags-files/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/09/26/generate-ctags-files/" itemprop="commentCount"></span></a>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-body" itemprop="articleBody">
+      
+      <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ctags -I __THROW -I __attribute_pure__ -I __nonnull -I __attribute__ --file-scope=yes --langmap=c:+.h --languages=c,c++ --links=yes --c-kinds=+p --c++-kinds=+p --fields=+iaS --extra=+q  <span class="_">-f</span> ~/.vim/systags /usr/include/* /usr/include/sys/* /usr/include/bits/*  /usr/include/netinet/* /usr/include/arpa/* /usr/include/mysql/*</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"></div><div class="line"><span class="comment"># ./ctags_with_dep.sh file1.c file2.c ... to generate a tags file for these files.</span></div><div class="line"></div><div class="line">gcc -M $* | sed <span class="_">-e</span> <span class="string">'s/[\\ ]/\n/g'</span> | \</div><div class="line">        sed <span class="_">-e</span> <span class="string">'/^$/d'</span> <span class="_">-e</span> <span class="string">'/\.o:[ \t]*$/d'</span> | \</div><div class="line">        ctags -L - --c++-kinds=+p --fields=+iaS --extra=+q</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">gcc -M -I ~/include $* | sed <span class="_">-e</span> <span class="string">'s/[\\ ]/\n/g'</span> | \</div><div class="line">sed <span class="_">-e</span> <span class="string">'/^$/d'</span> <span class="_">-e</span> <span class="string">'/\.o:[ \t]*$/d'</span> | \</div><div class="line">ctags -L - --c++-kinds=+p --fields=+iaS --extra=+q</div></pre></td></tr></table></figure>
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/09/26/poj-1002-电话号码/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Joseph Pei">
@@ -433,7 +481,7 @@ DEFAULT_USER=&quot;xilaideng&quot;
     
     <div class="archives-count">
       <p>Archives</p>
-      <p><a href="/archives/">54</a></p>
+      <p><a href="/archives/">55</a></p>
     </div>
     
     
@@ -451,7 +499,7 @@ DEFAULT_USER=&quot;xilaideng&quot;
     
     <div class="tags-count">
       <p>Tags</p>
-      <p><a href="/tags/">15</a></p>
+      <p><a href="/tags/">17</a></p>
     </div>
     
   </div>
