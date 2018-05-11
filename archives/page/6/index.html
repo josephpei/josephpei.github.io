@@ -36,6 +36,9 @@
     
     <link rel="alternate" href="/atom.xml" title="有翅膀的天狼" type="application/atom+xml" />
     
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     
     <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
@@ -45,8 +48,7 @@
 <link rel="stylesheet" type="text/css" href="/css/archive.css">
 
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/solarized-light.css">
     <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script defer type="text/javascript" src="/js/util.js"></script>
@@ -73,8 +75,6 @@
       searchFunc(path, "search-input", "search-result");
     });
     </script>
-    
-    
     
     
     <script defer type="text/javascript" src="/js/index.js"></script>
@@ -125,11 +125,11 @@
             
 <section id="archive" class="archive">
   <div class="archive-container">
-    <div class="archive-counter">
+    <h1 class="archive-counter">
       
-      <p>You have 55 posts!</p>
+      You have 56 posts!
       
-    </div>
+    </h1>
     
     
     
@@ -137,62 +137,74 @@
     <h1 class="archive-title">2013</h1>
     
     <article class="archive-post card" itemscope itemtype="http://schema.org/Article">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2013/09/26/poj-1006-biorhythms/" itemprop="url">POJ 1006 Biorhythms</a>
+        
+        <span class="post-date">
+          <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-09-26T14:37:21+08:00">09-26</time>
+        </span>
+        
+      </h1>
+    </article>
+    
+    
+    <article class="archive-post card" itemscope itemtype="http://schema.org/Article">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2013/09/26/generate-ctags-files/" itemprop="url">Generate Ctags Files</a>
         
         <span class="post-date">
           <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-09-26T12:52:15+08:00">09-26</time>
         </span>
         
-      </h2>
+      </h1>
     </article>
     
     
     <article class="archive-post card" itemscope itemtype="http://schema.org/Article">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2013/09/26/poj-1002-电话号码/" itemprop="url">POJ 1002 电话号码</a>
         
         <span class="post-date">
           <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-09-26T12:39:11+08:00">09-26</time>
         </span>
         
-      </h2>
+      </h1>
     </article>
     
     
     <article class="archive-post card" itemscope itemtype="http://schema.org/Article">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2013/09/25/poj-1001-求高精度幂/" itemprop="url">POJ 1001 求高精度幂</a>
         
         <span class="post-date">
           <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-09-25T16:11:48+08:00">09-25</time>
         </span>
         
-      </h2>
+      </h1>
     </article>
     
     
     <article class="archive-post card" itemscope itemtype="http://schema.org/Article">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2013/09/16/python-中的装饰器(decorator)/" itemprop="url">Python 中的装饰器(decorator)</a>
         
         <span class="post-date">
           <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-09-16T18:10:41+08:00">09-16</time>
         </span>
         
-      </h2>
+      </h1>
     </article>
     
     
     <article class="archive-post card" itemscope itemtype="http://schema.org/Article">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2013/09/15/zsh与oh-my-zsh/" itemprop="url">zsh与oh-my-zsh</a>
         
         <span class="post-date">
           <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-09-15T21:09:49+08:00">09-15</time>
         </span>
         
-      </h2>
+      </h1>
     </article>
     
   </div>
@@ -207,11 +219,11 @@
           
           
           
-<aside class="sidebar" id="sidebar">
+<aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
   
   <div class="search">
     <div class="form-group">
-      <i class="fas fa-search"></i> <input type="text" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
+      <i class="fas fa-search"></i><input type="text" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
     </div>
   </div>
   <div class="search-result-box" id="search-result"></div>
@@ -221,37 +233,37 @@
   
   <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
   
-  <p class="author-name">Joseph Pei</p>
-  <p class="author-description"> </p>
+  <h1 class="author-name">Joseph Pei</h1>
+  <h2 class="author-description"> </h2>
   <div class="site-count">
     
     <div class="archives-count">
-      <p>Archives</p>
-      <p><a href="/archives/">55</a></p>
+      <div class="site-count-title">Archives</div>
+      <div><a href="/archives/">56</a></div>
     </div>
     
     
     
-    <span class="site-count-divider"> | </span>
+    <span class="site-count-divider divider">|</span>
     
     <div class="categories-count">
-      <p>Categories</p>
-      <p><a href="/categories/">0</a></p>
+      <div class="site-count-title">Categories</div>
+      <div><a href="/categories/">0</a></div>
     </div>
     
     
     
-    <span class="site-count-divider"> | </span>
+    <span class="site-count-divider divider">|</span>
     
     <div class="tags-count">
-      <p>Tags</p>
-      <p><a href="/tags/">17</a></p>
+      <div class="site-count-title">Tags</div>
+      <div><a href="/tags/">17</a></div>
     </div>
     
   </div>
   
   <div class="rss">
-    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i> RSS</a>
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
   </div>
   
 </div>
@@ -260,38 +272,6 @@
   <div class="sidebar-sticky">
     
     
-    
-<hr>
-<div class="social-link sidebar-item">
-  <p><i class="far fa-address-card"></i> Social Links</p>
-  <ul>
-    
-    <li><i class="fab fa-github"></i> <a href="https://josephpei.github.com/" target="_blank">GitHub</a></li>
-    
-    <li><i class="fab fa-weibo"></i> <a href="https://josephpei.weibo.com/" target="_blank">Weibo</a></li>
-    
-  </ul>
-</div>
-
-
-    
-    
-    
-<hr>
-<div class="blogroll sidebar-item">
-  <p><i class="fas fa-link"></i> Blogroll</p>
-  <ul>
-    
-    <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-    
-    <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-    
-    <li><a href="http://stylus-lang.com/" target="_blank">Stylus</a></li>
-    
-  </ul>
-</div>
-
-
     
   </div>
 </aside>
@@ -310,18 +290,12 @@
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">Joseph Pei</span>
-          <span class="year"><i class="far fa-copyright"></i> 2016 - 2018</span>
-          
-          <span class="creative-commons"><i class="fab fa-creative-commons"></i> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
-          
+          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
         </div>
         
         
 <div class="busuanzi">
-  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
-  <span id="busuanzi_container_site_uv"><i class="fas fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
-  <span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i> <span id="busuanzi_value_page_pv"></span></span>
+  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv"></span></span>
 </div>
 
 

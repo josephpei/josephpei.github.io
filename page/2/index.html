@@ -36,14 +36,16 @@
     
     <link rel="alternate" href="/atom.xml" title="有翅膀的天狼" type="application/atom+xml" />
     
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     
     <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
     
     
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/solarized-light.css">
     <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script defer type="text/javascript" src="/js/util.js"></script>
@@ -70,8 +72,6 @@
       searchFunc(path, "search-input", "search-result");
     });
     </script>
-    
-    
     
     
     <script defer type="text/javascript" src="/js/index.js"></script>
@@ -125,6 +125,60 @@
   
   <article class="index-post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2014/08/30/Spring-MVC-学习笔记7-表现层-Tiles-Sitemesh/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Joseph Pei">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="有翅膀的天狼">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2014/08/30/Spring-MVC-学习笔记7-表现层-Tiles-Sitemesh/" itemprop="url">Spring MVC 学习笔记7 表现层 Tiles Sitemesh</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-30T23:31:13+08:00">2014-08-30 23:31:13</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2014/08/30/Spring-MVC-学习笔记7-表现层-Tiles-Sitemesh/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/30/Spring-MVC-学习笔记7-表现层-Tiles-Sitemesh/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-body" itemprop="articleBody">
+      
+      <p>表现层为了减少手工写 jsp 页面代码的工作量，出现了许多不同的技术方案，Tiles, SiteMesh, Velocity, FreeMarker 等。这里选用 Tiles3/Sitemesh 负责自定义的 header, body, footer 组装，jsp 页面加入 bootstrap, jQuery ，暂时不用 Velocity/FreeMarker 模板。
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        
+        
+        
+        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2014/08/25/Spring-MVC-学习笔记6-SLF4J-Logback-日志/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Joseph Pei">
@@ -136,23 +190,23 @@
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2014/08/25/Spring-MVC-学习笔记6-SLF4J-Logback-日志/" itemprop="url">Spring MVC 学习笔记6 SLF4J Logback 日志</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-25T16:53:10+08:00">2014-08-25</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-25T16:53:10+08:00">2014-08-25 16:53:10</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2014/08/25/Spring-MVC-学习笔记6-SLF4J-Logback-日志/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/25/Spring-MVC-学习笔记6-SLF4J-Logback-日志/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2014/08/25/Spring-MVC-学习笔记6-SLF4J-Logback-日志/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/25/Spring-MVC-学习笔记6-SLF4J-Logback-日志/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -163,9 +217,6 @@
       <p>Simple Logging Facade for Java(SL4J)</p>
 <p>SLF4J 提供了一组抽象接口，在部署应用时后端可以选择不同的日志框架，而无需更改已有代码。</p>
 <p>Logback 是项目 Log4j 的后继。它由三个模块组成：logback-core, logback-classic, logback-access。其中 logback-core 是基础模块。logback-classic 是 log4j 的改良版，是 slf4j api 的原生实现，可以方便地更换成其它日志框架。logback-access 模块与 Servlet 容器集成提供Http-access 日志的功能。
-      <div class="post-readmore">
-        <a class="readmore button" href="/2014/08/25/Spring-MVC-学习笔记6-SLF4J-Logback-日志/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -175,10 +226,7 @@
         
         
         
-        
-        
-        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> SpringMVC</a>
-        
+        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
         
       </div>
       
@@ -198,23 +246,23 @@
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2014/08/24/Spring-MVC-学习笔记5-REST与AJAX/" itemprop="url">Spring MVC 学习笔记5 REST与AJAX</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-24T11:14:55+08:00">2014-08-24</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-24T11:14:55+08:00">2014-08-24 11:14:55</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2014/08/24/Spring-MVC-学习笔记5-REST与AJAX/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/24/Spring-MVC-学习笔记5-REST与AJAX/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2014/08/24/Spring-MVC-学习笔记5-REST与AJAX/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/24/Spring-MVC-学习笔记5-REST与AJAX/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -225,9 +273,6 @@
       <p>近来，以信息为中心的表述性状态转移(Representational State Transfer, REST)已成为替换传统 SOAP Web 服务的流行方案，Spring MVC 封装了对 REST 的良好支持。</p>
 <p>当谈论REST时，有一种常见的错误就是将其视为“基于 URL 的 Web 服务”，将 REST 作为另一种类型的远程过程调用(RPC)机制。恰好相反，REST 与 RPC 几乎没有任何关系，RPC 是面向服务的，并关注于行为和动作，而 REST 是面向资源的，强调描述应用程序的事物和名词。REST 就是将资源的状态以最合适的形式从服务器端转移到客户端（或者反之）。</p>
 <p>本节应用 @ResponseBody 注解实现简单的 RESTless URL，并与 JQuery AJAX 结合。
-      <div class="post-readmore">
-        <a class="readmore button" href="/2014/08/24/Spring-MVC-学习笔记5-REST与AJAX/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -237,10 +282,7 @@
         
         
         
-        
-        
-        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> SpringMVC</a>
-        
+        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
         
       </div>
       
@@ -260,23 +302,23 @@
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2014/08/20/Spring-MVC-学习笔记4-数据库之整合Hibernate/" itemprop="url">Spring MVC 学习笔记4 数据库之整合Hibernate</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-20T16:25:10+08:00">2014-08-20</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-20T16:25:10+08:00">2014-08-20 16:25:10</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2014/08/20/Spring-MVC-学习笔记4-数据库之整合Hibernate/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/20/Spring-MVC-学习笔记4-数据库之整合Hibernate/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2014/08/20/Spring-MVC-学习笔记4-数据库之整合Hibernate/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/20/Spring-MVC-学习笔记4-数据库之整合Hibernate/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -286,9 +328,6 @@
       
       <p>整合 Spring MVC 与 Hibernate</p>
 <p>pom.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;hibernate.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure></p>
-      <div class="post-readmore">
-        <a class="readmore button" href="/2014/08/20/Spring-MVC-学习笔记4-数据库之整合Hibernate/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -298,10 +337,7 @@
         
         
         
-        
-        
-        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> SpringMVC</a>
-        
+        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
         
       </div>
       
@@ -321,23 +357,23 @@
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2014/08/18/Spring-MVC-学习笔记3-验证Validator/" itemprop="url">Spring MVC 学习笔记3 验证Validator</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-18T17:06:38+08:00">2014-08-18</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-18T17:06:38+08:00">2014-08-18 17:06:38</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2014/08/18/Spring-MVC-学习笔记3-验证Validator/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/18/Spring-MVC-学习笔记3-验证Validator/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2014/08/18/Spring-MVC-学习笔记3-验证Validator/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/18/Spring-MVC-学习笔记3-验证Validator/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -347,9 +383,6 @@
       
       <p>Spring Framework 验证有两种方式，一是 Spring 传统的，对需要验证的 POJO 对象编写一个对应的验证类（实现Validator接口）；二是标准的 JSR-303/349 Bean Validation API，需要第三方的实现（Hibernate-validator）；三是使用 JSR-349 中的 ScriptAssert。</p>
 <p>下面以注册页面验证为例，用 JSR Bean Validation 实现基本字段验证，应用不同手段实现密码校验。<br>
-      <div class="post-readmore">
-        <a class="readmore button" href="/2014/08/18/Spring-MVC-学习笔记3-验证Validator/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -359,10 +392,7 @@
         
         
         
-        
-        
-        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> SpringMVC</a>
-        
+        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
         
       </div>
       
@@ -382,23 +412,23 @@
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2014/08/17/Spring-MVC-学习笔记2-数据库之JDBC/" itemprop="url">Spring MVC 学习笔记2 数据库之JDBC</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-17T10:36:34+08:00">2014-08-17</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-17T10:36:34+08:00">2014-08-17 10:36:34</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2014/08/17/Spring-MVC-学习笔记2-数据库之JDBC/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/17/Spring-MVC-学习笔记2-数据库之JDBC/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2014/08/17/Spring-MVC-学习笔记2-数据库之JDBC/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/17/Spring-MVC-学习笔记2-数据库之JDBC/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -407,9 +437,6 @@
     <main class="post-body" itemprop="articleBody">
       
       <p>这一节为我们的登录模块添加数据库存储，使用Spring JdbcTemplate。
-      <div class="post-readmore">
-        <a class="readmore button" href="/2014/08/17/Spring-MVC-学习笔记2-数据库之JDBC/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -419,10 +446,7 @@
         
         
         
-        
-        
-        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> SpringMVC</a>
-        
+        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
         
       </div>
       
@@ -442,23 +466,23 @@
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2014/08/16/Spring-MVC-学习笔记1-入门/" itemprop="url">Spring MVC 学习笔记1 入门</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-16T21:30:27+08:00">2014-08-16</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-16T21:30:27+08:00">2014-08-16 21:30:27</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2014/08/16/Spring-MVC-学习笔记1-入门/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/16/Spring-MVC-学习笔记1-入门/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2014/08/16/Spring-MVC-学习笔记1-入门/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/16/Spring-MVC-学习笔记1-入门/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -468,9 +492,6 @@
       
       <p>Spring Web MVC是一种基于Java的实现了Web MVC设计模式的请求驱动类型的轻量级Web框架，前端控制器是DispatcherServlet；应用控制器其实拆为处理器映射器(Handler Mapping)进行处理器管理和视图解析器(View Resolver)进行视图管理；页面控制器/动作/处理器为Controller接口（仅包含ModelAndView handleRequest(request, response) 方法）的实现（也可以是任何的POJO类）；支持本地化（Locale）解析、主题（Theme）解析及文件上传等；提供了非常灵活的数据验证、格式化和数据绑定机制；提供了强大的约定大于配置（惯例优先原则）的契约式编程支持。</p>
 <p>这里我们实现一个简单的登录模块，登录后地址转为 <a href="http://domain.com/USER_NAME">http://domain.com/USER_NAME</a><br>
-      <div class="post-readmore">
-        <a class="readmore button" href="/2014/08/16/Spring-MVC-学习笔记1-入门/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -480,10 +501,7 @@
         
         
         
-        
-        
-        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> SpringMVC</a>
-        
+        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
         
       </div>
       
@@ -503,23 +521,23 @@
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2014/08/06/动态规划-DP-应用之-01-背包/" itemprop="url">动态规划 DP 应用之 01 背包</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-06T10:21:29+08:00">2014-08-06</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-06T10:21:29+08:00">2014-08-06 10:21:29</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2014/08/06/动态规划-DP-应用之-01-背包/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/06/动态规划-DP-应用之-01-背包/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2014/08/06/动态规划-DP-应用之-01-背包/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/06/动态规划-DP-应用之-01-背包/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -531,9 +549,6 @@
 <p>最优子结构：当我们把一件物品放进背包里时，会让总价值变高，并且让背包变重。对某一件物品来说，我们可以选择放或不放，然后移去这件物品所带来的影响。</p>
 <p>c(n, w) = max( c(n-1, w), c(n-1, w-W[n]) + C[n] )<br>               ^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^<br>               不放 -&gt; 0         放 -&gt; 1</p>
 <p>n：第1个到第n个物品要放进背包内。<br>w：背包负重上限。<br>c(n, w)：第1个到第n个物品尽量塞进负重限制为w的背包时，最大价值。<br>W[n]：第n个物品的重量。<br>C[n]：第n个物品的价值。
-      <div class="post-readmore">
-        <a class="readmore button" href="/2014/08/06/动态规划-DP-应用之-01-背包/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -543,10 +558,7 @@
         
         
         
-        
-        
-        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> algorithm</a>
-        
+        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
         
       </div>
       
@@ -566,23 +578,23 @@
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2014/08/05/动态规划-DP-应用-HamiltonPath-及-TSP/" itemprop="url">动态规划 DP 应用 HamiltonPath 及 TSP</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-05T11:17:41+08:00">2014-08-05</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-05T11:17:41+08:00">2014-08-05 11:17:41</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2014/08/05/动态规划-DP-应用-HamiltonPath-及-TSP/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/05/动态规划-DP-应用-HamiltonPath-及-TSP/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2014/08/05/动态规划-DP-应用-HamiltonPath-及-TSP/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/05/动态规划-DP-应用-HamiltonPath-及-TSP/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -595,9 +607,6 @@
 <p>最优子结构：考虑路径上的最后一条边</p>
 <p>dp[s,j] = min ( dp[s-{j},i] + adj[i,j] )</p>
 <p>dp[s+{j},j] = min ( dp[s,i] + adj[i,j] )
-      <div class="post-readmore">
-        <a class="readmore button" href="/2014/08/05/动态规划-DP-应用-HamiltonPath-及-TSP/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -607,10 +616,7 @@
         
         
         
-        
-        
-        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> algorithm</a>
-        
+        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
         
       </div>
       
@@ -630,23 +636,23 @@
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2014/08/02/UW-软硬件接口lab3-bufbomb/" itemprop="url">UW 软硬件接口lab3 bufbomb</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-02T22:31:49+08:00">2014-08-02</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-02T22:31:49+08:00">2014-08-02 22:31:49</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2014/08/02/UW-软硬件接口lab3-bufbomb/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/02/UW-软硬件接口lab3-bufbomb/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2014/08/02/UW-软硬件接口lab3-bufbomb/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/02/UW-软硬件接口lab3-bufbomb/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -657,9 +663,6 @@
       <p>本实验即常见的缓冲区溢出攻击。（注：新的 64bit Win8/Linux 下这种简单方式无效，x86_64 cpu 的可执行标志位 exec-shield，gcc 栈保护选项开关 -fno-stack-protector）</p>
 <p>主函数为 test()，首先声明一个局部变量 volatile int local = 0xdeadbeef，volatile 是编译时不使用 register 优化，必须分配栈空间，后面的实验过程不能覆盖这个 local 变量。</p>
 <p>然后就是存在缓冲区溢出漏洞的 getbuf 函数，也就是我们要操作的对象。
-      <div class="post-readmore">
-        <a class="readmore button" href="/2014/08/02/UW-软硬件接口lab3-bufbomb/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -669,70 +672,7 @@
         
         
         
-        
-        
-        <a class="post-tag button" href="/tags/mooc/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> mooc</a>
-        
-        
-      </div>
-      
-    </footer>
-  </article>
-  
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2014/08/02/UW-软硬件接口lab2-bomb/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Joseph Pei">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="有翅膀的天狼">
-      </span>
-    </div>
-    <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2014/08/02/UW-软硬件接口lab2-bomb/" itemprop="url">UW 软硬件接口lab2 bomb</a>
-      </h2>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-02T22:28:40+08:00">2014-08-02</time>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider"> | </span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2014/08/02/UW-软硬件接口lab2-bomb/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/02/UW-软硬件接口lab2-bomb/" itemprop="commentCount"></span></a>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-body" itemprop="articleBody">
-      
-      <p>本实验是解除二进制炸弹。给你一个二进制可执行文件，运行该文件，你需要在没有任何提示的情况下输入6个password，如果都输入正确，则炸弹被解除（完成了实验）；如果输入错误，则炸弹爆炸（当然不是真爆炸了，需要重做）。
-      <div class="post-readmore">
-        <a class="readmore button" href="/2014/08/02/UW-软硬件接口lab2-bomb/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        
-        
-        
-        
-        
-        <a class="post-tag button" href="/tags/mooc/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> mooc</a>
-        
+        <a class="post-tag button" href="/tags/mooc/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>mooc</a>
         
       </div>
       
@@ -763,11 +703,11 @@
           
           
           
-<aside class="sidebar" id="sidebar">
+<aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
   
   <div class="search">
     <div class="form-group">
-      <i class="fas fa-search"></i> <input type="text" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
+      <i class="fas fa-search"></i><input type="text" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
     </div>
   </div>
   <div class="search-result-box" id="search-result"></div>
@@ -777,37 +717,37 @@
   
   <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
   
-  <p class="author-name">Joseph Pei</p>
-  <p class="author-description"> </p>
+  <h1 class="author-name">Joseph Pei</h1>
+  <h2 class="author-description"> </h2>
   <div class="site-count">
     
     <div class="archives-count">
-      <p>Archives</p>
-      <p><a href="/archives/">55</a></p>
+      <div class="site-count-title">Archives</div>
+      <div><a href="/archives/">56</a></div>
     </div>
     
     
     
-    <span class="site-count-divider"> | </span>
+    <span class="site-count-divider divider">|</span>
     
     <div class="categories-count">
-      <p>Categories</p>
-      <p><a href="/categories/">0</a></p>
+      <div class="site-count-title">Categories</div>
+      <div><a href="/categories/">0</a></div>
     </div>
     
     
     
-    <span class="site-count-divider"> | </span>
+    <span class="site-count-divider divider">|</span>
     
     <div class="tags-count">
-      <p>Tags</p>
-      <p><a href="/tags/">17</a></p>
+      <div class="site-count-title">Tags</div>
+      <div><a href="/tags/">17</a></div>
     </div>
     
   </div>
   
   <div class="rss">
-    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i> RSS</a>
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
   </div>
   
 </div>
@@ -816,38 +756,6 @@
   <div class="sidebar-sticky">
     
     
-    
-<hr>
-<div class="social-link sidebar-item">
-  <p><i class="far fa-address-card"></i> Social Links</p>
-  <ul>
-    
-    <li><i class="fab fa-github"></i> <a href="https://josephpei.github.com/" target="_blank">GitHub</a></li>
-    
-    <li><i class="fab fa-weibo"></i> <a href="https://josephpei.weibo.com/" target="_blank">Weibo</a></li>
-    
-  </ul>
-</div>
-
-
-    
-    
-    
-<hr>
-<div class="blogroll sidebar-item">
-  <p><i class="fas fa-link"></i> Blogroll</p>
-  <ul>
-    
-    <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-    
-    <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-    
-    <li><a href="http://stylus-lang.com/" target="_blank">Stylus</a></li>
-    
-  </ul>
-</div>
-
-
     
   </div>
 </aside>
@@ -866,18 +774,12 @@
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">Joseph Pei</span>
-          <span class="year"><i class="far fa-copyright"></i> 2016 - 2018</span>
-          
-          <span class="creative-commons"><i class="fab fa-creative-commons"></i> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
-          
+          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
         </div>
         
         
 <div class="busuanzi">
-  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
-  <span id="busuanzi_container_site_uv"><i class="fas fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
-  <span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i> <span id="busuanzi_value_page_pv"></span></span>
+  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv"></span></span>
 </div>
 
 

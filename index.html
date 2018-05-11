@@ -36,14 +36,16 @@
     
     <link rel="alternate" href="/atom.xml" title="有翅膀的天狼" type="application/atom+xml" />
     
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     
     <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
     
     
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/solarized-light.css">
     <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script defer type="text/javascript" src="/js/util.js"></script>
@@ -70,8 +72,6 @@
       searchFunc(path, "search-input", "search-result");
     });
     </script>
-    
-    
     
     
     <script defer type="text/javascript" src="/js/index.js"></script>
@@ -125,6 +125,88 @@
   
   <article class="index-post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2018/05/11/Cpp-Template-Meta-Programming-MergeSort/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Joseph Pei">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="有翅膀的天狼">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/05/11/Cpp-Template-Meta-Programming-MergeSort/" itemprop="url">Cpp Template Meta Programming MergeSort</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-05-11T15:43:51+08:00">2018-05-11 15:43:51</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/05/11/Cpp-Template-Meta-Programming-MergeSort/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/05/11/Cpp-Template-Meta-Programming-MergeSort/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-body" itemprop="articleBody">
+      
+      <p>C++ 模板元编程之编译时归并排序，源自水木社区 ilovecpp</p>
+<p>Cpp Template Meta Programming MergeSort</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/mpl/vector.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/mpl/vector_c.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/mpl/eval_if.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/mpl/identity.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/mpl/empty.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/mpl/less.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/mpl/front.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/mpl/pop_front.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/mpl/push_front.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/mpl/size.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/mpl/iterator_range.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/mpl/int.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/mpl/for_each.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> boost::mpl;</div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> V1, <span class="keyword">typename</span> V2&gt;</div><div class="line"><span class="keyword">struct</span> Merge &#123;</div><div class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div><div class="line">    <span class="keyword">struct</span> F &#123;</div><div class="line">        <span class="keyword">typedef</span> <span class="keyword">typename</span> push_front&lt;</div><div class="line">            <span class="keyword">typename</span> Merge&lt;<span class="keyword">typename</span> pop_front&lt;T1&gt;::type, T2&gt;::type,</div><div class="line">            <span class="keyword">typename</span> front&lt;T1&gt;::type</div><div class="line">            &gt;::type type;</div><div class="line">    &#125;;</div><div class="line">        </div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">typename</span> eval_if&lt;</div><div class="line">        empty&lt;V1&gt;,</div><div class="line">        identity&lt;V2&gt;,</div><div class="line">        eval_if&lt;</div><div class="line">            empty&lt;V2&gt;,</div><div class="line">            identity&lt;V1&gt;,</div><div class="line">            eval_if&lt;</div><div class="line">                less&lt;<span class="keyword">typename</span> front&lt;V1&gt;::type, <span class="keyword">typename</span> front&lt;V2&gt;::type&gt;,</div><div class="line">                F&lt;V1, V2&gt;,</div><div class="line">                F&lt;V2, V1&gt;</div><div class="line">                &gt;</div><div class="line">            &gt;</div><div class="line">        &gt;::type type;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> V&gt;</div><div class="line"><span class="keyword">struct</span> MergeSort &#123;</div><div class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line">    <span class="keyword">struct</span> F &#123;</div><div class="line">        <span class="keyword">typedef</span> <span class="keyword">typename</span> begin&lt;T&gt;::type t0;</div><div class="line">        <span class="keyword">typedef</span> <span class="keyword">typename</span> advance&lt;t0, int_&lt;size&lt;T&gt;::value/<span class="number">2</span>&gt;&gt;::type t1;</div><div class="line">        <span class="keyword">typedef</span> <span class="keyword">typename</span> end&lt;T&gt;::type t2;</div><div class="line">        <span class="keyword">typedef</span> <span class="keyword">typename</span> Merge&lt;</div><div class="line">            <span class="keyword">typename</span> MergeSort&lt;iterator_range&lt;t0, t1&gt;&gt;::type,</div><div class="line">            <span class="keyword">typename</span> MergeSort&lt;iterator_range&lt;t1, t2&gt;&gt;::type</div><div class="line">            &gt;::type type;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">typename</span> eval_if&lt;</div><div class="line">        empty&lt;V&gt;,</div><div class="line">        identity&lt;<span class="built_in">vector</span>&lt;&gt;&gt;,</div><div class="line">        eval_if&lt;</div><div class="line">            less&lt;size&lt;V&gt;, int_&lt;<span class="number">2</span>&gt;&gt;,</div><div class="line">            identity&lt;<span class="built_in">vector</span>&lt;<span class="keyword">typename</span> front&lt;V&gt;::type&gt;&gt;,</div><div class="line">            F&lt;V&gt;</div><div class="line">            &gt;</div><div class="line">        &gt;::type type;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> vector_c&lt;<span class="keyword">int</span>, <span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>&gt; t1;</div><div class="line"><span class="keyword">typedef</span> MergeSort&lt;t1&gt;::type t10;</div><div class="line"></div><div class="line"><span class="keyword">struct</span> print &#123;</div><div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">( T t )</span> <span class="keyword">const</span> </span>&#123;</div><div class="line">       <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; T::value &lt;&lt; <span class="string">" "</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    for_each&lt;t10&gt;(print());</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>顺便说一下怎么读这类代码。困难主要来自不熟悉编译时的这套完全不同的语法，而概念和运行其实没多大差别。</p>
+<ul>
+<li><p>所有的typename关键字都是C++的语法限制，没有意义，先删掉。</p>
+</li>
+<li><p>形如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div><div class="line"><span class="keyword">struct</span> F &#123;</div><div class="line">    <span class="keyword">typedef</span> ... type;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>的是编译时函数，相当于运行时的<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">F(T1, T2) &#123;</div><div class="line">    <span class="keyword">return</span> ...;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>形如<code>F&lt;T1, T2&gt;::type</code> 的是编译时的函数调用，相当于运行时的 <code>F(T1, T2)</code></li>
+</ul>
+<p>如果没有<code>::type</code>，形如<code>F&lt;T1, T2&gt;</code>则是lazy的函数，相当于运行时的 function object，例如<code>bind(F, T1, T2)</code>。</p>
+<ul>
+<li><p><code>eval_if&lt;C, T1, T2&gt;</code>相当于运行时的if，根据C的真值决定对T1或T2 lazy求值。由于C++对模板实参是eager求值的，我们递归的话就不能用<code>T1::type</code>这种函数调用的形式，而只能把T1传进去让eval_if做lazy求值，否则会无穷递归。</p>
+</li>
+<li><p><code>typedef foo bar</code>相当于运行时的<code>bar=foo</code></p>
+</li>
+<li><p>类型相当于运行时的值。所以像2这样的常数需要用<code>int_&lt;2&gt;</code>包装成类型。</p>
+</li>
+</ul>
+<p>好，我按照上述几条规则翻译一下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Merge(V1, V2) &#123;</div><div class="line">    F(T1, T2) &#123;</div><div class="line">        <span class="keyword">return</span> push_front(Merge(pop_front(T1), T2), front(T1));</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (empty(V1))</div><div class="line">        <span class="keyword">return</span> V2;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (empty(V2))</div><div class="line">        <span class="keyword">return</span> V1;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (front(V1)&lt;front(V2))</div><div class="line">        <span class="keyword">return</span> F(V1, V2);</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">return</span> F(V2, V1);</div><div class="line">&#125;</div><div class="line"></div><div class="line">MergeSort(V) &#123;</div><div class="line">    F(T) &#123;</div><div class="line">        t0 = begin(T);</div><div class="line">        t1 = advance(t0, size(T)/<span class="number">2</span>);</div><div class="line">        t2 = end(T);</div><div class="line">        <span class="keyword">return</span> Merge(MergeSort(iterator_range(t0, t1)),</div><div class="line">                     MergeSort(iterator_range(t1, t2)));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (empty(V))</div><div class="line">        <span class="keyword">return</span> <span class="built_in">vector</span>();</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (size(V)&lt;<span class="number">2</span>)</div><div class="line">        <span class="keyword">return</span> <span class="built_in">vector</span>(front(V));</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">return</span> F&lt;V&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        
+        
+        
+        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
+        
+        <a class="post-tag button" href="/tags/cpp/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>cpp</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2018/05/04/VSCode-cquery-lsp-实现-C-C-补全/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Joseph Pei">
@@ -136,23 +218,23 @@
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2018/05/04/VSCode-cquery-lsp-实现-C-C-补全/" itemprop="url">VSCode cquery(lsp) 实现 C/C++ 补全</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2018-05-04T14:03:02+08:00">2018-05-04</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-05-04T14:03:02+08:00">2018-05-04 14:03:02</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2018/05/04/VSCode-cquery-lsp-实现-C-C-补全/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/05/04/VSCode-cquery-lsp-实现-C-C-补全/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2018/05/04/VSCode-cquery-lsp-实现-C-C-补全/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/05/04/VSCode-cquery-lsp-实现-C-C-补全/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -164,9 +246,6 @@
 <p>目前语言与编辑器支持情况见 <a href="https://langserver.org/">https://langserver.org/</a></p>
 <p><a href="https://github.com/cquery-project/cquery">cquery</a> 就是 C/C++/Objective-C 的 language server，VSCode, Vim, Emacs 等只要安装了 lsp 插件，就可调用它来实现 C/C++/Objective-C 语法补全等功能。</p>
 <p>下面以 Visual Studio Code 为例来实现 C/C++ 补全。
-      <div class="post-readmore">
-        <a class="readmore button" href="/2018/05/04/VSCode-cquery-lsp-实现-C-C-补全/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -176,14 +255,9 @@
         
         
         
+        <a class="post-tag button" href="/tags/lsp/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>lsp</a>
         
-        
-        <a class="post-tag button" href="/tags/lsp/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> lsp</a>
-        
-        
-        
-        <a class="post-tag button" href="/tags/editor/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i> editor</a>
-        
+        <a class="post-tag button" href="/tags/editor/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>editor</a>
         
       </div>
       
@@ -203,23 +277,23 @@
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2018/04/28/ubuntu-awesome-terminal/" itemprop="url">ubuntu awesome terminal</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2018-04-28T10:53:07+08:00">2018-04-28</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-04-28T10:53:07+08:00">2018-04-28 10:53:07</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2018/04/28/ubuntu-awesome-terminal/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/04/28/ubuntu-awesome-terminal/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2018/04/28/ubuntu-awesome-terminal/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/04/28/ubuntu-awesome-terminal/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -229,9 +303,6 @@
       
       <h2 id="gnome-terminal-solarized-theme"><a href="#gnome-terminal-solarized-theme" class="headerlink" title="gnome-terminal solarized theme"></a>gnome-terminal solarized theme</h2><p><a href="https://github.com/Anthony25/gnome-terminal-colors-solarized">Solarized Colorscheme for Gnome Terminal</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/Anthony25/gnome-terminal-colors-solarized.git</div><div class="line"><span class="built_in">cd</span> gnome-terminal-colors-solarized</div><div class="line">./install.sh</div></pre></td></tr></table></figure>
-      <div class="post-readmore">
-        <a class="readmore button" href="/2018/04/28/ubuntu-awesome-terminal/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -241,10 +312,7 @@
         
         
         
-        
-        
-        <a class="post-tag button" href="/tags/ubuntu/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> ubuntu</a>
-        
+        <a class="post-tag button" href="/tags/ubuntu/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>ubuntu</a>
         
       </div>
       
@@ -264,23 +332,23 @@
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2016/08/18/PyCharm-使用-Windows-10-WSL-Ubuntu-子系统中的-Python/" itemprop="url">PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2016-08-18T09:30:18+08:00">2016-08-18</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-08-18T09:30:18+08:00">2016-08-18 09:30:18</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2016/08/18/PyCharm-使用-Windows-10-WSL-Ubuntu-子系统中的-Python/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/08/18/PyCharm-使用-Windows-10-WSL-Ubuntu-子系统中的-Python/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2016/08/18/PyCharm-使用-Windows-10-WSL-Ubuntu-子系统中的-Python/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/08/18/PyCharm-使用-Windows-10-WSL-Ubuntu-子系统中的-Python/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -291,9 +359,6 @@
       <p>首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 <a href="https://support.microsoft.com/en-us/help/12387/windows-10-update-history">https://support.microsoft.com/en-us/help/12387/windows-10-update-history</a> 手动升级。</p>
 <h2 id="Step-0-安装-WSL-Ubuntu"><a href="#Step-0-安装-WSL-Ubuntu" class="headerlink" title="Step 0: 安装 WSL Ubuntu"></a>Step 0: 安装 WSL Ubuntu</h2><p>在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。</p>
 <p>Win + X 打开 CMD 管理员，输入 <code>bash</code> 或者 <code>lxrun /install</code>,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。
-      <div class="post-readmore">
-        <a class="readmore button" href="/2016/08/18/PyCharm-使用-Windows-10-WSL-Ubuntu-子系统中的-Python/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -314,23 +379,23 @@
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2016/08/05/Django之路-Python-Decouple/" itemprop="url">Django之路: Python Decouple</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2016-08-05T18:05:03+08:00">2016-08-05</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-08-05T18:05:03+08:00">2016-08-05 18:05:03</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2016/08/05/Django之路-Python-Decouple/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/08/05/Django之路-Python-Decouple/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2016/08/05/Django之路-Python-Decouple/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/08/05/Django之路-Python-Decouple/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -339,9 +404,6 @@
     <main class="post-body" itemprop="articleBody">
       
       <p>Django settings 中存有很多私密信息，如 database url, password, secret key, allowed hosts 等，我们还可能有 Debug / Deploy 两套不同的运行环境，<a href="https://pypi.python.org/pypi/python-decouple">python-decouple</a> 可以让这些环境变量与代码分离。
-      <div class="post-readmore">
-        <a class="readmore button" href="/2016/08/05/Django之路-Python-Decouple/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -351,14 +413,9 @@
         
         
         
+        <a class="post-tag button" href="/tags/python/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>python</a>
         
-        
-        <a class="post-tag button" href="/tags/python/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> python</a>
-        
-        
-        
-        <a class="post-tag button" href="/tags/django/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i> django</a>
-        
+        <a class="post-tag button" href="/tags/django/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>django</a>
         
       </div>
       
@@ -378,23 +435,23 @@
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2015/07/19/Linux驱动开发之一-Hello-World/" itemprop="url">Linux驱动开发之一 Hello World</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2015-07-19T10:21:47+08:00">2015-07-19</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2015-07-19T10:21:47+08:00">2015-07-19 10:21:47</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2015/07/19/Linux驱动开发之一-Hello-World/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2015/07/19/Linux驱动开发之一-Hello-World/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2015/07/19/Linux驱动开发之一-Hello-World/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2015/07/19/Linux驱动开发之一-Hello-World/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -418,10 +475,7 @@
         
         
         
-        
-        
-        <a class="post-tag button" href="/tags/LinuxDriver/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> LinuxDriver</a>
-        
+        <a class="post-tag button" href="/tags/LinuxDriver/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>LinuxDriver</a>
         
       </div>
       
@@ -441,23 +495,23 @@
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2015/06/24/Linux-Ubuntu-下为-Android-创建无线分享热点/" itemprop="url">Linux/Ubuntu 下为 Android 创建无线分享热点</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2015-06-24T11:34:40+08:00">2015-06-24</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2015-06-24T11:34:40+08:00">2015-06-24 11:34:40</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2015/06/24/Linux-Ubuntu-下为-Android-创建无线分享热点/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2015/06/24/Linux-Ubuntu-下为-Android-创建无线分享热点/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2015/06/24/Linux-Ubuntu-下为-Android-创建无线分享热点/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2015/06/24/Linux-Ubuntu-下为-Android-创建无线分享热点/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -487,14 +541,9 @@ cd create_ap &amp;&amp; make install
         
         
         
+        <a class="post-tag button" href="/tags/android/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>android</a>
         
-        
-        <a class="post-tag button" href="/tags/android/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> android</a>
-        
-        
-        
-        <a class="post-tag button" href="/tags/ubuntu/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i> ubuntu</a>
-        
+        <a class="post-tag button" href="/tags/ubuntu/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>ubuntu</a>
         
       </div>
       
@@ -514,23 +563,23 @@ cd create_ap &amp;&amp; make install
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2014/09/04/Spring-MVC-学习笔记10-AJAX-图片上传/" itemprop="url">Spring MVC 学习笔记10 AJAX 图片上传</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2014-09-04T20:21:09+08:00">2014-09-04</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-09-04T20:21:09+08:00">2014-09-04 20:21:09</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2014/09/04/Spring-MVC-学习笔记10-AJAX-图片上传/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/09/04/Spring-MVC-学习笔记10-AJAX-图片上传/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2014/09/04/Spring-MVC-学习笔记10-AJAX-图片上传/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/09/04/Spring-MVC-学习笔记10-AJAX-图片上传/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -540,9 +589,6 @@ cd create_ap &amp;&amp; make install
       
       <p>Spring MVC AJAX 方式图片上传，采用 base64 编码图片。</p>
 <p>pom.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-codec<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-codec<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure></p>
-      <div class="post-readmore">
-        <a class="readmore button" href="/2014/09/04/Spring-MVC-学习笔记10-AJAX-图片上传/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -552,10 +598,7 @@ cd create_ap &amp;&amp; make install
         
         
         
-        
-        
-        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> SpringMVC</a>
-        
+        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
         
       </div>
       
@@ -575,23 +618,23 @@ cd create_ap &amp;&amp; make install
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2014/09/01/Spring-MVC-学习笔记9-JQuery-验证/" itemprop="url">Spring MVC 学习笔记9 JQuery 验证</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2014-09-01T21:05:28+08:00">2014-09-01</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-09-01T21:05:28+08:00">2014-09-01 21:05:28</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2014/09/01/Spring-MVC-学习笔记9-JQuery-验证/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/09/01/Spring-MVC-学习笔记9-JQuery-验证/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2014/09/01/Spring-MVC-学习笔记9-JQuery-验证/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/09/01/Spring-MVC-学习笔记9-JQuery-验证/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -601,9 +644,6 @@ cd create_ap &amp;&amp; make install
       
       <p>前面我们已经学习过了在服务器端进行验证，这次学习 JQuery Validator 客户端验证。客户端验证虽然可以被用户绕过，但是可以作为辅助手段，对于一般用户可以减少一定的服务器通讯。</p>
 <p>以注册页面为例，实现一般化的验证，并且加上二次输入密码、用户名字段唯一性验证。
-      <div class="post-readmore">
-        <a class="readmore button" href="/2014/09/01/Spring-MVC-学习笔记9-JQuery-验证/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -613,10 +653,7 @@ cd create_ap &amp;&amp; make install
         
         
         
-        
-        
-        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> SpringMVC</a>
-        
+        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
         
       </div>
       
@@ -636,23 +673,23 @@ cd create_ap &amp;&amp; make install
       </span>
     </div>
     <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2014/08/31/Spring-MVC-学习笔记8-Spring-Security/" itemprop="url">Spring MVC 学习笔记8 Spring Security</a>
-      </h2>
+      </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-31T09:23:35+08:00">2014-08-31</time>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-31T09:23:35+08:00">2014-08-31 09:23:35</time></span>
         </span>
         
         
         
         
         
-        <span class="post-meta-divider"> | </span>
+        <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2014/08/31/Spring-MVC-学习笔记8-Spring-Security/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/31/Spring-MVC-学习笔记8-Spring-Security/" itemprop="commentCount"></span></a>
+          <i class="far fa-comments"></i><span><a href="/2014/08/31/Spring-MVC-学习笔记8-Spring-Security/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/31/Spring-MVC-学习笔记8-Spring-Security/" itemprop="commentCount"></span></a></span>
         </span>
         
         
@@ -661,9 +698,6 @@ cd create_ap &amp;&amp; make install
     <main class="post-body" itemprop="articleBody">
       
       <p>Spring Security 是为基于 Spring 的应用程序提供声明式安全保护的安全性框架，基于 Spring AOP 和 Servlet 过滤器实现，能够在 Web 请求级别和方法调用级别处理身份验证和授权。它使用 Servlet 过滤器保护 Web 请求和限制 URL 级别的访问，也可以使用 Spring AOP 保护方法调用——借助于对象代理和使用通知，能够确保只有具备适当权限的用户才能访问安全保护的方法。
-      <div class="post-readmore">
-        <a class="readmore button" href="/2014/08/31/Spring-MVC-学习笔记8-Spring-Security/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
       
     </main>
     <footer class="post-footer">
@@ -673,70 +707,7 @@ cd create_ap &amp;&amp; make install
         
         
         
-        
-        
-        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> SpringMVC</a>
-        
-        
-      </div>
-      
-    </footer>
-  </article>
-  
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2014/08/30/Spring-MVC-学习笔记7-表现层-Tiles-Sitemesh/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Joseph Pei">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="有翅膀的天狼">
-      </span>
-    </div>
-    <header class="post-header">
-      <h2 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2014/08/30/Spring-MVC-学习笔记7-表现层-Tiles-Sitemesh/" itemprop="url">Spring MVC 学习笔记7 表现层 Tiles Sitemesh</a>
-      </h2>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i> <time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-30T23:31:13+08:00">2014-08-30</time>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider"> | </span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i> <a href="/2014/08/30/Spring-MVC-学习笔记7-表现层-Tiles-Sitemesh/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/30/Spring-MVC-学习笔记7-表现层-Tiles-Sitemesh/" itemprop="commentCount"></span></a>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-body" itemprop="articleBody">
-      
-      <p>表现层为了减少手工写 jsp 页面代码的工作量，出现了许多不同的技术方案，Tiles, SiteMesh, Velocity, FreeMarker 等。这里选用 Tiles3/Sitemesh 负责自定义的 header, body, footer 组装，jsp 页面加入 bootstrap, jQuery ，暂时不用 Velocity/FreeMarker 模板。
-      <div class="post-readmore">
-        <a class="readmore button" href="/2014/08/30/Spring-MVC-学习笔记7-表现层-Tiles-Sitemesh/#more">Read More <i class="fas fa-angle-double-right"></i></a>
-      </div>
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        
-        
-        
-        
-        
-        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i> SpringMVC</a>
-        
+        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
         
       </div>
       
@@ -767,11 +738,11 @@ cd create_ap &amp;&amp; make install
           
           
           
-<aside class="sidebar" id="sidebar">
+<aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
   
   <div class="search">
     <div class="form-group">
-      <i class="fas fa-search"></i> <input type="text" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
+      <i class="fas fa-search"></i><input type="text" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
     </div>
   </div>
   <div class="search-result-box" id="search-result"></div>
@@ -781,37 +752,37 @@ cd create_ap &amp;&amp; make install
   
   <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
   
-  <p class="author-name">Joseph Pei</p>
-  <p class="author-description"> </p>
+  <h1 class="author-name">Joseph Pei</h1>
+  <h2 class="author-description"> </h2>
   <div class="site-count">
     
     <div class="archives-count">
-      <p>Archives</p>
-      <p><a href="/archives/">55</a></p>
+      <div class="site-count-title">Archives</div>
+      <div><a href="/archives/">56</a></div>
     </div>
     
     
     
-    <span class="site-count-divider"> | </span>
+    <span class="site-count-divider divider">|</span>
     
     <div class="categories-count">
-      <p>Categories</p>
-      <p><a href="/categories/">0</a></p>
+      <div class="site-count-title">Categories</div>
+      <div><a href="/categories/">0</a></div>
     </div>
     
     
     
-    <span class="site-count-divider"> | </span>
+    <span class="site-count-divider divider">|</span>
     
     <div class="tags-count">
-      <p>Tags</p>
-      <p><a href="/tags/">17</a></p>
+      <div class="site-count-title">Tags</div>
+      <div><a href="/tags/">17</a></div>
     </div>
     
   </div>
   
   <div class="rss">
-    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i> RSS</a>
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
   </div>
   
 </div>
@@ -820,38 +791,6 @@ cd create_ap &amp;&amp; make install
   <div class="sidebar-sticky">
     
     
-    
-<hr>
-<div class="social-link sidebar-item">
-  <p><i class="far fa-address-card"></i> Social Links</p>
-  <ul>
-    
-    <li><i class="fab fa-github"></i> <a href="https://josephpei.github.com/" target="_blank">GitHub</a></li>
-    
-    <li><i class="fab fa-weibo"></i> <a href="https://josephpei.weibo.com/" target="_blank">Weibo</a></li>
-    
-  </ul>
-</div>
-
-
-    
-    
-    
-<hr>
-<div class="blogroll sidebar-item">
-  <p><i class="fas fa-link"></i> Blogroll</p>
-  <ul>
-    
-    <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-    
-    <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-    
-    <li><a href="http://stylus-lang.com/" target="_blank">Stylus</a></li>
-    
-  </ul>
-</div>
-
-
     
   </div>
 </aside>
@@ -870,18 +809,12 @@ cd create_ap &amp;&amp; make install
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">Joseph Pei</span>
-          <span class="year"><i class="far fa-copyright"></i> 2016 - 2018</span>
-          
-          <span class="creative-commons"><i class="fab fa-creative-commons"></i> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
-          
+          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
         </div>
         
         
 <div class="busuanzi">
-  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
-  <span id="busuanzi_container_site_uv"><i class="fas fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
-  <span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i> <span id="busuanzi_value_page_pv"></span></span>
+  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv"></span></span>
 </div>
 
 

@@ -1,14 +1,5 @@
 .footer {
   font-size: 16px;
-  -webkit-flex-shrink: 0;
-  flex-shrink: 0;
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  -o-box-flex: 0;
-  -ms-box-flex: 0;
-  box-flex: 0;
-  -webkit-flex-grow: 0;
-  flex-grow: 0;
   background: #33363b;
   color: #eee;
   margin-top: 1.5em;
@@ -81,7 +72,7 @@
 }
 .footer .footer-container .footer-right .custom-info {
   width: 100%;
-  word-warp: break-word;
+  word-wrap: break-word;
 }
 .footer a {
   color: #ddd;
@@ -104,6 +95,9 @@
   display: block;
   text-align: center;
 }
+.footer .back-to-top .svg-inline--fa {
+  margin: 0;
+}
 .footer .back-to-top a {
   border-bottom: none;
   background: #ccc;
@@ -113,8 +107,8 @@
   margin: 0 auto;
   padding: 0 1em;
   cursor: pointer;
-  border-bottom-left-radius: 0.15em;
-  border-bottom-right-radius: 0.15em;
+  border-bottom-left-radius: 0.2em;
+  border-bottom-right-radius: 0.2em;
   font-size: 2em;
 }
 .footer .back-to-top a:hover {

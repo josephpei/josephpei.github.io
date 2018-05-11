@@ -1,5 +1,5 @@
 .main {
-  font-size: 16px;
+  font: 1em "Roboto", "Noto Sans", Helvetica, Arial, sans-serif;
   margin-top: -3em;
 }
 .main .main-container {
@@ -8,10 +8,10 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  -webkit-box-shadow: 0 0.075em 1em 0.5em rgba(0,0,0,0.19);
-  box-shadow: 0 0.075em 1em 0.5em rgba(0,0,0,0.19);
-  border-bottom-left-radius: 0.15em;
-  border-bottom-right-radius: 0.15em;
+  -webkit-box-shadow: 0 0.5em 1em 0.5em rgba(0,0,0,0.19);
+  box-shadow: 0 0.5em 1em 0.5em rgba(0,0,0,0.19);
+  border-bottom-left-radius: 0.2em;
+  border-bottom-right-radius: 0.2em;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -62,27 +62,9 @@
   padding: 1em;
   margin: 0.5em;
 }
-.main .main-container .content .index-post .post-readmore {
-  margin: 0.5em;
-}
-.main .main-container .content .index-post .post-readmore .readmore {
-  display: inline-block;
-  padding: 0.25em 1em;
-  font-size: 1em;
-  color: #fff;
-  background: #999;
-  line-height: 1.5em;
-}
-.main .main-container .content .index-post .post-tags .post-tag {
-  margin: 0.5em;
-  display: inline-block;
-  text-decoration: none;
-  color: $color-link-index-button;
-  padding: 0.15em;
-  line-height: 1.2em;
-}
 .main .main-container .content .index-post .post-header {
   padding: 0.25em 0.25em;
+  text-align: center;
 }
 .main .main-container .content .index-post .post-header .post-title-link {
   display: inline-block;
@@ -122,7 +104,18 @@
   -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
-@media (max-width: 48em) {
+.main .main-container .content .index-post .post-footer {
+  text-align: center;
+}
+.main .main-container .content .index-post .post-footer .post-tags .post-tag {
+  margin: 0.5em;
+  display: inline-block;
+  text-decoration: none;
+  color: $color-link-index-button;
+  padding: 0.15em;
+  line-height: 1.2em;
+}
+@media (max-width: 60em) {
   .main .main-container {
     -webkit-box-orient: vertical;
     -moz-box-orient: vertical;
