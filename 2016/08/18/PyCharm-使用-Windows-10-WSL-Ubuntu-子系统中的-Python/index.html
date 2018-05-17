@@ -48,7 +48,7 @@
 <link rel="stylesheet" type="text/css" href="/css/post.css">
 
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/css/solarized-light.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
     <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script defer type="text/javascript" src="/js/util.js"></script>
@@ -161,17 +161,17 @@
       </div>
     </header>
     <main class="post-body" itemprop="articleBody">
-      <p>首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 <a href="https://support.microsoft.com/en-us/help/12387/windows-10-update-history" target="_blank" rel="external">https://support.microsoft.com/en-us/help/12387/windows-10-update-history</a> 手动升级。</p>
+      <p>首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 <a href="https://support.microsoft.com/en-us/help/12387/windows-10-update-history" target="_blank" rel="noopener">https://support.microsoft.com/en-us/help/12387/windows-10-update-history</a> 手动升级。</p>
 <h2 id="Step-0-安装-WSL-Ubuntu"><a href="#Step-0-安装-WSL-Ubuntu" class="headerlink" title="Step 0: 安装 WSL Ubuntu"></a>Step 0: 安装 WSL Ubuntu</h2><p>在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。</p>
 <p>Win + X 打开 CMD 管理员，输入 <code>bash</code> 或者 <code>lxrun /install</code>,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。<a id="more"></a></p>
-<h2 id="Step-1-修改-etc-ssh-sshd-config"><a href="#Step-1-修改-etc-ssh-sshd-config" class="headerlink" title="Step 1: 修改 /etc/ssh/sshd_config"></a>Step 1: 修改 <code>/etc/ssh/sshd_config</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">PasswordAuthentication yes</div><div class="line">UsePrivilegeSeparation no</div></pre></td></tr></table></figure>
+<h2 id="Step-1-修改-etc-ssh-sshd-config"><a href="#Step-1-修改-etc-ssh-sshd-config" class="headerlink" title="Step 1: 修改 /etc/ssh/sshd_config"></a>Step 1: 修改 <code>/etc/ssh/sshd_config</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PasswordAuthentication yes</span><br><span class="line">UsePrivilegeSeparation no</span><br></pre></td></tr></table></figure>
 <h2 id="Step-2-生成密钥"><a href="#Step-2-生成密钥" class="headerlink" title="Step 2: 生成密钥"></a>Step 2: 生成密钥</h2><p>执行 <code>sudo dpkg-reconfigure openssh-server</code></p>
 <h2 id="Step-3-sshd-无密码运行"><a href="#Step-3-sshd-无密码运行" class="headerlink" title="Step 3: sshd 无密码运行"></a>Step 3: sshd 无密码运行</h2><p>执行 <code>sudo visudo</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># $USER 是你 Step0 中设置的用户名</div><div class="line">$USER ALL = (root) NOPASSWD: /usr/sbin/sshd</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># $USER 是你 Step0 中设置的用户名</span><br><span class="line">$USER ALL = (root) NOPASSWD: /usr/sbin/sshd</span><br></pre></td></tr></table></figure>
 <h2 id="Step-4-开启-ssh"><a href="#Step-4-开启-ssh" class="headerlink" title="Step 4: 开启 ssh"></a>Step 4: 开启 ssh</h2><p>执行 <code>sudo /usr/sbin/sshd -d</code>，确认无误后 <code>sudo /usr/sbin/sshd</code></p>
 <p>可以写成一个脚本 wsl_ssh.bat <code>bash.exe -c &quot;sudo service ssh start &amp;&amp;&amp; sleep 999d&quot;</code></p>
-<h2 id="Step-5-配置-PyCharm"><a href="#Step-5-配置-PyCharm" class="headerlink" title="Step 5: 配置 PyCharm"></a>Step 5: 配置 PyCharm</h2><p><a href="https://www.jetbrains.com/help/pycharm/2016.1/configuring-remote-interpreters-via-ssh.html" target="_blank" rel="external">https://www.jetbrains.com/help/pycharm/2016.1/configuring-remote-interpreters-via-ssh.html</a></p>
-<h2 id="Step-X-完善"><a href="#Step-X-完善" class="headerlink" title="Step X: 完善"></a>Step X: 完善</h2><p>cmd 替代品 <a href="http://conemu.github.io/" target="_blank" rel="external">ConEmu</a>，最新版内置支持 wsl bash。</p>
+<h2 id="Step-5-配置-PyCharm"><a href="#Step-5-配置-PyCharm" class="headerlink" title="Step 5: 配置 PyCharm"></a>Step 5: 配置 PyCharm</h2><p><a href="https://www.jetbrains.com/help/pycharm/2016.1/configuring-remote-interpreters-via-ssh.html" target="_blank" rel="noopener">https://www.jetbrains.com/help/pycharm/2016.1/configuring-remote-interpreters-via-ssh.html</a></p>
+<h2 id="Step-X-完善"><a href="#Step-X-完善" class="headerlink" title="Step X: 完善"></a>Step X: 完善</h2><p>cmd 替代品 <a href="http://conemu.github.io/" target="_blank" rel="noopener">ConEmu</a>，最新版内置支持 wsl bash。</p>
 <p>也可以用 XShell ssh 上去。</p>
 <p>apt 源替换为 aliyun, <code>sudo sed -i &#39;s/archive.ubuntu/mirrors.aliyun/g&#39; /etc/apt/sources.list</code></p>
 <p>安装新版 git, <code>sudo add-apt-repository ppa:git-core/ppa</code></p>

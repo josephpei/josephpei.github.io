@@ -48,7 +48,7 @@
 <link rel="stylesheet" type="text/css" href="/css/post.css">
 
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/css/solarized-light.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
     <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script defer type="text/javascript" src="/js/util.js"></script>
@@ -163,17 +163,17 @@
     <main class="post-body" itemprop="articleBody">
       <p>7-4 快速排序中的堆栈深度</p>
 <p>7.1节中QUICKSORT算法包含有两个对其自身的递归调用。在调用PARTITION后，左边的子数组和右边的子数组分别被递归调用。QUICKSORT中的第二次递归调用并不是必须的；可以用迭代控制来代替它。这种技术称作尾递归，大多数的编译程序都加以了采用。考虑下面这个快速排序的版本，它模拟了尾递归：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">QUICKSORT&apos;(A, p, r)</div><div class="line">1  while p&lt;r</div><div class="line">2      do q &lt;- PARTITION(A, p, r)</div><div class="line">3         QUICKSORT(A, p, q-1)</div><div class="line">4         p &lt;- q+1</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">QUICKSORT&apos;(A, p, r)</span><br><span class="line">1  while p&lt;r</span><br><span class="line">2      do q &lt;- PARTITION(A, p, r)</span><br><span class="line">3         QUICKSORT(A, p, q-1)</span><br><span class="line">4         p &lt;- q+1</span><br></pre></td></tr></table></figure>
 <p>a) 论证QUICKSORT’(A, 1, Length[A])能正确地对数组A进行排序。</p>
 <p>首先证明QUICKSORT(A, 1, Length[A])能正确地对数组A进行排序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">QUICKSORT(A, p, r)</div><div class="line">1  if p&lt;r</div><div class="line">2      then q &lt;- PARTITION(A, p, r)</div><div class="line">3           QUICKSORT(A, p, q-1)</div><div class="line">4           QUICKSORT(A, q+1, r)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">QUICKSORT(A, p, r)</span><br><span class="line">1  if p&lt;r</span><br><span class="line">2      then q &lt;- PARTITION(A, p, r)</span><br><span class="line">3           QUICKSORT(A, p, q-1)</span><br><span class="line">4           QUICKSORT(A, q+1, r)</span><br></pre></td></tr></table></figure>
 <p>循环不变式：QUICKSORT(A, p, r)调用后，A[p..r]中的元素是有序的。</p>
 <p>初始化：r-p=1时，调用QUICK(A, p, r)。因为p&lt;r，故进入if语句块，调用q&lt;-PARTITION(A, p, r)后，A[p..q-1]的元素一定小于A[q]，A[q+1..r]的元素一定大于A[q]，又因为A[p..r]此时只包含两个元素，所以在调用q&lt;-PARTITION(A, p, r)后A[p..r]有序。因为此时q只能等于p或r，所以下面的QUICKSORT(A, p, q-1)、QUICKSORT(A, q+1, r)将不做任何操作。显然，循环不变式是成立的。</p>
 <p>保持：对任意数组A下标范围内的p、r调用QUICKSORT(A, p, r)时，假设循环不变式成立，于是QUICKSORT(A, p, q-1)使A[p..q-1]有序，QUICKSORT(A, q+1, r)使A[q+1..r]有序。并且由于调用了q&lt;-PARTITION(A, p, r)，A[p..q-1]的元素都小于A[q]，A[q+1..r]的元素都大于A[q]，于是数组A[p..r]就有序了。</p>
 <p>终止：最外层QUICKSORT(A, 1, Length[A])调用结束时，根据循环不变式，A[1..n]有序。</p>
 <p>QUICKSORT’调用与QUICKSORT相同的PARTITION，然后都以(A, p, q-1)调用自身。QUICKSORT以(A, q+1, r)再次调用自身，而QUICKSORT’则是让p&lt;-q+1后执行了while循环的另一次迭代。实际上不难看出，这一操作与QUICKSORT的第二次自身调用效果相同。于是QUICKSORT’(A, 1, Length[A])能正确对数组A进行排序。</p>
 <p>c) 修改QUICKSORT’的代码，使其最坏情况栈深度为Θ(lgn)。保持算法的O(nlgn)期望运行时间不变。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">QUICKSORT&apos;&apos;(A, p, r)</div><div class="line">1 while p&lt;r</div><div class="line">2     do q &lt;- PARTITION(A, p, r)</div><div class="line">3        if q-p&lt;r-q</div><div class="line">4            then QUICKSORT&apos;&apos;(A, p, q-1)</div><div class="line">5                 p &lt;- q+1</div><div class="line">6            else QUICKSORT&apos;&apos;(A, q+1, r)</div><div class="line">7                 r &lt;- q-1</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">QUICKSORT&apos;&apos;(A, p, r)</span><br><span class="line">1 while p&lt;r</span><br><span class="line">2     do q &lt;- PARTITION(A, p, r)</span><br><span class="line">3        if q-p&lt;r-q</span><br><span class="line">4            then QUICKSORT&apos;&apos;(A, p, q-1)</span><br><span class="line">5                 p &lt;- q+1</span><br><span class="line">6            else QUICKSORT&apos;&apos;(A, q+1, r)</span><br><span class="line">7                 r &lt;- q-1</span><br></pre></td></tr></table></figure>
     </main>
     <footer class="post-footer">
       
