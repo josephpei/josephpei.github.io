@@ -504,7 +504,7 @@
       
       <p>来源：<a href="http://www.iteye.com/topic/106747" target="_blank" rel="noopener">http://www.iteye.com/topic/106747</a></p>
 <p>在 <a href="http://www.iteye.com/topic/101055" target="_blank" rel="noopener">函数式编程语言曲高和寡？</a> 一文中，我们看到 Haskell 能用两行代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sort [] = []</span><br><span class="line">sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] ++ [x] ++ sort [y | y &lt;- xs, y &gt;= x]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs undefined">sort [] = []<br>sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] ++ [x] ++ sort [y | y &lt;- xs, y &gt;= x]<br></code></pre></td></tr></table></figure>
 <p>搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。
       
     </main>
