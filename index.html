@@ -79,7 +79,7 @@
     <script defer type="text/javascript" src="/js/custom.js"></script>
     <title>有翅膀的天狼 - Whisper to the world</title>
   </head>
-  <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"  data-spy="scroll" data-target=".list-group">
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
     
 <header id="header" class="header" style="background: #33363b;">
   <div class="container">
@@ -97,15 +97,15 @@
   <a id="nav-toggle" class="nav-toggle"><i class="fas fa-bars"></i></a>
   <ul id="menu">
     
-    <li><a href="/" class="current">Home</a></li>
+    <li><a href="/" class="current">首页</a></li>
     
-    <li><a href="/archives/">Archives</a></li>
+    <li><a href="/archives/">归档</a></li>
     
-    <li><a href="/categories/">Categories</a></li>
+    <li><a href="/categories/">分类</a></li>
     
-    <li><a href="/tags/">Tags</a></li>
+    <li><a href="/tags/">标签</a></li>
     
-    <li><a href="/about/">About</a></li>
+    <li><a href="/about/">关于</a></li>
     
   </ul>
 </nav>
@@ -122,6 +122,63 @@
             
 
 <section id="index" class="index">
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2018/11/08/Ubuntu-18-04-修复与-Windows-共享文件及打印机/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Joseph Pei">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="有翅膀的天狼">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/11/08/Ubuntu-18-04-修复与-Windows-共享文件及打印机/" itemprop="url">Ubuntu 18.04 修复与 Windows 共享文件及打印机</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-11-08T13:16:28+08:00">2018-11-08 13:16:28</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/11/08/Ubuntu-18-04-修复与-Windows-共享文件及打印机/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/11/08/Ubuntu-18-04-修复与-Windows-共享文件及打印机/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-body" itemprop="articleBody">
+      
+      <p>Ubuntu 升级到 18.04 后，在网络共享中看不到同一局域网内 Windows<br>共享的文件，同时 Windows<br>上共享的打印机也不能正常工作，表现为“需要身份认证”，但是输入对应用户名密码之后毫无反应。</p>
+<p>修复方法：<a href="https://www.dedoimedo.com/computers/ubuntu-beaver-samba-shares.html" target="_blank" rel="noopener">https://www.dedoimedo.com/computers/ubuntu-beaver-samba-shares.html</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span> sudo vi /etc/samba/smb.conf<br><span class="hljs-meta"><br>#</span> Add a line<br>client max protocol = NT1<br><span class="hljs-meta"><br>$</span> sudo systemctl restart smbd.service<br></code></pre></td></tr></table></figure>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        
+        
+        
+        <a class="post-tag button" href="/tags/ubuntu/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>ubuntu</a>
+        
+      </div>
+      
+    </footer>
+  </article>
   
   <article class="index-post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
@@ -196,9 +253,9 @@
         
         
         
-        <a class="post-tag button" href="/tags/cpp/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>cpp</a>
+        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
         
-        <a class="post-tag button" href="/tags/algorithm/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
+        <a class="post-tag button" href="/tags/cpp/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>cpp</a>
         
       </div>
       
@@ -660,60 +717,6 @@ cd create_ap &amp;&amp; make install
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2014/08/31/Spring-MVC-学习笔记8-Spring-Security/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Joseph Pei">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="有翅膀的天狼">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2014/08/31/Spring-MVC-学习笔记8-Spring-Security/" itemprop="url">Spring MVC 学习笔记8 Spring Security</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-08-31T09:23:35+08:00">2014-08-31 09:23:35</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2014/08/31/Spring-MVC-学习笔记8-Spring-Security/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/08/31/Spring-MVC-学习笔记8-Spring-Security/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-body" itemprop="articleBody">
-      
-      <p>Spring Security 是为基于 Spring 的应用程序提供声明式安全保护的安全性框架，基于 Spring AOP 和 Servlet 过滤器实现，能够在 Web 请求级别和方法调用级别处理身份验证和授权。它使用 Servlet 过滤器保护 Web 请求和限制 URL 级别的访问，也可以使用 Spring AOP 保护方法调用——借助于对象代理和使用通知，能够确保只有具备适当权限的用户才能访问安全保护的方法。
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        
-        
-        
-        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right"></i></a>
@@ -742,7 +745,7 @@ cd create_ap &amp;&amp; make install
   
   <div class="search">
     <div class="form-group">
-      <i class="fas fa-search"></i><input type="text" id="search-input" name="q" results="0" placeholder="Search" class="form-control"/>
+      <i class="fas fa-search"></i><input type="text" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
     </div>
   </div>
   <div class="search-result-box" id="search-result"></div>
@@ -757,8 +760,8 @@ cd create_ap &amp;&amp; make install
   <div class="site-count">
     
     <div class="archives-count">
-      <div class="site-count-title">Archives</div>
-      <div><a href="/archives/">56</a></div>
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">57</a></div>
     </div>
     
     
@@ -766,7 +769,7 @@ cd create_ap &amp;&amp; make install
     <span class="site-count-divider divider">|</span>
     
     <div class="categories-count">
-      <div class="site-count-title">Categories</div>
+      <div class="site-count-title">分类</div>
       <div><a href="/categories/">0</a></div>
     </div>
     
@@ -775,7 +778,7 @@ cd create_ap &amp;&amp; make install
     <span class="site-count-divider divider">|</span>
     
     <div class="tags-count">
-      <div class="site-count-title">Tags</div>
+      <div class="site-count-title">标签</div>
       <div><a href="/tags/">17</a></div>
     </div>
     
@@ -794,7 +797,7 @@ cd create_ap &amp;&amp; make install
     
 <hr>
 <div class="social-link sidebar-item">
-  <div><i class="far fa-address-card"></i>Social Links</p></div>
+  <div><i class="far fa-address-card"></i>社交链接</p></div>
   <ul>
     
     <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
@@ -812,7 +815,7 @@ cd create_ap &amp;&amp; make install
     
 <hr>
 <div class="blogroll sidebar-item">
-  <div><i class="fas fa-link"></i>Blogroll</div>
+  <div><i class="fas fa-link"></i>友情链接</div>
   <ul>
     
     <li><a href="https://github.com/" target="_blank">GitHub</a></li>
@@ -861,7 +864,7 @@ cd create_ap &amp;&amp; make install
           
         </div>
         <div class="powered-by">
-          Proudly Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> | Theme is <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
         </div>
       </div>
     </div>

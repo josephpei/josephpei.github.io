@@ -3,6 +3,21 @@
   
     
     <entry>
+      <title>Ubuntu 18.04 修复与 Windows 共享文件及打印机</title>
+      <link href="/2018/11/08/Ubuntu-18-04-%E4%BF%AE%E5%A4%8D%E4%B8%8E-Windows-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%8F%8A%E6%89%93%E5%8D%B0%E6%9C%BA/"/>
+      <url>/2018/11/08/Ubuntu-18-04-%E4%BF%AE%E5%A4%8D%E4%B8%8E-Windows-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%8F%8A%E6%89%93%E5%8D%B0%E6%9C%BA/</url>
+      <content type="html"><![CDATA[<p>Ubuntu 升级到 18.04 后，在网络共享中看不到同一局域网内 Windows<br>共享的文件，同时 Windows<br>上共享的打印机也不能正常工作，表现为“需要身份认证”，但是输入对应用户名密码之后毫无反应。</p><p>修复方法：<a href="https://www.dedoimedo.com/computers/ubuntu-beaver-samba-shares.html" target="_blank" rel="noopener">https://www.dedoimedo.com/computers/ubuntu-beaver-samba-shares.html</a></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span> sudo vi /etc/samba/smb.conf<br><span class="hljs-meta"><br>#</span> Add a line<br>client max protocol = NT1<br><span class="hljs-meta"><br>$</span> sudo systemctl restart smbd.service<br></code></pre></td></tr></table></figure>]]></content>
+      
+      
+        <tags>
+            
+            <tag> ubuntu </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Cpp Template Meta Programming MergeSort</title>
       <link href="/2018/05/11/Cpp-Template-Meta-Programming-MergeSort/"/>
       <url>/2018/05/11/Cpp-Template-Meta-Programming-MergeSort/</url>
@@ -11,9 +26,9 @@
       
         <tags>
             
-            <tag> cpp </tag>
-            
             <tag> algorithm </tag>
+            
+            <tag> cpp </tag>
             
         </tags>
       
@@ -328,9 +343,9 @@
       
         <tags>
             
-            <tag> algorithm </tag>
-            
             <tag> leetcode </tag>
+            
+            <tag> algorithm </tag>
             
         </tags>
       

@@ -80,7 +80,7 @@
     <script defer type="text/javascript" src="/js/index.js"></script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>POJ 1002 电话号码 | 有翅膀的天狼 - Whisper to the world</title>
+    <title>Ubuntu 18.04 修复与 Windows 共享文件及打印机 | 有翅膀的天狼 - Whisper to the world</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
     
@@ -127,7 +127,7 @@
   
   <article class="post-container card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/09/26/poj-1002-电话号码/">
+      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2018/11/08/Ubuntu-18-04-修复与-Windows-共享文件及打印机/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
        <meta itemprop="name" content="Joseph Pei">
        <meta itemprop="description" content="">
@@ -139,12 +139,12 @@
     </div>
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
-       <span class="">POJ 1002 电话号码</span>
+       <span class="">Ubuntu 18.04 修复与 Windows 共享文件及打印机</span>
       </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2013-09-26T12:39:11+08:00">2013-09-26 12:39:11</time></span>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-11-08T13:16:28+08:00">2018-11-08 13:16:28</time></span>
         </span>
         
         
@@ -154,19 +154,17 @@
         <span class="post-meta-divider divider">|</span>
         
         <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2013/09/26/poj-1002-电话号码/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/09/26/poj-1002-电话号码/" itemprop="commentCount"></span></a></span>
+          <i class="far fa-comments"></i><span><a href="/2018/11/08/Ubuntu-18-04-修复与-Windows-共享文件及打印机/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/11/08/Ubuntu-18-04-修复与-Windows-共享文件及打印机/" itemprop="commentCount"></span></a></span>
         </span>
         
         
       </div>
     </header>
     <main class="post-body" itemprop="articleBody">
-      <p>Input</p>
-<p>输入的格式是，第一行是一个正整数，指定电话号码薄中号码的数量（最多100000）。余下的每行是一个电话号码。每个电话号码由数字，大写字母（除了Q和Z）以及连接符组成。每个电话号码中只会刚好有7个数字或者字母。<br>Output</p>
-<p>对于每个出现重复的号码产生一行输出，输出是号码的标准格式紧跟一个空格然后是它的重复次数。如果存在多个重复的号码，则按照号码的字典升序输出。如果输入数据中没有重复的号码，输出一行：</p>
-<p>No duplicates.</p>
-<p><a href="http://poj.org/problem?id=1002" target="_blank" rel="noopener">http://poj.org/problem?id=1002</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SIZE 10000000</span><br><span class="hljs-keyword">int</span> num[SIZE];<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">trans</span><span class="hljs-params">(<span class="hljs-keyword">char</span> x)</span><br></span>&#123;<br>    <span class="hljs-keyword">if</span> (x &gt;= <span class="hljs-string">'0'</span> &amp;&amp; x &lt;= <span class="hljs-string">'9'</span>) <span class="hljs-keyword">return</span> x - <span class="hljs-string">'0'</span>;<br>    <span class="hljs-keyword">if</span> (x == <span class="hljs-string">'A'</span> || x == <span class="hljs-string">'B'</span> || x == <span class="hljs-string">'C'</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">if</span> (x == <span class="hljs-string">'D'</span> || x == <span class="hljs-string">'E'</span> || x == <span class="hljs-string">'F'</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;<br>    <span class="hljs-keyword">if</span> (x == <span class="hljs-string">'G'</span> || x == <span class="hljs-string">'H'</span> || x == <span class="hljs-string">'I'</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">4</span>;<br>    <span class="hljs-keyword">if</span> (x == <span class="hljs-string">'J'</span> || x == <span class="hljs-string">'K'</span> || x == <span class="hljs-string">'L'</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;<br>    <span class="hljs-keyword">if</span> (x == <span class="hljs-string">'M'</span> || x == <span class="hljs-string">'N'</span> || x == <span class="hljs-string">'O'</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">6</span>;<br>    <span class="hljs-keyword">if</span> (x == <span class="hljs-string">'P'</span> || x == <span class="hljs-string">'R'</span> || x == <span class="hljs-string">'S'</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">7</span>;<br>    <span class="hljs-keyword">if</span> (x == <span class="hljs-string">'T'</span> || x == <span class="hljs-string">'U'</span> || x == <span class="hljs-string">'V'</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">8</span>;<br>    <span class="hljs-keyword">if</span> (x == <span class="hljs-string">'W'</span> || x == <span class="hljs-string">'X'</span> || x == <span class="hljs-string">'Y'</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">9</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span><br></span>&#123;<br>    <span class="hljs-keyword">int</span> n;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;n);<br><br>    <span class="hljs-keyword">int</span> i, j;<br>    <span class="hljs-keyword">char</span> x[<span class="hljs-number">1000</span>];<br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; n; i++)<br>    &#123;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>, x);<br>        <span class="hljs-keyword">int</span> base =<span class="hljs-number">1</span>, sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (j = <span class="hljs-built_in">strlen</span>(x) - <span class="hljs-number">1</span>; j &gt;= <span class="hljs-number">0</span>; j--)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (x[j] == <span class="hljs-string">'-'</span>) <span class="hljs-keyword">continue</span>;<br>            sum += base * trans(x[j]);<br>            base = base * <span class="hljs-number">10</span>;<br>        &#125;<br>        num[sum]++;<br>    &#125;<br><br>    <span class="hljs-keyword">int</span> p = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; SIZE; i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (num[i] &gt; <span class="hljs-number">1</span>)<br>        &#123;<br>            p = <span class="hljs-number">1</span>;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%03d-%04d %d\n"</span>, i / <span class="hljs-number">10000</span>, i % <span class="hljs-number">10000</span>, num[i]);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!p) <span class="hljs-built_in">printf</span>(<span class="hljs-string">"No duplicates.\n"</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+      <p>Ubuntu 升级到 18.04 后，在网络共享中看不到同一局域网内 Windows<br>共享的文件，同时 Windows<br>上共享的打印机也不能正常工作，表现为“需要身份认证”，但是输入对应用户名密码之后毫无反应。</p>
+<p>修复方法：<a href="https://www.dedoimedo.com/computers/ubuntu-beaver-samba-shares.html" target="_blank" rel="noopener">https://www.dedoimedo.com/computers/ubuntu-beaver-samba-shares.html</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span> sudo vi /etc/samba/smb.conf<br><span class="hljs-meta"><br>#</span> Add a line<br>client max protocol = NT1<br><span class="hljs-meta"><br>$</span> sudo systemctl restart smbd.service<br></code></pre></td></tr></table></figure>
+
     </main>
     <footer class="post-footer">
       
@@ -176,7 +174,7 @@
         
         
         
-        <a class="post-tag button" href="/tags/poj/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>poj</a>
+        <a class="post-tag button" href="/tags/ubuntu/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>ubuntu</a>
         
       </div>
       
@@ -210,12 +208,10 @@
   <div class="post-nav">
     <div class="post-nav-next post-nav-item">
       
-      <a href="/2013/09/25/poj-1001-求高精度幂/" rel="next" title="POJ 1001 求高精度幂"><i class="fas fa-angle-left"></i><span class="nav-title">POJ 1001 求高精度幂</span></a>
+      <a href="/2018/05/11/Cpp-Template-Meta-Programming-MergeSort/" rel="next" title="Cpp Template Meta Programming MergeSort"><i class="fas fa-angle-left"></i><span class="nav-title">Cpp Template Meta Programming MergeSort</span></a>
       
     </div>
     <div class="post-nav-prev post-nav-item">
-      
-      <a href="/2013/09/26/generate-ctags-files/" rel="prev" title="Generate Ctags Files"><span class="nav-title">Generate Ctags Files</span><i class="fas fa-angle-right"></i></a>
       
     </div>
   </div>
@@ -230,8 +226,8 @@
   <div id="disqus_thread" class="disqus_thread"></div>
   <script type="text/javascript">
   var disqus_config = function () {
-    this.page.url = "http://josephpei.github.io/2013/09/26/poj-1002-电话号码/";
-    this.page.identifier = "2013/09/26/poj-1002-电话号码/";
+    this.page.url = "http://josephpei.github.io/2018/11/08/Ubuntu-18-04-修复与-Windows-共享文件及打印机/";
+    this.page.identifier = "2018/11/08/Ubuntu-18-04-修复与-Windows-共享文件及打印机/";
   };
   (function() {
     var d = document, s = d.createElement("script");

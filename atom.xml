@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://josephpei.github.io/"/>
-  <updated>2018-05-11T07:52:31.754Z</updated>
+  <updated>2018-11-08T05:23:28.691Z</updated>
   <id>http://josephpei.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu 18.04 修复与 Windows 共享文件及打印机</title>
+    <link href="http://josephpei.github.io/2018/11/08/Ubuntu-18-04-%E4%BF%AE%E5%A4%8D%E4%B8%8E-Windows-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%8F%8A%E6%89%93%E5%8D%B0%E6%9C%BA/"/>
+    <id>http://josephpei.github.io/2018/11/08/Ubuntu-18-04-修复与-Windows-共享文件及打印机/</id>
+    <published>2018-11-08T05:16:28.000Z</published>
+    <updated>2018-11-08T05:23:28.691Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Ubuntu 升级到 18.04 后，在网络共享中看不到同一局域网内 Windows&lt;br&gt;共享的文件，同时 Windows&lt;br&gt;上共享的打印机也不能正常工作，表现为“需要身份认证”，但是输入对应用户名密码之后毫无反应。&lt;/p&gt;
+&lt;p&gt;修复方法：&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="ubuntu" scheme="http://josephpei.github.io/tags/ubuntu/"/>
+    
+  </entry>
   
   <entry>
     <title>Cpp Template Meta Programming MergeSort</title>
@@ -38,9 +63,9 @@
     </summary>
     
     
-      <category term="cpp" scheme="http://josephpei.github.io/tags/cpp/"/>
-    
       <category term="algorithm" scheme="http://josephpei.github.io/tags/algorithm/"/>
+    
+      <category term="cpp" scheme="http://josephpei.github.io/tags/cpp/"/>
     
   </entry>
   
@@ -406,26 +431,6 @@
     
     
       <category term="algorithm" scheme="http://josephpei.github.io/tags/algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UW 软硬件接口lab3 bufbomb</title>
-    <link href="http://josephpei.github.io/2014/08/02/UW-%E8%BD%AF%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3lab3-bufbomb/"/>
-    <id>http://josephpei.github.io/2014/08/02/UW-软硬件接口lab3-bufbomb/</id>
-    <published>2014-08-02T14:31:49.000Z</published>
-    <updated>2015-02-06T03:41:19.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本实验即常见的缓冲区溢出攻击。（注：新的 64bit Win8/Linux 下这种简单方式无效，x86_64 cpu 的可执行标志位 exec-shield，gcc 栈保护选项开关 -fno-stack-protector）&lt;/p&gt;
-&lt;p&gt;主函数为 test()，首先声明一个局部变量 volatile int local = 0xdeadbeef，volatile 是编译时不使用 register 优化，必须分配栈空间，后面的实验过程不能覆盖这个 local 变量。&lt;/p&gt;
-&lt;p&gt;然后就是存在缓冲区溢出漏洞的 getbuf 函数，也就是我们要操作的对象。
-    
-    </summary>
-    
-    
-      <category term="mooc" scheme="http://josephpei.github.io/tags/mooc/"/>
     
   </entry>
   
