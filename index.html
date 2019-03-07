@@ -10,6 +10,7 @@
     
     
     
+    
     <meta name="keywords" content="Life, Linux, Hexo">
     
     
@@ -44,11 +45,15 @@
     <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
     
     
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
     <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
     <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
     <script defer type="text/javascript" src="/js/scrollspy.js"></script>
     <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
     <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
@@ -75,6 +80,55 @@
     
     
     <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          $(e).before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          $(e).parent().before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "已复制";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "复制";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
     <title>有翅膀的天狼 - Whisper to the world</title>
@@ -88,29 +142,18 @@
         <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
         <h2 class="subtitle">Whisper to the world</h2>
       </div>
+      
       <div class="logo">
         <img src="/img/logo.png" alt="logo">
       </div>
+      
     </div>
-    
-<nav id="nav" class="nav">
-  <a id="nav-toggle" class="nav-toggle"><i class="fas fa-bars"></i></a>
-  <ul id="menu">
-    
-    <li><a href="/" class="current">首页</a></li>
-    
-    <li><a href="/archives/">归档</a></li>
-    
-    <li><a href="/categories/">分类</a></li>
-    
-    <li><a href="/tags/">标签</a></li>
-    
-    <li><a href="/about/">关于</a></li>
-    
-  </ul>
-</nav>
-
-
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -121,9 +164,9 @@
           <div class="content">
             
 
-<section id="index" class="index">
+<div id="index" class="index page">
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2018/11/08/Ubuntu-18-04-修复与-Windows-共享文件及打印机/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -158,11 +201,11 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>Ubuntu 升级到 18.04 后，在网络共享中看不到同一局域网内 Windows<br>共享的文件，同时 Windows<br>上共享的打印机也不能正常工作，表现为“需要身份认证”，但是输入对应用户名密码之后毫无反应。</p>
 <p>修复方法：<a href="https://www.dedoimedo.com/computers/ubuntu-beaver-samba-shares.html" target="_blank" rel="noopener">https://www.dedoimedo.com/computers/ubuntu-beaver-samba-shares.html</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span> sudo vi /etc/samba/smb.conf<br><span class="hljs-meta"><br>#</span> Add a line<br>client max protocol = NT1<br><span class="hljs-meta"><br>$</span> sudo systemctl restart smbd.service<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo vi /etc/samba/smb.conf</span><br><span class="hljs-meta"><br>#</span><span class="bash"> Add a line</span><br>client max protocol = NT1<br><span class="hljs-meta"><br>$</span><span class="bash"> sudo systemctl restart smbd.service</span><br></code></pre></td></tr></table></figure>
 
       
     </main>
@@ -170,17 +213,14 @@
       
       <div class="post-tags">
         
-        
-        
-        
-        <a class="post-tag button" href="/tags/ubuntu/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>ubuntu</a>
+        <a class="post-tag button" href="/tags/ubuntu/" rel="tag"><i class="fas fa-tags"></i>ubuntu</a>
         
       </div>
       
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2018/05/11/Cpp-Template-Meta-Programming-MergeSort/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -215,20 +255,20 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>C++ 模板元编程之编译时归并排序，源自水木社区 ilovecpp</p>
 <p>Cpp Template Meta Programming MergeSort</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/vector.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/vector_c.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/eval_if.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/identity.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/empty.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/less.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/front.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/pop_front.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/push_front.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/size.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/iterator_range.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/int.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/for_each.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> boost::mpl;<br><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> V1, <span class="hljs-keyword">typename</span> V2&gt;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Merge</span> &#123;</span><br>    <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T1, <span class="hljs-keyword">typename</span> T2&gt;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">F</span> &#123;</span><br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> push_front&lt;<br>            <span class="hljs-keyword">typename</span> Merge&lt;<span class="hljs-keyword">typename</span> pop_front&lt;T1&gt;::type, T2&gt;::type,<br>            <span class="hljs-keyword">typename</span> front&lt;T1&gt;::type<br>            &gt;::type type;<br>    &#125;;<br>        <br>    <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> eval_if&lt;<br>        empty&lt;V1&gt;,<br>        identity&lt;V2&gt;,<br>        eval_if&lt;<br>            empty&lt;V2&gt;,<br>            identity&lt;V1&gt;,<br>            eval_if&lt;<br>                less&lt;<span class="hljs-keyword">typename</span> front&lt;V1&gt;::type, <span class="hljs-keyword">typename</span> front&lt;V2&gt;::type&gt;,<br>                F&lt;V1, V2&gt;,<br>                F&lt;V2, V1&gt;<br>                &gt;<br>            &gt;<br>        &gt;::type type;<br>&#125;;<br><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> V&gt;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">MergeSort</span> &#123;</span><br>    <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">F</span> &#123;</span><br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> begin&lt;T&gt;::type t0;<br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> advance&lt;t0, int_&lt;size&lt;T&gt;::value/<span class="hljs-number">2</span>&gt;&gt;::type t1;<br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> end&lt;T&gt;::type t2;<br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> Merge&lt;<br>            <span class="hljs-keyword">typename</span> MergeSort&lt;iterator_range&lt;t0, t1&gt;&gt;::type,<br>            <span class="hljs-keyword">typename</span> MergeSort&lt;iterator_range&lt;t1, t2&gt;&gt;::type<br>            &gt;::type type;<br>    &#125;;<br>    <br>    <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> eval_if&lt;<br>        empty&lt;V&gt;,<br>        identity&lt;<span class="hljs-built_in">vector</span>&lt;&gt;&gt;,<br>        eval_if&lt;<br>            less&lt;size&lt;V&gt;, int_&lt;<span class="hljs-number">2</span>&gt;&gt;,<br>            identity&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">typename</span> front&lt;V&gt;::type&gt;&gt;,<br>            F&lt;V&gt;<br>            &gt;<br>        &gt;::type type;<br>&#125;;<br><br><span class="hljs-keyword">typedef</span> vector_c&lt;<span class="hljs-keyword">int</span>, <span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>&gt; t1;<br><span class="hljs-keyword">typedef</span> MergeSort&lt;t1&gt;::type t10;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">print</span> &#123;</span><br>    <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">( T t )</span> <span class="hljs-keyword">const</span> </span>&#123;<br>       <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; T::value &lt;&lt; <span class="hljs-string">" "</span>;<br>    &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    for_each&lt;t10&gt;(print());<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/vector.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/vector_c.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/eval_if.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/identity.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/empty.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/less.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/front.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/pop_front.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/push_front.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/size.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/iterator_range.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/int.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/mpl/for_each.hpp&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> boost::mpl;<br><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> V1, <span class="hljs-keyword">typename</span> V2&gt;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Merge</span> &#123;</span><br>    <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T1, <span class="hljs-keyword">typename</span> T2&gt;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">F</span> &#123;</span><br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> push_front&lt;<br>            <span class="hljs-keyword">typename</span> Merge&lt;<span class="hljs-keyword">typename</span> pop_front&lt;T1&gt;::type, T2&gt;::type,<br>            <span class="hljs-keyword">typename</span> front&lt;T1&gt;::type<br>            &gt;::type type;<br>    &#125;;<br>        <br>    <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> eval_if&lt;<br>        empty&lt;V1&gt;,<br>        identity&lt;V2&gt;,<br>        eval_if&lt;<br>            empty&lt;V2&gt;,<br>            identity&lt;V1&gt;,<br>            eval_if&lt;<br>                less&lt;<span class="hljs-keyword">typename</span> front&lt;V1&gt;::type, <span class="hljs-keyword">typename</span> front&lt;V2&gt;::type&gt;,<br>                F&lt;V1, V2&gt;,<br>                F&lt;V2, V1&gt;<br>                &gt;<br>            &gt;<br>        &gt;::type type;<br>&#125;;<br><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> V&gt;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">MergeSort</span> &#123;</span><br>    <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">F</span> &#123;</span><br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> begin&lt;T&gt;::type t0;<br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> advance&lt;t0, int_&lt;size&lt;T&gt;::value/<span class="hljs-number">2</span>&gt;&gt;::type t1;<br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> end&lt;T&gt;::type t2;<br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> Merge&lt;<br>            <span class="hljs-keyword">typename</span> MergeSort&lt;iterator_range&lt;t0, t1&gt;&gt;::type,<br>            <span class="hljs-keyword">typename</span> MergeSort&lt;iterator_range&lt;t1, t2&gt;&gt;::type<br>            &gt;::type type;<br>    &#125;;<br>    <br>    <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> eval_if&lt;<br>        empty&lt;V&gt;,<br>        identity&lt;<span class="hljs-built_in">vector</span>&lt;&gt;&gt;,<br>        eval_if&lt;<br>            less&lt;size&lt;V&gt;, int_&lt;<span class="hljs-number">2</span>&gt;&gt;,<br>            identity&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">typename</span> front&lt;V&gt;::type&gt;&gt;,<br>            F&lt;V&gt;<br>            &gt;<br>        &gt;::type type;<br>&#125;;<br><br><span class="hljs-keyword">typedef</span> vector_c&lt;<span class="hljs-keyword">int</span>, <span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>&gt; t1;<br><span class="hljs-keyword">typedef</span> MergeSort&lt;t1&gt;::type t10;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">print</span> &#123;</span><br>    <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">( T t )</span> <span class="hljs-keyword">const</span> </span>&#123;<br>       <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; T::value &lt;&lt; <span class="hljs-string">" "</span>;<br>    &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    for_each&lt;t10&gt;(print());<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>顺便说一下怎么读这类代码。困难主要来自不熟悉编译时的这套完全不同的语法，而概念和运行其实没多大差别。</p>
 <ul>
 <li><p>所有的typename关键字都是C++的语法限制，没有意义，先删掉。</p>
 </li>
 <li><p>形如</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T1, <span class="hljs-keyword">typename</span> T2&gt;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">F</span> &#123;</span><br>    <span class="hljs-keyword">typedef</span> ... type;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T1, <span class="hljs-keyword">typename</span> T2&gt;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">F</span> &#123;</span><br>    <span class="hljs-keyword">typedef</span> ... type;<br>&#125;;<br></code></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>的是编译时函数，相当于运行时的<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">F(T1, T2) &#123;<br>    <span class="hljs-keyword">return</span> ...;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>的是编译时函数，相当于运行时的<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">F(T1, T2) &#123;<br>    <span class="hljs-keyword">return</span> ...;<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <ul>
 <li>形如<code>F&lt;T1, T2&gt;::type</code> 的是编译时的函数调用，相当于运行时的 <code>F(T1, T2)</code></li>
 </ul>
@@ -242,7 +282,7 @@
 </li>
 </ul>
 <p>好，我按照上述几条规则翻译一下代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs cpp">Merge(V1, V2) &#123;<br>    F(T1, T2) &#123;<br>        <span class="hljs-keyword">return</span> push_front(Merge(pop_front(T1), T2), front(T1));<br>    &#125;;<br><br>    <span class="hljs-keyword">if</span> (empty(V1))<br>        <span class="hljs-keyword">return</span> V2;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (empty(V2))<br>        <span class="hljs-keyword">return</span> V1;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (front(V1)&lt;front(V2))<br>        <span class="hljs-keyword">return</span> F(V1, V2);<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> F(V2, V1);<br>&#125;<br><br>MergeSort(V) &#123;<br>    F(T) &#123;<br>        t0 = begin(T);<br>        t1 = advance(t0, size(T)/<span class="hljs-number">2</span>);<br>        t2 = end(T);<br>        <span class="hljs-keyword">return</span> Merge(MergeSort(iterator_range(t0, t1)),<br>                     MergeSort(iterator_range(t1, t2)));<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (empty(V))<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">vector</span>();<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (size(V)&lt;<span class="hljs-number">2</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">vector</span>(front(V));<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> F&lt;V&gt;;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs cpp">Merge(V1, V2) &#123;<br>    F(T1, T2) &#123;<br>        <span class="hljs-keyword">return</span> push_front(Merge(pop_front(T1), T2), front(T1));<br>    &#125;;<br><br>    <span class="hljs-keyword">if</span> (empty(V1))<br>        <span class="hljs-keyword">return</span> V2;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (empty(V2))<br>        <span class="hljs-keyword">return</span> V1;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (front(V1)&lt;front(V2))<br>        <span class="hljs-keyword">return</span> F(V1, V2);<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> F(V2, V1);<br>&#125;<br><br>MergeSort(V) &#123;<br>    F(T) &#123;<br>        t0 = begin(T);<br>        t1 = advance(t0, size(T)/<span class="hljs-number">2</span>);<br>        t2 = end(T);<br>        <span class="hljs-keyword">return</span> Merge(MergeSort(iterator_range(t0, t1)),<br>                     MergeSort(iterator_range(t1, t2)));<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (empty(V))<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">vector</span>();<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (size(V)&lt;<span class="hljs-number">2</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">vector</span>(front(V));<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> F&lt;V&gt;;<br>&#125;<br></code></pre></td></tr></table></figure>
 
       
     </main>
@@ -250,19 +290,16 @@
       
       <div class="post-tags">
         
+        <a class="post-tag button" href="/tags/cpp/" rel="tag"><i class="fas fa-tags"></i>cpp</a>
         
-        
-        
-        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
-        
-        <a class="post-tag button" href="/tags/cpp/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>cpp</a>
+        <a class="post-tag button" href="/tags/algorithm/" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
         
       </div>
       
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2018/05/04/VSCode-cquery-lsp-实现-C-C-补全/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -297,7 +334,7 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p><a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener">LSP</a>（Language-Server-Protocol）开源的语言服务器协定，微软出品，语言服务端提供索引代码的服务，编辑器直接调用。套用官话就是，可以让不同的程序编辑器与集成开发环境（IDE）方便嵌入各种程序语言，允许开发人员在最喜爱的工具中使用各种语言来撰写程序。</p>
 <p>目前语言与编辑器支持情况见 <a href="https://langserver.org/" target="_blank" rel="noopener">https://langserver.org/</a></p>
@@ -309,19 +346,16 @@
       
       <div class="post-tags">
         
+        <a class="post-tag button" href="/tags/lsp/" rel="tag"><i class="fas fa-tags"></i>lsp</a>
         
-        
-        
-        <a class="post-tag button" href="/tags/lsp/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>lsp</a>
-        
-        <a class="post-tag button" href="/tags/editor/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>editor</a>
+        <a class="post-tag button" href="/tags/editor/" rel="tag"><i class="fas fa-tags"></i>editor</a>
         
       </div>
       
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2018/04/28/ubuntu-awesome-terminal/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -356,27 +390,24 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
-      <h2 id="gnome-terminal-solarized-theme"><a href="#gnome-terminal-solarized-theme" class="headerlink" title="gnome-terminal solarized theme"></a>gnome-terminal solarized theme</h2><p><a href="https://github.com/Anthony25/gnome-terminal-colors-solarized" target="_blank" rel="noopener">Solarized Colorscheme for Gnome Terminal</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/Anthony25/gnome-terminal-colors-solarized.git<br><span class="hljs-built_in">cd</span> gnome-terminal-colors-solarized<br>./install.sh<br></code></pre></td></tr></table></figure>
+      <h2 id="gnome-terminal-theme"><a href="#gnome-terminal-theme" class="headerlink" title="gnome-terminal theme"></a>gnome-terminal theme</h2><p><a href="https://github.com/aaron-williamson/base16-gnome-terminal" target="_blank" rel="noopener">base16 gnome terminal</a></p>
+<p>选择一个，运行相应的 <code>.sh</code><br>
       
     </main>
     <footer class="post-footer">
       
       <div class="post-tags">
         
-        
-        
-        
-        <a class="post-tag button" href="/tags/ubuntu/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>ubuntu</a>
+        <a class="post-tag button" href="/tags/ubuntu/" rel="tag"><i class="fas fa-tags"></i>ubuntu</a>
         
       </div>
       
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2016/08/18/PyCharm-使用-Windows-10-WSL-Ubuntu-子系统中的-Python/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -411,7 +442,7 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 <a href="https://support.microsoft.com/en-us/help/12387/windows-10-update-history" target="_blank" rel="noopener">https://support.microsoft.com/en-us/help/12387/windows-10-update-history</a> 手动升级。</p>
 <h2 id="Step-0-安装-WSL-Ubuntu"><a href="#Step-0-安装-WSL-Ubuntu" class="headerlink" title="Step 0: 安装 WSL Ubuntu"></a>Step 0: 安装 WSL Ubuntu</h2><p>在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。</p>
@@ -423,7 +454,7 @@
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2016/08/05/Django之路-Python-Decouple/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -458,7 +489,7 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>Django settings 中存有很多私密信息，如 database url, password, secret key, allowed hosts 等，我们还可能有 Debug / Deploy 两套不同的运行环境，<a href="https://pypi.python.org/pypi/python-decouple" target="_blank" rel="noopener">python-decouple</a> 可以让这些环境变量与代码分离。
       
@@ -467,19 +498,16 @@
       
       <div class="post-tags">
         
+        <a class="post-tag button" href="/tags/python/" rel="tag"><i class="fas fa-tags"></i>python</a>
         
-        
-        
-        <a class="post-tag button" href="/tags/python/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>python</a>
-        
-        <a class="post-tag button" href="/tags/django/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>django</a>
+        <a class="post-tag button" href="/tags/django/" rel="tag"><i class="fas fa-tags"></i>django</a>
         
       </div>
       
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2015/07/19/Linux驱动开发之一-Hello-World/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -514,14 +542,14 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>完整的 Hello World 内核模块 hello.c</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/init.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/module.h&gt;</span></span><br>MODULE_LICENSE(<span class="hljs-string">"Dual BSD/GPL"</span>);<br><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hello_init</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span><br></span>&#123;<br>    printk(KERN_ALERT <span class="hljs-string">"Hello, world\n"</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">hello_exit</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span><br></span>&#123;<br>    printk(KERN_ALERT <span class="hljs-string">"Goodbye, cruel world\n"</span>);<br>&#125;<br><br>module_init(hello_init);<br>module_exit(hello_exit);<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/init.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/module.h&gt;</span></span><br>MODULE_LICENSE(<span class="hljs-string">"Dual BSD/GPL"</span>);<br><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hello_init</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span><br></span>&#123;<br>    printk(KERN_ALERT <span class="hljs-string">"Hello, world\n"</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">hello_exit</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span><br></span>&#123;<br>    printk(KERN_ALERT <span class="hljs-string">"Goodbye, cruel world\n"</span>);<br>&#125;<br><br>module_init(hello_init);<br>module_exit(hello_exit);<br></code></pre></td></tr></table></figure>
 <p>Makefile</p>
-<figure class="highlight Makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs Makefile">obj-m +=hello.o<br><br>KDIR = /usr/src/linux-headers-3.19.0-21-generic<br><br><span class="hljs-section">all:</span><br>	<span class="hljs-variable">$(MAKE)</span> -C <span class="hljs-variable">$(KDIR)</span> SUBDIRS=<span class="hljs-variable">$(PWD)</span> modules<br><br><span class="hljs-section">clean:</span><br>	rm -rf *.o *.ko *.mod.* *.symvers *.order<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight Makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs Makefile">obj-m +=hello.o<br><br>KDIR = /usr/src/linux-headers-3.19.0-21-generic<br><br><span class="hljs-section">all:</span><br>	<span class="hljs-variable">$(MAKE)</span> -C <span class="hljs-variable">$(KDIR)</span> SUBDIRS=<span class="hljs-variable">$(PWD)</span> modules<br><br><span class="hljs-section">clean:</span><br>	rm -rf *.o *.ko *.mod.* *.symvers *.order<br></code></pre></td></tr></table></figure>
 <p>To run the code</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-variable">$sudo</span> insmod hello.ko<br><span class="hljs-variable">$dmesg</span><br>u will get the output<br><span class="hljs-variable">$sudo</span> rmmod hello.ko<br><span class="hljs-variable">$dmesg</span><br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-variable">$sudo</span> insmod hello.ko<br><span class="hljs-variable">$dmesg</span><br>u will get the output<br><span class="hljs-variable">$sudo</span> rmmod hello.ko<br><span class="hljs-variable">$dmesg</span><br></code></pre></td></tr></table></figure>
 
       
     </main>
@@ -529,17 +557,14 @@
       
       <div class="post-tags">
         
-        
-        
-        
-        <a class="post-tag button" href="/tags/LinuxDriver/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>LinuxDriver</a>
+        <a class="post-tag button" href="/tags/LinuxDriver/" rel="tag"><i class="fas fa-tags"></i>LinuxDriver</a>
         
       </div>
       
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2015/06/24/Linux-Ubuntu-下为-Android-创建无线分享热点/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -574,7 +599,7 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>create ap hotspot for ubuntu linux</p>
 <p>准备</p>
@@ -595,19 +620,16 @@ cd create_ap &amp;&amp; make install
       
       <div class="post-tags">
         
+        <a class="post-tag button" href="/tags/android/" rel="tag"><i class="fas fa-tags"></i>android</a>
         
-        
-        
-        <a class="post-tag button" href="/tags/android/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>android</a>
-        
-        <a class="post-tag button" href="/tags/ubuntu/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>ubuntu</a>
+        <a class="post-tag button" href="/tags/ubuntu/" rel="tag"><i class="fas fa-tags"></i>ubuntu</a>
         
       </div>
       
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2014/09/04/Spring-MVC-学习笔记10-AJAX-图片上传/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -642,27 +664,24 @@ cd create_ap &amp;&amp; make install
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>Spring MVC AJAX 方式图片上传，采用 base64 编码图片。</p>
-<p>pom.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-databind<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.4.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>commons-codec<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-codec<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.9<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>commons-fileupload<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-fileupload<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.3.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
+<p>pom.xml<br><figure class="hljs highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-databind<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.4.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>commons-codec<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-codec<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.9<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>commons-fileupload<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-fileupload<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.3.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
       
     </main>
     <footer class="post-footer">
       
       <div class="post-tags">
         
-        
-        
-        
-        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
+        <a class="post-tag button" href="/tags/SpringMVC/" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
         
       </div>
       
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2014/09/01/Spring-MVC-学习笔记9-JQuery-验证/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -697,7 +716,7 @@ cd create_ap &amp;&amp; make install
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>前面我们已经学习过了在服务器端进行验证，这次学习 JQuery Validator 客户端验证。客户端验证虽然可以被用户绕过，但是可以作为辅助手段，对于一般用户可以减少一定的服务器通讯。</p>
 <p>以注册页面为例，实现一般化的验证，并且加上二次输入密码、用户名字段唯一性验证。
@@ -707,10 +726,7 @@ cd create_ap &amp;&amp; make install
       
       <div class="post-tags">
         
-        
-        
-        
-        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
+        <a class="post-tag button" href="/tags/SpringMVC/" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
         
       </div>
       
@@ -719,7 +735,7 @@ cd create_ap &amp;&amp; make install
   
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
   </nav>
   
   
@@ -735,17 +751,17 @@ cd create_ap &amp;&amp; make install
 
 
   
-</section>
+</div>
 
           </div>
           
           
           
-<aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
   
   <div class="search">
     <div class="form-group">
-      <i class="fas fa-search"></i><input type="text" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
     </div>
   </div>
   <div class="search-result-box" id="search-result"></div>
@@ -756,31 +772,8 @@ cd create_ap &amp;&amp; make install
   <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
   
   <h1 class="author-name">Joseph Pei</h1>
-  <h2 class="author-description"> </h2>
+  <h2 class="author-description"></h2>
   <div class="site-count">
-    
-    <div class="archives-count">
-      <div class="site-count-title">归档</div>
-      <div><a href="/archives/">57</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="categories-count">
-      <div class="site-count-title">分类</div>
-      <div><a href="/categories/">0</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="tags-count">
-      <div class="site-count-title">标签</div>
-      <div><a href="/tags/">17</a></div>
-    </div>
     
   </div>
   
@@ -794,40 +787,34 @@ cd create_ap &amp;&amp; make install
   <div class="sidebar-sticky">
     
     
-    
-<hr>
-<div class="social-link sidebar-item">
-  <div><i class="far fa-address-card"></i>社交链接</p></div>
-  <ul>
-    
-    <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
-    
-    <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
-    
-    <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
-    
-  </ul>
-</div>
-
-
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li>fas fa-envelope<a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li>fab fa-github<a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li>fab fa-weibo<a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
     
     
-    
-<hr>
-<div class="blogroll sidebar-item">
-  <div><i class="fas fa-link"></i>友情链接</div>
-  <ul>
-    
-    <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-    
-    <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-    
-    <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-    
-  </ul>
-</div>
-
-
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
     
   </div>
 </aside>
@@ -841,20 +828,17 @@ cd create_ap &amp;&amp; make install
 <footer id="footer" class="footer" style="background: #33363b;">
   <div class="container">
     <div class="back-to-top">
-      <a id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
     </div>
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
+          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
         </div>
         
-        
-<div class="busuanzi">
-  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv"></span></span>
-</div>
-
-
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
         
       </div>
       <div class="footer-right">

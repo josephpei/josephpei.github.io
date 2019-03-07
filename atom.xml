@@ -63,9 +63,9 @@
     </summary>
     
     
-      <category term="algorithm" scheme="http://josephpei.github.io/tags/algorithm/"/>
-    
       <category term="cpp" scheme="http://josephpei.github.io/tags/cpp/"/>
+    
+      <category term="algorithm" scheme="http://josephpei.github.io/tags/algorithm/"/>
     
   </entry>
   
@@ -97,12 +97,12 @@
     <link href="http://josephpei.github.io/2018/04/28/ubuntu-awesome-terminal/"/>
     <id>http://josephpei.github.io/2018/04/28/ubuntu-awesome-terminal/</id>
     <published>2018-04-28T02:53:07.000Z</published>
-    <updated>2018-05-02T08:53:11.506Z</updated>
+    <updated>2019-03-07T08:11:17.084Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;gnome-terminal-solarized-theme&quot;&gt;&lt;a href=&quot;#gnome-terminal-solarized-theme&quot; class=&quot;headerlink&quot; title=&quot;gnome-terminal solarized theme&quot;&gt;&lt;/a&gt;gnome-terminal solarized theme&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Anthony25/gnome-terminal-colors-solarized&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Solarized Colorscheme for Gnome Terminal&lt;/a&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;git &lt;span class=&quot;hljs-built_in&quot;&gt;clone&lt;/span&gt; https://github.com/Anthony25/gnome-terminal-colors-solarized.git&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;cd&lt;/span&gt; gnome-terminal-colors-solarized&lt;br&gt;./install.sh&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+      &lt;h2 id=&quot;gnome-terminal-theme&quot;&gt;&lt;a href=&quot;#gnome-terminal-theme&quot; class=&quot;headerlink&quot; title=&quot;gnome-terminal theme&quot;&gt;&lt;/a&gt;gnome-terminal theme&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/aaron-williamson/base16-gnome-terminal&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;base16 gnome terminal&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;选择一个，运行相应的 &lt;code&gt;.sh&lt;/code&gt;&lt;br&gt;
     
     </summary>
     

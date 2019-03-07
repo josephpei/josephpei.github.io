@@ -10,6 +10,7 @@
     
     
     
+    
     <meta name="keywords" content="Life, Linux, Hexo">
     
     
@@ -52,6 +53,7 @@
     <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
     <script defer type="text/javascript" src="/js/scrollspy.js"></script>
     <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
     <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
@@ -78,6 +80,55 @@
     
     
     <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          $(e).before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          $(e).parent().before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "已复制";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "复制";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
     <title>Spring MVC 学习笔记5 REST与AJAX | 有翅膀的天狼 - Whisper to the world</title>
@@ -91,29 +142,18 @@
         <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
         <h2 class="subtitle">Whisper to the world</h2>
       </div>
+      
       <div class="logo">
         <img src="/img/logo.png" alt="logo">
       </div>
+      
     </div>
-    
-<nav id="nav" class="nav">
-  <a id="nav-toggle" class="nav-toggle"><i class="fas fa-bars"></i></a>
-  <ul id="menu">
-    
-    <li><a href="/">首页</a></li>
-    
-    <li><a href="/archives/">归档</a></li>
-    
-    <li><a href="/categories/">分类</a></li>
-    
-    <li><a href="/tags/">标签</a></li>
-    
-    <li><a href="/about/">关于</a></li>
-    
-  </ul>
-</nav>
-
-
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -123,9 +163,9 @@
         <div class="main-container">
           <div class="content">
             
-<section id="post" class="post">
+<div id="post" class="page">
   
-  <article class="post-container card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2014/08/24/Spring-MVC-学习笔记5-REST与AJAX/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -138,9 +178,7 @@
       </span>
     </div>
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-       <span class="">Spring MVC 学习笔记5 REST与AJAX</span>
-      </h1>
+      <h1 class="post-title" itemprop="name headline">Spring MVC 学习笔记5 REST与AJAX</h1>
       <div class="post-meta">
         
         <span class="post-date">
@@ -160,16 +198,16 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       <p>近来，以信息为中心的表述性状态转移(Representational State Transfer, REST)已成为替换传统 SOAP Web 服务的流行方案，Spring MVC 封装了对 REST 的良好支持。</p>
 <p>当谈论REST时，有一种常见的错误就是将其视为“基于 URL 的 Web 服务”，将 REST 作为另一种类型的远程过程调用(RPC)机制。恰好相反，REST 与 RPC 几乎没有任何关系，RPC 是面向服务的，并关注于行为和动作，而 REST 是面向资源的，强调描述应用程序的事物和名词。REST 就是将资源的状态以最合适的形式从服务器端转移到客户端（或者反之）。</p>
 <p>本节应用 @ResponseBody 注解实现简单的 RESTless URL，并与 JQuery AJAX 结合。<a id="more"></a></p>
 <p>用户登录之后，转到 /u/USERNAME 页面，显示用户微博列表，每条微博后面有 Delete URL。使用RESTless URL and AJAX 实现添加新微博和删除旧微博。</p>
 <p>需要添加 jackson 包，有 1.x 和 2.x 两种版本，1.x 已不在开发新功能，只维护 bug。这里使用 2.x 版本。</p>
-<p>servlet.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- Configure to plugin JSON as request and response in method handler --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"messageConverters"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">list</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">ref</span> <span class="hljs-attr">bean</span>=<span class="hljs-string">"jsonMessageConverter"</span>/&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">list</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- Configure bean to convert JSON to POJO and vice versa --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"jsonMessageConverter"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
-<p>微博条目 Spittle.java，Date 类型的序列化使用 jackson 2.x 版本新增的 JsonFormat 注解<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Entity</span><br><span class="hljs-meta">@Table</span>(name=<span class="hljs-string">"spittle_tbl"</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Spittle</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;<br><br>    <span class="hljs-comment">//omit getter and setter</span><br><br>    <span class="hljs-meta">@Id</span><br>    <span class="hljs-meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)<br>    <span class="hljs-meta">@Column</span>(name=<span class="hljs-string">"spittle_id"</span>)<br>    <span class="hljs-keyword">private</span> Long spittleId;<br><br>    <span class="hljs-meta">@Column</span>(name=<span class="hljs-string">"text"</span>)<br>    <span class="hljs-keyword">private</span> String text;<br><br>    <span class="hljs-meta">@Column</span>(name=<span class="hljs-string">"push_time"</span>)<br>    <span class="hljs-meta">@JsonFormat</span>(shape=JsonFormat.Shape.STRING, pattern = <span class="hljs-string">"yyyy-MM-dd HH:mm:ss"</span>)<br>    <span class="hljs-keyword">private</span> Date pushTime;<br><br>    <span class="hljs-meta">@JoinColumn</span>(name=<span class="hljs-string">"user_id"</span>, referencedColumnName = <span class="hljs-string">"user_id"</span>)<br>    <span class="hljs-meta">@ManyToOne</span>(optional = <span class="hljs-keyword">false</span>)<br>    <span class="hljs-keyword">private</span> User user;<br><br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>用户页面 Controller<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span><br><span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"/u/&#123;username&#125;"</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpitterController</span> </span>&#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> HibSpittleService hibSpittleService;<br><br>    <span class="hljs-meta">@RequestMapping</span>(method = RequestMethod.GET)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title">userPage</span><span class="hljs-params">(@PathVariable String username, HttpServletRequest request, Model model)</span> </span>&#123;<br>        User user = (User) request.getSession().getAttribute(<span class="hljs-string">"user"</span>);<br>        <span class="hljs-keyword">if</span> (user == <span class="hljs-keyword">null</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ModelAndView(<span class="hljs-string">"redirect:/"</span>);<br><br>        List&lt;Spittle&gt; spittles = hibSpittleService.getSpittlesForUser(user);<br>        model.addAttribute(<span class="hljs-string">"spittle"</span>, <span class="hljs-keyword">new</span> Spittle());<br>        model.addAttribute(<span class="hljs-string">"spittles"</span>, spittles);<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ModelAndView(<span class="hljs-string">"user_page"</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@RequestMapping</span>(method=RequestMethod.POST, produces = <span class="hljs-string">"application/json; charset=utf-8"</span>)<br>    <span class="hljs-meta">@ResponseStatus</span>(HttpStatus.CREATED)<br>    <span class="hljs-keyword">public</span> <span class="hljs-meta">@ResponseBody</span><br>    <span class="hljs-function">Spittle <span class="hljs-title">pushSpittle</span><span class="hljs-params">(@PathVariable String username, @RequestBody Spittle spittle,<br>                              HttpServletRequest request )</span> </span>&#123;<br>        User user = (User) request.getSession().getAttribute(<span class="hljs-string">"user"</span>);<br><br>        spittle.setPushTime(<span class="hljs-keyword">new</span> java.sql.Timestamp((<span class="hljs-keyword">new</span> java.util.Date()).getTime()));<br>        spittle.setUser(user);<br>        hibSpittleService.addSpittle(spittle);<br><br>        <span class="hljs-keyword">return</span> spittle;<br>    &#125;<br><br>    <span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"/delete/&#123;id&#125;"</span>, method = RequestMethod.DELETE)<br>    <span class="hljs-meta">@ResponseBody</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Long <span class="hljs-title">delSpittleByID</span><span class="hljs-params">(@PathVariable String username, @PathVariable Long id)</span> </span>&#123;<br>        hibSpittleService.delSpittleById(id);<br><br>        <span class="hljs-keyword">return</span> id;<br>    &#125;<br><br>    <span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"logout"</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">logout</span><span class="hljs-params">(HttpServletRequest request)</span> </span>&#123;<br>        request.getSession().invalidate();<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:/"</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>用户页面 jsp<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html;charset=UTF-8"</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> %&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">taglib</span> <span class="hljs-attr">uri</span>=<span class="hljs-string">"http://java.sun.com/jsp/jstl/core"</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">"c"</span> %&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">%@taglib</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">"sf"</span> <span class="hljs-attr">uri</span>=<span class="hljs-string">"http://www.springframework.org/tags/form"</span>%&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE HTML&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Success<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/static/js/jquery-1.11.0.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="xml"><br><br>        $(document).ready(function() &#123;<br>            $('#newSpittle').submit(function(event) &#123;<br><br>                var mess = $('#text').val();<br>                var formData = &#123; "text" : mess&#125;;<br><br>                $.ajax(&#123;<br>                    url: $("#newSpittle").attr( "action"),<br>                    type: "POST",<br>                    contentType: 'application/json; charset=utf-8',<br>                    dataType: 'json',<br>                    async: false,<br>                    data: JSON.stringify(formData),<br><br>                    success: function(spittle) &#123;<br>                        var respContent = "";<br>                        var delLink = "/u/" + spittle.user.userName + "/delete/" + spittle.spittleId;<br><br>                        respContent += "<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>";<br>                        respContent += spittle.user.userName + ", ";<br>                        respContent += spittle.pushTime + ", " ;<br>                        respContent += spittle.text;<br>                        respContent += '<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"' + delLink + '"</span>&gt;</span>Delete<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>';<br>                        respContent += "<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>";<br><br>                        $('#mblog').prepend(respContent);<br>                    &#125;,<br>                    error: function(jqXHR, textStatus, errorThrown) &#123;<br>                        var respBody = $.parseJSON(jqXHR.responseText);<br>                        alert("Error: " + respBody.message);<br>                    &#125;<br>                &#125;);<br><br>                event.preventDefault();<br>            &#125;);<br><br>            var deleteLink = $("a:contains('Delete')");<br><br>            $(deleteLink).click(function(event) &#123;<br><br>                $.ajax(&#123;<br>                    url: $(event.target).attr("href"),<br>                    type: "DELETE",<br><br>                    success: function(id) &#123;<br>                        alert("delete" + id);<br>                        var rowToDelete = $(event.target).closest("li");<br><br>                        rowToDelete.remove();<br>                    &#125;<br>                &#125;);<br><br>                event.preventDefault();<br>            &#125;);<br><br>        &#125;);<br>    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>&gt;</span><span class="undefined"><br>        html,body&#123;margin:10px; padding: 10px;&#125;<br>        .left,.right,.center &#123; height: 600px; &#125;<br><br>        .left &#123;float:left; width: 200px; background-color: #ccc;&#125;<br>        .right &#123;float:right; width: 200px; background-color: #ccc;&#125;<br>        .center &#123; margin: 0 210px; background-color: #666;&#125;<br><br>        ul.navbar &#123;<br>            list-style-type: none;<br>            padding: 0;<br>            margin: 0 &#125;<br>        ul.navbar li &#123;<br>            background: white;<br>            margin: 0.5em 0;<br>            padding: 0.3em;<br>            border-left: 1em solid black &#125;<br>        ul.navbar a &#123;<br>            text-decoration: none &#125;<br>        a:link &#123;<br>            color: blue &#125;<br>        a:visited &#123;<br>            color: purple &#125;<br><br>        ul.mblog li &#123;<br>            background: #ccc;<br>            margin-bottom: 0.5em;<br>            margin-right: 1em;<br>        &#125;<br><br>    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Welcome, <span class="hljs-tag">&lt;<span class="hljs-name">c:out</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;sessionScope.user.getUserName()&#125;"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"left"</span>&gt;</span>左<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"right"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">c:out</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;sessionScope.user.getUserName()&#125;"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../static/img/default.jpg"</span> /&gt;</span><br>        <span class="hljs-comment">&lt;!-- Site navigation menu --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"navbar"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"index.html"</span>&gt;</span>Home page<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"musings.html"</span>&gt;</span>Musings<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"town.html"</span>&gt;</span>My town<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/u/$&#123;sessionScope.user.getUserName()&#125;/logout"</span>&gt;</span>Logout<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"center"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">fieldset</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">sf:form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"newSpittle"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span> <span class="hljs-attr">modelAttribute</span>=<span class="hljs-string">"spittle"</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">sf:textarea</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">"5"</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">"100"</span> /&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"commit"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Push"</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">sf:form</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">fieldset</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"newWeibo"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"mblog"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mblog"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">c:forEach</span> <span class="hljs-attr">var</span>=<span class="hljs-string">"spittle"</span> <span class="hljs-attr">items</span>=<span class="hljs-string">"$&#123;spittles&#125;"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><br>                $&#123;spittle.user.userName&#125;, $&#123;spittle.pushTime&#125;, $&#123;spittle.text&#125;<br>                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/u/$&#123;sessionScope.user.getUserName()&#125;/delete/$&#123;spittle.spittleId&#125;"</span>&gt;</span>Delete<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">c:forEach</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
+<p>servlet.xml<br><figure class="hljs highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- Configure to plugin JSON as request and response in method handler --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"messageConverters"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">list</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">ref</span> <span class="hljs-attr">bean</span>=<span class="hljs-string">"jsonMessageConverter"</span>/&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">list</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- Configure bean to convert JSON to POJO and vice versa --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"jsonMessageConverter"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
+<p>微博条目 Spittle.java，Date 类型的序列化使用 jackson 2.x 版本新增的 JsonFormat 注解<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Entity</span><br><span class="hljs-meta">@Table</span>(name=<span class="hljs-string">"spittle_tbl"</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Spittle</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;<br><br>    <span class="hljs-comment">//omit getter and setter</span><br><br>    <span class="hljs-meta">@Id</span><br>    <span class="hljs-meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)<br>    <span class="hljs-meta">@Column</span>(name=<span class="hljs-string">"spittle_id"</span>)<br>    <span class="hljs-keyword">private</span> Long spittleId;<br><br>    <span class="hljs-meta">@Column</span>(name=<span class="hljs-string">"text"</span>)<br>    <span class="hljs-keyword">private</span> String text;<br><br>    <span class="hljs-meta">@Column</span>(name=<span class="hljs-string">"push_time"</span>)<br>    <span class="hljs-meta">@JsonFormat</span>(shape=JsonFormat.Shape.STRING, pattern = <span class="hljs-string">"yyyy-MM-dd HH:mm:ss"</span>)<br>    <span class="hljs-keyword">private</span> Date pushTime;<br><br>    <span class="hljs-meta">@JoinColumn</span>(name=<span class="hljs-string">"user_id"</span>, referencedColumnName = <span class="hljs-string">"user_id"</span>)<br>    <span class="hljs-meta">@ManyToOne</span>(optional = <span class="hljs-keyword">false</span>)<br>    <span class="hljs-keyword">private</span> User user;<br><br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>用户页面 Controller<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span><br><span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"/u/&#123;username&#125;"</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpitterController</span> </span>&#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> HibSpittleService hibSpittleService;<br><br>    <span class="hljs-meta">@RequestMapping</span>(method = RequestMethod.GET)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ModelAndView <span class="hljs-title">userPage</span><span class="hljs-params">(@PathVariable String username, HttpServletRequest request, Model model)</span> </span>&#123;<br>        User user = (User) request.getSession().getAttribute(<span class="hljs-string">"user"</span>);<br>        <span class="hljs-keyword">if</span> (user == <span class="hljs-keyword">null</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ModelAndView(<span class="hljs-string">"redirect:/"</span>);<br><br>        List&lt;Spittle&gt; spittles = hibSpittleService.getSpittlesForUser(user);<br>        model.addAttribute(<span class="hljs-string">"spittle"</span>, <span class="hljs-keyword">new</span> Spittle());<br>        model.addAttribute(<span class="hljs-string">"spittles"</span>, spittles);<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ModelAndView(<span class="hljs-string">"user_page"</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@RequestMapping</span>(method=RequestMethod.POST, produces = <span class="hljs-string">"application/json; charset=utf-8"</span>)<br>    <span class="hljs-meta">@ResponseStatus</span>(HttpStatus.CREATED)<br>    <span class="hljs-keyword">public</span> <span class="hljs-meta">@ResponseBody</span><br>    <span class="hljs-function">Spittle <span class="hljs-title">pushSpittle</span><span class="hljs-params">(@PathVariable String username, @RequestBody Spittle spittle,<br>                              HttpServletRequest request )</span> </span>&#123;<br>        User user = (User) request.getSession().getAttribute(<span class="hljs-string">"user"</span>);<br><br>        spittle.setPushTime(<span class="hljs-keyword">new</span> java.sql.Timestamp((<span class="hljs-keyword">new</span> java.util.Date()).getTime()));<br>        spittle.setUser(user);<br>        hibSpittleService.addSpittle(spittle);<br><br>        <span class="hljs-keyword">return</span> spittle;<br>    &#125;<br><br>    <span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"/delete/&#123;id&#125;"</span>, method = RequestMethod.DELETE)<br>    <span class="hljs-meta">@ResponseBody</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Long <span class="hljs-title">delSpittleByID</span><span class="hljs-params">(@PathVariable String username, @PathVariable Long id)</span> </span>&#123;<br>        hibSpittleService.delSpittleById(id);<br><br>        <span class="hljs-keyword">return</span> id;<br>    &#125;<br><br>    <span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"logout"</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">logout</span><span class="hljs-params">(HttpServletRequest request)</span> </span>&#123;<br>        request.getSession().invalidate();<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:/"</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>用户页面 jsp<br><figure class="hljs highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html;charset=UTF-8"</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> %&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">taglib</span> <span class="hljs-attr">uri</span>=<span class="hljs-string">"http://java.sun.com/jsp/jstl/core"</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">"c"</span> %&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">%@taglib</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">"sf"</span> <span class="hljs-attr">uri</span>=<span class="hljs-string">"http://www.springframework.org/tags/form"</span>%&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE HTML&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Success<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/static/js/jquery-1.11.0.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="xml"><br><br>        $(document).ready(function() &#123;<br>            $('#newSpittle').submit(function(event) &#123;<br><br>                var mess = $('#text').val();<br>                var formData = &#123; "text" : mess&#125;;<br><br>                $.ajax(&#123;<br>                    url: $("#newSpittle").attr( "action"),<br>                    type: "POST",<br>                    contentType: 'application/json; charset=utf-8',<br>                    dataType: 'json',<br>                    async: false,<br>                    data: JSON.stringify(formData),<br><br>                    success: function(spittle) &#123;<br>                        var respContent = "";<br>                        var delLink = "/u/" + spittle.user.userName + "/delete/" + spittle.spittleId;<br><br>                        respContent += "<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>";<br>                        respContent += spittle.user.userName + ", ";<br>                        respContent += spittle.pushTime + ", " ;<br>                        respContent += spittle.text;<br>                        respContent += '<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"' + delLink + '"</span>&gt;</span>Delete<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>';<br>                        respContent += "<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>";<br><br>                        $('#mblog').prepend(respContent);<br>                    &#125;,<br>                    error: function(jqXHR, textStatus, errorThrown) &#123;<br>                        var respBody = $.parseJSON(jqXHR.responseText);<br>                        alert("Error: " + respBody.message);<br>                    &#125;<br>                &#125;);<br><br>                event.preventDefault();<br>            &#125;);<br><br>            var deleteLink = $("a:contains('Delete')");<br><br>            $(deleteLink).click(function(event) &#123;<br><br>                $.ajax(&#123;<br>                    url: $(event.target).attr("href"),<br>                    type: "DELETE",<br><br>                    success: function(id) &#123;<br>                        alert("delete" + id);<br>                        var rowToDelete = $(event.target).closest("li");<br><br>                        rowToDelete.remove();<br>                    &#125;<br>                &#125;);<br><br>                event.preventDefault();<br>            &#125;);<br><br>        &#125;);<br>    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>&gt;</span><span class="undefined"><br>        html,body&#123;margin:10px; padding: 10px;&#125;<br>        .left,.right,.center &#123; height: 600px; &#125;<br><br>        .left &#123;float:left; width: 200px; background-color: #ccc;&#125;<br>        .right &#123;float:right; width: 200px; background-color: #ccc;&#125;<br>        .center &#123; margin: 0 210px; background-color: #666;&#125;<br><br>        ul.navbar &#123;<br>            list-style-type: none;<br>            padding: 0;<br>            margin: 0 &#125;<br>        ul.navbar li &#123;<br>            background: white;<br>            margin: 0.5em 0;<br>            padding: 0.3em;<br>            border-left: 1em solid black &#125;<br>        ul.navbar a &#123;<br>            text-decoration: none &#125;<br>        a:link &#123;<br>            color: blue &#125;<br>        a:visited &#123;<br>            color: purple &#125;<br><br>        ul.mblog li &#123;<br>            background: #ccc;<br>            margin-bottom: 0.5em;<br>            margin-right: 1em;<br>        &#125;<br><br>    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Welcome, <span class="hljs-tag">&lt;<span class="hljs-name">c:out</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;sessionScope.user.getUserName()&#125;"</span> /&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"left"</span>&gt;</span>左<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"right"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">c:out</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;sessionScope.user.getUserName()&#125;"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../static/img/default.jpg"</span> /&gt;</span><br>        <span class="hljs-comment">&lt;!-- Site navigation menu --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"navbar"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"index.html"</span>&gt;</span>Home page<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"musings.html"</span>&gt;</span>Musings<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"town.html"</span>&gt;</span>My town<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/u/$&#123;sessionScope.user.getUserName()&#125;/logout"</span>&gt;</span>Logout<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"center"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">fieldset</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">sf:form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"newSpittle"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span> <span class="hljs-attr">modelAttribute</span>=<span class="hljs-string">"spittle"</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">sf:textarea</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">"5"</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">"100"</span> /&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"commit"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Push"</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">sf:form</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">fieldset</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"newWeibo"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"mblog"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mblog"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">c:forEach</span> <span class="hljs-attr">var</span>=<span class="hljs-string">"spittle"</span> <span class="hljs-attr">items</span>=<span class="hljs-string">"$&#123;spittles&#125;"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><br>                $&#123;spittle.user.userName&#125;, $&#123;spittle.pushTime&#125;, $&#123;spittle.text&#125;<br>                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/u/$&#123;sessionScope.user.getUserName()&#125;/delete/$&#123;spittle.spittleId&#125;"</span>&gt;</span>Delete<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">c:forEach</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
 <p>参考</p>
 <p><a href="http://www.journaldev.com/2552/spring-restful-web-service-example-with-json-jackson-and-client-program" target="_blank" rel="noopener">http://www.journaldev.com/2552/spring-restful-web-service-example-with-json-jackson-and-client-program</a></p>
 <p><a href="http://www.codingpedia.org/ama/tutorial-rest-api-design-and-implementation-in-java-with-jersey-and-spring/" target="_blank" rel="noopener">http://www.codingpedia.org/ama/tutorial-rest-api-design-and-implementation-in-java-with-jersey-and-spring/</a></p>
@@ -177,13 +215,9 @@
     </main>
     <footer class="post-footer">
       
-      
       <div class="post-tags">
         
-        
-        
-        
-        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
+        <a class="post-tag button" href="/tags/SpringMVC/" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
         
       </div>
       
@@ -191,41 +225,18 @@
   </article>
   
   
-<div class="reward" id="reward">
-  <p>坚持原创技术分享，您的鼓励将是我继续前进的动力！</p>
-  <button id="reward-button" class="button" disable="enable">打赏</button>
-  <div id="qr" class="qr" style="display: none;">
-    
-    <div id="wechat">
-      <img id="wechat_qr" src="/images/WeChatPay.png" alt="微信支付"/>
-      <span>微信支付</span>
-    </div>
-    
-    
-    <div id="alipay">
-      <img id="alipay_qr" src="/images/AliPay.png" alt="支付宝"/>
-      <span>支付宝</span>
-    </div>
-    
-    
-  </div>
-</div>
-
-
-  
-  
-  <div class="post-nav">
-    <div class="post-nav-next post-nav-item">
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
       
       <a href="/2014/08/20/Spring-MVC-学习笔记4-数据库之整合Hibernate/" rel="next" title="Spring MVC 学习笔记4 数据库之整合Hibernate"><i class="fas fa-angle-left"></i><span class="nav-title">Spring MVC 学习笔记4 数据库之整合Hibernate</span></a>
       
     </div>
-    <div class="post-nav-prev post-nav-item">
+    <div class="page-nav-prev page-nav-item">
       
       <a href="/2014/08/25/Spring-MVC-学习笔记6-SLF4J-Logback-日志/" rel="prev" title="Spring MVC 学习笔记6 SLF4J Logback 日志"><span class="nav-title">Spring MVC 学习笔记6 SLF4J Logback 日志</span><i class="fas fa-angle-right"></i></a>
       
     </div>
-  </div>
+  </nav>
   
   
   
@@ -254,17 +265,17 @@
 
 
   
-</section>
+</div>
 
           </div>
           
           
           
-<aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
   
   <div class="search">
     <div class="form-group">
-      <i class="fas fa-search"></i><input type="text" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
     </div>
   </div>
   <div class="search-result-box" id="search-result"></div>
@@ -275,31 +286,8 @@
   <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
   
   <h1 class="author-name">Joseph Pei</h1>
-  <h2 class="author-description"> </h2>
+  <h2 class="author-description"></h2>
   <div class="site-count">
-    
-    <div class="archives-count">
-      <div class="site-count-title">归档</div>
-      <div><a href="/archives/">57</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="categories-count">
-      <div class="site-count-title">分类</div>
-      <div><a href="/categories/">0</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="tags-count">
-      <div class="site-count-title">标签</div>
-      <div><a href="/tags/">17</a></div>
-    </div>
     
   </div>
   
@@ -313,48 +301,39 @@
   <div class="sidebar-sticky">
     
     
-
-
-
-
-
-
     
     
     
-<hr>
-<div class="social-link sidebar-item">
-  <div><i class="far fa-address-card"></i>社交链接</p></div>
-  <ul>
-    
-    <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
-    
-    <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
-    
-    <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
-    
-  </ul>
-</div>
-
-
     
     
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li>fas fa-envelope<a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li>fab fa-github<a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li>fab fa-weibo<a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
     
-<hr>
-<div class="blogroll sidebar-item">
-  <div><i class="fas fa-link"></i>友情链接</div>
-  <ul>
     
-    <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-    
-    <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-    
-    <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-    
-  </ul>
-</div>
-
-
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
     
   </div>
 </aside>
@@ -368,20 +347,17 @@
 <footer id="footer" class="footer" style="background: #33363b;">
   <div class="container">
     <div class="back-to-top">
-      <a id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
     </div>
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
+          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
         </div>
         
-        
-<div class="busuanzi">
-  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv"></span></span>
-</div>
-
-
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
         
       </div>
       <div class="footer-right">

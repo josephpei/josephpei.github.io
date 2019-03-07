@@ -10,6 +10,7 @@
     
     
     
+    
     <meta name="keywords" content="Life, Linux, Hexo">
     
     
@@ -52,6 +53,7 @@
     <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
     <script defer type="text/javascript" src="/js/scrollspy.js"></script>
     <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
     <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
@@ -78,6 +80,55 @@
     
     
     <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          $(e).before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          $(e).parent().before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "已复制";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "复制";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
     <title>Spring MVC 学习笔记2 数据库之JDBC | 有翅膀的天狼 - Whisper to the world</title>
@@ -91,29 +142,18 @@
         <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
         <h2 class="subtitle">Whisper to the world</h2>
       </div>
+      
       <div class="logo">
         <img src="/img/logo.png" alt="logo">
       </div>
+      
     </div>
-    
-<nav id="nav" class="nav">
-  <a id="nav-toggle" class="nav-toggle"><i class="fas fa-bars"></i></a>
-  <ul id="menu">
-    
-    <li><a href="/">首页</a></li>
-    
-    <li><a href="/archives/">归档</a></li>
-    
-    <li><a href="/categories/">分类</a></li>
-    
-    <li><a href="/tags/">标签</a></li>
-    
-    <li><a href="/about/">关于</a></li>
-    
-  </ul>
-</nav>
-
-
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -123,9 +163,9 @@
         <div class="main-container">
           <div class="content">
             
-<section id="post" class="post">
+<div id="post" class="page">
   
-  <article class="post-container card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2014/08/17/Spring-MVC-学习笔记2-数据库之JDBC/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -138,9 +178,7 @@
       </span>
     </div>
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-       <span class="">Spring MVC 学习笔记2 数据库之JDBC</span>
-      </h1>
+      <h1 class="post-title" itemprop="name headline">Spring MVC 学习笔记2 数据库之JDBC</h1>
       <div class="post-meta">
         
         <span class="post-date">
@@ -160,27 +198,23 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       <p>这一节为我们的登录模块添加数据库存储，使用Spring JdbcTemplate。<a id="more"></a></p>
 <p>servlet.xml 定义 DataStore</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dataSource"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.apache.commons.dbcp.BasicDataSource"</span> <span class="hljs-attr">destroy-</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"close"</span>&gt;</span>  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driverClassName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.driverClassName&#125;"</span> /&gt;</span>  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.url&#125;"</span> /&gt;</span>  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.username&#125;"</span> /&gt;</span>  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.password&#125;"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">context:property-placeholder</span> <span class="hljs-attr">location</span>=<span class="hljs-string">"jdbc.properties"</span>/&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"txManager"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"dataSource"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"dataSource"</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"io.github.josephpei.DAO"</span> /&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"io.github.josephpei.Service"</span> /&gt;</span><br><span class="hljs-comment">&lt;!--<br>1.&lt;jee:jndi-lookup id="dataSource" jndi-name="jdbc/jpetstore"/&gt;&lt;bean id="txManager" class="org.springframework.transaction.jta.JtaTransactionManager" /&gt;<br><br>2.#this is the service object that we want to make transactional&lt;bean id="fooService" class="x.y.service.DefaultFooService"/&gt;<br>#the transactional semantics&lt;tx:advice id="txAdvice" transaction-manager="txManager"&gt;<br>  &lt;tx:attributes&gt;<br>    &lt;tx:method name="get*" read-only="true"/&gt;<br>    &lt;tx:method name="*"/&gt;<br>  &lt;/tx:attributes&gt;<br>&lt;/tx:advice&gt;<br><br>#ensure that the above transactional advice runs for any execution of an operation defined by the FooService<br>&lt;aop:config&gt;<br>  &lt;aop:pointcut id="fooServiceOperation" expression="execution(* x.y.service.FooService.*(..))"/&gt;<br>  &lt;aop:advisor advice-ref="txAdvice" pointcut-ref="fooServiceOperation"/&gt;&lt;/aop:config&gt;3.#enable the configuration of transactional behavior based on annotations&lt;tx:annotation-driven transaction-manager="txManager"/&gt;<br>--&gt;</span><br></code></pre></td></tr></table></figure>
-<p>User.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span></span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> userId;<br>    <span class="hljs-keyword">private</span> String userName;<br>    <span class="hljs-keyword">private</span> String password;<br>    <span class="hljs-keyword">private</span> String lastIp;<br>    <span class="hljs-keyword">private</span> Date lastVisit;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">User</span><span class="hljs-params">()</span> </span>&#123;<br><br>    &#125;<br>    <span class="hljs-comment">// getter and setter...</span><br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>JdbcUserDao.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Repository</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JdbcUserDao</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UserDao</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> JdbcTemplate jdbcTemplate;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getMatchCount</span><span class="hljs-params">(String userName, String password)</span> </span>&#123;<br>        String sql = <span class="hljs-string">"SELECT count(*) FROM user_tbl WHERE user_name=? and password=?"</span>;<br>        <span class="hljs-keyword">return</span> jdbcTemplate.queryForObject(sql, Integer.class, userName, password);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">findUserByName</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String userName)</span> </span>&#123;<br>        String sql = <span class="hljs-string">"select user_id, user_name from user_tbl where user_name=?"</span>;<br>        <span class="hljs-keyword">return</span> jdbcTemplate.queryForObject(sql, <span class="hljs-keyword">new</span> Object[] &#123;userName&#125;,<br>                <span class="hljs-keyword">new</span> RowMapper&lt;User&gt;() &#123;<br>                    <span class="hljs-meta">@Override</span><br>                    <span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">mapRow</span><span class="hljs-params">(ResultSet resultSet, <span class="hljs-keyword">int</span> i)</span> <span class="hljs-keyword">throws</span> SQLException </span>&#123;<br>                        User user = <span class="hljs-keyword">new</span> User();<br>                        user.setUserId(resultSet.getInt(<span class="hljs-string">"user_id"</span>));<br>                        user.setUserName(resultSet.getString(<span class="hljs-string">"user_name"</span>));<br>                        <span class="hljs-keyword">return</span> user;<br>                    &#125;<br>                &#125;);<br><br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateLoginInfo</span><span class="hljs-params">(User user)</span> </span>&#123;<br>        String sql = <span class="hljs-string">"update user_tbl set last_visit=?, last_ip=? where user_id=?"</span>;<br>        jdbcTemplate.update(sql, user.getLastVisit(), user.getLastIp());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>UserService.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserService</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> JdbcUserDao jdbcUserDao;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">hasMatchUser</span><span class="hljs-params">(String userName, String password)</span> </span>&#123;<br>        Integer count = jdbcUserDao.getMatchCount(userName, password);<br>        <span class="hljs-keyword">return</span> count &gt; <span class="hljs-number">0</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">findUserByName</span><span class="hljs-params">(String userName)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> jdbcUserDao.findUserByName(userName);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">loginSuccess</span><span class="hljs-params">(User user)</span> </span>&#123;<br>        jdbcUserDao.updateLoginInfo(user);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>测试<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RunWith</span>(SpringJUnit4ClassRunner.class)<br><span class="hljs-meta">@ContextConfiguration</span>(locations = &#123;<span class="hljs-string">"file:src/main/webapp/WEB-INF/spitter-servlet.xml"</span>&#125;)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestUserService</span> </span>&#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> UserService userService;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">hasMatchUser</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">boolean</span> b1 = userService.hasMatchUser(<span class="hljs-string">"admin"</span>, <span class="hljs-string">"123456"</span>);<br>        <span class="hljs-keyword">boolean</span> b2 = userService.hasMatchUser(<span class="hljs-string">"admin"</span>, <span class="hljs-string">"1111"</span>);<br>        Assert.assertTrue(b1);<br>        Assert.assertFalse(b2);<br>    &#125;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">findUserByName</span><span class="hljs-params">()</span> </span>&#123;<br>        User user = userService.findUserByName(<span class="hljs-string">"admin"</span>);<br>        Assert.assertEquals(user.getUserName(), <span class="hljs-string">"admin"</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<figure class="hljs highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dataSource"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.apache.commons.dbcp.BasicDataSource"</span> <span class="hljs-attr">destroy-</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"close"</span>&gt;</span>  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driverClassName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.driverClassName&#125;"</span> /&gt;</span>  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.url&#125;"</span> /&gt;</span>  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.username&#125;"</span> /&gt;</span>  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.password&#125;"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">context:property-placeholder</span> <span class="hljs-attr">location</span>=<span class="hljs-string">"jdbc.properties"</span>/&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"txManager"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"dataSource"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"dataSource"</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"io.github.josephpei.DAO"</span> /&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"io.github.josephpei.Service"</span> /&gt;</span><br><span class="hljs-comment">&lt;!--<br>1.&lt;jee:jndi-lookup id="dataSource" jndi-name="jdbc/jpetstore"/&gt;&lt;bean id="txManager" class="org.springframework.transaction.jta.JtaTransactionManager" /&gt;<br><br>2.#this is the service object that we want to make transactional&lt;bean id="fooService" class="x.y.service.DefaultFooService"/&gt;<br>#the transactional semantics&lt;tx:advice id="txAdvice" transaction-manager="txManager"&gt;<br>  &lt;tx:attributes&gt;<br>    &lt;tx:method name="get*" read-only="true"/&gt;<br>    &lt;tx:method name="*"/&gt;<br>  &lt;/tx:attributes&gt;<br>&lt;/tx:advice&gt;<br><br>#ensure that the above transactional advice runs for any execution of an operation defined by the FooService<br>&lt;aop:config&gt;<br>  &lt;aop:pointcut id="fooServiceOperation" expression="execution(* x.y.service.FooService.*(..))"/&gt;<br>  &lt;aop:advisor advice-ref="txAdvice" pointcut-ref="fooServiceOperation"/&gt;&lt;/aop:config&gt;3.#enable the configuration of transactional behavior based on annotations&lt;tx:annotation-driven transaction-manager="txManager"/&gt;<br>--&gt;</span><br></code></pre></td></tr></table></figure>
+<p>User.java<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span></span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> userId;<br>    <span class="hljs-keyword">private</span> String userName;<br>    <span class="hljs-keyword">private</span> String password;<br>    <span class="hljs-keyword">private</span> String lastIp;<br>    <span class="hljs-keyword">private</span> Date lastVisit;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">User</span><span class="hljs-params">()</span> </span>&#123;<br><br>    &#125;<br>    <span class="hljs-comment">// getter and setter...</span><br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>JdbcUserDao.java<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Repository</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JdbcUserDao</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UserDao</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> JdbcTemplate jdbcTemplate;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getMatchCount</span><span class="hljs-params">(String userName, String password)</span> </span>&#123;<br>        String sql = <span class="hljs-string">"SELECT count(*) FROM user_tbl WHERE user_name=? and password=?"</span>;<br>        <span class="hljs-keyword">return</span> jdbcTemplate.queryForObject(sql, Integer.class, userName, password);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">findUserByName</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String userName)</span> </span>&#123;<br>        String sql = <span class="hljs-string">"select user_id, user_name from user_tbl where user_name=?"</span>;<br>        <span class="hljs-keyword">return</span> jdbcTemplate.queryForObject(sql, <span class="hljs-keyword">new</span> Object[] &#123;userName&#125;,<br>                <span class="hljs-keyword">new</span> RowMapper&lt;User&gt;() &#123;<br>                    <span class="hljs-meta">@Override</span><br>                    <span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">mapRow</span><span class="hljs-params">(ResultSet resultSet, <span class="hljs-keyword">int</span> i)</span> <span class="hljs-keyword">throws</span> SQLException </span>&#123;<br>                        User user = <span class="hljs-keyword">new</span> User();<br>                        user.setUserId(resultSet.getInt(<span class="hljs-string">"user_id"</span>));<br>                        user.setUserName(resultSet.getString(<span class="hljs-string">"user_name"</span>));<br>                        <span class="hljs-keyword">return</span> user;<br>                    &#125;<br>                &#125;);<br><br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateLoginInfo</span><span class="hljs-params">(User user)</span> </span>&#123;<br>        String sql = <span class="hljs-string">"update user_tbl set last_visit=?, last_ip=? where user_id=?"</span>;<br>        jdbcTemplate.update(sql, user.getLastVisit(), user.getLastIp());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>UserService.java<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserService</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> JdbcUserDao jdbcUserDao;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">hasMatchUser</span><span class="hljs-params">(String userName, String password)</span> </span>&#123;<br>        Integer count = jdbcUserDao.getMatchCount(userName, password);<br>        <span class="hljs-keyword">return</span> count &gt; <span class="hljs-number">0</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">findUserByName</span><span class="hljs-params">(String userName)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> jdbcUserDao.findUserByName(userName);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">loginSuccess</span><span class="hljs-params">(User user)</span> </span>&#123;<br>        jdbcUserDao.updateLoginInfo(user);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>测试<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RunWith</span>(SpringJUnit4ClassRunner.class)<br><span class="hljs-meta">@ContextConfiguration</span>(locations = &#123;<span class="hljs-string">"file:src/main/webapp/WEB-INF/spitter-servlet.xml"</span>&#125;)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestUserService</span> </span>&#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> UserService userService;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">hasMatchUser</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">boolean</span> b1 = userService.hasMatchUser(<span class="hljs-string">"admin"</span>, <span class="hljs-string">"123456"</span>);<br>        <span class="hljs-keyword">boolean</span> b2 = userService.hasMatchUser(<span class="hljs-string">"admin"</span>, <span class="hljs-string">"1111"</span>);<br>        Assert.assertTrue(b1);<br>        Assert.assertFalse(b2);<br>    &#125;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">findUserByName</span><span class="hljs-params">()</span> </span>&#123;<br>        User user = userService.findUserByName(<span class="hljs-string">"admin"</span>);<br>        Assert.assertEquals(user.getUserName(), <span class="hljs-string">"admin"</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <p>验证码，参考 <a href="http://chenzhou123520.iteye.com/blog/1987636" target="_blank" rel="noopener">http://chenzhou123520.iteye.com/blog/1987636</a></p>
 <p><img src="/img/h001.png" alt="home"></p>
 
     </main>
     <footer class="post-footer">
       
-      
       <div class="post-tags">
         
-        
-        
-        
-        <a class="post-tag button" href="/tags/SpringMVC/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
+        <a class="post-tag button" href="/tags/SpringMVC/" rel="tag"><i class="fas fa-tags"></i>SpringMVC</a>
         
       </div>
       
@@ -188,41 +222,18 @@
   </article>
   
   
-<div class="reward" id="reward">
-  <p>坚持原创技术分享，您的鼓励将是我继续前进的动力！</p>
-  <button id="reward-button" class="button" disable="enable">打赏</button>
-  <div id="qr" class="qr" style="display: none;">
-    
-    <div id="wechat">
-      <img id="wechat_qr" src="/images/WeChatPay.png" alt="微信支付"/>
-      <span>微信支付</span>
-    </div>
-    
-    
-    <div id="alipay">
-      <img id="alipay_qr" src="/images/AliPay.png" alt="支付宝"/>
-      <span>支付宝</span>
-    </div>
-    
-    
-  </div>
-</div>
-
-
-  
-  
-  <div class="post-nav">
-    <div class="post-nav-next post-nav-item">
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
       
       <a href="/2014/08/16/Spring-MVC-学习笔记1-入门/" rel="next" title="Spring MVC 学习笔记1 入门"><i class="fas fa-angle-left"></i><span class="nav-title">Spring MVC 学习笔记1 入门</span></a>
       
     </div>
-    <div class="post-nav-prev post-nav-item">
+    <div class="page-nav-prev page-nav-item">
       
       <a href="/2014/08/18/Spring-MVC-学习笔记3-验证Validator/" rel="prev" title="Spring MVC 学习笔记3 验证Validator"><span class="nav-title">Spring MVC 学习笔记3 验证Validator</span><i class="fas fa-angle-right"></i></a>
       
     </div>
-  </div>
+  </nav>
   
   
   
@@ -251,17 +262,17 @@
 
 
   
-</section>
+</div>
 
           </div>
           
           
           
-<aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
   
   <div class="search">
     <div class="form-group">
-      <i class="fas fa-search"></i><input type="text" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
     </div>
   </div>
   <div class="search-result-box" id="search-result"></div>
@@ -272,31 +283,8 @@
   <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
   
   <h1 class="author-name">Joseph Pei</h1>
-  <h2 class="author-description"> </h2>
+  <h2 class="author-description"></h2>
   <div class="site-count">
-    
-    <div class="archives-count">
-      <div class="site-count-title">归档</div>
-      <div><a href="/archives/">57</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="categories-count">
-      <div class="site-count-title">分类</div>
-      <div><a href="/categories/">0</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="tags-count">
-      <div class="site-count-title">标签</div>
-      <div><a href="/tags/">17</a></div>
-    </div>
     
   </div>
   
@@ -310,48 +298,39 @@
   <div class="sidebar-sticky">
     
     
-
-
-
-
-
-
     
     
     
-<hr>
-<div class="social-link sidebar-item">
-  <div><i class="far fa-address-card"></i>社交链接</p></div>
-  <ul>
-    
-    <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
-    
-    <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
-    
-    <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
-    
-  </ul>
-</div>
-
-
     
     
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li>fas fa-envelope<a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li>fab fa-github<a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li>fab fa-weibo<a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
     
-<hr>
-<div class="blogroll sidebar-item">
-  <div><i class="fas fa-link"></i>友情链接</div>
-  <ul>
     
-    <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-    
-    <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-    
-    <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-    
-  </ul>
-</div>
-
-
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
     
   </div>
 </aside>
@@ -365,20 +344,17 @@
 <footer id="footer" class="footer" style="background: #33363b;">
   <div class="container">
     <div class="back-to-top">
-      <a id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
     </div>
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
+          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
         </div>
         
-        
-<div class="busuanzi">
-  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv"></span></span>
-</div>
-
-
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
         
       </div>
       <div class="footer-right">

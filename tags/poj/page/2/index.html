@@ -10,6 +10,7 @@
     
     
     
+    
     <meta name="keywords" content="Life, Linux, Hexo">
     
     
@@ -45,13 +46,14 @@
     
     
 <link rel="stylesheet" type="text/css" href="/css/page.css">
-<link rel="stylesheet" type="text/css" href="/css/tag.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
 
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
     <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
     <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
     <script defer type="text/javascript" src="/js/scrollspy.js"></script>
     <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
     <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
@@ -78,6 +80,55 @@
     
     
     <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          $(e).before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          $(e).parent().before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "已复制";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "复制";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
     <title>标签: poj | 有翅膀的天狼 - Whisper to the world</title>
@@ -91,29 +142,18 @@
         <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
         <h2 class="subtitle">Whisper to the world</h2>
       </div>
+      
       <div class="logo">
         <img src="/img/logo.png" alt="logo">
       </div>
+      
     </div>
-    
-<nav id="nav" class="nav">
-  <a id="nav-toggle" class="nav-toggle"><i class="fas fa-bars"></i></a>
-  <ul id="menu">
-    
-    <li><a href="/">首页</a></li>
-    
-    <li><a href="/archives/">归档</a></li>
-    
-    <li><a href="/categories/">分类</a></li>
-    
-    <li><a href="/tags/">标签</a></li>
-    
-    <li><a href="/about/">关于</a></li>
-    
-  </ul>
-</nav>
-
-
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -123,14 +163,12 @@
         <div class="main-container">
           <div class="content">
             
-<section id="tag" class="tag">
-  <div class="tag-container">
-    <div class="tag-title">
-      <h1>poj</h1>
-    </div>
-    
-    <article class="tag-post card" itemscope itemtype="http://schema.org/Article">
-      <h1 class="post-title" itemprop="name headline">
+<div id="tag" class="tag page">
+  <h1 class="page-title">poj</h1>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <header id="post-header" class="post-header">
+      <h1 class="post-title-simple" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="/2013/09/25/poj-1001-求高精度幂/" itemprop="url">POJ 1001 求高精度幂</a>
       </h1>
       
@@ -138,25 +176,25 @@
         <time title="post-date" itemprop="dateCreated datePublished" datetime="2013-09-25T16:11:48+08:00">09-25</time>
       </span>
       
-    </article>
-    
-  </div>
+    </header>
+  </article>
+  
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/tags/poj/"><i class="fas fa-angle-left"></i></a><a class="page-number" href="/tags/poj/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/tags/poj/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/tags/poj/">1</a><span class="page-number current">2</span>
   </nav>
   
-</section>
+</div>
 
           </div>
           
           
           
-<aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
   
   <div class="search">
     <div class="form-group">
-      <i class="fas fa-search"></i><input type="text" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
     </div>
   </div>
   <div class="search-result-box" id="search-result"></div>
@@ -167,31 +205,8 @@
   <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
   
   <h1 class="author-name">Joseph Pei</h1>
-  <h2 class="author-description"> </h2>
+  <h2 class="author-description"></h2>
   <div class="site-count">
-    
-    <div class="archives-count">
-      <div class="site-count-title">归档</div>
-      <div><a href="/archives/">57</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="categories-count">
-      <div class="site-count-title">分类</div>
-      <div><a href="/categories/">0</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="tags-count">
-      <div class="site-count-title">标签</div>
-      <div><a href="/tags/">17</a></div>
-    </div>
     
   </div>
   
@@ -205,40 +220,34 @@
   <div class="sidebar-sticky">
     
     
-    
-<hr>
-<div class="social-link sidebar-item">
-  <div><i class="far fa-address-card"></i>社交链接</p></div>
-  <ul>
-    
-    <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
-    
-    <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
-    
-    <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
-    
-  </ul>
-</div>
-
-
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li>fas fa-envelope<a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li>fab fa-github<a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li>fab fa-weibo<a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
     
     
-    
-<hr>
-<div class="blogroll sidebar-item">
-  <div><i class="fas fa-link"></i>友情链接</div>
-  <ul>
-    
-    <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-    
-    <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-    
-    <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-    
-  </ul>
-</div>
-
-
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
     
   </div>
 </aside>
@@ -252,20 +261,17 @@
 <footer id="footer" class="footer" style="background: #33363b;">
   <div class="container">
     <div class="back-to-top">
-      <a id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
     </div>
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
+          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
         </div>
         
-        
-<div class="busuanzi">
-  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv"></span></span>
-</div>
-
-
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
         
       </div>
       <div class="footer-right">

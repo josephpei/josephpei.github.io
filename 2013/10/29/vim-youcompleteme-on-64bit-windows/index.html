@@ -10,6 +10,7 @@
     
     
     
+    
     <meta name="keywords" content="Life, Linux, Hexo">
     
     
@@ -52,6 +53,7 @@
     <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
     <script defer type="text/javascript" src="/js/scrollspy.js"></script>
     <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
     <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
@@ -78,6 +80,55 @@
     
     
     <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          $(e).before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          $(e).parent().before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "已复制";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "复制";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
     <title>vim Youcompleteme on 64bit Windows | 有翅膀的天狼 - Whisper to the world</title>
@@ -91,29 +142,18 @@
         <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
         <h2 class="subtitle">Whisper to the world</h2>
       </div>
+      
       <div class="logo">
         <img src="/img/logo.png" alt="logo">
       </div>
+      
     </div>
-    
-<nav id="nav" class="nav">
-  <a id="nav-toggle" class="nav-toggle"><i class="fas fa-bars"></i></a>
-  <ul id="menu">
-    
-    <li><a href="/">首页</a></li>
-    
-    <li><a href="/archives/">归档</a></li>
-    
-    <li><a href="/categories/">分类</a></li>
-    
-    <li><a href="/tags/">标签</a></li>
-    
-    <li><a href="/about/">关于</a></li>
-    
-  </ul>
-</nav>
-
-
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -123,9 +163,9 @@
         <div class="main-container">
           <div class="content">
             
-<section id="post" class="post">
+<div id="post" class="page">
   
-  <article class="post-container card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/29/vim-youcompleteme-on-64bit-windows/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -138,9 +178,7 @@
       </span>
     </div>
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-       <span class="">vim Youcompleteme on 64bit Windows</span>
-      </h1>
+      <h1 class="post-title" itemprop="name headline">vim Youcompleteme on 64bit Windows</h1>
       <div class="post-meta">
         
         <span class="post-date">
@@ -160,7 +198,7 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       <p>摘要：64bit vim, YCM, 64bit clang VS 2012, 64bit Widnows<br><a id="more"></a></p>
 <h2 id="vim-x64-for-windows"><a href="#vim-x64-for-windows" class="headerlink" title="vim x64 for windows"></a>vim x64 for windows</h2><p><a href="https://bitbucket.org/Haroogan/vim-for-windows" target="_blank" rel="noopener">https://bitbucket.org/Haroogan/vim-for-windows</a></p>
 <p>或 <a href="https://bintray.com/veegee/generic/vim_x64" target="_blank" rel="noopener">https://bintray.com/veegee/generic/vim_x64</a></p>
@@ -188,50 +226,26 @@ let g:ycm_global_ycm_extra_conf = &apos;PATHTO\.vim\dot.ycm_extra_conf.py&apos;
 </code></pre><p>dot.ycm_extra_conf.py 配置添加</p>
 <p>‘-I’,<br>‘C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include’</p>
 <p>我们一般把“-I”用作自己的代码，”-isystem”用作第三代码。这样编译代码的时候，第三方代码编译时的warning，就不会显示出来，只需要专注在自己写的代码。</p>
-<h2 id="与SuperTab、UltiSnips配合"><a href="#与SuperTab、UltiSnips配合" class="headerlink" title="与SuperTab、UltiSnips配合"></a>与SuperTab、UltiSnips配合</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs undefined">&quot;supertab插件<br>let g:SuperTabDefaultCompletionType = &quot;context&quot; &quot;自动检测需要补全什么内容<br>let g:SuperTabCompletionContexts = [&apos;s:ContextText&apos;, &apos;s:ContextDiscover&apos;]<br>let g:SuperTabContextDiscoverDiscovery = [&quot;&amp;completefunc:&lt;c-x&gt;&lt;c-u&gt;&quot;, &quot;&amp;omnifunc:&lt;c-x&gt;&lt;c-o&gt;&quot;]<br>&quot;let g:SuperTabContextDefaultCompletionType = &apos;&lt;c-n&gt;&apos;设置补全方式<br>&quot;let g:SuperTabRetainCompletionType=2        &quot;记住上次的补全方式，直到退出插入模式<br><br>let g:ycm_key_list_select_completion = [&apos;&lt;C-TAB&gt;&apos;, &apos;&lt;Down&gt;&apos;]<br>let g:ycm_key_list_previous_completion = [&apos;&lt;C-S-TAB&gt;&apos;, &apos;&lt;Up&gt;&apos;]<br>let g:SuperTabDefaultCompletionType = &apos;&lt;C-Tab&gt;&apos;<br>&quot;let g:ycm_collect_identifiers_from_tags_files = 1<br>&quot;let g:ycm_autoclose_preview_window_after_completion=1<br>nnoremap &lt;leader&gt;jd :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;<br><br>&quot;let g:UltiSnipsExpandTrigger=&quot;&lt;c-j&gt;&quot;<br>&quot;let g:UltiSnipsJumpForwardTrigger=&quot;&lt;c-j&gt;&quot;<br>&quot;let g:UltiSnipsJumpBackwardTrigger=&quot;&lt;c-k&gt;&quot;<br></code></pre></td></tr></table></figure>
+<h2 id="与SuperTab、UltiSnips配合"><a href="#与SuperTab、UltiSnips配合" class="headerlink" title="与SuperTab、UltiSnips配合"></a>与SuperTab、UltiSnips配合</h2><figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs undefined">&quot;supertab插件<br>let g:SuperTabDefaultCompletionType = &quot;context&quot; &quot;自动检测需要补全什么内容<br>let g:SuperTabCompletionContexts = [&apos;s:ContextText&apos;, &apos;s:ContextDiscover&apos;]<br>let g:SuperTabContextDiscoverDiscovery = [&quot;&amp;completefunc:&lt;c-x&gt;&lt;c-u&gt;&quot;, &quot;&amp;omnifunc:&lt;c-x&gt;&lt;c-o&gt;&quot;]<br>&quot;let g:SuperTabContextDefaultCompletionType = &apos;&lt;c-n&gt;&apos;设置补全方式<br>&quot;let g:SuperTabRetainCompletionType=2        &quot;记住上次的补全方式，直到退出插入模式<br><br>let g:ycm_key_list_select_completion = [&apos;&lt;C-TAB&gt;&apos;, &apos;&lt;Down&gt;&apos;]<br>let g:ycm_key_list_previous_completion = [&apos;&lt;C-S-TAB&gt;&apos;, &apos;&lt;Up&gt;&apos;]<br>let g:SuperTabDefaultCompletionType = &apos;&lt;C-Tab&gt;&apos;<br>&quot;let g:ycm_collect_identifiers_from_tags_files = 1<br>&quot;let g:ycm_autoclose_preview_window_after_completion=1<br>nnoremap &lt;leader&gt;jd :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;<br><br>&quot;let g:UltiSnipsExpandTrigger=&quot;&lt;c-j&gt;&quot;<br>&quot;let g:UltiSnipsJumpForwardTrigger=&quot;&lt;c-j&gt;&quot;<br>&quot;let g:UltiSnipsJumpBackwardTrigger=&quot;&lt;c-k&gt;&quot;<br></code></pre></td></tr></table></figure>
     </main>
     <footer class="post-footer">
-      
       
     </footer>
   </article>
   
   
-<div class="reward" id="reward">
-  <p>坚持原创技术分享，您的鼓励将是我继续前进的动力！</p>
-  <button id="reward-button" class="button" disable="enable">打赏</button>
-  <div id="qr" class="qr" style="display: none;">
-    
-    <div id="wechat">
-      <img id="wechat_qr" src="/images/WeChatPay.png" alt="微信支付"/>
-      <span>微信支付</span>
-    </div>
-    
-    
-    <div id="alipay">
-      <img id="alipay_qr" src="/images/AliPay.png" alt="支付宝"/>
-      <span>支付宝</span>
-    </div>
-    
-    
-  </div>
-</div>
-
-
-  
-  
-  <div class="post-nav">
-    <div class="post-nav-next post-nav-item">
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
       
       <a href="/2013/10/29/递归算法转换为非递归算法/" rel="next" title="递归算法转换为非递归算法"><i class="fas fa-angle-left"></i><span class="nav-title">递归算法转换为非递归算法</span></a>
       
     </div>
-    <div class="post-nav-prev post-nav-item">
+    <div class="page-nav-prev page-nav-item">
       
       <a href="/2013/10/29/约瑟夫问题-josephus-problem/" rel="prev" title="约瑟夫问题 Josephus Problem"><span class="nav-title">约瑟夫问题 Josephus Problem</span><i class="fas fa-angle-right"></i></a>
       
     </div>
-  </div>
+  </nav>
   
   
   
@@ -260,17 +274,17 @@ let g:ycm_global_ycm_extra_conf = &apos;PATHTO\.vim\dot.ycm_extra_conf.py&apos;
 
 
   
-</section>
+</div>
 
           </div>
           
           
           
-<aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
   
   <div class="search">
     <div class="form-group">
-      <i class="fas fa-search"></i><input type="text" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
     </div>
   </div>
   <div class="search-result-box" id="search-result"></div>
@@ -281,31 +295,8 @@ let g:ycm_global_ycm_extra_conf = &apos;PATHTO\.vim\dot.ycm_extra_conf.py&apos;
   <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
   
   <h1 class="author-name">Joseph Pei</h1>
-  <h2 class="author-description"> </h2>
+  <h2 class="author-description"></h2>
   <div class="site-count">
-    
-    <div class="archives-count">
-      <div class="site-count-title">归档</div>
-      <div><a href="/archives/">57</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="categories-count">
-      <div class="site-count-title">分类</div>
-      <div><a href="/categories/">0</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="tags-count">
-      <div class="site-count-title">标签</div>
-      <div><a href="/tags/">17</a></div>
-    </div>
     
   </div>
   
@@ -319,54 +310,45 @@ let g:ycm_global_ycm_extra_conf = &apos;PATHTO\.vim\dot.ycm_extra_conf.py&apos;
   <div class="sidebar-sticky">
     
     
-
-
-
-
-<hr>
-<div class="post-toc sidebar-item" id="toc-div">
-  <div><i class="fas fa-list-ol"></i>文章目录</div>
-  <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vim-x64-for-windows"><span class="toc-text">vim x64 for windows</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MinGW-环境"><span class="toc-text">MinGW 环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VS2012-环境"><span class="toc-text">VS2012 环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LLVM-CLANG-x64-for-windows"><span class="toc-text">LLVM/CLANG x64 for windows</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译-YCM"><span class="toc-text">编译 YCM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#与SuperTab、UltiSnips配合"><span class="toc-text">与SuperTab、UltiSnips配合</span></a></li></ol></div>
-</div>
-
-
-
     
     
     
-<hr>
-<div class="social-link sidebar-item">
-  <div><i class="far fa-address-card"></i>社交链接</p></div>
-  <ul>
-    
-    <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
-    
-    <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
-    
-    <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
-    
-  </ul>
-</div>
-
-
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#vim-x64-for-windows"><span class="toc-text">vim x64 for windows</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#MinGW-环境"><span class="toc-text">MinGW 环境</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#VS2012-环境"><span class="toc-text">VS2012 环境</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#LLVM-CLANG-x64-for-windows"><span class="toc-text">LLVM/CLANG x64 for windows</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#编译-YCM"><span class="toc-text">编译 YCM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#与SuperTab、UltiSnips配合"><span class="toc-text">与SuperTab、UltiSnips配合</span></a></li></ol></div>
+    </div>
     
     
     
-<hr>
-<div class="blogroll sidebar-item">
-  <div><i class="fas fa-link"></i>友情链接</div>
-  <ul>
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li>fas fa-envelope<a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li>fab fa-github<a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li>fab fa-weibo<a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
     
-    <li><a href="https://github.com/" target="_blank">GitHub</a></li>
     
-    <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-    
-    <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-    
-  </ul>
-</div>
-
-
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
     
   </div>
 </aside>
@@ -380,20 +362,17 @@ let g:ycm_global_ycm_extra_conf = &apos;PATHTO\.vim\dot.ycm_extra_conf.py&apos;
 <footer id="footer" class="footer" style="background: #33363b;">
   <div class="container">
     <div class="back-to-top">
-      <a id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
     </div>
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
+          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
         </div>
         
-        
-<div class="busuanzi">
-  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv"></span></span>
-</div>
-
-
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
         
       </div>
       <div class="footer-right">

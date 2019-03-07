@@ -162,7 +162,7 @@ function onInput(input, resultContent, datas) {
     // Show search results
     li.push("<li><a href=\"")
     li.push(matchedDataProps[i]["dataURL"]);
-    li.push("\" class=\"search-result-title\">&gt; ");
+    li.push("\" class=\"search-result-title\">");
     li.push(buildHighlightedTitle(matchedDataProps[i]));
     li.push("</a>");
     li.push("<p class=\"search-result-content\">...");
@@ -184,7 +184,7 @@ function ajax(url, callback) {
     xhr = new ActiveXObject("Microsoft.XMLHTTP");
   }
   if (xhr == null) {
-    alert("Your broswer does not support XMLHttpRequest!");
+    console.error("Your broswer does not support XMLHttpRequest!");
     return;
   }
   xhr.onreadystatechange = function () {

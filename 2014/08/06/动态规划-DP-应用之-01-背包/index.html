@@ -10,6 +10,7 @@
     
     
     
+    
     <meta name="keywords" content="Life, Linux, Hexo">
     
     
@@ -52,6 +53,7 @@
     <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
     <script defer type="text/javascript" src="/js/scrollspy.js"></script>
     <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
     <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
@@ -78,6 +80,55 @@
     
     
     <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          $(e).before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          $(e).parent().before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "已复制";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "复制";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
     <title>动态规划 DP 应用之 01 背包 | 有翅膀的天狼 - Whisper to the world</title>
@@ -91,29 +142,18 @@
         <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
         <h2 class="subtitle">Whisper to the world</h2>
       </div>
+      
       <div class="logo">
         <img src="/img/logo.png" alt="logo">
       </div>
+      
     </div>
-    
-<nav id="nav" class="nav">
-  <a id="nav-toggle" class="nav-toggle"><i class="fas fa-bars"></i></a>
-  <ul id="menu">
-    
-    <li><a href="/">首页</a></li>
-    
-    <li><a href="/archives/">归档</a></li>
-    
-    <li><a href="/categories/">分类</a></li>
-    
-    <li><a href="/tags/">标签</a></li>
-    
-    <li><a href="/about/">关于</a></li>
-    
-  </ul>
-</nav>
-
-
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -123,9 +163,9 @@
         <div class="main-container">
           <div class="content">
             
-<section id="post" class="post">
+<div id="post" class="page">
   
-  <article class="post-container card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2014/08/06/动态规划-DP-应用之-01-背包/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -138,9 +178,7 @@
       </span>
     </div>
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-       <span class="">动态规划 DP 应用之 01 背包</span>
-      </h1>
+      <h1 class="post-title" itemprop="name headline">动态规划 DP 应用之 01 背包</h1>
       <div class="post-meta">
         
         <span class="post-date">
@@ -160,28 +198,24 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       <p>问题描述：n 个不同的物品，每个物品只有一个，有价值 value 和重量 weight 两个属性；背包容量 w。求背包所能容纳的最大价值。</p>
 <p>最优子结构：当我们把一件物品放进背包里时，会让总价值变高，并且让背包变重。对某一件物品来说，我们可以选择放或不放，然后移去这件物品所带来的影响。</p>
 <p>c(n, w) = max( c(n-1, w), c(n-1, w-W[n]) + C[n] )<br>               ^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^<br>               不放 -&gt; 0         放 -&gt; 1</p>
 <p>n：第1个到第n个物品要放进背包内。<br>w：背包负重上限。<br>c(n, w)：第1个到第n个物品尽量塞进负重限制为w的背包时，最大价值。<br>W[n]：第n个物品的重量。<br>C[n]：第n个物品的价值。 <a id="more"></a></p>
 <h2 id="基本算法"><a href="#基本算法" class="headerlink" title="基本算法"></a>基本算法</h2><p>Bottom UP 递推</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 物品总数上限</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MaxN = <span class="hljs-number">100</span>;<br> <br><span class="hljs-comment">// 背包负重上限</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MaxW = <span class="hljs-number">100000</span>;<br> <br><span class="hljs-comment">// 物品</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Item</span> &#123;</span><span class="hljs-keyword">int</span> cost, weight;&#125; items[MaxN];<br> <br><span class="hljs-comment">// DP矩阵</span><br><span class="hljs-keyword">int</span> c[MaxN + <span class="hljs-number">1</span>][MaxW + <span class="hljs-number">1</span>];<br> <br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">knapsack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> w)</span>             <span class="hljs-comment">// n 为物品数，w 为背包负重上限</span><br></span>&#123;<br>    <span class="hljs-built_in">memset</span>(c, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(c));<br> <br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i)         <span class="hljs-comment">// 每个物品都试试看</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt;= w; ++j)    <span class="hljs-comment">// 每个重量都试试看</span><br>            <span class="hljs-keyword">if</span> (j - items[i].weight &lt; <span class="hljs-number">0</span>)<br>                c[i+<span class="hljs-number">1</span>][j] = c[i][j];    <span class="hljs-comment">// 放不下</span><br>            <span class="hljs-keyword">else</span><br>                c[i+<span class="hljs-number">1</span>][j] = max( c[i][j], c[i][j - items[i].weight] + items[i].value );<br> <br>    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Max Value: "</span> &lt;&lt; c[n][w] &lt;&lt; <span class="hljs-built_in">endl</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 物品总数上限</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MaxN = <span class="hljs-number">100</span>;<br> <br><span class="hljs-comment">// 背包负重上限</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MaxW = <span class="hljs-number">100000</span>;<br> <br><span class="hljs-comment">// 物品</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Item</span> &#123;</span><span class="hljs-keyword">int</span> cost, weight;&#125; items[MaxN];<br> <br><span class="hljs-comment">// DP矩阵</span><br><span class="hljs-keyword">int</span> c[MaxN + <span class="hljs-number">1</span>][MaxW + <span class="hljs-number">1</span>];<br> <br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">knapsack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> w)</span>             <span class="hljs-comment">// n 为物品数，w 为背包负重上限</span><br></span>&#123;<br>    <span class="hljs-built_in">memset</span>(c, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(c));<br> <br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i)         <span class="hljs-comment">// 每个物品都试试看</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt;= w; ++j)    <span class="hljs-comment">// 每个重量都试试看</span><br>            <span class="hljs-keyword">if</span> (j - items[i].weight &lt; <span class="hljs-number">0</span>)<br>                c[i+<span class="hljs-number">1</span>][j] = c[i][j];    <span class="hljs-comment">// 放不下</span><br>            <span class="hljs-keyword">else</span><br>                c[i+<span class="hljs-number">1</span>][j] = max( c[i][j], c[i][j - items[i].weight] + items[i].value );<br> <br>    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Max Value: "</span> &lt;&lt; c[n][w] &lt;&lt; <span class="hljs-built_in">endl</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>Top Down 递归</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">knapsack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> W)</span><br></span>&#123;<br>    <span class="hljs-keyword">int</span> i, space, max, maxi, t;<br>    <span class="hljs-keyword">if</span> (maxKnow[W] != <span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> maxKnown[W];<br>    <br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>, max = <span class="hljs-number">0</span>; i &lt; N; i++)<br>        <span class="hljs-keyword">if</span> ((sapce = W - items[i].weight) &gt;= <span class="hljs-number">0</span>)<br>            <span class="hljs-keyword">if</span> ((t = knapsack(space) + items[i].value) &gt; max)<br>                &#123; max = t; maxi = i; &#125;<br>    maxKnown[W] = max; itemKnown[W] = items[maxi];<br>    <span class="hljs-keyword">return</span> max<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">knapsack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> W)</span><br></span>&#123;<br>    <span class="hljs-keyword">int</span> i, space, max, maxi, t;<br>    <span class="hljs-keyword">if</span> (maxKnow[W] != <span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> maxKnown[W];<br>    <br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>, max = <span class="hljs-number">0</span>; i &lt; N; i++)<br>        <span class="hljs-keyword">if</span> ((sapce = W - items[i].weight) &gt;= <span class="hljs-number">0</span>)<br>            <span class="hljs-keyword">if</span> ((t = knapsack(space) + items[i].value) &gt; max)<br>                &#123; max = t; maxi = i; &#125;<br>    maxKnown[W] = max; itemKnown[W] = items[maxi];<br>    <span class="hljs-keyword">return</span> max<br>&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="空间优化"><a href="#空间优化" class="headerlink" title="空间优化"></a>空间优化</h2><p>因为计算时只需要用到上方和左上方的格子，所以只需要一个单行数组就可以了。不过计算次序需要改为由后向前，才不会覆盖掉需要用来计算的格子。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MaxN = <span class="hljs-number">100</span>, MaxW = <span class="hljs-number">100000</span>;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Item</span> &#123;</span><span class="hljs-keyword">int</span> cost, weight;&#125; items[MaxN];<br><span class="hljs-keyword">int</span> c[MaxW + <span class="hljs-number">1</span>];<br> <br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">knapsack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> w)</span><br></span>&#123;<br>    <span class="hljs-built_in">memset</span>(c, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(c));<br> <br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i)<br>    &#123;<br>        <span class="hljs-keyword">int</span> weight = items[i].weight, cost = items[i].cost;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = w; j - weight &gt;= <span class="hljs-number">0</span>; --j)<br>            c[j] = max( c[j], c[j - weight] + cost );<br>    &#125;<br> <br>    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Max Value: "</span> &lt;&lt; c[w] &lt;&lt; <span class="hljs-built_in">endl</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> numpy <span class="hljs-keyword">import</span> *<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">knapsack_iter</span><span class="hljs-params">(W, items)</span>:</span><br>    A = zeros(<span class="hljs-number">2</span> * W).reshape(<span class="hljs-number">2</span>, W)<br>    i = <span class="hljs-number">0</span><br><br>    <span class="hljs-keyword">for</span> (v, w) <span class="hljs-keyword">in</span> items:<br>        A[(i+<span class="hljs-number">1</span>)%<span class="hljs-number">2</span>][:w] = A[i%<span class="hljs-number">2</span>][:w]<br>        A[(i+<span class="hljs-number">1</span>)%<span class="hljs-number">2</span>][w:] = maximum(A[i%<span class="hljs-number">2</span>][w:], A[i%<span class="hljs-number">2</span>][:W-w] + v)<br>        i += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> A[i%<span class="hljs-number">2</span>][W<span class="hljs-number">-1</span>]<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">knapsack_recur</span><span class="hljs-params">(W, items)</span>:</span><br>    <span class="hljs-comment"># top-down solution with memoization via hashtable</span><br>    N = len(items)<br>    A = &#123;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">A_</span><span class="hljs-params">(i, j)</span>:</span><br>        <span class="hljs-keyword">if</span> (str(i)+<span class="hljs-string">','</span>+str(j)) <span class="hljs-keyword">in</span> A: <span class="hljs-keyword">return</span> A[str(i)+<span class="hljs-string">','</span>+str(j)] <span class="hljs-comment"># memoization</span><br>        <span class="hljs-keyword">if</span> i == <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>        v, w = items[i]<br>        <span class="hljs-keyword">if</span> j-w &lt; <span class="hljs-number">0</span>:<br>            result = A_(i<span class="hljs-number">-1</span>, j)<br>            A[str(i)+<span class="hljs-string">','</span>+str(j)] = result <span class="hljs-comment"># memoization</span><br>            <span class="hljs-keyword">return</span> result<br>        <span class="hljs-keyword">else</span>:<br>            result = max(A_(i<span class="hljs-number">-1</span>, j), A_(i<span class="hljs-number">-1</span>, j-w) + v)<br>            A[str(i)+<span class="hljs-string">','</span>+str(j)] = result <span class="hljs-comment"># memoization</span><br>            <span class="hljs-keyword">return</span> result<br>    <span class="hljs-keyword">return</span> A_(N<span class="hljs-number">-1</span>, W<span class="hljs-number">-1</span>)<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MaxN = <span class="hljs-number">100</span>, MaxW = <span class="hljs-number">100000</span>;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Item</span> &#123;</span><span class="hljs-keyword">int</span> cost, weight;&#125; items[MaxN];<br><span class="hljs-keyword">int</span> c[MaxW + <span class="hljs-number">1</span>];<br> <br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">knapsack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> w)</span><br></span>&#123;<br>    <span class="hljs-built_in">memset</span>(c, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(c));<br> <br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i)<br>    &#123;<br>        <span class="hljs-keyword">int</span> weight = items[i].weight, cost = items[i].cost;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = w; j - weight &gt;= <span class="hljs-number">0</span>; --j)<br>            c[j] = max( c[j], c[j - weight] + cost );<br>    &#125;<br> <br>    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Max Value: "</span> &lt;&lt; c[w] &lt;&lt; <span class="hljs-built_in">endl</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> numpy <span class="hljs-keyword">import</span> *<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">knapsack_iter</span><span class="hljs-params">(W, items)</span>:</span><br>    A = zeros(<span class="hljs-number">2</span> * W).reshape(<span class="hljs-number">2</span>, W)<br>    i = <span class="hljs-number">0</span><br><br>    <span class="hljs-keyword">for</span> (v, w) <span class="hljs-keyword">in</span> items:<br>        A[(i+<span class="hljs-number">1</span>)%<span class="hljs-number">2</span>][:w] = A[i%<span class="hljs-number">2</span>][:w]<br>        A[(i+<span class="hljs-number">1</span>)%<span class="hljs-number">2</span>][w:] = maximum(A[i%<span class="hljs-number">2</span>][w:], A[i%<span class="hljs-number">2</span>][:W-w] + v)<br>        i += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> A[i%<span class="hljs-number">2</span>][W<span class="hljs-number">-1</span>]<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">knapsack_recur</span><span class="hljs-params">(W, items)</span>:</span><br>    <span class="hljs-comment"># top-down solution with memoization via hashtable</span><br>    N = len(items)<br>    A = &#123;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">A_</span><span class="hljs-params">(i, j)</span>:</span><br>        <span class="hljs-keyword">if</span> (str(i)+<span class="hljs-string">','</span>+str(j)) <span class="hljs-keyword">in</span> A: <span class="hljs-keyword">return</span> A[str(i)+<span class="hljs-string">','</span>+str(j)] <span class="hljs-comment"># memoization</span><br>        <span class="hljs-keyword">if</span> i == <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>        v, w = items[i]<br>        <span class="hljs-keyword">if</span> j-w &lt; <span class="hljs-number">0</span>:<br>            result = A_(i<span class="hljs-number">-1</span>, j)<br>            A[str(i)+<span class="hljs-string">','</span>+str(j)] = result <span class="hljs-comment"># memoization</span><br>            <span class="hljs-keyword">return</span> result<br>        <span class="hljs-keyword">else</span>:<br>            result = max(A_(i<span class="hljs-number">-1</span>, j), A_(i<span class="hljs-number">-1</span>, j-w) + v)<br>            A[str(i)+<span class="hljs-string">','</span>+str(j)] = result <span class="hljs-comment"># memoization</span><br>            <span class="hljs-keyword">return</span> result<br>    <span class="hljs-keyword">return</span> A_(N<span class="hljs-number">-1</span>, W<span class="hljs-number">-1</span>)<br></code></pre></td></tr></table></figure>
     </main>
     <footer class="post-footer">
       
-      
       <div class="post-tags">
         
-        
-        
-        
-        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
+        <a class="post-tag button" href="/tags/algorithm/" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
         
       </div>
       
@@ -189,41 +223,18 @@
   </article>
   
   
-<div class="reward" id="reward">
-  <p>坚持原创技术分享，您的鼓励将是我继续前进的动力！</p>
-  <button id="reward-button" class="button" disable="enable">打赏</button>
-  <div id="qr" class="qr" style="display: none;">
-    
-    <div id="wechat">
-      <img id="wechat_qr" src="/images/WeChatPay.png" alt="微信支付"/>
-      <span>微信支付</span>
-    </div>
-    
-    
-    <div id="alipay">
-      <img id="alipay_qr" src="/images/AliPay.png" alt="支付宝"/>
-      <span>支付宝</span>
-    </div>
-    
-    
-  </div>
-</div>
-
-
-  
-  
-  <div class="post-nav">
-    <div class="post-nav-next post-nav-item">
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
       
       <a href="/2014/08/05/动态规划-DP-应用-HamiltonPath-及-TSP/" rel="next" title="动态规划 DP 应用 HamiltonPath 及 TSP"><i class="fas fa-angle-left"></i><span class="nav-title">动态规划 DP 应用 HamiltonPath 及 TSP</span></a>
       
     </div>
-    <div class="post-nav-prev post-nav-item">
+    <div class="page-nav-prev page-nav-item">
       
       <a href="/2014/08/16/Spring-MVC-学习笔记1-入门/" rel="prev" title="Spring MVC 学习笔记1 入门"><span class="nav-title">Spring MVC 学习笔记1 入门</span><i class="fas fa-angle-right"></i></a>
       
     </div>
-  </div>
+  </nav>
   
   
   
@@ -252,17 +263,17 @@
 
 
   
-</section>
+</div>
 
           </div>
           
           
           
-<aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
   
   <div class="search">
     <div class="form-group">
-      <i class="fas fa-search"></i><input type="text" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
     </div>
   </div>
   <div class="search-result-box" id="search-result"></div>
@@ -273,31 +284,8 @@
   <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
   
   <h1 class="author-name">Joseph Pei</h1>
-  <h2 class="author-description"> </h2>
+  <h2 class="author-description"></h2>
   <div class="site-count">
-    
-    <div class="archives-count">
-      <div class="site-count-title">归档</div>
-      <div><a href="/archives/">57</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="categories-count">
-      <div class="site-count-title">分类</div>
-      <div><a href="/categories/">0</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="tags-count">
-      <div class="site-count-title">标签</div>
-      <div><a href="/tags/">17</a></div>
-    </div>
     
   </div>
   
@@ -311,54 +299,45 @@
   <div class="sidebar-sticky">
     
     
-
-
-
-
-<hr>
-<div class="post-toc sidebar-item" id="toc-div">
-  <div><i class="fas fa-list-ol"></i>文章目录</div>
-  <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本算法"><span class="toc-text">基本算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#空间优化"><span class="toc-text">空间优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python"><span class="toc-text">Python</span></a></li></ol></div>
-</div>
-
-
-
     
     
     
-<hr>
-<div class="social-link sidebar-item">
-  <div><i class="far fa-address-card"></i>社交链接</p></div>
-  <ul>
-    
-    <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
-    
-    <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
-    
-    <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
-    
-  </ul>
-</div>
-
-
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#基本算法"><span class="toc-text">基本算法</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#空间优化"><span class="toc-text">空间优化</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#Python"><span class="toc-text">Python</span></a></li></ol></div>
+    </div>
     
     
     
-<hr>
-<div class="blogroll sidebar-item">
-  <div><i class="fas fa-link"></i>友情链接</div>
-  <ul>
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li>fas fa-envelope<a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li>fab fa-github<a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li>fab fa-weibo<a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
     
-    <li><a href="https://github.com/" target="_blank">GitHub</a></li>
     
-    <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-    
-    <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-    
-  </ul>
-</div>
-
-
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
     
   </div>
 </aside>
@@ -372,20 +351,17 @@
 <footer id="footer" class="footer" style="background: #33363b;">
   <div class="container">
     <div class="back-to-top">
-      <a id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
     </div>
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
+          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
         </div>
         
-        
-<div class="busuanzi">
-  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv"></span></span>
-</div>
-
-
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
         
       </div>
       <div class="footer-right">

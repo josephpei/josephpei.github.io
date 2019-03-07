@@ -10,6 +10,7 @@
     
     
     
+    
     <meta name="keywords" content="Life, Linux, Hexo">
     
     
@@ -44,11 +45,15 @@
     <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
     
     
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
     <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
     <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
     <script defer type="text/javascript" src="/js/scrollspy.js"></script>
     <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
     <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
@@ -75,6 +80,55 @@
     
     
     <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          $(e).before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          $(e).parent().before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "已复制";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "复制";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
     <title>有翅膀的天狼 - Whisper to the world</title>
@@ -88,29 +142,18 @@
         <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
         <h2 class="subtitle">Whisper to the world</h2>
       </div>
+      
       <div class="logo">
         <img src="/img/logo.png" alt="logo">
       </div>
+      
     </div>
-    
-<nav id="nav" class="nav">
-  <a id="nav-toggle" class="nav-toggle"><i class="fas fa-bars"></i></a>
-  <ul id="menu">
-    
-    <li><a href="/">首页</a></li>
-    
-    <li><a href="/archives/">归档</a></li>
-    
-    <li><a href="/categories/">分类</a></li>
-    
-    <li><a href="/tags/">标签</a></li>
-    
-    <li><a href="/about/">关于</a></li>
-    
-  </ul>
-</nav>
-
-
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -121,9 +164,9 @@
           <div class="content">
             
 
-<section id="index" class="index">
+<div id="index" class="index page">
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/11/01/poj-2820-ancient-cipher-古代密码/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -158,7 +201,7 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>摘要： 巧妙的解法，借鉴了别人的 只要看字母频率就可以直接得出结论<br>
       
@@ -167,17 +210,14 @@
       
       <div class="post-tags">
         
-        
-        
-        
-        <a class="post-tag button" href="/tags/poj/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>poj</a>
+        <a class="post-tag button" href="/tags/poj/" rel="tag"><i class="fas fa-tags"></i>poj</a>
         
       </div>
       
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/30/poj-1961-求某串中所有循环前缀串的长度和循环次数/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -212,7 +252,7 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>kmp算法的应用，和poj 2406类似</p>
 <p>如果长度为l的前缀是由字符串重复构成的，则next[l] != 0，且此时构成前缀的重复子串的最小长度为l - next[l]，l % (l - next[l]) = 0，最大重复次数为l / (l - next[l])。
@@ -223,7 +263,7 @@
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/29/约瑟夫问题-josephus-problem/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -258,7 +298,7 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>约瑟夫问题（Josephus Problem）</p>
 <p>据说着名犹太历史学家 Josephus有过以下的故事：在罗马人占领乔塔帕特后，39 个犹太人与Josephus及他的朋友躲到一个洞中，39个犹太人决定宁愿死也不要被敌人抓到，于是决定了一个自杀方式，41个人排成一个圆圈，由第1个人 开始报数，每报数到第3人该人就必须自杀，然后再由下一个重新报数，直到所有人都自杀身亡为止。</p>
@@ -270,17 +310,14 @@
       
       <div class="post-tags">
         
-        
-        
-        
-        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
+        <a class="post-tag button" href="/tags/algorithm/" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
         
       </div>
       
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/29/vim-youcompleteme-on-64bit-windows/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -315,7 +352,7 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>摘要：64bit vim, YCM, 64bit clang VS 2012, 64bit Widnows<br>
       
@@ -325,7 +362,7 @@
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/29/递归算法转换为非递归算法/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,7 +397,7 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>递归算法实际上是一种分而治之的方法，它把复杂问题分解为简单问题来求解。对于某些复杂问题(例如hanio塔问题)，递归算法是一种自然且合乎逻辑的解决问题的方式，但是递归算法的执行效率通常比较差。因此，在求解某些问题时，常采用递归算法来分析问题，用非递归算法来求解问题；另外，有些程序设计语言不支持递归，这就需要把递归算法转换为非递归算法。</p>
 <p>将递归算法转换为非递归算法有两种方法，一种是直接求值，不需要回溯；另一种是不能直接求值，需要回溯。前者使用一些变量保存中间结果，称为直接转换法；后者使用栈保存中间结果，称为间接转换法，下面分别讨论这两种方法。<br>
@@ -370,17 +407,14 @@
       
       <div class="post-tags">
         
-        
-        
-        
-        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
+        <a class="post-tag button" href="/tags/algorithm/" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
         
       </div>
       
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/26/vim-插件配置攻略/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -415,7 +449,7 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>网友 k-vim 的配置 <a href="https://github.com/wklken" target="_blank" rel="noopener">https://github.com/wklken</a></p>
 <blockquote>
@@ -438,7 +472,7 @@
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/23/中缀表达式求值/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -473,7 +507,7 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>给定一个中缀表达式，求出该表达式的值。</p>
 <p>要求支持“加减乘除 + - * /、取余 %、幂运算 ^、一元正负号 + -、括号 ()、数的科学表示法符号 E e”，其中含有一元操作符’+ -‘，也含有从右向左结合性的操作符’^’，注意操作数的位数可以为多位。<br>
@@ -483,17 +517,14 @@
       
       <div class="post-tags">
         
-        
-        
-        
-        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
+        <a class="post-tag button" href="/tags/algorithm/" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
         
       </div>
       
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/21/快速排序-quicksort/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -528,38 +559,35 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <p>7-4 快速排序中的堆栈深度</p>
 <p>7.1节中QUICKSORT算法包含有两个对其自身的递归调用。在调用PARTITION后，左边的子数组和右边的子数组分别被递归调用。QUICKSORT中的第二次递归调用并不是必须的；可以用迭代控制来代替它。这种技术称作尾递归，大多数的编译程序都加以了采用。考虑下面这个快速排序的版本，它模拟了尾递归：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs undefined">QUICKSORT&apos;(A, p, r)<br>1  while p&lt;r<br>2      do q &lt;- PARTITION(A, p, r)<br>3         QUICKSORT(A, p, q-1)<br>4         p &lt;- q+1<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs undefined">QUICKSORT&apos;(A, p, r)<br>1  while p&lt;r<br>2      do q &lt;- PARTITION(A, p, r)<br>3         QUICKSORT(A, p, q-1)<br>4         p &lt;- q+1<br></code></pre></td></tr></table></figure>
 <p>a) 论证QUICKSORT’(A, 1, Length[A])能正确地对数组A进行排序。</p>
 <p>首先证明QUICKSORT(A, 1, Length[A])能正确地对数组A进行排序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs undefined">QUICKSORT(A, p, r)<br>1  if p&lt;r<br>2      then q &lt;- PARTITION(A, p, r)<br>3           QUICKSORT(A, p, q-1)<br>4           QUICKSORT(A, q+1, r)<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs undefined">QUICKSORT(A, p, r)<br>1  if p&lt;r<br>2      then q &lt;- PARTITION(A, p, r)<br>3           QUICKSORT(A, p, q-1)<br>4           QUICKSORT(A, q+1, r)<br></code></pre></td></tr></table></figure>
 <p>循环不变式：QUICKSORT(A, p, r)调用后，A[p..r]中的元素是有序的。</p>
 <p>初始化：r-p=1时，调用QUICK(A, p, r)。因为p&lt;r，故进入if语句块，调用q&lt;-PARTITION(A, p, r)后，A[p..q-1]的元素一定小于A[q]，A[q+1..r]的元素一定大于A[q]，又因为A[p..r]此时只包含两个元素，所以在调用q&lt;-PARTITION(A, p, r)后A[p..r]有序。因为此时q只能等于p或r，所以下面的QUICKSORT(A, p, q-1)、QUICKSORT(A, q+1, r)将不做任何操作。显然，循环不变式是成立的。</p>
 <p>保持：对任意数组A下标范围内的p、r调用QUICKSORT(A, p, r)时，假设循环不变式成立，于是QUICKSORT(A, p, q-1)使A[p..q-1]有序，QUICKSORT(A, q+1, r)使A[q+1..r]有序。并且由于调用了q&lt;-PARTITION(A, p, r)，A[p..q-1]的元素都小于A[q]，A[q+1..r]的元素都大于A[q]，于是数组A[p..r]就有序了。</p>
 <p>终止：最外层QUICKSORT(A, 1, Length[A])调用结束时，根据循环不变式，A[1..n]有序。</p>
 <p>QUICKSORT’调用与QUICKSORT相同的PARTITION，然后都以(A, p, q-1)调用自身。QUICKSORT以(A, q+1, r)再次调用自身，而QUICKSORT’则是让p&lt;-q+1后执行了while循环的另一次迭代。实际上不难看出，这一操作与QUICKSORT的第二次自身调用效果相同。于是QUICKSORT’(A, 1, Length[A])能正确对数组A进行排序。</p>
 <p>c) 修改QUICKSORT’的代码，使其最坏情况栈深度为Θ(lgn)。保持算法的O(nlgn)期望运行时间不变。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs undefined">QUICKSORT&apos;&apos;(A, p, r)<br>1 while p&lt;r<br>2     do q &lt;- PARTITION(A, p, r)<br>3        if q-p&lt;r-q<br>4            then QUICKSORT&apos;&apos;(A, p, q-1)<br>5                 p &lt;- q+1<br>6            else QUICKSORT&apos;&apos;(A, q+1, r)<br>7                 r &lt;- q-1<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs undefined">QUICKSORT&apos;&apos;(A, p, r)<br>1 while p&lt;r<br>2     do q &lt;- PARTITION(A, p, r)<br>3        if q-p&lt;r-q<br>4            then QUICKSORT&apos;&apos;(A, p, q-1)<br>5                 p &lt;- q+1<br>6            else QUICKSORT&apos;&apos;(A, q+1, r)<br>7                 r &lt;- q-1<br></code></pre></td></tr></table></figure>
       
     </main>
     <footer class="post-footer">
       
       <div class="post-tags">
         
-        
-        
-        
-        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
+        <a class="post-tag button" href="/tags/algorithm/" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
         
       </div>
       
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/20/poj-1664-放苹果/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -594,7 +622,7 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>把M个同样的苹果放在N个同样的盘子里，允许有的盘子空着不放，问共有多少种不同的分法？（用K表示）5，1，1和1，5，1 是同一种分法。</p>
 <p>自己想了半天，什么排列组合之类的，后来去搜题解，才知道是用递归……<br>
@@ -604,19 +632,16 @@
       
       <div class="post-tags">
         
+        <a class="post-tag button" href="/tags/algorithm/" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
         
-        
-        
-        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
-        
-        <a class="post-tag button" href="/tags/poj/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>poj</a>
+        <a class="post-tag button" href="/tags/poj/" rel="tag"><i class="fas fa-tags"></i>poj</a>
         
       </div>
       
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/09/28/mac-osx-下-java-环境/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -651,7 +676,7 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       
       <h2 id="解决javac和java命令在Mac-OSX终端里的乱码问题"><a href="#解决javac和java命令在Mac-OSX终端里的乱码问题" class="headerlink" title="解决javac和java命令在Mac OSX终端里的乱码问题"></a>解决javac和java命令在Mac OSX终端里的乱码问题</h2><p>解决方法有3个：</p>
 <p>1）指定输出的编码为UTF-8</p>
@@ -675,10 +700,7 @@
       
       <div class="post-tags">
         
-        
-        
-        
-        <a class="post-tag button" href="/tags/java/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>java</a>
+        <a class="post-tag button" href="/tags/java/" rel="tag"><i class="fas fa-tags"></i>java</a>
         
       </div>
       
@@ -687,7 +709,7 @@
   
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fas fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
   </nav>
   
   
@@ -703,17 +725,17 @@
 
 
   
-</section>
+</div>
 
           </div>
           
           
           
-<aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
   
   <div class="search">
     <div class="form-group">
-      <i class="fas fa-search"></i><input type="text" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
     </div>
   </div>
   <div class="search-result-box" id="search-result"></div>
@@ -724,31 +746,8 @@
   <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
   
   <h1 class="author-name">Joseph Pei</h1>
-  <h2 class="author-description"> </h2>
+  <h2 class="author-description"></h2>
   <div class="site-count">
-    
-    <div class="archives-count">
-      <div class="site-count-title">归档</div>
-      <div><a href="/archives/">57</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="categories-count">
-      <div class="site-count-title">分类</div>
-      <div><a href="/categories/">0</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="tags-count">
-      <div class="site-count-title">标签</div>
-      <div><a href="/tags/">17</a></div>
-    </div>
     
   </div>
   
@@ -762,40 +761,34 @@
   <div class="sidebar-sticky">
     
     
-    
-<hr>
-<div class="social-link sidebar-item">
-  <div><i class="far fa-address-card"></i>社交链接</p></div>
-  <ul>
-    
-    <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
-    
-    <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
-    
-    <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
-    
-  </ul>
-</div>
-
-
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li>fas fa-envelope<a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li>fab fa-github<a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li>fab fa-weibo<a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
     
     
-    
-<hr>
-<div class="blogroll sidebar-item">
-  <div><i class="fas fa-link"></i>友情链接</div>
-  <ul>
-    
-    <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-    
-    <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-    
-    <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-    
-  </ul>
-</div>
-
-
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
     
   </div>
 </aside>
@@ -809,20 +802,17 @@
 <footer id="footer" class="footer" style="background: #33363b;">
   <div class="container">
     <div class="back-to-top">
-      <a id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
     </div>
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
+          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
         </div>
         
-        
-<div class="busuanzi">
-  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv"></span></span>
-</div>
-
-
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
         
       </div>
       <div class="footer-right">

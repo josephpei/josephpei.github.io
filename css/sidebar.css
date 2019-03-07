@@ -2,9 +2,9 @@
   text-align: center;
 }
 .info .author-avatar {
-  max-width: 90%;
+  width: 90%;
   display: block;
-  margin: 0 auto;
+  margin: 1em auto;
   border: 0.3em solid #fff;
   border-radius: 50%;
   -webkit-box-shadow: 0 0 1em 0.5em rgba(0,0,0,0.19);
@@ -26,13 +26,13 @@
   color: #26272b;
   font-size: 1.8em;
   font-weight: normal;
-  margin: 0.5em;
+  margin: 0.5em 0;
 }
 .info .author-description {
   color: #444;
   font-size: 1.2em;
   font-weight: normal;
-  margin: 0.5em;
+  margin: 0.5em 0;
 }
 .info .site-count {
   display: -webkit-box;
@@ -66,50 +66,54 @@
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   width: 100%;
-  padding: 0.5em 0em;
+  margin: 1em 0;
   text-align: center;
   font-size: 1em;
 }
-.info .site-count .site-count-divider {
-  line-height: 1.5em;
-  font-size: 2em;
+.info .site-count div.count-block {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  border-left: 0.05em #666 solid;
+  border-right: 0.05em #666 solid;
+}
+.info .site-count div.count-block:first-child {
+  border-left: none;
+}
+.info .site-count div.count-block:last-child {
+  border-right: none;
 }
 .info .site-count .site-count-title {
   margin: 0;
   font-size: 1.2em;
 }
 .info .rss {
-  padding: 0.5em;
+  margin: 1em 0;
+  padding: 0;
 }
 .info .rss .rss-link {
   display: block;
   text-align: center;
   font-size: 1.5em;
   color: #fff;
-  background: #fc6423;
+  background: #ff2a2a;
+  border: 0.1em solid #f5c6cb;
   padding: 0.2em;
   line-height: 1.25em;
-}
-.post-toc div {
-  margin: 0.5em;
-}
-.post-toc .toc-link.active {
-  color: #006bde;
-  border-bottom: 0.05em solid #006bde;
 }
 .sidebar {
   background: #ddd;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
-  -ms-box-flex: 1;
   box-flex: 1;
-  -webkit-flex-grow: 1;
-  flex-grow: 1;
-  -webkit-flex-shrink: 0;
-  flex-shrink: 0;
-  -webkit-flex-basis: 25%;
-  flex-basis: 25%;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
   width: 25%;
   padding: 0;
   word-wrap: break-word;
@@ -118,16 +122,16 @@
   height: 2.5em;
   display: block;
   text-align: center;
-  background: #006bde;
+  background: #36e;
   color: #fff;
   padding-top: 0.5em;
 }
 .sidebar .search input {
-  width: 60%;
-  height: 1.5em;
-  border: 0.1em solid transparent;
+  width: 70%;
+  height: 1.8em;
+  border: none;
   border-bottom: 0.1em dotted #fff;
-  background: #006bde;
+  background: #36e;
   color: #fff;
   -webkit-transition: 0.3s ease-in-out;
   -moz-transition: 0.3s ease-in-out;
@@ -156,64 +160,51 @@
 }
 .sidebar .search-result-box .search-result-list {
   margin-top: 0;
-  padding: 1em 2em;
+  padding: 1em 1em 1em 2em;
 }
 .sidebar .search-result-box:hover {
   -webkit-box-shadow: 0 0.5em 1em 0.5em rgba(0,0,0,0.19);
   box-shadow: 0 0.5em 1em 0.5em rgba(0,0,0,0.19);
 }
 .sidebar .sidebar-item {
-  padding: 1em 2em;
+  margin: 1em;
 }
 .sidebar .sidebar-sticky {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  padding-bottom: 1em;
+}
+.sidebar .post-toc .toc-link.active {
+  color: #36e;
+  border-bottom: 0.05em solid #36e;
 }
 .sidebar hr {
-  height: 0.3em;
-  border: none;
-  margin: 0 auto;
-  width: 100%;
-  position: relative;
-  display: block;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
   background: -webkit-repeating-linear-gradient(135deg, #fff, #fff 0.25em, transparent 0.25em, transparent 0.5em);
   background: -moz-repeating-linear-gradient(135deg, #fff, #fff 0.25em, transparent 0.25em, transparent 0.5em);
   background: -o-repeating-linear-gradient(135deg, #fff, #fff 0.25em, transparent 0.25em, transparent 0.5em);
   background: -ms-repeating-linear-gradient(135deg, #fff, #fff 0.25em, transparent 0.25em, transparent 0.5em);
   background: repeating-linear-gradient(-45deg, #fff, #fff 0.25em, transparent 0.25em, transparent 0.5em);
 }
-.sidebar .social-link div,
-.sidebar .blogroll div {
-  margin: 0.5em;
-}
 @media (max-width: 60em) {
   .sidebar {
     width: 100%;
   }
-  .sidebar .social-link,
-  .sidebar .blogroll {
+  .sidebar .sidebar-item {
     text-align: center;
   }
-  .sidebar .social-link ul,
-  .sidebar .blogroll ul {
+  .sidebar .sidebar-item ul {
     padding: 0;
   }
-  .sidebar .social-link ul li,
-  .sidebar .blogroll ul li {
+  .sidebar .sidebar-item ul li {
     display: inline-block;
     margin: 0.5em 1em;
   }
-  .sidebar .post-toc {
-    text-align: center;
-  }
-  .sidebar .post-toc ol li {
+  .sidebar .sidebar-item .toc {
     text-align: left;
+    display: inline-block;
   }
   .sidebar .sidebar-sticky {
-    position: relative;
+    position: static;
   }
 }

@@ -10,6 +10,7 @@
     
     
     
+    
     <meta name="keywords" content="Life, Linux, Hexo">
     
     
@@ -52,6 +53,7 @@
     <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
     <script defer type="text/javascript" src="/js/scrollspy.js"></script>
     <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
     <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
@@ -78,6 +80,55 @@
     
     
     <script defer type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var cb = null;
+      var els = $(".post figure.highlight");
+      if (els.length) {
+        // Enabled Hexo highlight line number.
+        $(els).each(function (i, e) {
+          $(e).before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout with line number.
+              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
+          }
+        });
+      } else {
+        // Disabled Hexo highlight line number.
+        els = $(".post pre code");
+        $(els).each(function (i, e) {
+          // Add button before pre, not code.
+          $(e).parent().before("<button class=\"copy button\">复制</button>");
+        });
+        cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // nextElementSibling is figure,highlight.
+              // And following is the sequence of Hexo's internal
+              // highlight layout without line number.
+              return trigger.nextElementSibling.firstChild;
+          }
+        });
+      }
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        // Change button text as a user tip.
+        trigger.innerHTML = "已复制";
+        $(trigger).addClass("copied");
+        // Change button text back;
+        setTimeout(function () {
+          trigger.innerHTML = "复制";
+          $(trigger).removeClass("copied");
+        }, 1500);
+      });
+    });
+    </script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
     <title>poj 3164 最小树形图 朱刘算法 | 有翅膀的天狼 - Whisper to the world</title>
@@ -91,29 +142,18 @@
         <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
         <h2 class="subtitle">Whisper to the world</h2>
       </div>
+      
       <div class="logo">
         <img src="/img/logo.png" alt="logo">
       </div>
+      
     </div>
-    
-<nav id="nav" class="nav">
-  <a id="nav-toggle" class="nav-toggle"><i class="fas fa-bars"></i></a>
-  <ul id="menu">
-    
-    <li><a href="/">首页</a></li>
-    
-    <li><a href="/archives/">归档</a></li>
-    
-    <li><a href="/categories/">分类</a></li>
-    
-    <li><a href="/tags/">标签</a></li>
-    
-    <li><a href="/about/">关于</a></li>
-    
-  </ul>
-</nav>
-
-
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -123,9 +163,9 @@
         <div class="main-container">
           <div class="content">
             
-<section id="post" class="post">
+<div id="post" class="page">
   
-  <article class="post-container card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/12/20/poj-3164-最小树形图-朱刘算法/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -138,9 +178,7 @@
       </span>
     </div>
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-       <span class="">poj 3164 最小树形图 朱刘算法</span>
-      </h1>
+      <h1 class="post-title" itemprop="name headline">poj 3164 最小树形图 朱刘算法</h1>
       <div class="post-meta">
         
         <span class="post-date">
@@ -160,7 +198,7 @@
         
       </div>
     </header>
-    <main class="post-body" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       <p>最小树形图，就是给有向带权图中指定一个特殊的点root，求一棵以root为根的有向生成树T，并且T中所有边的总权值最小。最小树形图的第一个算法是 1965年朱永津和刘振宏提出的复杂度为O(VE)的算法。<a id="more"></a></p>
 <p>(无向图的最小生成树即最小树形图，可用Prim’s Algorithm、Kruskal’s Algorithm等算法求。)</p>
 <p>判断是否存在树形图的方法很简单，只需要以v为根作一次图的遍历就可以了。</p>
@@ -174,19 +212,15 @@
 </li>
 </ol>
 <p>对于无固定根最小树形图，只要虚拟一个根连接所有点，权为边权总和+1,最后的结果减去（边权+1）即可。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> VN=<span class="hljs-number">110</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> INF=<span class="hljs-number">99999999</span>;<br><br><span class="hljs-keyword">double</span> <span class="hljs-built_in">map</span>[VN][VN];<br><span class="hljs-keyword">int</span> n,m,vis[VN],pt[VN][<span class="hljs-number">2</span>],pre[VN];<br><br><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">Cal</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i,<span class="hljs-keyword">int</span> j)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">pow</span>(pt[i][<span class="hljs-number">0</span>]-pt[j][<span class="hljs-number">0</span>],<span class="hljs-number">2.0</span>)+<span class="hljs-built_in">pow</span>(pt[i][<span class="hljs-number">1</span>]-pt[j][<span class="hljs-number">1</span>],<span class="hljs-number">2.0</span>));<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u)</span></span>&#123;<br>    vis[u]=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>        <span class="hljs-keyword">if</span>(!vis[i] &amp;&amp; <span class="hljs-built_in">map</span>[u][i]!=INF)<br>            DFS(i);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Connected</span><span class="hljs-params">()</span></span>&#123;   <span class="hljs-comment">//判断是否连通，如果连通一定存在最小树形图。 </span><br>    <span class="hljs-built_in">memset</span>(vis,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(vis));<br>    DFS(<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>        <span class="hljs-keyword">if</span>(!vis[i])<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">ZLEmonds</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> i,j,k;<br>    <span class="hljs-keyword">bool</span> circle[VN];<br>    <span class="hljs-keyword">double</span> ans=<span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">memset</span>(circle,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(circle));<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>;i&lt;=n;i++)&#123;  <span class="hljs-comment">//找出最短弧集合E0 </span><br>            <span class="hljs-keyword">if</span>(circle[i])<br>                <span class="hljs-keyword">continue</span>;<br>            pre[i]=i;<br>            <span class="hljs-built_in">map</span>[i][i]=INF;<br>            <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;=n;j++)&#123;<br>                <span class="hljs-keyword">if</span>(circle[j])<br>                    <span class="hljs-keyword">continue</span>;<br>                <span class="hljs-keyword">if</span>(<span class="hljs-built_in">map</span>[j][i]&lt;<span class="hljs-built_in">map</span>[pre[i]][i])<br>                    pre[i]=j;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>;i&lt;=n;i++)&#123;<br>            <span class="hljs-keyword">if</span>(circle[i])<br>                <span class="hljs-keyword">continue</span>;<br>            j=i;<br>            <span class="hljs-built_in">memset</span>(vis,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(vis));<br>            <span class="hljs-keyword">while</span>(!vis[j] &amp;&amp; j!=<span class="hljs-number">1</span>)&#123;<br>                vis[j]=<span class="hljs-number">1</span>;<br>                j=pre[j];<br>            &#125;<br>            <span class="hljs-keyword">if</span>(j==<span class="hljs-number">1</span>)    <span class="hljs-comment">//检查是否有环，能找到根节点说明没环 </span><br>                <span class="hljs-keyword">continue</span>;<br>            i=j;<br>            ans+=<span class="hljs-built_in">map</span>[pre[i]][i];<br>            <span class="hljs-keyword">for</span>(j=pre[i];j!=i;j=pre[j])&#123;    <span class="hljs-comment">//i不用标记，用作后面缩点用  </span><br>                ans+=<span class="hljs-built_in">map</span>[pre[j]][j];<br>                circle[j]=<span class="hljs-number">1</span>;<br>            &#125;<br>            <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;=n;j++)&#123;<br>                <span class="hljs-keyword">if</span>(circle[j])<br>                    <span class="hljs-keyword">continue</span>;<br>                <span class="hljs-keyword">if</span>(<span class="hljs-built_in">map</span>[j][i]!=INF)<br>                    <span class="hljs-built_in">map</span>[j][i]-=<span class="hljs-built_in">map</span>[pre[i]][i];<br>            &#125;<br>            <span class="hljs-keyword">for</span>(j=pre[i];j!=i;j=pre[j]) <span class="hljs-comment">//将环中所有的点成点i，改变边 </span><br>                <span class="hljs-keyword">for</span>(k=<span class="hljs-number">1</span>;k&lt;=n;k++)&#123;<br>                    <span class="hljs-keyword">if</span>(circle[k])<br>                        <span class="hljs-keyword">continue</span>;<br>                    <span class="hljs-built_in">map</span>[i][k]=min(<span class="hljs-built_in">map</span>[i][k],<span class="hljs-built_in">map</span>[j][k]);<br>                    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">map</span>[k][j]!=INF)<br>                        <span class="hljs-built_in">map</span>[k][i]=min(<span class="hljs-built_in">map</span>[k][i],<span class="hljs-built_in">map</span>[k][j]-<span class="hljs-built_in">map</span>[pre[j]][j]);<br>                &#125;<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(i&gt;n)&#123;    <span class="hljs-comment">//求出最小树形图的权值 </span><br>            <span class="hljs-keyword">for</span>(j=<span class="hljs-number">2</span>;j&lt;=n;j++)&#123;<br>                <span class="hljs-keyword">if</span>(circle[j])<br>                    <span class="hljs-keyword">continue</span>;<br>                ans+=<span class="hljs-built_in">map</span>[pre[j]][j];<br>            &#125;<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">while</span>(~<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;n,&amp;m))&#123;<br>        <span class="hljs-keyword">int</span> i,j;<br>        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>            <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;=n;j++)<br>                <span class="hljs-built_in">map</span>[i][j]=INF;<br>        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;pt[i][<span class="hljs-number">0</span>],&amp;pt[i][<span class="hljs-number">1</span>]);<br>        <span class="hljs-keyword">while</span>(m--)&#123;<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;i,&amp;j);<br>            <span class="hljs-built_in">map</span>[i][j]=Cal(i,j);<br>        &#125;<br>        <span class="hljs-keyword">if</span>(!Connected())<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"poor snoopy\n"</span>);<br>        <span class="hljs-keyword">else</span><br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%.2f\n"</span>,ZLEmonds());<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> VN=<span class="hljs-number">110</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> INF=<span class="hljs-number">99999999</span>;<br><br><span class="hljs-keyword">double</span> <span class="hljs-built_in">map</span>[VN][VN];<br><span class="hljs-keyword">int</span> n,m,vis[VN],pt[VN][<span class="hljs-number">2</span>],pre[VN];<br><br><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">Cal</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i,<span class="hljs-keyword">int</span> j)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">pow</span>(pt[i][<span class="hljs-number">0</span>]-pt[j][<span class="hljs-number">0</span>],<span class="hljs-number">2.0</span>)+<span class="hljs-built_in">pow</span>(pt[i][<span class="hljs-number">1</span>]-pt[j][<span class="hljs-number">1</span>],<span class="hljs-number">2.0</span>));<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u)</span></span>&#123;<br>    vis[u]=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>        <span class="hljs-keyword">if</span>(!vis[i] &amp;&amp; <span class="hljs-built_in">map</span>[u][i]!=INF)<br>            DFS(i);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Connected</span><span class="hljs-params">()</span></span>&#123;   <span class="hljs-comment">//判断是否连通，如果连通一定存在最小树形图。 </span><br>    <span class="hljs-built_in">memset</span>(vis,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(vis));<br>    DFS(<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>        <span class="hljs-keyword">if</span>(!vis[i])<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">ZLEmonds</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> i,j,k;<br>    <span class="hljs-keyword">bool</span> circle[VN];<br>    <span class="hljs-keyword">double</span> ans=<span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">memset</span>(circle,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(circle));<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>;i&lt;=n;i++)&#123;  <span class="hljs-comment">//找出最短弧集合E0 </span><br>            <span class="hljs-keyword">if</span>(circle[i])<br>                <span class="hljs-keyword">continue</span>;<br>            pre[i]=i;<br>            <span class="hljs-built_in">map</span>[i][i]=INF;<br>            <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;=n;j++)&#123;<br>                <span class="hljs-keyword">if</span>(circle[j])<br>                    <span class="hljs-keyword">continue</span>;<br>                <span class="hljs-keyword">if</span>(<span class="hljs-built_in">map</span>[j][i]&lt;<span class="hljs-built_in">map</span>[pre[i]][i])<br>                    pre[i]=j;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">2</span>;i&lt;=n;i++)&#123;<br>            <span class="hljs-keyword">if</span>(circle[i])<br>                <span class="hljs-keyword">continue</span>;<br>            j=i;<br>            <span class="hljs-built_in">memset</span>(vis,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(vis));<br>            <span class="hljs-keyword">while</span>(!vis[j] &amp;&amp; j!=<span class="hljs-number">1</span>)&#123;<br>                vis[j]=<span class="hljs-number">1</span>;<br>                j=pre[j];<br>            &#125;<br>            <span class="hljs-keyword">if</span>(j==<span class="hljs-number">1</span>)    <span class="hljs-comment">//检查是否有环，能找到根节点说明没环 </span><br>                <span class="hljs-keyword">continue</span>;<br>            i=j;<br>            ans+=<span class="hljs-built_in">map</span>[pre[i]][i];<br>            <span class="hljs-keyword">for</span>(j=pre[i];j!=i;j=pre[j])&#123;    <span class="hljs-comment">//i不用标记，用作后面缩点用  </span><br>                ans+=<span class="hljs-built_in">map</span>[pre[j]][j];<br>                circle[j]=<span class="hljs-number">1</span>;<br>            &#125;<br>            <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;=n;j++)&#123;<br>                <span class="hljs-keyword">if</span>(circle[j])<br>                    <span class="hljs-keyword">continue</span>;<br>                <span class="hljs-keyword">if</span>(<span class="hljs-built_in">map</span>[j][i]!=INF)<br>                    <span class="hljs-built_in">map</span>[j][i]-=<span class="hljs-built_in">map</span>[pre[i]][i];<br>            &#125;<br>            <span class="hljs-keyword">for</span>(j=pre[i];j!=i;j=pre[j]) <span class="hljs-comment">//将环中所有的点成点i，改变边 </span><br>                <span class="hljs-keyword">for</span>(k=<span class="hljs-number">1</span>;k&lt;=n;k++)&#123;<br>                    <span class="hljs-keyword">if</span>(circle[k])<br>                        <span class="hljs-keyword">continue</span>;<br>                    <span class="hljs-built_in">map</span>[i][k]=min(<span class="hljs-built_in">map</span>[i][k],<span class="hljs-built_in">map</span>[j][k]);<br>                    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">map</span>[k][j]!=INF)<br>                        <span class="hljs-built_in">map</span>[k][i]=min(<span class="hljs-built_in">map</span>[k][i],<span class="hljs-built_in">map</span>[k][j]-<span class="hljs-built_in">map</span>[pre[j]][j]);<br>                &#125;<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(i&gt;n)&#123;    <span class="hljs-comment">//求出最小树形图的权值 </span><br>            <span class="hljs-keyword">for</span>(j=<span class="hljs-number">2</span>;j&lt;=n;j++)&#123;<br>                <span class="hljs-keyword">if</span>(circle[j])<br>                    <span class="hljs-keyword">continue</span>;<br>                ans+=<span class="hljs-built_in">map</span>[pre[j]][j];<br>            &#125;<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">while</span>(~<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;n,&amp;m))&#123;<br>        <span class="hljs-keyword">int</span> i,j;<br>        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>            <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;=n;j++)<br>                <span class="hljs-built_in">map</span>[i][j]=INF;<br>        <span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;pt[i][<span class="hljs-number">0</span>],&amp;pt[i][<span class="hljs-number">1</span>]);<br>        <span class="hljs-keyword">while</span>(m--)&#123;<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;i,&amp;j);<br>            <span class="hljs-built_in">map</span>[i][j]=Cal(i,j);<br>        &#125;<br>        <span class="hljs-keyword">if</span>(!Connected())<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"poor snoopy\n"</span>);<br>        <span class="hljs-keyword">else</span><br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%.2f\n"</span>,ZLEmonds());<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
     </main>
     <footer class="post-footer">
       
-      
       <div class="post-tags">
         
+        <a class="post-tag button" href="/tags/algorithm/" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
         
-        
-        
-        <a class="post-tag button" href="/tags/algorithm/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
-        
-        <a class="post-tag button" href="/tags/poj/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>poj</a>
+        <a class="post-tag button" href="/tags/poj/" rel="tag"><i class="fas fa-tags"></i>poj</a>
         
       </div>
       
@@ -194,41 +228,18 @@
   </article>
   
   
-<div class="reward" id="reward">
-  <p>坚持原创技术分享，您的鼓励将是我继续前进的动力！</p>
-  <button id="reward-button" class="button" disable="enable">打赏</button>
-  <div id="qr" class="qr" style="display: none;">
-    
-    <div id="wechat">
-      <img id="wechat_qr" src="/images/WeChatPay.png" alt="微信支付"/>
-      <span>微信支付</span>
-    </div>
-    
-    
-    <div id="alipay">
-      <img id="alipay_qr" src="/images/AliPay.png" alt="支付宝"/>
-      <span>支付宝</span>
-    </div>
-    
-    
-  </div>
-</div>
-
-
-  
-  
-  <div class="post-nav">
-    <div class="post-nav-next post-nav-item">
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
       
       <a href="/2013/12/16/实现自己的stl-iterator/" rel="next" title="实现自己的STL Iterator"><i class="fas fa-angle-left"></i><span class="nav-title">实现自己的STL Iterator</span></a>
       
     </div>
-    <div class="post-nav-prev post-nav-item">
+    <div class="page-nav-prev page-nav-item">
       
       <a href="/2013/12/20/poj-2388-寻找中位数/" rel="prev" title="poj 2388 寻找中位数"><span class="nav-title">poj 2388 寻找中位数</span><i class="fas fa-angle-right"></i></a>
       
     </div>
-  </div>
+  </nav>
   
   
   
@@ -257,17 +268,17 @@
 
 
   
-</section>
+</div>
 
           </div>
           
           
           
-<aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
   
   <div class="search">
     <div class="form-group">
-      <i class="fas fa-search"></i><input type="text" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
     </div>
   </div>
   <div class="search-result-box" id="search-result"></div>
@@ -278,31 +289,8 @@
   <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
   
   <h1 class="author-name">Joseph Pei</h1>
-  <h2 class="author-description"> </h2>
+  <h2 class="author-description"></h2>
   <div class="site-count">
-    
-    <div class="archives-count">
-      <div class="site-count-title">归档</div>
-      <div><a href="/archives/">57</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="categories-count">
-      <div class="site-count-title">分类</div>
-      <div><a href="/categories/">0</a></div>
-    </div>
-    
-    
-    
-    <span class="site-count-divider divider">|</span>
-    
-    <div class="tags-count">
-      <div class="site-count-title">标签</div>
-      <div><a href="/tags/">17</a></div>
-    </div>
     
   </div>
   
@@ -316,48 +304,39 @@
   <div class="sidebar-sticky">
     
     
-
-
-
-
-
-
     
     
     
-<hr>
-<div class="social-link sidebar-item">
-  <div><i class="far fa-address-card"></i>社交链接</p></div>
-  <ul>
-    
-    <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
-    
-    <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
-    
-    <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
-    
-  </ul>
-</div>
-
-
     
     
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li>fas fa-envelope<a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+        
+        <li>fab fa-github<a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li>fab fa-weibo<a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
     
-<hr>
-<div class="blogroll sidebar-item">
-  <div><i class="fas fa-link"></i>友情链接</div>
-  <ul>
     
-    <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-    
-    <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-    
-    <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-    
-  </ul>
-</div>
-
-
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
     
   </div>
 </aside>
@@ -371,20 +350,17 @@
 <footer id="footer" class="footer" style="background: #33363b;">
   <div class="container">
     <div class="back-to-top">
-      <a id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
     </div>
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
+          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
         </div>
         
-        
-<div class="busuanzi">
-  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv"></span></span>
-</div>
-
-
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
         
       </div>
       <div class="footer-right">
