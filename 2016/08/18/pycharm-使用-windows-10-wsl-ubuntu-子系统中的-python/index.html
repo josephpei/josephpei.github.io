@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python - 有翅膀的天狼</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="josephpei" /><meta name="description" content="首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 https://support.microsoft.com/en-us/help/12387/windows-10-update-history 手动升级。
+Step 0: 安装 WSL Ubuntu 在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。
+Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。
+" /><meta name="keywords" content="life, linux, program" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://josephpei.github.io/2016/08/18/pycharm-%E4%BD%BF%E7%94%A8-windows-10-wsl-ubuntu-%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84-python/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python" />
+<meta property="og:description" content="首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 https://support.microsoft.com/en-us/help/12387/windows-10-update-history 手动升级。
+
+Step 0: 安装 WSL Ubuntu
+
+在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。
+
+Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://josephpei.github.io/2016/08/18/pycharm-%E4%BD%BF%E7%94%A8-windows-10-wsl-ubuntu-%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84-python/" />
+<meta property="article:published_time" content="2016-08-18T09:30:18&#43;08:00"/>
+<meta property="article:modified_time" content="2016-08-18T09:30:18&#43;08:00"/>
+
+<meta itemprop="name" content="PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python">
+<meta itemprop="description" content="首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 https://support.microsoft.com/en-us/help/12387/windows-10-update-history 手动升级。
+
+Step 0: 安装 WSL Ubuntu
+
+在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。
+
+Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。">
+
+
+<meta itemprop="datePublished" content="2016-08-18T09:30:18&#43;08:00" />
+<meta itemprop="dateModified" content="2016-08-18T09:30:18&#43;08:00" />
+<meta itemprop="wordCount" content="314">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python"/>
+<meta name="twitter:description" content="首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 https://support.microsoft.com/en-us/help/12387/windows-10-update-history 手动升级。
+
+Step 0: 安装 WSL Ubuntu
+
+在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。
+
+Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Wolfsky</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Wolfsky</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-08-18 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#step-0-安装-wsl-ubuntu">Step 0: 安装 WSL Ubuntu</a></li>
+<li><a href="#step-1-修改-etc-ssh-sshd-config">Step 1: 修改 <code>/etc/ssh/sshd_config</code></a></li>
+<li><a href="#step-2-生成密钥">Step 2: 生成密钥</a></li>
+<li><a href="#step-3-sshd-无密码运行">Step 3: sshd 无密码运行</a></li>
+<li><a href="#step-4-开启-ssh">Step 4: 开启 ssh</a></li>
+<li><a href="#step-5-配置-pycharm">Step 5: 配置 PyCharm</a></li>
+<li><a href="#step-x-完善">Step X: 完善</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 <a href="https://support.microsoft.com/en-us/help/12387/windows-10-update-history">https://support.microsoft.com/en-us/help/12387/windows-10-update-history</a> 手动升级。</p>
+
+<h2 id="step-0-安装-wsl-ubuntu">Step 0: 安装 WSL Ubuntu</h2>
+
+<p>在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。</p>
+
+<p>Win + X 打开 CMD 管理员，输入 <code>bash</code> 或者 <code>lxrun /install</code>,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。</p>
+
+<h2 id="step-1-修改-etc-ssh-sshd-config">Step 1: 修改 <code>/etc/ssh/sshd_config</code></h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">PasswordAuthentication yes
+UsePrivilegeSeparation no</pre></td></tr></table>
+</div>
+</div>
+<h2 id="step-2-生成密钥">Step 2: 生成密钥</h2>
+
+<p>执行 <code>sudo dpkg-reconfigure openssh-server</code></p>
+
+<h2 id="step-3-sshd-无密码运行">Step 3: sshd 无密码运行</h2>
+
+<p>执行 <code>sudo visudo</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># $USER 是你 Step0 中设置的用户名
+$USER ALL = (root) NOPASSWD: /usr/sbin/sshd</pre></td></tr></table>
+</div>
+</div>
+<h2 id="step-4-开启-ssh">Step 4: 开启 ssh</h2>
+
+<p>执行 <code>sudo /usr/sbin/sshd -d</code>，确认无误后 <code>sudo /usr/sbin/sshd</code></p>
+
+<p>可以写成一个脚本 wsl_ssh.bat <code>bash.exe -c &quot;sudo service ssh start &amp;&amp;&amp; sleep 999d&quot;</code></p>
+
+<h2 id="step-5-配置-pycharm">Step 5: 配置 PyCharm</h2>
+
+<p><a href="https://www.jetbrains.com/help/pycharm/2016.1/configuring-remote-interpreters-via-ssh.html">https://www.jetbrains.com/help/pycharm/2016.1/configuring-remote-interpreters-via-ssh.html</a></p>
+
+<h2 id="step-x-完善">Step X: 完善</h2>
+
+<p>cmd 替代品 <a href="http://conemu.github.io/">ConEmu</a>，最新版内置支持 wsl bash。</p>
+
+<p>也可以用 XShell ssh 上去。</p>
+
+<p>apt 源替换为 aliyun, <code>sudo sed -i 's/archive.ubuntu/mirrors.aliyun/g' /etc/apt/sources.list</code></p>
+
+<p>安装新版 git, <code>sudo add-apt-repository ppa:git-core/ppa</code></p>
+
+<p>安装新版 pip， <code>curl &quot;https://bootstrap.pypa.io/get-pip.py&quot; -o &quot;get-pip.py&quot;</code>, <code>sudo python get-pip.py</code></p>
+
+<p><img src="/img/pycharm02.png" alt="pycharm" /></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">josephpei</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2016-08-18
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/2018/04/28/ubuntu-awesome-terminal/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">ubuntu awesome terminal</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2016/08/05/django%E4%B9%8B%E8%B7%AF-python-decouple/">
+            <span class="next-text nav-default">Django之路: Python Decouple</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'josephpei-github-io';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
+  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">josephpei</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

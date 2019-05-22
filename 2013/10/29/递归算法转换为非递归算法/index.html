@@ -1,405 +1,608 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#33363b">
-    <meta name="msapplication-TileColor" content="#33363b">
-    
-    
-    
-    
-    <meta name="keywords" content="Life, Linux, Hexo">
-    
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-    
-    
-    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
-    
-    
-    <link rel="manifest" href="/favicons/site.webmanifest">
-    
-    
-    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
-    
-    
-    <link rel="alternate" href="/atom.xml" title="有翅膀的天狼" type="application/atom+xml" />
-    
-    
-    
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
-    
-    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
-    
-    
-<link rel="stylesheet" type="text/css" href="/css/page.css">
-<link rel="stylesheet" type="text/css" href="/css/post.css">
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>递归算法转换为非递归算法 - 有翅膀的天狼</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    <link rel="stylesheet" type="text/css" href="/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
-    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script defer type="text/javascript" src="/js/util.js"></script>
-    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
-    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
-    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
-    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
-    
-    <script defer src="/js/busuanzi.pure.mini.js"></script>
-    
-    
-    <script defer type="text/javascript" src="/js/search.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var searchPath = "search.xml";
-      if (searchPath.length === 0) {
-        searchPath = "search.xml";
-      }
-      var path = "/" + searchPath;
-      searchFunc(path, "search-input", "search-result");
-    });
-    </script>
-    
-    
-    <script defer type="text/javascript" src="/js/index.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var cb = null;
-      var els = $(".post figure.highlight");
-      if (els.length) {
-        // Enabled Hexo highlight line number.
-        $(els).each(function (i, e) {
-          $(e).before("<button class=\"copy button\">复制</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout with line number.
-              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
-          }
-        });
-      } else {
-        // Disabled Hexo highlight line number.
-        els = $(".post pre code");
-        $(els).each(function (i, e) {
-          // Add button before pre, not code.
-          $(e).parent().before("<button class=\"copy button\">复制</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout without line number.
-              return trigger.nextElementSibling.firstChild;
-          }
-        });
-      }
-      cb.on("success", function (e) {
-        e.clearSelection();
-        var trigger = e.trigger;
-        // Change button text as a user tip.
-        trigger.innerHTML = "已复制";
-        $(trigger).addClass("copied");
-        // Change button text back;
-        setTimeout(function () {
-          trigger.innerHTML = "复制";
-          $(trigger).removeClass("copied");
-        }, 1500);
-      });
-    });
-    </script>
-    
-    <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>递归算法转换为非递归算法 | 有翅膀的天狼 - Whisper to the world</title>
-  </head>
-  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
-    
-<header id="header" class="header" style="background: #33363b;">
-  <div class="container">
-    <div class="header-container">
-      <div class="header-title">
-        <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
-        <h2 class="subtitle">Whisper to the world</h2>
-      </div>
-      
-      <div class="logo">
-        <img src="/img/logo.png" alt="logo">
-      </div>
-      
-    </div>
-    <nav id="nav" class="nav">
-      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
-      <ul id="menu" role="menubar" aria-hidden="false">
-        
-      </ul>
-    </nav>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="josephpei" /><meta name="description" content="递归算法实际上是一种分而治之的方法，它把复杂问题分解为简单问题来求解。对于某些复杂问题(例如hanio塔问题)，递归算法是一种自然且合乎逻辑的解决问题的方式，但是递归算法的执行效率通常比较差。因此，在求解某些问题时，常采用递归算法来分析问题，用非递归算法来求解问题；另外，有些程序设计语言不支持递归，这就需要把递归算法转换为非递归算法。
+将递归算法转换为非递归算法有两种方法，一种是直接求值，不需要回溯；另一种是不能直接求值，需要回溯。前者使用一些变量保存中间结果，称为直接转换法；后者使用栈保存中间结果，称为间接转换法，下面分别讨论这两种方法。
+" /><meta name="keywords" content="life, linux, program" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://josephpei.github.io/2013/10/29/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E8%BD%AC%E6%8D%A2%E4%B8%BA%E9%9D%9E%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="递归算法转换为非递归算法" />
+<meta property="og:description" content="递归算法实际上是一种分而治之的方法，它把复杂问题分解为简单问题来求解。对于某些复杂问题(例如hanio塔问题)，递归算法是一种自然且合乎逻辑的解决问题的方式，但是递归算法的执行效率通常比较差。因此，在求解某些问题时，常采用递归算法来分析问题，用非递归算法来求解问题；另外，有些程序设计语言不支持递归，这就需要把递归算法转换为非递归算法。
+
+将递归算法转换为非递归算法有两种方法，一种是直接求值，不需要回溯；另一种是不能直接求值，需要回溯。前者使用一些变量保存中间结果，称为直接转换法；后者使用栈保存中间结果，称为间接转换法，下面分别讨论这两种方法。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://josephpei.github.io/2013/10/29/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E8%BD%AC%E6%8D%A2%E4%B8%BA%E9%9D%9E%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/" />
+<meta property="article:published_time" content="2013-10-29T14:39:46&#43;08:00"/>
+<meta property="article:modified_time" content="2013-10-29T14:39:46&#43;08:00"/>
+
+<meta itemprop="name" content="递归算法转换为非递归算法">
+<meta itemprop="description" content="递归算法实际上是一种分而治之的方法，它把复杂问题分解为简单问题来求解。对于某些复杂问题(例如hanio塔问题)，递归算法是一种自然且合乎逻辑的解决问题的方式，但是递归算法的执行效率通常比较差。因此，在求解某些问题时，常采用递归算法来分析问题，用非递归算法来求解问题；另外，有些程序设计语言不支持递归，这就需要把递归算法转换为非递归算法。
+
+将递归算法转换为非递归算法有两种方法，一种是直接求值，不需要回溯；另一种是不能直接求值，需要回溯。前者使用一些变量保存中间结果，称为直接转换法；后者使用栈保存中间结果，称为间接转换法，下面分别讨论这两种方法。">
+
+
+<meta itemprop="datePublished" content="2013-10-29T14:39:46&#43;08:00" />
+<meta itemprop="dateModified" content="2013-10-29T14:39:46&#43;08:00" />
+<meta itemprop="wordCount" content="2395">
+
+
+
+<meta itemprop="keywords" content="algorithm," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="递归算法转换为非递归算法"/>
+<meta name="twitter:description" content="递归算法实际上是一种分而治之的方法，它把复杂问题分解为简单问题来求解。对于某些复杂问题(例如hanio塔问题)，递归算法是一种自然且合乎逻辑的解决问题的方式，但是递归算法的执行效率通常比较差。因此，在求解某些问题时，常采用递归算法来分析问题，用非递归算法来求解问题；另外，有些程序设计语言不支持递归，这就需要把递归算法转换为非递归算法。
+
+将递归算法转换为非递归算法有两种方法，一种是直接求值，不需要回溯；另一种是不能直接求值，需要回溯。前者使用一些变量保存中间结果，称为直接转换法；后者使用栈保存中间结果，称为间接转换法，下面分别讨论这两种方法。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Wolfsky</a>
   </div>
-</header>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Wolfsky</a>
+</div>
 
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
 
     <main id="main" class="main">
-      <div class="container">
-        <div class="main-container">
-          <div class="content">
-            
-<div id="post" class="page">
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/10/29/递归算法转换为非递归算法/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="Joseph Pei">
-       <meta itemprop="description" content="">
-       <meta itemprop="image" content="/img/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="有翅膀的天狼">
-      </span>
-    </div>
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">递归算法转换为非递归算法</h1>
+      <h1 class="post-title">递归算法转换为非递归算法</h1>
+
       <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2013-10-29T14:39:46+08:00">2013-10-29 14:39:46</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2013/10/29/递归算法转换为非递归算法/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/10/29/递归算法转换为非递归算法/" itemprop="commentCount"></span></a></span>
-        </span>
+        <span class="post-time"> 2013-10-29 </span>
         
         
       </div>
     </header>
-    <main class="post-main" itemprop="articleBody">
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#直接转换法">直接转换法</a></li>
+<li><a href="#基于栈结构的间接转换">基于栈结构的间接转换</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
       <p>递归算法实际上是一种分而治之的方法，它把复杂问题分解为简单问题来求解。对于某些复杂问题(例如hanio塔问题)，递归算法是一种自然且合乎逻辑的解决问题的方式，但是递归算法的执行效率通常比较差。因此，在求解某些问题时，常采用递归算法来分析问题，用非递归算法来求解问题；另外，有些程序设计语言不支持递归，这就需要把递归算法转换为非递归算法。</p>
-<p>将递归算法转换为非递归算法有两种方法，一种是直接求值，不需要回溯；另一种是不能直接求值，需要回溯。前者使用一些变量保存中间结果，称为直接转换法；后者使用栈保存中间结果，称为间接转换法，下面分别讨论这两种方法。<br><a id="more"></a></p>
-<h2 id="直接转换法"><a href="#直接转换法" class="headerlink" title="直接转换法"></a>直接转换法</h2><p>直接转换法通常用来消除尾递归和单向递归，将递归结构用循环结构来替代。</p>
+
+<p>将递归算法转换为非递归算法有两种方法，一种是直接求值，不需要回溯；另一种是不能直接求值，需要回溯。前者使用一些变量保存中间结果，称为直接转换法；后者使用栈保存中间结果，称为间接转换法，下面分别讨论这两种方法。</p>
+
+<h2 id="直接转换法">直接转换法</h2>
+
+<p>直接转换法通常用来消除尾递归和单向递归，将递归结构用循环结构来替代。</p>
+
 <p>尾递归是指在递归算法中，递归调用语句只有一个，而且是处在算法的最后。对于尾递归形式的递归算法，可以利用循环结构来替代。</p>
+
 <p>单向递归是指递归算法中虽然有多处递归调用语句，但各递归调用语句的参数之间没有关系，并且这些递归调用语句都处在递归算法的最后。显然，尾递归是单向递归的特例。对于单向递归，可以设置一些变量保存中间结构，将递归结构用循环结构来替代。</p>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//斐波那契数列</span><br><span class="hljs-comment">//递归</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span><br></span>&#123;<br>    <span class="hljs-keyword">if</span> (n= =<span class="hljs-number">1</span> | | n= =<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>　　    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> f(n<span class="hljs-number">-1</span>)+f(n<span class="hljs-number">-2</span>);<br>&#125;<br><br><span class="hljs-comment">//非递归</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span><br></span>&#123;<br>　　<span class="hljs-keyword">int</span> i, s;<br>      <span class="hljs-keyword">if</span>(n&lt;<span class="hljs-number">0</span>)<br>          <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>      <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n&lt;<span class="hljs-number">3</span>)<br>          <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>　　<span class="hljs-keyword">int</span> s1=<span class="hljs-number">1</span>, s2=<span class="hljs-number">1</span>;<br>　　<span class="hljs-keyword">for</span> (i=<span class="hljs-number">3</span>; i &lt;n; i++)<br>     &#123;<br>　　     s=s1+s2;<br>　　     s2=s1; <span class="hljs-comment">// 保存f(n-2)的值</span><br>　　     s1=s; <span class="hljs-comment">//保存f(n-1)的值</span><br>　　&#125;<br>　　<span class="hljs-keyword">return</span> s;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="基于栈结构的间接转换"><a href="#基于栈结构的间接转换" class="headerlink" title="基于栈结构的间接转换"></a>基于栈结构的间接转换</h2><p>通用的变换规则如下：假设template P(p1, p2, …,pm)是一个递归过程或函数（省略参数类型说明），其中p1, … , pm为参数，并设过程中有n个局部变量q1, …, qn和t个递归调用本过程P的语句。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">//斐波那契数列
+</span><span class="c1">//递归
+</span><span class="c1"></span><span class="kt">int</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">=</span> <span class="o">=</span><span class="mi">1</span> <span class="o">|</span> <span class="o">|</span> <span class="n">n</span><span class="o">=</span> <span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+　　    <span class="k">else</span> <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//非递归
+</span><span class="c1"></span><span class="kt">int</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+　　<span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span>
+          <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">)</span>
+          <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+　　<span class="kt">int</span> <span class="n">s1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">s2</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+　　<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+     <span class="p">{</span>
+　　     <span class="n">s</span><span class="o">=</span><span class="n">s1</span><span class="o">+</span><span class="n">s2</span><span class="p">;</span>
+　　     <span class="n">s2</span><span class="o">=</span><span class="n">s1</span><span class="p">;</span> <span class="c1">// 保存f(n-2)的值
+</span><span class="c1"></span>　　     <span class="n">s1</span><span class="o">=</span><span class="n">s</span><span class="p">;</span> <span class="c1">//保存f(n-1)的值
+</span><span class="c1"></span>　　<span class="p">}</span>
+　　<span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="基于栈结构的间接转换">基于栈结构的间接转换</h2>
+
+<p>通用的变换规则如下：假设template P(p1, p2, &hellip;,pm)是一个递归过程或函数（省略参数类型说明），其中p1, … , pm为参数，并设过程中有n个局部变量q1, …, qn和t个递归调用本过程P的语句。</p>
+
 <p>(1) 在P中增设工作栈S，以存放当前层工作记录。每个工作记录包含m+n+2个数据项，其说明如下。</p>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">levelstr</span><br>&#123;</span>   <span class="hljs-keyword">int</span> p0; <span class="hljs-comment">// 返回语句标号</span><br>    ParaType p；    <span class="hljs-comment">// p用来保存返回值, 类型与递归过程返回值类型ParaType一致</span><br>    <span class="hljs-comment">// 若递归过程为void, 则此项无意义</span><br>    ParaType p1, ..., pm;   <span class="hljs-comment">// 按原类型定义</span><br>    ParaType q1, ..., qn;   <span class="hljs-comment">// 按原类型定义</span><br>&#125; s；<br></code></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="n">levelstr</span>
+<span class="p">{</span>   <span class="kt">int</span> <span class="n">p0</span><span class="p">;</span> <span class="c1">// 返回语句标号
+</span><span class="c1"></span>    <span class="n">ParaType</span> <span class="n">p</span><span class="err">；</span>    <span class="c1">// p用来保存返回值, 类型与递归过程返回值类型ParaType一致
+</span><span class="c1"></span>    <span class="c1">// 若递归过程为void, 则此项无意义
+</span><span class="c1"></span>    <span class="n">ParaType</span> <span class="n">p1</span><span class="p">,</span> <span class="p">...,</span> <span class="n">pm</span><span class="p">;</span>   <span class="c1">// 按原类型定义
+</span><span class="c1"></span>    <span class="n">ParaType</span> <span class="n">q1</span><span class="p">,</span> <span class="p">...,</span> <span class="n">qn</span><span class="p">;</span>   <span class="c1">// 按原类型定义
+</span><span class="c1"></span><span class="p">}</span> <span class="n">s</span><span class="err">；</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>(2) 在P中设置t+2个语句标号：&lt;标号0＞, &lt;标号1＞, …, &lt;标号t+1＞。其中，&lt;标号0＞设在过程体中第一个可执行的语句上，&lt;标号t+1＞设在过程体结束处之前，其余t个标号分别设置在t个调用过程语句的返回处。</p>
+
 <p>(3) 在过程体的第一个执行语句（即&lt;标号0＞的语句为过程P的递归入口）之前，增加下列两个语句作为过程P的非递归入口（从调用过程P的主过程进入过程P的入口）：</p>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">Stack&lt;levelstr&gt; s; <span class="hljs-comment">// 栈初始化</span><br>s.push(&lt;标号t+<span class="hljs-number">1</span>&gt;, p, p1, ..., pm, q1, ..., qn); <span class="hljs-comment">// 当前参量进栈</span><br></code></pre></td></tr></table></figure>
-<p>(4) 假设过程体中第I(i＝1, …, t)个递归调用语句为P(a1, a2, …, am)，其中，ai(i＝1, …, m)为实参。则用下列3个语句替换它。</p>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">S.push(&lt;标号i&gt;, a1, ..., am);   <span class="hljs-comment">// 调用实参进栈</span><br><span class="hljs-keyword">goto</span> &lt;标号<span class="hljs-number">0</span>&gt;;   <span class="hljs-comment">// 转向递归入口处</span><br>&lt;标号i&gt;：s.pop( );  <span class="hljs-comment">// 退栈操作</span><br></code></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Stack</span><span class="o">&lt;</span><span class="n">levelstr</span><span class="o">&gt;</span> <span class="n">s</span><span class="p">;</span> <span class="c1">// 栈初始化
+</span><span class="c1"></span><span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="o">&lt;</span><span class="err">标号</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="p">...,</span> <span class="n">pm</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="p">...,</span> <span class="n">qn</span><span class="p">);</span> <span class="c1">// 当前参量进栈
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>(4) 假设过程体中第I(i＝1, &hellip;, t)个递归调用语句为P(a1, a2, &hellip;, am)，其中，ai(i＝1, &hellip;, m)为实参。则用下列3个语句替换它。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">S</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="o">&lt;</span><span class="err">标号</span><span class="n">i</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="p">...,</span> <span class="n">am</span><span class="p">);</span>   <span class="c1">// 调用实参进栈
+</span><span class="c1"></span><span class="k">goto</span> <span class="o">&lt;</span><span class="err">标号</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">;</span>   <span class="c1">// 转向递归入口处
+</span><span class="c1"></span><span class="o">&lt;</span><span class="err">标号</span><span class="n">i</span><span class="o">&gt;</span><span class="err">：</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span> <span class="p">);</span>  <span class="c1">// 退栈操作
+</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>由于goto语句不能转向一个语句的内部，因此，如果某个递归调用语句包含在另一个语句的内部，则应加以适当处理使所有的语句标号只出现在第一层。</p>
+
 <p>如下列语句组:</p>
-<pre><code>while(条件w)LINESw;
-LINES;（其中LINESw为第k个递归调用语句）
-</code></pre><p>可改为：</p>
-<pre><code>&lt;标号w1&gt;：if(条件w){ s.push(...)； goto &lt;标号0&gt;;}
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">while(条件w)LINESw;
+LINES;（其中LINESw为第k个递归调用语句）</pre></td></tr></table>
+</div>
+</div>
+<p>可改为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&lt;标号w1&gt;：if(条件w){ s.push(...)； goto &lt;标号0&gt;;}
         else goto &lt;标号w2&gt;
 &lt;标号k&gt;： s.pop(); goto &lt;标号w1&gt;;
-&lt;标号w2&gt;： LINES; ...
-</code></pre><p>(5) 在过程体中所有递归出口处增加语句。</p>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">s.peek().p = ...； <span class="hljs-comment">// 若递归过程有返回值，执行此赋值语句</span><br><span class="hljs-keyword">goto</span> s.peek().p0； <span class="hljs-comment">// 转向栈顶的返回语句标号处</span><br></code></pre></td></tr></table></figure>
+&lt;标号w2&gt;： LINES; ...</pre></td></tr></table>
+</div>
+</div>
+<p>(5) 在过程体中所有递归出口处增加语句。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">().</span><span class="n">p</span> <span class="o">=</span> <span class="p">...</span><span class="err">；</span> <span class="c1">// 若递归过程有返回值，执行此赋值语句
+</span><span class="c1"></span><span class="k">goto</span> <span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">().</span><span class="n">p0</span><span class="err">；</span> <span class="c1">// 转向栈顶的返回语句标号处
+</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>此goto语句的正规写法为：</p>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">switch</span>(s.peek( ). p0)<br>&#123;<br>    <span class="hljs-keyword">case</span> &lt;标号<span class="hljs-number">0</span>&gt;:<span class="hljs-keyword">goto</span> &lt;标号<span class="hljs-number">0</span>&gt;; <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> &lt;标号<span class="hljs-number">1</span>&gt;:<span class="hljs-keyword">goto</span> &lt;标号<span class="hljs-number">1</span>&gt;; <span class="hljs-keyword">break</span>;<br>                 ...<br>    <span class="hljs-keyword">case</span> &lt;标号t+<span class="hljs-number">1</span>&gt;:<span class="hljs-keyword">goto</span> &lt;标号t+<span class="hljs-number">1</span>&gt;; <span class="hljs-keyword">break</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">switch</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">(</span> <span class="p">).</span> <span class="n">p0</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">case</span> <span class="o">&lt;</span><span class="err">标号</span><span class="mi">0</span><span class="o">&gt;:</span><span class="k">goto</span> <span class="o">&lt;</span><span class="err">标号</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="o">&lt;</span><span class="err">标号</span><span class="mi">1</span><span class="o">&gt;:</span><span class="k">goto</span> <span class="o">&lt;</span><span class="err">标号</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+                 <span class="p">...</span>
+    <span class="k">case</span> <span class="o">&lt;</span><span class="err">标号</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;:</span><span class="k">goto</span> <span class="o">&lt;</span><span class="err">标号</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>(6) 标号为t+1的语句是增添的实现函数值出栈操作的语句，作为过程P的非递归出口（即返回调用该递归过程的主过程）。</p>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp">&lt;标号t+<span class="hljs-number">1</span>&gt;: temp = s.peek().p； <span class="hljs-comment">// temp为临时变量, 保存返回值</span><br>                   <span class="hljs-comment">// 如递归无返回值, 此语句和下面的return语句可以省略</span><br>s.pop();<br>retutn temp；<br></code></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="o">&lt;</span><span class="err">标号</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;:</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">().</span><span class="n">p</span><span class="err">；</span> <span class="c1">// temp为临时变量, 保存返回值
+</span><span class="c1"></span>                   <span class="c1">// 如递归无返回值, 此语句和下面的return语句可以省略
+</span><span class="c1"></span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+<span class="n">retutn</span> <span class="n">temp</span><span class="err">；</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>(7) 切记实现参量“当前层化”，过程体中出现的所有参变量和局部变量均以栈顶工作记录中相应的数据项代替。</p>
-<p>(8) 若算法中有复合递归调用的语句，则应增设局部变量消除复合调用，即，将形如f(…, f(…), …);的语句改写为&lt;局部变量＞：f(…);…f(…, &lt;局部变量＞,…);的形式。</p>
+
+<p>(8) 若算法中有复合递归调用的语句，则应增设局部变量消除复合调用，即，将形如f(&hellip;, f(&hellip;), &hellip;);的语句改写为&lt;局部变量＞：f(&hellip;);&hellip;f(&hellip;, &lt;局部变量＞,&hellip;);的形式。</p>
+
 <p>(9) 经过上述变换规则得到的不含递归的算法尚需进行最后一步变换，即简化不必要的操作，如消去冗余进栈的内容等，并画出相应的流程图，从流程图中找出各循环的循环体和循环条件，从而消去goto语句，得到结构清晰的非递归算法。</p>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//汉诺塔递归</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Hanoi</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n，<span class="hljs-keyword">char</span> x，y，z)</span><br></span>&#123;<br>    <span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>) move(x,<span class="hljs-number">1</span>,z); <span class="hljs-comment">// 将编号为1的盘子从x移到z</span><br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        Hanoi(n<span class="hljs-number">-1</span>,x,z,y);<br>        Move(x,n,z);<br>        Hanoi(n<span class="hljs-number">-1</span>,y,x,z);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//机械转换</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Hanoi</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">char</span> x, y, z)</span><br></span>&#123;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">levelstr</span><br>    &#123;</span><br>        <span class="hljs-keyword">int</span> adr, ptrn; <span class="hljs-keyword">char</span> xp, yp, zp；<br>    &#125; *s, currentp;<br>    s= <span class="hljs-keyword">new</span> Stack(m*m<span class="hljs-number">-1</span>);    <span class="hljs-comment">// m*m-1是栈的初始化大小</span><br>    s.push(<span class="hljs-number">3</span>, n, x, y, z);<br>    <span class="hljs-number">0</span>:currentp = s.peek();  <span class="hljs-comment">// 局部变量currentp用来保存栈顶元素</span><br>        <span class="hljs-keyword">if</span>(currentp.prtn == <span class="hljs-number">1</span>)&#123;<br>          move(currentp.xp, <span class="hljs-number">1</span>, currentp.Zp);<br>          <span class="hljs-keyword">goto</span> currentp.adr;<br>        &#125;<br>        s.push(<span class="hljs-number">1</span>, currentp.ptrn<span class="hljs-number">-1</span>, currentp.xp,<br>              currentp.zp, cutrretnp.Yp);<br>        <span class="hljs-keyword">goto</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-number">1</span>:s.pop();<br>        currentp = s.peek();<br>        move(currentp.Xp,currentp.Ptrn, currentp.zp);<br>        s.push(<span class="hljs-number">2</span>, currentp.ptrn –<span class="hljs-number">1</span>, currentp.yp,<br>              currentp.xp, currentp. zp);<br>        <span class="hljs-keyword">goto</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-number">2</span>:s.pop();<br>        currentp = s.peek();<br>        <span class="hljs-keyword">goto</span> currentp.adr;<br>    <span class="hljs-number">3</span>:s.pop();<br>&#125;<br><br><span class="hljs-comment">//优化，去goto</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">hanoi2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">char</span> x, y, z)</span><br></span>&#123;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">levelstr</span><br>    &#123;</span><br>        <span class="hljs-keyword">int</span> ptrn; <span class="hljs-keyword">char</span> xp, yp, zp;<br>    &#125; s[arrmax];<br>    <span class="hljs-keyword">int</span> top; <span class="hljs-keyword">char</span> temp; top = <span class="hljs-number">0</span>;<br>    s[top] = (n, x, y, z); <span class="hljs-comment">// 栈初始化</span><br>    <span class="hljs-keyword">while</span>(!((top==<span class="hljs-number">0</span>)&amp;&amp;(s[top].ptrn==<span class="hljs-number">1</span>)))<br>    &#123;<br>        <span class="hljs-keyword">while</span>(s[top].ptrn &gt; <span class="hljs-number">1</span>)<br>            s[top++] =(s[top].ptrn<span class="hljs-number">-1</span>, s[top].xp,<br>                        s[top].zp, s[top].yp);<br>        move(s[top].xp, <span class="hljs-number">1</span>, s[top].zp);<br>        <span class="hljs-keyword">if</span> (top &gt; <span class="hljs-number">0</span>) &#123;<br>            top--;<br>            move(s[top].xp, s[top].ptrn, s[top].zp);<br>            s[top].ptrn--;<br>            temp = s[top].xp;<br>            s[top].xp = s[top].Yp;<br>            s[top].yp = temp;<br>        &#125;<br>    &#125;<br>    move(s[top].xp, <span class="hljs-number">1</span>, s[top].zp);<br>    top--;<br>&#125;<br></code></pre></td></tr></table></figure>
-    </main>
-    <footer class="post-footer">
-      
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">//汉诺塔递归
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">Hanoi</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="err">，</span><span class="kt">char</span> <span class="n">x</span><span class="err">，</span><span class="n">y</span><span class="err">，</span><span class="n">z</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">move</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">z</span><span class="p">);</span> <span class="c1">// 将编号为1的盘子从x移到z
+</span><span class="c1"></span>    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">Hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+        <span class="n">Move</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
+        <span class="n">Hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">//机械转换
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">Hanoi</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">char</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">levelstr</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">adr</span><span class="p">,</span> <span class="n">ptrn</span><span class="p">;</span> <span class="kt">char</span> <span class="n">xp</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="n">zp</span><span class="err">；</span>
+    <span class="p">}</span> <span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="n">currentp</span><span class="p">;</span>
+    <span class="n">s</span><span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>    <span class="c1">// m*m-1是栈的初始化大小
+</span><span class="c1"></span>    <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+    <span class="mi">0</span><span class="o">:</span><span class="n">currentp</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">();</span>  <span class="c1">// 局部变量currentp用来保存栈顶元素
+</span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">currentp</span><span class="p">.</span><span class="n">prtn</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span>
+          <span class="n">move</span><span class="p">(</span><span class="n">currentp</span><span class="p">.</span><span class="n">xp</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span><span class="n">Zp</span><span class="p">);</span>
+          <span class="k">goto</span> <span class="n">currentp</span><span class="p">.</span><span class="n">adr</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span><span class="n">ptrn</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span><span class="n">xp</span><span class="p">,</span>
+              <span class="n">currentp</span><span class="p">.</span><span class="n">zp</span><span class="p">,</span> <span class="n">cutrretnp</span><span class="p">.</span><span class="n">Yp</span><span class="p">);</span>
+        <span class="k">goto</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="mi">1</span><span class="o">:</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="n">currentp</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">();</span>
+        <span class="n">move</span><span class="p">(</span><span class="n">currentp</span><span class="p">.</span><span class="n">Xp</span><span class="p">,</span><span class="n">currentp</span><span class="p">.</span><span class="n">Ptrn</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span><span class="n">zp</span><span class="p">);</span>
+        <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span><span class="n">ptrn</span> <span class="err">–</span><span class="mi">1</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span><span class="n">yp</span><span class="p">,</span>
+              <span class="n">currentp</span><span class="p">.</span><span class="n">xp</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span> <span class="n">zp</span><span class="p">);</span>
+        <span class="k">goto</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="mi">2</span><span class="o">:</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="n">currentp</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">();</span>
+        <span class="k">goto</span> <span class="n">currentp</span><span class="p">.</span><span class="n">adr</span><span class="p">;</span>
+    <span class="mi">3</span><span class="o">:</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">//优化，去goto
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">hanoi2</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">char</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">levelstr</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">ptrn</span><span class="p">;</span> <span class="kt">char</span> <span class="n">xp</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="n">zp</span><span class="p">;</span>
+    <span class="p">}</span> <span class="n">s</span><span class="p">[</span><span class="n">arrmax</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">top</span><span class="p">;</span> <span class="kt">char</span> <span class="n">temp</span><span class="p">;</span> <span class="n">top</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span> <span class="c1">// 栈初始化
+</span><span class="c1"></span>    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">((</span><span class="n">top</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">ptrn</span><span class="o">==</span><span class="mi">1</span><span class="p">)))</span>
+    <span class="p">{</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">ptrn</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">ptrn</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">xp</span><span class="p">,</span>
+                        <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">zp</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">yp</span><span class="p">);</span>
+        <span class="n">move</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">xp</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">zp</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">top</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">top</span><span class="o">--</span><span class="p">;</span>
+            <span class="n">move</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">xp</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">ptrn</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">zp</span><span class="p">);</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">ptrn</span><span class="o">--</span><span class="p">;</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">xp</span><span class="p">;</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">xp</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">Yp</span><span class="p">;</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">yp</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">move</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">xp</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">zp</span><span class="p">);</span>
+    <span class="n">top</span><span class="o">--</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">josephpei</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2013-10-29
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
       <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/algorithm/" rel="tag"><i class="fas fa-tags"></i>algorithm</a>
-        
-      </div>
-      
+          <a href="/tags/algorithm/">algorithm</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2013/10/29/vim-youcompleteme-on-64bit-windows/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">vim Youcompleteme on 64bit Windows</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2013/10/26/vim-%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%94%BB%E7%95%A5/">
+            <span class="next-text nav-default">vim 插件配置攻略</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
     </footer>
   </article>
-  
-  
-  <nav class="page-nav">
-    <div class="page-nav-next page-nav-item">
-      
-      <a href="/2013/10/26/vim-插件配置攻略/" rel="next" title="vim 插件配置攻略"><i class="fas fa-angle-left"></i><span class="nav-title">vim 插件配置攻略</span></a>
-      
-    </div>
-    <div class="page-nav-prev page-nav-item">
-      
-      <a href="/2013/10/29/vim-youcompleteme-on-64bit-windows/" rel="prev" title="vim Youcompleteme on 64bit Windows"><span class="nav-title">vim Youcompleteme on 64bit Windows</span><i class="fas fa-angle-right"></i></a>
-      
-    </div>
-  </nav>
-  
-  
-  
-
-<div class="comments" id="comments">
-  
-  <script defer id="dsq-count-scr" src="//josephpei-github-io.disqus.com/count.js"></script>
-  
-  <div id="disqus_thread" class="disqus_thread"></div>
-  <script type="text/javascript">
-  var disqus_config = function () {
-    this.page.url = "http://josephpei.github.io/2013/10/29/递归算法转换为非递归算法/";
-    this.page.identifier = "2013/10/29/递归算法转换为非递归算法/";
-  };
-  (function() {
-    var d = document, s = d.createElement("script");
-    s.src = "https://josephpei-github-io.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-  </script>
-  
-  
-</div>
-
-
-
-  
-</div>
-
-          </div>
-          
-          
-          
-<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
-  
-  <div class="search">
-    <div class="form-group">
-      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
-    </div>
-  </div>
-  <div class="search-result-box" id="search-result"></div>
-  
-  
-<div class="info sidebar-item" id="info">
-  
-  <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
-  
-  <h1 class="author-name">Joseph Pei</h1>
-  <h2 class="author-description"></h2>
-  <div class="site-count">
-    
-  </div>
-  
-  <div class="rss">
-    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
-  </div>
-  
-</div>
-
-
-  <div class="sidebar-sticky">
-    
-    
-    
-    
-    
-    <hr>
-    <div class="post-toc sidebar-item" id="toc-div">
-      <div><i class="fas fa-list-ol"></i>文章目录</div>
-      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#直接转换法"><span class="toc-text">直接转换法</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#基于栈结构的间接转换"><span class="toc-text">基于栈结构的间接转换</span></a></li></ol></div>
-    </div>
-    
-    
-    
-    <hr>
-    <div class="social-link sidebar-item">
-      <div><i class="far fa-address-card"></i>社交链接</p></div>
-      <ul>
-        
-        <li>fas fa-envelope<a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
-        
-        <li>fab fa-github<a href="https://github.com/" target="_blank">GitHub</a></li>
-        
-        <li>fab fa-weibo<a href="https://weibo.com/" target="_blank">Weibo</a></li>
-        
-      </ul>
-    </div>
-    
-    
-    <hr>
-    <div class="blogroll sidebar-item">
-      <div><i class="fas fa-link"></i>友情链接</div>
-      <ul>
-        
-        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-        
-        <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-        
-        <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-        
-      </ul>
-    </div>
-    
-  </div>
-</aside>
-
-
-          
         </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'josephpei-github-io';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
       </div>
     </main>
-    
-<footer id="footer" class="footer" style="background: #33363b;">
-  <div class="container">
-    <div class="back-to-top">
-      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
-    </div>
-    <div class="footer-container">
-      <div class="footer-left">
-        <div class="copyright">
-          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
-        </div>
-        
-        <div class="busuanzi">
-          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
-        </div>
-        
-      </div>
-      <div class="footer-right">
-        <div class="custom-info">
-          
-          托管于 <i class="fab fa-github-alt"></i> <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
-          
-        </div>
-        <div class="powered-by">
-          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
-        </div>
-      </div>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
+  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">josephpei</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
     </div>
   </div>
-</footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
 
 
-  </body>
+
+
+
+
+
+
+</body>
 </html>

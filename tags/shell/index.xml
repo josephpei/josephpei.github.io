@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shell on 有翅膀的天狼</title>
+    <link>http://josephpei.github.io/tags/shell/</link>
+    <description>Recent content in shell on 有翅膀的天狼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 15 Sep 2013 21:09:49 +0800</lastBuildDate>
+    
+	<atom:link href="http://josephpei.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>zsh与oh-my-zsh</title>
+      <link>http://josephpei.github.io/2013/09/15/zsh%E4%B8%8Eoh-my-zsh/</link>
+      <pubDate>Sun, 15 Sep 2013 21:09:49 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/09/15/zsh%E4%B8%8Eoh-my-zsh/</guid>
+      <description>zsh 介绍 http://foocoder.com/blog/wo-zai-yong-de-macruan-jian-2.html/ 安装 zsh 与 oh-my-zsh 1 2 brew install zsh curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh 修改/etc/shells，添加/usr/local/bin/zsh 更改默认 shell 为 zsh 1 chsh -s /usr/local/bin/zsh 配置 iTerm2 的主题</description>
+    </item>
+    
+  </channel>
+</rss>

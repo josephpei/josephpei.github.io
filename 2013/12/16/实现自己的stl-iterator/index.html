@@ -1,390 +1,1289 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#33363b">
-    <meta name="msapplication-TileColor" content="#33363b">
-    
-    
-    
-    
-    <meta name="keywords" content="Life, Linux, Hexo">
-    
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-    
-    
-    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
-    
-    
-    <link rel="manifest" href="/favicons/site.webmanifest">
-    
-    
-    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
-    
-    
-    <link rel="alternate" href="/atom.xml" title="有翅膀的天狼" type="application/atom+xml" />
-    
-    
-    
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
-    
-    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
-    
-    
-<link rel="stylesheet" type="text/css" href="/css/page.css">
-<link rel="stylesheet" type="text/css" href="/css/post.css">
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>实现自己的STL Iterator - 有翅膀的天狼</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    <link rel="stylesheet" type="text/css" href="/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
-    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script defer type="text/javascript" src="/js/util.js"></script>
-    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
-    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
-    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
-    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
-    
-    <script defer src="/js/busuanzi.pure.mini.js"></script>
-    
-    
-    <script defer type="text/javascript" src="/js/search.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var searchPath = "search.xml";
-      if (searchPath.length === 0) {
-        searchPath = "search.xml";
-      }
-      var path = "/" + searchPath;
-      searchFunc(path, "search-input", "search-result");
-    });
-    </script>
-    
-    
-    <script defer type="text/javascript" src="/js/index.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var cb = null;
-      var els = $(".post figure.highlight");
-      if (els.length) {
-        // Enabled Hexo highlight line number.
-        $(els).each(function (i, e) {
-          $(e).before("<button class=\"copy button\">复制</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout with line number.
-              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
-          }
-        });
-      } else {
-        // Disabled Hexo highlight line number.
-        els = $(".post pre code");
-        $(els).each(function (i, e) {
-          // Add button before pre, not code.
-          $(e).parent().before("<button class=\"copy button\">复制</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout without line number.
-              return trigger.nextElementSibling.firstChild;
-          }
-        });
-      }
-      cb.on("success", function (e) {
-        e.clearSelection();
-        var trigger = e.trigger;
-        // Change button text as a user tip.
-        trigger.innerHTML = "已复制";
-        $(trigger).addClass("copied");
-        // Change button text back;
-        setTimeout(function () {
-          trigger.innerHTML = "复制";
-          $(trigger).removeClass("copied");
-        }, 1500);
-      });
-    });
-    </script>
-    
-    <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>实现自己的STL Iterator | 有翅膀的天狼 - Whisper to the world</title>
-  </head>
-  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
-    
-<header id="header" class="header" style="background: #33363b;">
-  <div class="container">
-    <div class="header-container">
-      <div class="header-title">
-        <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
-        <h2 class="subtitle">Whisper to the world</h2>
-      </div>
-      
-      <div class="logo">
-        <img src="/img/logo.png" alt="logo">
-      </div>
-      
-    </div>
-    <nav id="nav" class="nav">
-      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
-      <ul id="menu" role="menubar" aria-hidden="false">
-        
-      </ul>
-    </nav>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="josephpei" /><meta name="description" content="STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。
+" /><meta name="keywords" content="life, linux, program" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://josephpei.github.io/2013/12/16/%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%B7%B1%E7%9A%84stl-iterator/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="实现自己的STL Iterator" />
+<meta property="og:description" content="STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://josephpei.github.io/2013/12/16/%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%B7%B1%E7%9A%84stl-iterator/" />
+<meta property="article:published_time" content="2013-12-16T11:10:08&#43;08:00"/>
+<meta property="article:modified_time" content="2013-12-16T11:10:08&#43;08:00"/>
+
+<meta itemprop="name" content="实现自己的STL Iterator">
+<meta itemprop="description" content="STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。">
+
+
+<meta itemprop="datePublished" content="2013-12-16T11:10:08&#43;08:00" />
+<meta itemprop="dateModified" content="2013-12-16T11:10:08&#43;08:00" />
+<meta itemprop="wordCount" content="1918">
+
+
+
+<meta itemprop="keywords" content="cpp," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="实现自己的STL Iterator"/>
+<meta name="twitter:description" content="STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Wolfsky</a>
   </div>
-</header>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Wolfsky</a>
+</div>
 
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
 
     <main id="main" class="main">
-      <div class="container">
-        <div class="main-container">
-          <div class="content">
-            
-<div id="post" class="page">
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/12/16/实现自己的stl-iterator/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="Joseph Pei">
-       <meta itemprop="description" content="">
-       <meta itemprop="image" content="/img/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="有翅膀的天狼">
-      </span>
-    </div>
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">实现自己的STL Iterator</h1>
+      <h1 class="post-title">实现自己的STL Iterator</h1>
+
       <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2013-12-16T11:10:08+08:00">2013-12-16 11:10:08</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2013/12/16/实现自己的stl-iterator/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/12/16/实现自己的stl-iterator/" itemprop="commentCount"></span></a></span>
-        </span>
+        <span class="post-time"> 2013-12-16 </span>
         
         
       </div>
     </header>
-    <main class="post-main" itemprop="articleBody">
-      <p>STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。<a id="more"></a></p>
-<h2 id="1-内嵌STL-Container"><a href="#1-内嵌STL-Container" class="headerlink" title="1 内嵌STL Container"></a>1 内嵌STL Container</h2><p>代理模式</p>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CourseList</span> &#123;</span><br><span class="hljs-keyword">private</span>:<br>  <span class="hljs-keyword">typedef</span> <span class="hljs-built_in">vector</span>&lt;Student&gt; StudentList;<br>  StudentList students;<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-keyword">typedef</span> StudentList::iterator iterator;<br>  <span class="hljs-keyword">typedef</span> StudentList::const_iterator const_iterator;<br>  <span class="hljs-function">iterator <span class="hljs-title">begin</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> students.begin(); &#125;<br>  <span class="hljs-function">iterator <span class="hljs-title">end</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> students.end(); &#125;<br>  ...<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h2 id="2-在自己的-Collection-中实现-STL-Iterator"><a href="#2-在自己的-Collection-中实现-STL-Iterator" class="headerlink" title="2 在自己的 Collection 中实现 STL Iterator"></a>2 在自己的 Collection 中实现 STL Iterator</h2><p>stl iterator class</p>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> _Category, <span class="hljs-keyword">typename</span> _Tp, <span class="hljs-keyword">typename</span> _Distance = <span class="hljs-keyword">ptrdiff_t</span>,<br>            <span class="hljs-keyword">typename</span> _Pointer = _Tp*, <span class="hljs-keyword">typename</span> _Reference = _Tp&amp;&gt;<br>struct iterator<br>&#123;<br>   <span class="hljs-keyword">typedef</span> _Category  iterator_category;<br>   <span class="hljs-keyword">typedef</span> _Tp        value_type;<br>   <span class="hljs-keyword">typedef</span> _Distance  difference_type;<br>   <span class="hljs-keyword">typedef</span> _Pointer   pointer;<br>   <span class="hljs-keyword">typedef</span> _Reference reference;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt; <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">mylist</span>;</span>  <span class="hljs-comment">// forward declare</span><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt; <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">mylist_iterator</span>;</span> <span class="hljs-comment">// forward declare</span><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">mylist_node</span> &#123;</span><br>	<span class="hljs-keyword">friend</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">mylist</span>&lt;T&gt;;</span><br>	<span class="hljs-keyword">friend</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">mylist_iterator</span>&lt;T&gt;;</span><br><span class="hljs-keyword">private</span>:<br>	mylist_node(<span class="hljs-keyword">const</span> T&amp; t, mylist_node&lt;T&gt; *next) : elem(t), next(next) &#123;&#125;<br>	~mylist_node() &#123; <span class="hljs-keyword">delete</span> next; &#125;<br>	T elem;<br>	mylist_node&lt;T&gt; *next;<br>&#125;;<br><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">mylist</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-keyword">typedef</span> mylist_iterator&lt;T&gt; iterator    ;<br><span class="hljs-keyword">public</span>:<br>	mylist() : head(<span class="hljs-literal">NULL</span>), tail(<span class="hljs-literal">NULL</span>) &#123;&#125;<br>	~mylist() &#123; <span class="hljs-keyword">delete</span> head; &#125;<br>	<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">empty</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>&#123; <span class="hljs-keyword">return</span> head == <span class="hljs-literal">NULL</span>; &#125;<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">push_back</span><span class="hljs-params">(<span class="hljs-keyword">const</span> T&amp; elem)</span></span>;<br>	<span class="hljs-function">iterator <span class="hljs-title">begin</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> mylist_iterator&lt;T&gt;(head); &#125;<br>	<span class="hljs-function">iterator <span class="hljs-title">end</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> mylist_iterator&lt;T&gt;(<span class="hljs-literal">NULL</span>); &#125;<br><span class="hljs-keyword">private</span>:<br>	mylist_node&lt;T&gt; *head, *tail;<br>&#125;;<br><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">mylist_iterator</span> :</span> <span class="hljs-keyword">public</span> iterator&lt;forward_iterator_tag, T&gt; &#123;<br>	<span class="hljs-keyword">friend</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">mylist</span>&lt;T&gt;;</span><br><span class="hljs-keyword">public</span>:<br>	T&amp; <span class="hljs-keyword">operator</span>*();<br>	<span class="hljs-keyword">const</span> mylist_iterator&lt;T&gt;&amp; <span class="hljs-keyword">operator</span>++();<br>	<span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span>!=(<span class="hljs-keyword">const</span> mylist_iterator&lt;T&gt;&amp; other) <span class="hljs-keyword">const</span>;<br><span class="hljs-keyword">private</span>:<br>	mylist_node&lt;T&gt; *pointee;<br>	mylist_iterator(mylist_node&lt;T&gt; *pointee) : pointee(pointee) &#123;&#125;<br>&#125;;<br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br>T&amp; mylist_iterator&lt;T&gt;::<span class="hljs-keyword">operator</span>*()<br>&#123;<br>	<span class="hljs-keyword">return</span> pointee-&gt;elem;<br>&#125;<br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-keyword">const</span> mylist_iterator&lt;T&gt;&amp; mylist_iterator&lt;T&gt;::<span class="hljs-keyword">operator</span>++()<br>&#123;<br>	assert(pointee != <span class="hljs-literal">NULL</span>);<br>	pointee = pointee-&gt;next;<br>	<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>&#125;<br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-keyword">bool</span> mylist_iterator&lt;T&gt;:: <span class="hljs-keyword">operator</span>!=(<span class="hljs-keyword">const</span> mylist_iterator&lt;T&gt;&amp; other) <span class="hljs-keyword">const</span><br>&#123;<br>	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;pointee != other.pointee;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="3-特殊行为的Iterator"><a href="#3-特殊行为的Iterator" class="headerlink" title="3 特殊行为的Iterator"></a>3 特殊行为的Iterator</h2><p>Stroustrup The C++ Programming Language gives an example of range-checking iterator.</p>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-内嵌stl-container">1 内嵌STL Container</a></li>
+<li><a href="#2-在自己的-collection-中实现-stl-iterator">2 在自己的 Collection 中实现 STL Iterator</a></li>
+<li><a href="#3-特殊行为的iterator">3 特殊行为的Iterator</a></li>
+<li><a href="#iterator完整实现">Iterator完整实现</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。</p>
+
+<h2 id="1-内嵌stl-container">1 内嵌STL Container</h2>
+
+<p>代理模式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span><span class="err"> </span><span class="nc">CourseList</span> <span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+  <span class="k">typedef</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="n">StudentList</span><span class="p">;</span>
+  <span class="n">StudentList</span> <span class="n">students</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="k">typedef</span> <span class="n">StudentList</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iterator</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">StudentList</span><span class="o">::</span><span class="n">const_iterator</span> <span class="n">const_iterator</span><span class="p">;</span>
+  <span class="n">iterator</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">students</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="p">}</span>
+  <span class="n">iterator</span> <span class="nf">end</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">students</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="p">}</span>
+  <span class="p">...</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="2-在自己的-collection-中实现-stl-iterator">2 在自己的 Collection 中实现 STL Iterator</h2>
+
+<p>stl iterator class</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Category</span><span class="p">,</span> <span class="k">typename</span> <span class="n">_Tp</span><span class="p">,</span> <span class="k">typename</span> <span class="n">_Distance</span> <span class="o">=</span> <span class="n">ptrdiff_t</span><span class="p">,</span>
+            <span class="k">typename</span> <span class="n">_Pointer</span> <span class="o">=</span> <span class="n">_Tp</span><span class="o">*</span><span class="p">,</span> <span class="k">typename</span> <span class="n">_Reference</span> <span class="o">=</span> <span class="n">_Tp</span><span class="o">&amp;&gt;</span>
+<span class="k">struct</span> <span class="n">iterator</span>
+<span class="p">{</span>
+   <span class="k">typedef</span> <span class="n">_Category</span>  <span class="n">iterator_category</span><span class="p">;</span>
+   <span class="k">typedef</span> <span class="n">_Tp</span>        <span class="n">value_type</span><span class="p">;</span>
+   <span class="k">typedef</span> <span class="n">_Distance</span>  <span class="n">difference_type</span><span class="p">;</span>
+   <span class="k">typedef</span> <span class="n">_Pointer</span>   <span class="n">pointer</span><span class="p">;</span>
+   <span class="k">typedef</span> <span class="n">_Reference</span> <span class="n">reference</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">mylist</span><span class="p">;</span>  <span class="c1">// forward declare
+</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">mylist_iterator</span><span class="p">;</span> <span class="c1">// forward declare
+</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span><span class="err"> </span><span class="nc">mylist_node</span> <span class="p">{</span>
+	<span class="k">friend</span> <span class="k">class</span><span class="err"> </span><span class="nc">mylist</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
+	<span class="k">friend</span> <span class="k">class</span><span class="err"> </span><span class="nc">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="k">private</span><span class="o">:</span>
+	<span class="n">mylist_node</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">t</span><span class="p">,</span> <span class="n">mylist_node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">next</span><span class="p">)</span> <span class="o">:</span> <span class="n">elem</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="n">next</span><span class="p">)</span> <span class="p">{}</span>
+	<span class="o">~</span><span class="n">mylist_node</span><span class="p">()</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">next</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">T</span> <span class="n">elem</span><span class="p">;</span>
+	<span class="n">mylist_node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span><span class="err"> </span><span class="nc">mylist</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+	<span class="k">typedef</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">iterator</span>    <span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+	<span class="n">mylist</span><span class="p">()</span> <span class="o">:</span> <span class="n">head</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span> <span class="n">tail</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span> <span class="p">{}</span>
+	<span class="o">~</span><span class="n">mylist</span><span class="p">()</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">head</span><span class="p">;</span> <span class="p">}</span>
+	<span class="kt">bool</span> <span class="n">empty</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">;</span> <span class="p">}</span>
+	<span class="kt">void</span> <span class="n">push_back</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">elem</span><span class="p">);</span>
+	<span class="n">iterator</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">head</span><span class="p">);</span> <span class="p">}</span>
+	<span class="n">iterator</span> <span class="nf">end</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span> <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+	<span class="n">mylist_node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">tail</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span><span class="err"> </span><span class="nc">mylist_iterator</span> <span class="o">:</span> <span class="k">public</span> <span class="n">iterator</span><span class="o">&lt;</span><span class="n">forward_iterator_tag</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+	<span class="k">friend</span> <span class="k">class</span><span class="err"> </span><span class="nc">mylist</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+	<span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*</span><span class="p">();</span>
+	<span class="k">const</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="k">operator</span><span class="o">++</span><span class="p">();</span>
+	<span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+<span class="k">private</span><span class="o">:</span>
+	<span class="n">mylist_node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">pointee</span><span class="p">;</span>
+	<span class="n">mylist_iterator</span><span class="p">(</span><span class="n">mylist_node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">pointee</span><span class="p">)</span> <span class="o">:</span> <span class="n">pointee</span><span class="p">(</span><span class="n">pointee</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">};</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">T</span><span class="o">&amp;</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">*</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="n">pointee</span><span class="o">-&gt;</span><span class="n">elem</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">const</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">++</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">assert</span><span class="p">(</span><span class="n">pointee</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">pointee</span> <span class="o">=</span> <span class="n">pointee</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+	<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">bool</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">pointee</span> <span class="o">!=</span> <span class="n">other</span><span class="p">.</span><span class="n">pointee</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="3-特殊行为的iterator">3 特殊行为的Iterator</h2>
+
+<p>Stroustrup The C++ Programming Language gives an example of range-checking iterator.</p>
+
 <p>下面我们来实现一个even numbers iterator</p>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> IterT, <span class="hljs-keyword">typename</span> TypeT&gt;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">even_iterator</span> :</span><br><span class="hljs-keyword">public</span> <span class="hljs-built_in">std</span>::iterator&lt;input_iterator_tag, TypeT&gt;<br>&#123;<br><span class="hljs-keyword">protected</span>:<br>	IterT m_itCur;<br>	IterT m_itEnd;<br><br><span class="hljs-keyword">protected</span>:<br>	<span class="hljs-keyword">void</span> __find_first_even()<br>	&#123;<br>		<span class="hljs-keyword">for</span> (; m_itCur != m_itEnd; ++m_itCur)<br>			<span class="hljs-keyword">if</span> (*m_itCur % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) <span class="hljs-keyword">break</span>;<br>	&#125;<br><br>	<span class="hljs-keyword">void</span> __find_next_even()<br>	&#123;<br>		<span class="hljs-keyword">if</span> (m_itCur == m_itEnd) <span class="hljs-keyword">return</span>;<br>		<span class="hljs-keyword">for</span> (++m_itCur; m_itCur != m_itEnd; ++m_itCur)<br>			<span class="hljs-keyword">if</span> (*m_itCur % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) <span class="hljs-keyword">break</span>;<br>	&#125;<br><br><span class="hljs-keyword">public</span>:<br>	even_iterator() :<br>	m_itEnd(), m_itCur() &#123;&#125;<br><br>	even_iterator(<span class="hljs-keyword">const</span> IterT&amp; itCur, <span class="hljs-keyword">const</span> IterT&amp; itEnd) :<br>	m_itCur(itCur), m_itEnd(itEnd)<br>	&#123; __find_first_even(); &#125;<br><br>	even_iterator(<span class="hljs-keyword">const</span> even_iterator&amp; r) :<br>	m_itCur(r.m_itCur),<br>	m_itEnd(r.m_itEnd) &#123;&#125;<br><br>	even_iterator&lt;IterT, TypeT&gt;&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> even_iterator&amp; r)<br>	&#123;<br>		m_itCur = r.m_itCur;<br>		m_itEnd = r.m_itEnd;<br><br>		<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>	&#125;<br><br>	even_iterator&lt;IterT, TypeT&gt;&amp; <span class="hljs-keyword">operator</span>++()<br>	&#123;<br>		__find_next_even();<br>		<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>	&#125;<br><br>	even_iterator&lt;IterT, TypeT&gt; <span class="hljs-keyword">operator</span>++(<span class="hljs-keyword">int</span>)<br>	&#123;<br>		even_iterator it = *<span class="hljs-keyword">this</span>;<br>		__find_next_even();<br>		<span class="hljs-keyword">return</span> it;<br>	&#125;<br><br>	TypeT&amp; <span class="hljs-keyword">operator</span>*()<br>	&#123; <span class="hljs-keyword">return</span> *m_itCur; &#125;<br><br>	TypeT* <span class="hljs-keyword">operator</span>-&gt;()<br>	&#123; <span class="hljs-keyword">return</span> &amp;(*m_itCur); &#125;<br><br>	<span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span>!=(<span class="hljs-keyword">const</span> even_iterator&amp; r) <span class="hljs-keyword">const</span><br>	&#123; <span class="hljs-keyword">return</span> (m_itCur != r.m_itCur); &#125;<br><br>	<span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span>==(<span class="hljs-keyword">const</span> even_iterator&amp; r) <span class="hljs-keyword">const</span><br>	&#123; <span class="hljs-keyword">return</span> !<span class="hljs-keyword">operator</span>!=(r); &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">IterT</span><span class="p">,</span> <span class="k">typename</span> <span class="n">TypeT</span><span class="o">&gt;</span>
+<span class="k">class</span><span class="err"> </span><span class="nc">even_iterator</span> <span class="o">:</span>
+<span class="k">public</span> <span class="n">std</span><span class="o">::</span><span class="n">iterator</span><span class="o">&lt;</span><span class="n">input_iterator_tag</span><span class="p">,</span> <span class="n">TypeT</span><span class="o">&gt;</span>
+<span class="p">{</span>
+<span class="k">protected</span><span class="o">:</span>
+	<span class="n">IterT</span> <span class="n">m_itCur</span><span class="p">;</span>
+	<span class="n">IterT</span> <span class="n">m_itEnd</span><span class="p">;</span>
+
+<span class="k">protected</span><span class="o">:</span>
+	<span class="kt">void</span> <span class="n">__find_first_even</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="k">for</span> <span class="p">(;</span> <span class="n">m_itCur</span> <span class="o">!=</span> <span class="n">m_itEnd</span><span class="p">;</span> <span class="o">++</span><span class="n">m_itCur</span><span class="p">)</span>
+			<span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">m_itCur</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kt">void</span> <span class="n">__find_next_even</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">m_itCur</span> <span class="o">==</span> <span class="n">m_itEnd</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="o">++</span><span class="n">m_itCur</span><span class="p">;</span> <span class="n">m_itCur</span> <span class="o">!=</span> <span class="n">m_itEnd</span><span class="p">;</span> <span class="o">++</span><span class="n">m_itCur</span><span class="p">)</span>
+			<span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">m_itCur</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+	<span class="p">}</span>
+
+<span class="k">public</span><span class="o">:</span>
+	<span class="n">even_iterator</span><span class="p">()</span> <span class="o">:</span>
+	<span class="n">m_itEnd</span><span class="p">(),</span> <span class="n">m_itCur</span><span class="p">()</span> <span class="p">{}</span>
+
+	<span class="n">even_iterator</span><span class="p">(</span><span class="k">const</span> <span class="n">IterT</span><span class="o">&amp;</span> <span class="n">itCur</span><span class="p">,</span> <span class="k">const</span> <span class="n">IterT</span><span class="o">&amp;</span> <span class="n">itEnd</span><span class="p">)</span> <span class="o">:</span>
+	<span class="n">m_itCur</span><span class="p">(</span><span class="n">itCur</span><span class="p">),</span> <span class="n">m_itEnd</span><span class="p">(</span><span class="n">itEnd</span><span class="p">)</span>
+	<span class="p">{</span> <span class="n">__find_first_even</span><span class="p">();</span> <span class="p">}</span>
+
+	<span class="n">even_iterator</span><span class="p">(</span><span class="k">const</span> <span class="n">even_iterator</span><span class="o">&amp;</span> <span class="n">r</span><span class="p">)</span> <span class="o">:</span>
+	<span class="n">m_itCur</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">m_itCur</span><span class="p">),</span>
+	<span class="n">m_itEnd</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">m_itEnd</span><span class="p">)</span> <span class="p">{}</span>
+
+	<span class="n">even_iterator</span><span class="o">&lt;</span><span class="n">IterT</span><span class="p">,</span> <span class="n">TypeT</span><span class="o">&gt;&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">even_iterator</span><span class="o">&amp;</span> <span class="n">r</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">m_itCur</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="n">m_itCur</span><span class="p">;</span>
+		<span class="n">m_itEnd</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="n">m_itEnd</span><span class="p">;</span>
+
+		<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="n">even_iterator</span><span class="o">&lt;</span><span class="n">IterT</span><span class="p">,</span> <span class="n">TypeT</span><span class="o">&gt;&amp;</span> <span class="k">operator</span><span class="o">++</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">__find_next_even</span><span class="p">();</span>
+		<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="n">even_iterator</span><span class="o">&lt;</span><span class="n">IterT</span><span class="p">,</span> <span class="n">TypeT</span><span class="o">&gt;</span> <span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">even_iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+		<span class="n">__find_next_even</span><span class="p">();</span>
+		<span class="k">return</span> <span class="n">it</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="n">TypeT</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*</span><span class="p">()</span>
+	<span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="n">m_itCur</span><span class="p">;</span> <span class="p">}</span>
+
+	<span class="n">TypeT</span><span class="o">*</span> <span class="k">operator</span><span class="o">-&gt;</span><span class="p">()</span>
+	<span class="p">{</span> <span class="k">return</span> <span class="o">&amp;</span><span class="p">(</span><span class="o">*</span><span class="n">m_itCur</span><span class="p">);</span> <span class="p">}</span>
+
+	<span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">even_iterator</span><span class="o">&amp;</span> <span class="n">r</span><span class="p">)</span> <span class="k">const</span>
+	<span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">m_itCur</span> <span class="o">!=</span> <span class="n">r</span><span class="p">.</span><span class="n">m_itCur</span><span class="p">);</span> <span class="p">}</span>
+
+	<span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">even_iterator</span><span class="o">&amp;</span> <span class="n">r</span><span class="p">)</span> <span class="k">const</span>
+	<span class="p">{</span> <span class="k">return</span> <span class="o">!</span><span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="n">r</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>Test</p>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>* argv[])</span><br></span>&#123;<br>	srand((<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span>) time(<span class="hljs-literal">NULL</span>));<br><br>	<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; vnNums(<span class="hljs-number">20</span>);<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> u = <span class="hljs-number">0</span>; u &lt; <span class="hljs-number">20</span>; ++u)<br>		vnNums[u] = rand() / (<span class="hljs-keyword">float</span>) RAND_MAX * <span class="hljs-number">100</span>;<br><br>	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"initial vector:"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;<br>	copy(vnNums.begin(), vnNums.end(), ostream_iterator(<span class="hljs-built_in">cout</span>, <span class="hljs-string">"\t"</span>));<br>	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;<br><br><br>	<span class="hljs-keyword">typedef</span> even_iterator&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;::const_iterator, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>&gt; int_vec_even_iter;<br>	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"even vector:"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;<br>	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"even vector:"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;<br><br>	copy(int_vec_even_iter(vnNums.begin(), vnNums.end()),<br>		int_vec_even_iter(vnNums.end(), vnNums.end()),<br>		ostream_iterator&lt;<span class="hljs-keyword">int</span>&gt;(<span class="hljs-built_in">cout</span>, <span class="hljs-string">"\t"</span>)<br>		);<br>	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="Iterator完整实现"><a href="#Iterator完整实现" class="headerlink" title="Iterator完整实现"></a>Iterator完整实现</h2><p>simple</p>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// forward declare the iterator</span><br><br><span class="hljs-keyword">template</span> &lt; <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span>, <span class="hljs-title">int</span> <span class="hljs-title">N</span> &gt; <span class="hljs-title">class</span> <span class="hljs-title">RingIter</span>;</span><br><br><br><span class="hljs-comment">// define the container, make the iterator a friend</span><br><br><span class="hljs-keyword">template</span> &lt; <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span>, <span class="hljs-title">int</span> <span class="hljs-title">N</span> &gt;<br><span class="hljs-title">class</span> <span class="hljs-title">RingQueue</span> &#123;</span><br><br>	<span class="hljs-keyword">friend</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RingIter</span>&lt; T, N &gt;;</span><br>	<span class="hljs-keyword">typedef</span> RingIter&lt;T, N&gt; iterator;<br>	<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">ptrdiff_t</span> difference_type;<br>	<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">size_t</span> size_type;<br>	<span class="hljs-keyword">typedef</span> T value_type;<br>	<span class="hljs-keyword">typedef</span> T * pointer;<br>	<span class="hljs-keyword">typedef</span> T &amp; reference;<br><br>	<span class="hljs-function">iterator <span class="hljs-title">begin</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> iterator( *<span class="hljs-keyword">this</span>, <span class="hljs-number">0</span> ); &#125;<br>	<span class="hljs-function">iterator <span class="hljs-title">begin</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>&#123; <span class="hljs-keyword">return</span> const_iterator( *<span class="hljs-keyword">this</span>, <span class="hljs-number">0</span> ); &#125;<br>	<span class="hljs-function">iterator <span class="hljs-title">end</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> iterator( *<span class="hljs-keyword">this</span>, mySize ); &#125;<br>&#125;;<br><br><br><span class="hljs-comment">// define the iterator</span><br><br><span class="hljs-keyword">template</span> &lt; <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span>, <span class="hljs-title">int</span> <span class="hljs-title">N</span> &gt;<br><span class="hljs-title">class</span> <span class="hljs-title">RingIter</span> &#123;</span><br><span class="hljs-keyword">private</span>:<br>	RingQueue&lt;T, N&gt; &amp; myRingQueue;<br>	<span class="hljs-keyword">int</span> mySize;<br><span class="hljs-keyword">public</span>:<br>	RingIter( RingQueue &amp; rq, <span class="hljs-keyword">int</span> size )<br>	: myRingQueue( rq ), mySize ( size )<br>	&#123;&#125;<br><br>	T &amp; <span class="hljs-keyword">operator</span>*() &#123; <span class="hljs-keyword">return</span> myRingQueue[ myIncrement ]; &#125;<br>	iterator &amp; <span class="hljs-keyword">operator</span>++() &#123; ++myOffset; <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>; &#125;<br>	iterator <span class="hljs-keyword">operator</span>++ ( <span class="hljs-keyword">int</span> )<br>	&#123;<br>		RingIter&lt;T, N&gt; clone( *<span class="hljs-keyword">this</span> );<br>		++myOffset;<br>		<span class="hljs-keyword">return</span> clone;<br>	&#125;<br>&#125;;<br><br><span class="hljs-keyword">typedef</span> RingCIter&lt;T, N&gt; const_iterator;<br></code></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+	<span class="n">srand</span><span class="p">((</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span> <span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
+
+	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vnNums</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">u</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">;</span> <span class="o">++</span><span class="n">u</span><span class="p">)</span>
+		<span class="n">vnNums</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="n">RAND_MAX</span> <span class="o">*</span> <span class="mi">100</span><span class="p">;</span>
+
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;initial vector:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="n">copy</span><span class="p">(</span><span class="n">vnNums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vnNums</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">ostream_iterator</span><span class="p">(</span><span class="n">cout</span><span class="p">,</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">));</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+
+	<span class="k">typedef</span> <span class="n">even_iterator</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">const_iterator</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">int_vec_even_iter</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;even vector:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;even vector:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+	<span class="n">copy</span><span class="p">(</span><span class="n">int_vec_even_iter</span><span class="p">(</span><span class="n">vnNums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vnNums</span><span class="p">.</span><span class="n">end</span><span class="p">()),</span>
+		<span class="n">int_vec_even_iter</span><span class="p">(</span><span class="n">vnNums</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">vnNums</span><span class="p">.</span><span class="n">end</span><span class="p">()),</span>
+		<span class="n">ostream_iterator</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">cout</span><span class="p">,</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">)</span>
+		<span class="p">);</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="iterator完整实现">Iterator完整实现</h2>
+
+<p>simple</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// forward declare the iterator
+</span><span class="c1"></span>
+<span class="k">template</span> <span class="o">&lt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">RingIter</span><span class="p">;</span>
+
+
+<span class="c1">// define the container, make the iterator a friend
+</span><span class="c1"></span>
+<span class="k">template</span> <span class="o">&lt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">&gt;</span>
+<span class="k">class</span><span class="err"> </span><span class="nc">RingQueue</span> <span class="p">{</span>
+
+	<span class="k">friend</span> <span class="k">class</span><span class="err"> </span><span class="nc">RingIter</span><span class="o">&lt;</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span> <span class="o">&gt;</span><span class="p">;</span>
+	<span class="k">typedef</span> <span class="n">RingIter</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="n">iterator</span><span class="p">;</span>
+	<span class="k">typedef</span> <span class="n">ptrdiff_t</span> <span class="n">difference_type</span><span class="p">;</span>
+	<span class="k">typedef</span> <span class="n">size_t</span> <span class="n">size_type</span><span class="p">;</span>
+	<span class="k">typedef</span> <span class="n">T</span> <span class="n">value_type</span><span class="p">;</span>
+	<span class="k">typedef</span> <span class="n">T</span> <span class="o">*</span> <span class="n">pointer</span><span class="p">;</span>
+	<span class="k">typedef</span> <span class="n">T</span> <span class="o">&amp;</span> <span class="n">reference</span><span class="p">;</span>
+
+	<span class="n">iterator</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">iterator</span><span class="p">(</span> <span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="mi">0</span> <span class="p">);</span> <span class="p">}</span>
+	<span class="n">iterator</span> <span class="nf">begin</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">const_iterator</span><span class="p">(</span> <span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="mi">0</span> <span class="p">);</span> <span class="p">}</span>
+	<span class="n">iterator</span> <span class="nf">end</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">iterator</span><span class="p">(</span> <span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="n">mySize</span> <span class="p">);</span> <span class="p">}</span>
+<span class="p">};</span>
+
+
+<span class="c1">// define the iterator
+</span><span class="c1"></span>
+<span class="k">template</span> <span class="o">&lt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">&gt;</span>
+<span class="k">class</span><span class="err"> </span><span class="nc">RingIter</span> <span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+	<span class="n">RingQueue</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">myRingQueue</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">mySize</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+	<span class="n">RingIter</span><span class="p">(</span> <span class="n">RingQueue</span> <span class="o">&amp;</span> <span class="n">rq</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span> <span class="p">)</span>
+	<span class="o">:</span> <span class="n">myRingQueue</span><span class="p">(</span> <span class="n">rq</span> <span class="p">),</span> <span class="n">mySize</span> <span class="p">(</span> <span class="n">size</span> <span class="p">)</span>
+	<span class="p">{}</span>
+
+	<span class="n">T</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">*</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">myRingQueue</span><span class="p">[</span> <span class="n">myIncrement</span> <span class="p">];</span> <span class="p">}</span>
+	<span class="n">iterator</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">++</span><span class="p">()</span> <span class="p">{</span> <span class="o">++</span><span class="n">myOffset</span><span class="p">;</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">iterator</span> <span class="k">operator</span><span class="o">++</span> <span class="p">(</span> <span class="kt">int</span> <span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">RingIter</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="n">clone</span><span class="p">(</span> <span class="o">*</span><span class="k">this</span> <span class="p">);</span>
+		<span class="o">++</span><span class="n">myOffset</span><span class="p">;</span>
+		<span class="k">return</span> <span class="n">clone</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">typedef</span> <span class="n">RingCIter</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="n">const_iterator</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>complete</p>
+
 <p>文件iterator_base.h</p>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/*This is a internal header file.<br> *It contains all of the general iterator-related utility types,such as<br> * iterator_traits and struct iterator and functions, such as distance() <br> *and advance().<br> */</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> _MITERATOR_BASE_H</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> _MITERATOR_BASE_H</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cassert&gt; //for debug</span></span><br><span class="hljs-keyword">namespace</span> numb<br>&#123;<br>    <span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-keyword">ptrdiff_t</span>;<br><span class="hljs-comment">/* Abstructions for uniform iterator,<br> * general iterator-related utility types<br> */</span><br>    <span class="hljs-comment">/* Iterator tags<br>    * 5 kinds of iterators,such as input iterator,<br>    * output iterator.<br>    */</span><br>    <span class="hljs-comment">///Input Iterator</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">input_iterator_tag</span>&#123;</span>&#125;;<br>    <span class="hljs-comment">///Output Iterator</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">output_iterator_tag</span>&#123;</span>&#125;;<br>    <span class="hljs-comment">///Forward Iterator</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">forward_iterator_tag</span>:</span><span class="hljs-keyword">public</span> input_iterator_tag &#123;&#125;;<br>    <span class="hljs-comment">///Bidirectional Iterator</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">bidirectional_iterator_tag</span>:</span><span class="hljs-keyword">public</span> forward_iterator_tag &#123;&#125;;<br>    <span class="hljs-comment">///Random Acess Iterator</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">random_iterator_tag</span>:</span><span class="hljs-keyword">public</span> bidirectional_iterator_tag &#123;&#125;;<br>    <br>    <span class="hljs-comment">/* Common iterator class<br>    * It contains nothing but some nested typedefs<br>    * All iterator classes inherit from it.<br>    */</span><br>    <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> _Category,<br>             <span class="hljs-keyword">typename</span> _T,<br>             <span class="hljs-keyword">typename</span> _Distance=<span class="hljs-keyword">ptrdiff_t</span>,<br>             <span class="hljs-keyword">typename</span> _Pointer=_T*,<br>             <span class="hljs-keyword">typename</span> _Reference=_T&amp;&gt;<br>    struct iterator<br>    &#123;<br>        <span class="hljs-comment">//5 associated types</span><br>        <span class="hljs-keyword">typedef</span> _Category iterator_category;<br>        <span class="hljs-keyword">typedef</span> _T            value_type;<br>        <span class="hljs-keyword">typedef</span> _Distance difference_type;<br>        <span class="hljs-keyword">typedef</span> _Pointer  pointer;<br>        <span class="hljs-keyword">typedef</span> _Reference  reference;<br>    &#125;;<br>    <br>    <span class="hljs-comment">/* Traits classes for iterators<br>    * It contains nothing but some nested typedefs<br>    */</span><br>    <span class="hljs-comment">//General version</span><br>    <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> _Iterator&gt;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">iterator_traits</span><br>    &#123;</span><br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> _Iterator::value_type           value_type;<br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> _Iterator::iterator_category    iterator_category;<br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> _Iterator::difference_type  difference_type;<br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> _Iterator::pointer          pointer;<br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> _Iterator::reference            reference;<br>    &#125;;<br>    <span class="hljs-comment">//Partial specialization for pointer types.</span><br>    <span class="hljs-comment">//(such as int*,char*,etc.)</span><br>    <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> _Tp&gt;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">iterator_traits</span>&lt;_Tp*&gt;<br>    &#123;</span><br>        <span class="hljs-keyword">typedef</span> _Tp                   value_type;<br>        <span class="hljs-keyword">typedef</span> random_iterator_tag   iterator_category;<br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">ptrdiff_t</span>                difference_type;<br>        <span class="hljs-keyword">typedef</span> _Tp*                   pointer;<br>        <span class="hljs-keyword">typedef</span> _Tp&amp;                   reference;<br>    &#125;;<br>    <span class="hljs-comment">//Partial specialization for pointer-to-const types.</span><br>    <span class="hljs-comment">//(such as coonst int*,const char*,etc.)</span><br>    <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> _Tp&gt;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">iterator_traits</span>&lt;const _Tp*&gt;<br>    &#123;</span><br>        <span class="hljs-keyword">typedef</span> _Tp                   value_type;<br>        <span class="hljs-keyword">typedef</span> random_iterator_tag   iterator_category;<br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">ptrdiff_t</span>                difference_type;<br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">const</span> _Tp*                  pointer;<br>        <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">const</span> _Tp&amp;                  reference;<br>    &#125;;<br>    <span class="hljs-comment">/*<br>    *Some general functionals<br>    */</span><br>     <br>    <span class="hljs-comment">//A function that get the category of a iterator</span><br>    <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> _Iter&gt;<br>    <span class="hljs-keyword">inline</span> <span class="hljs-keyword">typename</span> iterator_traits&lt;_Iter&gt;::iterator_category<br>    _iterator_category(<span class="hljs-keyword">const</span> _Iter)<br>    &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">typename</span> iterator_traits&lt;_Iter&gt;::iterator_category();<br>    &#125;<br><br>    <span class="hljs-comment">/* Distance between iterators .<br>    * @param   first  An input iterator<br>    * @param   last   An input iterator<br>    * @return  distance between them.<br>    */</span><br>    <span class="hljs-comment">//For all iterators but random acces iterator</span><br>    <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> InputIter&gt;<br>    <span class="hljs-keyword">inline</span> <span class="hljs-keyword">typename</span> iterator_traits&lt;InputIter&gt;::difference_type<br>    _distance(InputIter first,InputIter last,input_iterator_tag)<br>    &#123;<br>        <span class="hljs-keyword">typename</span> iterator_traits&lt;InputIter&gt;::difference_type n=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(first!=last)<br>        &#123;<br>            ++first;<br>            ++n;<br>        &#125;<br>        <span class="hljs-keyword">return</span> n;<br>    &#125;<br>    <span class="hljs-comment">//For random acces iterator,@n maybe negetive.</span><br>    <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> RandomIter&gt;<br>    <span class="hljs-keyword">inline</span> <span class="hljs-keyword">typename</span> iterator_traits&lt;RandomIter&gt;::difference_type<br>    _distance(RandomIter first,RandomIter last,random_iterator_tag)<br>    &#123;<br>        <span class="hljs-keyword">return</span> last-first;<br>    &#125;<br>    <span class="hljs-comment">//interface for client</span><br>    <span class="hljs-comment">//InputIter stands for it is an input iterator at least.</span><br>    <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> InputIter&gt;<br>    <span class="hljs-keyword">inline</span> <span class="hljs-keyword">typename</span> iterator_traits&lt;InputIter&gt;::<span class="hljs-function">difference_type<br>    <span class="hljs-title">distance</span><span class="hljs-params">(InputIter first,InputIter last)</span><br>    </span>&#123;<br>        <span class="hljs-keyword">return</span> _distance(first,last,<br>                         _iterator_category(first));<br>    &#125;<br>    <span class="hljs-comment">/* Increment/decrement iterators .<br>    * @param   i   An input iterator<br>    * @param   n   A delta by which to change<br>    * @return  nothing.<br>    */</span><br>    <span class="hljs-comment">//For input iterator ,n&gt;=0;</span><br>    <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> InputIter,<span class="hljs-keyword">typename</span> Distance&gt;<br>    <span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> _advance(InputIter i,Distance n,input_iterator_tag)<br>    &#123;<br>        assert(n&gt;=<span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">while</span>(n--) ++i;<br>    &#125;<br>    <span class="hljs-comment">//for bidirectional iterator</span><br>    <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> BidirecIter,<span class="hljs-keyword">typename</span> Distance&gt;<br>    <span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> _advance(BidirecIter i,Distance n,bidirectional_iterator_tag)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(n&gt;<span class="hljs-number">0</span>)<br>            <span class="hljs-keyword">while</span>(n--)<br>                ++i;<br>        <span class="hljs-keyword">else</span><br>            <span class="hljs-keyword">while</span>(n++)<br>                --i;<br>    &#125;<br>    <span class="hljs-comment">//For random access iterator</span><br>    <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> RandomIter,<span class="hljs-keyword">typename</span> Distance&gt;<br>    <span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> _advance(RandomIter i,Distance n,random_iterator_tag)<br>    &#123;    i+=n;   &#125;<br>    <span class="hljs-comment">//Interface to client</span><br>    <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> InputIter,<span class="hljs-keyword">typename</span> Distance&gt;<br>    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">advance</span><span class="hljs-params">(InputIter i,Distance n)</span><br>    </span>&#123;<br>        _advance(i,n,_iterator_category(i));<br>    &#125;    <br>&#125;<span class="hljs-comment">//end of numb</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cm">/*This is a internal header file.
+</span><span class="cm"> *It contains all of the general iterator-related utility types,such as
+</span><span class="cm"> * iterator_traits and struct iterator and functions, such as distance() 
+</span><span class="cm"> *and advance().
+</span><span class="cm"> */</span>
+<span class="cp">#ifndef _MITERATOR_BASE_H
+</span><span class="cp">#define _MITERATOR_BASE_H
+</span><span class="cp">#include</span><span class="cpf">&lt;cassert&gt; //for debug</span><span class="cp">
+</span><span class="cp"></span><span class="k">namespace</span> <span class="n">numb</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">ptrdiff_t</span><span class="p">;</span>
+<span class="cm">/* Abstructions for uniform iterator,
+</span><span class="cm"> * general iterator-related utility types
+</span><span class="cm"> */</span>
+    <span class="cm">/* Iterator tags
+</span><span class="cm">    * 5 kinds of iterators,such as input iterator,
+</span><span class="cm">    * output iterator.
+</span><span class="cm">    */</span>
+    <span class="c1">///Input Iterator
+</span><span class="c1"></span>    <span class="k">struct</span> <span class="n">input_iterator_tag</span><span class="p">{};</span>
+    <span class="c1">///Output Iterator
+</span><span class="c1"></span>    <span class="k">struct</span> <span class="n">output_iterator_tag</span><span class="p">{};</span>
+    <span class="c1">///Forward Iterator
+</span><span class="c1"></span>    <span class="k">struct</span> <span class="nl">forward_iterator_tag</span><span class="p">:</span><span class="k">public</span> <span class="n">input_iterator_tag</span> <span class="p">{};</span>
+    <span class="c1">///Bidirectional Iterator
+</span><span class="c1"></span>    <span class="k">struct</span> <span class="nl">bidirectional_iterator_tag</span><span class="p">:</span><span class="k">public</span> <span class="n">forward_iterator_tag</span> <span class="p">{};</span>
+    <span class="c1">///Random Acess Iterator
+</span><span class="c1"></span>    <span class="k">struct</span> <span class="nl">random_iterator_tag</span><span class="p">:</span><span class="k">public</span> <span class="n">bidirectional_iterator_tag</span> <span class="p">{};</span>
+    
+    <span class="cm">/* Common iterator class
+</span><span class="cm">    * It contains nothing but some nested typedefs
+</span><span class="cm">    * All iterator classes inherit from it.
+</span><span class="cm">    */</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Category</span><span class="p">,</span>
+             <span class="k">typename</span> <span class="n">_T</span><span class="p">,</span>
+             <span class="k">typename</span> <span class="n">_Distance</span><span class="o">=</span><span class="n">ptrdiff_t</span><span class="p">,</span>
+             <span class="k">typename</span> <span class="n">_Pointer</span><span class="o">=</span><span class="n">_T</span><span class="o">*</span><span class="p">,</span>
+             <span class="k">typename</span> <span class="n">_Reference</span><span class="o">=</span><span class="n">_T</span><span class="o">&amp;&gt;</span>
+    <span class="k">struct</span> <span class="n">iterator</span>
+    <span class="p">{</span>
+        <span class="c1">//5 associated types
+</span><span class="c1"></span>        <span class="k">typedef</span> <span class="n">_Category</span> <span class="n">iterator_category</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="n">_T</span>            <span class="n">value_type</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="n">_Distance</span> <span class="n">difference_type</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="n">_Pointer</span>  <span class="n">pointer</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="n">_Reference</span>  <span class="n">reference</span><span class="p">;</span>
+    <span class="p">};</span>
+    
+    <span class="cm">/* Traits classes for iterators
+</span><span class="cm">    * It contains nothing but some nested typedefs
+</span><span class="cm">    */</span>
+    <span class="c1">//General version
+</span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Iterator</span><span class="o">&gt;</span>
+    <span class="k">struct</span> <span class="n">iterator_traits</span>
+    <span class="p">{</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">_Iterator</span><span class="o">::</span><span class="n">value_type</span>           <span class="n">value_type</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">_Iterator</span><span class="o">::</span><span class="n">iterator_category</span>    <span class="n">iterator_category</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">_Iterator</span><span class="o">::</span><span class="n">difference_type</span>  <span class="n">difference_type</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">_Iterator</span><span class="o">::</span><span class="n">pointer</span>          <span class="n">pointer</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">_Iterator</span><span class="o">::</span><span class="n">reference</span>            <span class="n">reference</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="c1">//Partial specialization for pointer types.
+</span><span class="c1"></span>    <span class="c1">//(such as int*,char*,etc.)
+</span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="o">&gt;</span>
+    <span class="k">struct</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="o">*&gt;</span>
+    <span class="p">{</span>
+        <span class="k">typedef</span> <span class="n">_Tp</span>                   <span class="n">value_type</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="n">random_iterator_tag</span>   <span class="n">iterator_category</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="n">ptrdiff_t</span>                <span class="n">difference_type</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="n">_Tp</span><span class="o">*</span>                   <span class="n">pointer</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="n">_Tp</span><span class="o">&amp;</span>                   <span class="n">reference</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="c1">//Partial specialization for pointer-to-const types.
+</span><span class="c1"></span>    <span class="c1">//(such as coonst int*,const char*,etc.)
+</span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="o">&gt;</span>
+    <span class="k">struct</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">_Tp</span><span class="o">*&gt;</span>
+    <span class="p">{</span>
+        <span class="k">typedef</span> <span class="n">_Tp</span>                   <span class="n">value_type</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="n">random_iterator_tag</span>   <span class="n">iterator_category</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="n">ptrdiff_t</span>                <span class="n">difference_type</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">const</span> <span class="n">_Tp</span><span class="o">*</span>                  <span class="n">pointer</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">const</span> <span class="n">_Tp</span><span class="o">&amp;</span>                  <span class="n">reference</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="cm">/*
+</span><span class="cm">    *Some general functionals
+</span><span class="cm">    */</span>
+     
+    <span class="c1">//A function that get the category of a iterator
+</span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Iter</span><span class="o">&gt;</span>
+    <span class="kr">inline</span> <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">_Iter</span><span class="o">&gt;::</span><span class="n">iterator_category</span>
+    <span class="n">_iterator_category</span><span class="p">(</span><span class="k">const</span> <span class="n">_Iter</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">_Iter</span><span class="o">&gt;::</span><span class="n">iterator_category</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* Distance between iterators .
+</span><span class="cm">    * @param   first  An input iterator
+</span><span class="cm">    * @param   last   An input iterator
+</span><span class="cm">    * @return  distance between them.
+</span><span class="cm">    */</span>
+    <span class="c1">//For all iterators but random acces iterator
+</span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">InputIter</span><span class="o">&gt;</span>
+    <span class="kr">inline</span> <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">InputIter</span><span class="o">&gt;::</span><span class="n">difference_type</span>
+    <span class="n">_distance</span><span class="p">(</span><span class="n">InputIter</span> <span class="n">first</span><span class="p">,</span><span class="n">InputIter</span> <span class="n">last</span><span class="p">,</span><span class="n">input_iterator_tag</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">InputIter</span><span class="o">&gt;::</span><span class="n">difference_type</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">first</span><span class="o">!=</span><span class="n">last</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="o">++</span><span class="n">first</span><span class="p">;</span>
+            <span class="o">++</span><span class="n">n</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">//For random acces iterator,@n maybe negetive.
+</span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">RandomIter</span><span class="o">&gt;</span>
+    <span class="kr">inline</span> <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">RandomIter</span><span class="o">&gt;::</span><span class="n">difference_type</span>
+    <span class="n">_distance</span><span class="p">(</span><span class="n">RandomIter</span> <span class="n">first</span><span class="p">,</span><span class="n">RandomIter</span> <span class="n">last</span><span class="p">,</span><span class="n">random_iterator_tag</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">last</span><span class="o">-</span><span class="n">first</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">//interface for client
+</span><span class="c1"></span>    <span class="c1">//InputIter stands for it is an input iterator at least.
+</span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">InputIter</span><span class="o">&gt;</span>
+    <span class="kr">inline</span> <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">InputIter</span><span class="o">&gt;::</span><span class="n">difference_type</span>
+    <span class="n">distance</span><span class="p">(</span><span class="n">InputIter</span> <span class="n">first</span><span class="p">,</span><span class="n">InputIter</span> <span class="n">last</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">_distance</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="n">last</span><span class="p">,</span>
+                         <span class="n">_iterator_category</span><span class="p">(</span><span class="n">first</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="cm">/* Increment/decrement iterators .
+</span><span class="cm">    * @param   i   An input iterator
+</span><span class="cm">    * @param   n   A delta by which to change
+</span><span class="cm">    * @return  nothing.
+</span><span class="cm">    */</span>
+    <span class="c1">//For input iterator ,n&gt;=0;
+</span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">InputIter</span><span class="p">,</span><span class="k">typename</span> <span class="n">Distance</span><span class="o">&gt;</span>
+    <span class="kr">inline</span> <span class="kt">void</span> <span class="n">_advance</span><span class="p">(</span><span class="n">InputIter</span> <span class="n">i</span><span class="p">,</span><span class="n">Distance</span> <span class="n">n</span><span class="p">,</span><span class="n">input_iterator_tag</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">assert</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">);</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">--</span><span class="p">)</span> <span class="o">++</span><span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">//for bidirectional iterator
+</span><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">BidirecIter</span><span class="p">,</span><span class="k">typename</span> <span class="n">Distance</span><span class="o">&gt;</span>
+    <span class="kr">inline</span> <span class="kt">void</span> <span class="n">_advance</span><span class="p">(</span><span class="n">BidirecIter</span> <span class="n">i</span><span class="p">,</span><span class="n">Distance</span> <span class="n">n</span><span class="p">,</span><span class="n">bidirectional_iterator_tag</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">--</span><span class="p">)</span>
+                <span class="o">++</span><span class="n">i</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="nf">while</span><span class="p">(</span><span class="n">n</span><span class="o">++</span><span class="p">)</span>
+                <span class="o">--</span><span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">//For random access iterator
+</span><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">RandomIter</span><span class="p">,</span><span class="k">typename</span> <span class="n">Distance</span><span class="o">&gt;</span>
+    <span class="kr">inline</span> <span class="kt">void</span> <span class="n">_advance</span><span class="p">(</span><span class="n">RandomIter</span> <span class="n">i</span><span class="p">,</span><span class="n">Distance</span> <span class="n">n</span><span class="p">,</span><span class="n">random_iterator_tag</span><span class="p">)</span>
+    <span class="p">{</span>    <span class="n">i</span><span class="o">+=</span><span class="n">n</span><span class="p">;</span>   <span class="p">}</span>
+    <span class="c1">//Interface to client
+</span><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">InputIter</span><span class="p">,</span><span class="k">typename</span> <span class="n">Distance</span><span class="o">&gt;</span>
+    <span class="kr">inline</span> <span class="kt">void</span> <span class="n">advance</span><span class="p">(</span><span class="n">InputIter</span> <span class="n">i</span><span class="p">,</span><span class="n">Distance</span> <span class="n">n</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_advance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">_iterator_category</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+    <span class="p">}</span>    
+<span class="p">}</span><span class="c1">//end of numb
+</span><span class="c1"></span><span class="cp">#endif
+</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>文件stl_iterator.h</p>
-<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/*<br> *  This is an internal header file.<br> *  This file implements some iterator adapters,<br> *  such as __normal_iterator,reverse_iterator, back_insert_iterator,<br> *  front_insert_iterator, insert_iterator, , and their<br> *  supporting functions and overloaded operators.<br> */</span><br> <span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> _mstl_iterator_h</span><br> <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> _mstl_iterator_h</span><br> <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"iterator_base.h"</span></span><br> <span class="hljs-keyword">namespace</span> numb<br> &#123;<br>    <span class="hljs-comment">//This iterator adapter is a normal iterator</span><br>    <span class="hljs-keyword">using</span> numb::iterator;<br>    <span class="hljs-keyword">using</span> numb::iterator_traits;<br>    <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> Iterator, <span class="hljs-keyword">typename</span> Container&gt;<br>    <span class="hljs-class"><span class="hljs-keyword">class</span> _<span class="hljs-title">normal_iterator</span><br>    &#123;</span><br>        <span class="hljs-keyword">protected</span>:<br>            Iterator M_current;<br>            <span class="hljs-keyword">typedef</span> iterator_traits&lt;Iterator&gt;  traits_type;<br>        <span class="hljs-keyword">public</span>:<br>            <span class="hljs-keyword">typedef</span> Iterator                              iterator_type;<br>            <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> traits_type::iterator_category  iterator_category;<br>            <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> traits_type::value_type         value_type;<br>            <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> traits_type::difference_type    difference_type;<br>            <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> traits_type::reference      reference;<br>            <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> traits_type::pointer        pointer;<br>            <span class="hljs-comment">//default ctor</span><br>            _normal_iterator():M_current(Iterator())&#123;&#125;<br>            <span class="hljs-comment">//copy ctor</span><br>            <span class="hljs-keyword">explicit</span> _normal_iterator(<span class="hljs-keyword">const</span> Iterator&amp; i):M_current(i)&#123;&#125;<br>            <br>            <span class="hljs-comment">//To-do: Allow iterator to const_iterator conversion</span><br>            <br>            <span class="hljs-comment">//for forward iterator </span><br>            reference <span class="hljs-keyword">operator</span>*()<span class="hljs-keyword">const</span><br>            &#123;    <span class="hljs-keyword">return</span> *M_current;&#125;<br>            pointer <span class="hljs-keyword">operator</span>-&gt;()<span class="hljs-keyword">const</span><br>            &#123;    <span class="hljs-keyword">return</span> M_current;&#125;<br>            <span class="hljs-comment">//++i</span><br>            _normal_iterator&amp; <br>            <span class="hljs-keyword">operator</span> ++()<br>            &#123;<br>                ++M_current;<br>                <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>            &#125;<br>            <span class="hljs-comment">//i++</span><br>            _normal_iterator <br>            <span class="hljs-keyword">operator</span> ++(<span class="hljs-keyword">int</span>)<br>            &#123;<br>                <span class="hljs-keyword">return</span> _normal_iterator(M_current++);<br>            &#125;<br>            <span class="hljs-comment">//for bidirectional iterator</span><br>            <span class="hljs-comment">//--i</span><br>            _normal_iterator&amp; <br>            <span class="hljs-keyword">operator</span> --()<br>            &#123;<br>                --M_current;<br>                <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>            &#125;<br>            <span class="hljs-comment">//i--</span><br>            _normal_iterator <br>            <span class="hljs-keyword">operator</span> --(<span class="hljs-keyword">int</span>)<br>            &#123;<span class="hljs-keyword">return</span> _normal_iterator(M_current--);&#125;<br>            <br>            <span class="hljs-comment">//for random access iterator,[],+=,-=,+,-</span><br>            reference <br>            <span class="hljs-keyword">operator</span>[](<span class="hljs-keyword">const</span> difference_type&amp; n)<span class="hljs-keyword">const</span><br>            &#123;    <span class="hljs-keyword">return</span> M_current[n];&#125;<br>            <br>            _normal_iterator&amp; <br>            <span class="hljs-keyword">operator</span> +=(<span class="hljs-keyword">const</span> difference_type&amp; n)<br>            &#123;<br>                M_current+=n;<br>                <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>            &#125;<br>            _normal_iterator&amp;<br>            <span class="hljs-keyword">operator</span> -=(<span class="hljs-keyword">const</span> difference_type&amp; n)<br>            &#123;<br>                M_current-=n;<br>                <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>            &#125;<br>            _normal_iterator<br>            <span class="hljs-keyword">operator</span> +(<span class="hljs-keyword">const</span> difference_type&amp; n)<span class="hljs-keyword">const</span><br>            &#123;<br>                <span class="hljs-keyword">return</span> _normal_iterator(M_current+n);<br>            &#125;<br>            _normal_iterator<br>            <span class="hljs-keyword">operator</span> -(<span class="hljs-keyword">const</span> difference_type&amp; n)<span class="hljs-keyword">const</span><br>            &#123;<br>                <span class="hljs-keyword">return</span> _normal_iterator(M_current-n);<br>            &#125;<br>            <span class="hljs-function"><span class="hljs-keyword">const</span> Iterator&amp;<br>            <span class="hljs-title">base</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span><br>            </span>&#123; <span class="hljs-keyword">return</span> M_current; &#125;            <br>    &#125;;<span class="hljs-comment">//end of _normal_iterator</span><br> &#125;<span class="hljs-comment">//end of namespace numb</span><br> <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
-    </main>
-    <footer class="post-footer">
-      
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span><span class="lnt">97
+</span><span class="lnt">98
+</span><span class="lnt">99
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cm">/*
+</span><span class="cm"> *  This is an internal header file.
+</span><span class="cm"> *  This file implements some iterator adapters,
+</span><span class="cm"> *  such as __normal_iterator,reverse_iterator, back_insert_iterator,
+</span><span class="cm"> *  front_insert_iterator, insert_iterator, , and their
+</span><span class="cm"> *  supporting functions and overloaded operators.
+</span><span class="cm"> */</span>
+ <span class="cp">#ifndef _mstl_iterator_h
+</span><span class="cp"></span> <span class="cp">#define _mstl_iterator_h
+</span><span class="cp"></span> <span class="cp">#include</span> <span class="cpf">&#34;iterator_base.h&#34;</span><span class="cp">
+</span><span class="cp"></span> <span class="k">namespace</span> <span class="n">numb</span>
+ <span class="p">{</span>
+    <span class="c1">//This iterator adapter is a normal iterator
+</span><span class="c1"></span>    <span class="k">using</span> <span class="n">numb</span><span class="o">::</span><span class="n">iterator</span><span class="p">;</span>
+    <span class="k">using</span> <span class="n">numb</span><span class="o">::</span><span class="n">iterator_traits</span><span class="p">;</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Iterator</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Container</span><span class="o">&gt;</span>
+    <span class="k">class</span><span class="err"> </span><span class="nc">_normal_iterator</span>
+    <span class="p">{</span>
+        <span class="k">protected</span><span class="o">:</span>
+            <span class="n">Iterator</span> <span class="n">M_current</span><span class="p">;</span>
+            <span class="k">typedef</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">Iterator</span><span class="o">&gt;</span>  <span class="n">traits_type</span><span class="p">;</span>
+        <span class="k">public</span><span class="o">:</span>
+            <span class="k">typedef</span> <span class="n">Iterator</span>                              <span class="n">iterator_type</span><span class="p">;</span>
+            <span class="k">typedef</span> <span class="k">typename</span> <span class="n">traits_type</span><span class="o">::</span><span class="n">iterator_category</span>  <span class="n">iterator_category</span><span class="p">;</span>
+            <span class="k">typedef</span> <span class="k">typename</span> <span class="n">traits_type</span><span class="o">::</span><span class="n">value_type</span>         <span class="n">value_type</span><span class="p">;</span>
+            <span class="k">typedef</span> <span class="k">typename</span> <span class="n">traits_type</span><span class="o">::</span><span class="n">difference_type</span>    <span class="n">difference_type</span><span class="p">;</span>
+            <span class="k">typedef</span> <span class="k">typename</span> <span class="n">traits_type</span><span class="o">::</span><span class="n">reference</span>      <span class="n">reference</span><span class="p">;</span>
+            <span class="k">typedef</span> <span class="k">typename</span> <span class="n">traits_type</span><span class="o">::</span><span class="n">pointer</span>        <span class="n">pointer</span><span class="p">;</span>
+            <span class="c1">//default ctor
+</span><span class="c1"></span>            <span class="n">_normal_iterator</span><span class="p">()</span><span class="o">:</span><span class="n">M_current</span><span class="p">(</span><span class="n">Iterator</span><span class="p">()){}</span>
+            <span class="c1">//copy ctor
+</span><span class="c1"></span>            <span class="k">explicit</span> <span class="n">_normal_iterator</span><span class="p">(</span><span class="k">const</span> <span class="n">Iterator</span><span class="o">&amp;</span> <span class="n">i</span><span class="p">)</span><span class="o">:</span><span class="n">M_current</span><span class="p">(</span><span class="n">i</span><span class="p">){}</span>
+            
+            <span class="c1">//To-do: Allow iterator to const_iterator conversion
+</span><span class="c1"></span>            
+            <span class="c1">//for forward iterator 
+</span><span class="c1"></span>            <span class="n">reference</span> <span class="k">operator</span><span class="o">*</span><span class="p">()</span><span class="k">const</span>
+            <span class="p">{</span>    <span class="k">return</span> <span class="o">*</span><span class="n">M_current</span><span class="p">;}</span>
+            <span class="n">pointer</span> <span class="k">operator</span><span class="o">-&gt;</span><span class="p">()</span><span class="k">const</span>
+            <span class="p">{</span>    <span class="k">return</span> <span class="n">M_current</span><span class="p">;}</span>
+            <span class="c1">//++i
+</span><span class="c1"></span>            <span class="n">_normal_iterator</span><span class="o">&amp;</span> 
+            <span class="k">operator</span> <span class="o">++</span><span class="p">()</span>
+            <span class="p">{</span>
+                <span class="o">++</span><span class="n">M_current</span><span class="p">;</span>
+                <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="c1">//i++
+</span><span class="c1"></span>            <span class="n">_normal_iterator</span> 
+            <span class="k">operator</span> <span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="n">_normal_iterator</span><span class="p">(</span><span class="n">M_current</span><span class="o">++</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="c1">//for bidirectional iterator
+</span><span class="c1"></span>            <span class="c1">//--i
+</span><span class="c1"></span>            <span class="n">_normal_iterator</span><span class="o">&amp;</span> 
+            <span class="k">operator</span> <span class="o">--</span><span class="p">()</span>
+            <span class="p">{</span>
+                <span class="o">--</span><span class="n">M_current</span><span class="p">;</span>
+                <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="c1">//i--
+</span><span class="c1"></span>            <span class="n">_normal_iterator</span> 
+            <span class="k">operator</span> <span class="o">--</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+            <span class="p">{</span><span class="k">return</span> <span class="n">_normal_iterator</span><span class="p">(</span><span class="n">M_current</span><span class="o">--</span><span class="p">);}</span>
+            
+            <span class="c1">//for random access iterator,[],+=,-=,+,-
+</span><span class="c1"></span>            <span class="n">reference</span> 
+            <span class="k">operator</span><span class="p">[](</span><span class="k">const</span> <span class="n">difference_type</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span><span class="k">const</span>
+            <span class="p">{</span>    <span class="k">return</span> <span class="n">M_current</span><span class="p">[</span><span class="n">n</span><span class="p">];}</span>
+            
+            <span class="n">_normal_iterator</span><span class="o">&amp;</span> 
+            <span class="k">operator</span> <span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">difference_type</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">M_current</span><span class="o">+=</span><span class="n">n</span><span class="p">;</span>
+                <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">_normal_iterator</span><span class="o">&amp;</span>
+            <span class="k">operator</span> <span class="o">-=</span><span class="p">(</span><span class="k">const</span> <span class="n">difference_type</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">M_current</span><span class="o">-=</span><span class="n">n</span><span class="p">;</span>
+                <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">_normal_iterator</span>
+            <span class="k">operator</span> <span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">difference_type</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span><span class="k">const</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="n">_normal_iterator</span><span class="p">(</span><span class="n">M_current</span><span class="o">+</span><span class="n">n</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">_normal_iterator</span>
+            <span class="k">operator</span> <span class="o">-</span><span class="p">(</span><span class="k">const</span> <span class="n">difference_type</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span><span class="k">const</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="n">_normal_iterator</span><span class="p">(</span><span class="n">M_current</span><span class="o">-</span><span class="n">n</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">const</span> <span class="n">Iterator</span><span class="o">&amp;</span>
+            <span class="n">base</span><span class="p">()</span> <span class="k">const</span>
+            <span class="p">{</span> <span class="k">return</span> <span class="n">M_current</span><span class="p">;</span> <span class="p">}</span>            
+    <span class="p">};</span><span class="c1">//end of _normal_iterator
+</span><span class="c1"></span> <span class="p">}</span><span class="c1">//end of namespace numb
+</span><span class="c1"></span> <span class="cp">#endif
+</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">josephpei</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2013-12-16
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
       <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/cpp/" rel="tag"><i class="fas fa-tags"></i>cpp</a>
-        
-      </div>
-      
+          <a href="/tags/cpp/">cpp</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2013/12/20/poj-3164-%E6%9C%80%E5%B0%8F%E6%A0%91%E5%BD%A2%E5%9B%BE-%E6%9C%B1%E5%88%98%E7%AE%97%E6%B3%95/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">poj 3164 最小树形图 朱刘算法</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2013/12/05/windows-cmd%E6%9B%BF%E4%BB%A3/">
+            <span class="next-text nav-default">Windows CMD替代</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
     </footer>
   </article>
-  
-  
-  <nav class="page-nav">
-    <div class="page-nav-next page-nav-item">
-      
-      <a href="/2013/12/05/windows-cmd替代/" rel="next" title="Windows CMD替代"><i class="fas fa-angle-left"></i><span class="nav-title">Windows CMD替代</span></a>
-      
-    </div>
-    <div class="page-nav-prev page-nav-item">
-      
-      <a href="/2013/12/20/poj-3164-最小树形图-朱刘算法/" rel="prev" title="poj 3164 最小树形图 朱刘算法"><span class="nav-title">poj 3164 最小树形图 朱刘算法</span><i class="fas fa-angle-right"></i></a>
-      
-    </div>
-  </nav>
-  
-  
-  
-
-<div class="comments" id="comments">
-  
-  <script defer id="dsq-count-scr" src="//josephpei-github-io.disqus.com/count.js"></script>
-  
-  <div id="disqus_thread" class="disqus_thread"></div>
-  <script type="text/javascript">
-  var disqus_config = function () {
-    this.page.url = "http://josephpei.github.io/2013/12/16/实现自己的stl-iterator/";
-    this.page.identifier = "2013/12/16/实现自己的stl-iterator/";
-  };
-  (function() {
-    var d = document, s = d.createElement("script");
-    s.src = "https://josephpei-github-io.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-  </script>
-  
-  
-</div>
-
-
-
-  
-</div>
-
-          </div>
-          
-          
-          
-<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
-  
-  <div class="search">
-    <div class="form-group">
-      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
-    </div>
-  </div>
-  <div class="search-result-box" id="search-result"></div>
-  
-  
-<div class="info sidebar-item" id="info">
-  
-  <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
-  
-  <h1 class="author-name">Joseph Pei</h1>
-  <h2 class="author-description"></h2>
-  <div class="site-count">
-    
-  </div>
-  
-  <div class="rss">
-    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
-  </div>
-  
-</div>
-
-
-  <div class="sidebar-sticky">
-    
-    
-    
-    
-    
-    <hr>
-    <div class="post-toc sidebar-item" id="toc-div">
-      <div><i class="fas fa-list-ol"></i>文章目录</div>
-      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#1-内嵌STL-Container"><span class="toc-text">1 内嵌STL Container</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#2-在自己的-Collection-中实现-STL-Iterator"><span class="toc-text">2 在自己的 Collection 中实现 STL Iterator</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#3-特殊行为的Iterator"><span class="toc-text">3 特殊行为的Iterator</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#Iterator完整实现"><span class="toc-text">Iterator完整实现</span></a></li></ol></div>
-    </div>
-    
-    
-    
-    <hr>
-    <div class="social-link sidebar-item">
-      <div><i class="far fa-address-card"></i>社交链接</p></div>
-      <ul>
-        
-        <li>fas fa-envelope<a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
-        
-        <li>fab fa-github<a href="https://github.com/" target="_blank">GitHub</a></li>
-        
-        <li>fab fa-weibo<a href="https://weibo.com/" target="_blank">Weibo</a></li>
-        
-      </ul>
-    </div>
-    
-    
-    <hr>
-    <div class="blogroll sidebar-item">
-      <div><i class="fas fa-link"></i>友情链接</div>
-      <ul>
-        
-        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-        
-        <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-        
-        <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-        
-      </ul>
-    </div>
-    
-  </div>
-</aside>
-
-
-          
         </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'josephpei-github-io';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
       </div>
     </main>
-    
-<footer id="footer" class="footer" style="background: #33363b;">
-  <div class="container">
-    <div class="back-to-top">
-      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
-    </div>
-    <div class="footer-container">
-      <div class="footer-left">
-        <div class="copyright">
-          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
-        </div>
-        
-        <div class="busuanzi">
-          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
-        </div>
-        
-      </div>
-      <div class="footer-right">
-        <div class="custom-info">
-          
-          托管于 <i class="fab fa-github-alt"></i> <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
-          
-        </div>
-        <div class="powered-by">
-          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
-        </div>
-      </div>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
+  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">josephpei</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
     </div>
   </div>
-</footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
 
 
-  </body>
+
+
+
+
+
+
+</body>
 </html>

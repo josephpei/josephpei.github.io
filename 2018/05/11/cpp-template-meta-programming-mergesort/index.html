@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Cpp Template Meta Programming MergeSort - 有翅膀的天狼</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="josephpei" /><meta name="description" content="C&#43;&#43; 模板元编程之编译时归并排序，源自水木社区 ilovecpp
+Cpp Template Meta Programming MergeSort
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80  #include &amp;lt;boost/mpl/vector.hpp&amp;gt;#include &amp;lt;boost/mpl/vector_c.hpp&amp;gt;#include &amp;lt;boost/mpl/eval_if.hpp&amp;gt;#include &amp;lt;boost/mpl/identity.hpp&amp;gt;#include &amp;lt;boost/mpl/empty.hpp&amp;gt;#include &amp;lt;boost/mpl/less.hpp&amp;gt;#include &amp;lt;boost/mpl/front.hpp&amp;gt;#include &amp;lt;boost/mpl/pop_front.hpp&amp;gt;#include &amp;lt;boost/mpl/push_front.hpp&amp;gt;#include &amp;lt;boost/mpl/size.hpp&amp;gt;#include &amp;lt;boost/mpl/iterator_range.hpp&amp;gt;#include &amp;lt;boost/mpl/int.hpp&amp;gt;#include &amp;lt;boost/mpl/for_each.hpp&amp;gt;#include &amp;lt;iostream&amp;gt; using namespace boost::mpl; template&amp;lt;typename V1, typename V2&amp;gt; struct Merge { template&amp;lt;typename T1, typename T2&amp;gt; struct F { typedef typename push_front&amp;lt; typename Merge&amp;lt;typename pop_front&amp;lt;T1&amp;gt;::type, T2&amp;gt;::type, typename front&amp;lt;T1&amp;gt;::type &amp;gt;::type type; }; typedef typename eval_if&amp;lt; empty&amp;lt;V1&amp;gt;, identity&amp;lt;V2&amp;gt;, eval_if&amp;lt; empty&amp;lt;V2&amp;gt;, identity&amp;lt;V1&amp;gt;, eval_if&amp;lt; less&amp;lt;typename front&amp;lt;V1&amp;gt;::type, typename front&amp;lt;V2&amp;gt;::type&amp;gt;, F&amp;lt;V1, V2&amp;gt;, F&amp;lt;V2, V1&amp;gt; &amp;gt; &amp;gt; &amp;gt;::type type; }; template&amp;lt;typename V&amp;gt; struct MergeSort { template&amp;lt;typename T&amp;gt; struct F { typedef typename begin&amp;lt;T&amp;gt;::type t0; typedef typename advance&amp;lt;t0, int_&amp;lt;size&amp;lt;T&amp;gt;::value/2&amp;gt;&amp;gt;::type t1; typedef typename end&amp;lt;T&amp;gt;::type t2; typedef typename Merge&amp;lt; typename MergeSort&amp;lt;iterator_range&amp;lt;t0, t1&amp;gt;&amp;gt;::type, typename MergeSort&amp;lt;iterator_range&amp;lt;t1, t2&amp;gt;&amp;gt;::type &amp;gt;::type type; }; typedef typename eval_if&amp;lt; empty&amp;lt;V&amp;gt;, identity&amp;lt;vector&amp;lt;&amp;gt;&amp;gt;, eval_if&amp;lt; less&amp;lt;size&amp;lt;V&amp;gt;, int_&amp;lt;2&amp;gt;&amp;gt;, identity&amp;lt;vector&amp;lt;typename front&amp;lt;V&amp;gt;::type&amp;gt;&amp;gt;, F&amp;lt;V&amp;gt; &amp;gt; &amp;gt;::type type; }; typedef vector_c&amp;lt;int, 0,2,1,3,4&amp;gt; t1; typedef MergeSort&amp;lt;t1&amp;gt;::type t10; struct print { template &amp;lt;typename T&amp;gt; void operator()( T t ) const { std::cout &amp;lt;&amp;lt; T::value &amp;lt;&amp;lt; &amp;#34; &amp;#34;; } }; int main() { for_each&amp;lt;t10&amp;gt;(print()); return 0; }   " /><meta name="keywords" content="life, linux, program" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://josephpei.github.io/2018/05/11/cpp-template-meta-programming-mergesort/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Cpp Template Meta Programming MergeSort" />
+<meta property="og:description" content="C&#43;&#43; 模板元编程之编译时归并排序，源自水木社区 ilovecpp
+
+Cpp Template Meta Programming MergeSort
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+
+
+#include &lt;boost/mpl/vector.hpp&gt;
+#include &lt;boost/mpl/vector_c.hpp&gt;
+#include &lt;boost/mpl/eval_if.hpp&gt;
+#include &lt;boost/mpl/identity.hpp&gt;
+#include &lt;boost/mpl/empty.hpp&gt;
+#include &lt;boost/mpl/less.hpp&gt;
+#include &lt;boost/mpl/front.hpp&gt;
+#include &lt;boost/mpl/pop_front.hpp&gt;
+#include &lt;boost/mpl/push_front.hpp&gt;
+#include &lt;boost/mpl/size.hpp&gt;
+#include &lt;boost/mpl/iterator_range.hpp&gt;
+#include &lt;boost/mpl/int.hpp&gt;
+#include &lt;boost/mpl/for_each.hpp&gt;
+#include &lt;iostream&gt;
+
+using namespace boost::mpl;
+
+template&lt;typename V1, typename V2&gt;
+struct Merge {
+    template&lt;typename T1, typename T2&gt;
+    struct F {
+        typedef typename push_front&lt;
+            typename Merge&lt;typename pop_front&lt;T1&gt;::type, T2&gt;::type,
+            typename front&lt;T1&gt;::type
+            &gt;::type type;
+    };
+        
+    typedef typename eval_if&lt;
+        empty&lt;V1&gt;,
+        identity&lt;V2&gt;,
+        eval_if&lt;
+            empty&lt;V2&gt;,
+            identity&lt;V1&gt;,
+            eval_if&lt;
+                less&lt;typename front&lt;V1&gt;::type, typename front&lt;V2&gt;::type&gt;,
+                F&lt;V1, V2&gt;,
+                F&lt;V2, V1&gt;
+                &gt;
+            &gt;
+        &gt;::type type;
+};
+
+template&lt;typename V&gt;
+struct MergeSort {
+    template&lt;typename T&gt;
+    struct F {
+        typedef typename begin&lt;T&gt;::type t0;
+        typedef typename advance&lt;t0, int_&lt;size&lt;T&gt;::value/2&gt;&gt;::type t1;
+        typedef typename end&lt;T&gt;::type t2;
+        typedef typename Merge&lt;
+            typename MergeSort&lt;iterator_range&lt;t0, t1&gt;&gt;::type,
+            typename MergeSort&lt;iterator_range&lt;t1, t2&gt;&gt;::type
+            &gt;::type type;
+    };
+    
+    typedef typename eval_if&lt;
+        empty&lt;V&gt;,
+        identity&lt;vector&lt;&gt;&gt;,
+        eval_if&lt;
+            less&lt;size&lt;V&gt;, int_&lt;2&gt;&gt;,
+            identity&lt;vector&lt;typename front&lt;V&gt;::type&gt;&gt;,
+            F&lt;V&gt;
+            &gt;
+        &gt;::type type;
+};
+
+typedef vector_c&lt;int, 0,2,1,3,4&gt; t1;
+typedef MergeSort&lt;t1&gt;::type t10;
+
+struct print {
+    template &lt;typename T&gt;
+    void operator()( T t ) const {
+       std::cout &lt;&lt; T::value &lt;&lt; &#34; &#34;;
+    }
+};
+
+int main() {
+    for_each&lt;t10&gt;(print());
+    return 0;
+}
+
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://josephpei.github.io/2018/05/11/cpp-template-meta-programming-mergesort/" />
+<meta property="article:published_time" content="2018-05-11T15:43:51&#43;08:00"/>
+<meta property="article:modified_time" content="2018-05-11T15:43:51&#43;08:00"/>
+
+<meta itemprop="name" content="Cpp Template Meta Programming MergeSort">
+<meta itemprop="description" content="C&#43;&#43; 模板元编程之编译时归并排序，源自水木社区 ilovecpp
+
+Cpp Template Meta Programming MergeSort
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+
+
+#include &lt;boost/mpl/vector.hpp&gt;
+#include &lt;boost/mpl/vector_c.hpp&gt;
+#include &lt;boost/mpl/eval_if.hpp&gt;
+#include &lt;boost/mpl/identity.hpp&gt;
+#include &lt;boost/mpl/empty.hpp&gt;
+#include &lt;boost/mpl/less.hpp&gt;
+#include &lt;boost/mpl/front.hpp&gt;
+#include &lt;boost/mpl/pop_front.hpp&gt;
+#include &lt;boost/mpl/push_front.hpp&gt;
+#include &lt;boost/mpl/size.hpp&gt;
+#include &lt;boost/mpl/iterator_range.hpp&gt;
+#include &lt;boost/mpl/int.hpp&gt;
+#include &lt;boost/mpl/for_each.hpp&gt;
+#include &lt;iostream&gt;
+
+using namespace boost::mpl;
+
+template&lt;typename V1, typename V2&gt;
+struct Merge {
+    template&lt;typename T1, typename T2&gt;
+    struct F {
+        typedef typename push_front&lt;
+            typename Merge&lt;typename pop_front&lt;T1&gt;::type, T2&gt;::type,
+            typename front&lt;T1&gt;::type
+            &gt;::type type;
+    };
+        
+    typedef typename eval_if&lt;
+        empty&lt;V1&gt;,
+        identity&lt;V2&gt;,
+        eval_if&lt;
+            empty&lt;V2&gt;,
+            identity&lt;V1&gt;,
+            eval_if&lt;
+                less&lt;typename front&lt;V1&gt;::type, typename front&lt;V2&gt;::type&gt;,
+                F&lt;V1, V2&gt;,
+                F&lt;V2, V1&gt;
+                &gt;
+            &gt;
+        &gt;::type type;
+};
+
+template&lt;typename V&gt;
+struct MergeSort {
+    template&lt;typename T&gt;
+    struct F {
+        typedef typename begin&lt;T&gt;::type t0;
+        typedef typename advance&lt;t0, int_&lt;size&lt;T&gt;::value/2&gt;&gt;::type t1;
+        typedef typename end&lt;T&gt;::type t2;
+        typedef typename Merge&lt;
+            typename MergeSort&lt;iterator_range&lt;t0, t1&gt;&gt;::type,
+            typename MergeSort&lt;iterator_range&lt;t1, t2&gt;&gt;::type
+            &gt;::type type;
+    };
+    
+    typedef typename eval_if&lt;
+        empty&lt;V&gt;,
+        identity&lt;vector&lt;&gt;&gt;,
+        eval_if&lt;
+            less&lt;size&lt;V&gt;, int_&lt;2&gt;&gt;,
+            identity&lt;vector&lt;typename front&lt;V&gt;::type&gt;&gt;,
+            F&lt;V&gt;
+            &gt;
+        &gt;::type type;
+};
+
+typedef vector_c&lt;int, 0,2,1,3,4&gt; t1;
+typedef MergeSort&lt;t1&gt;::type t10;
+
+struct print {
+    template &lt;typename T&gt;
+    void operator()( T t ) const {
+       std::cout &lt;&lt; T::value &lt;&lt; &#34; &#34;;
+    }
+};
+
+int main() {
+    for_each&lt;t10&gt;(print());
+    return 0;
+}
+
+
+">
+
+
+<meta itemprop="datePublished" content="2018-05-11T15:43:51&#43;08:00" />
+<meta itemprop="dateModified" content="2018-05-11T15:43:51&#43;08:00" />
+<meta itemprop="wordCount" content="774">
+
+
+
+<meta itemprop="keywords" content="cpp,algorithm," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Cpp Template Meta Programming MergeSort"/>
+<meta name="twitter:description" content="C&#43;&#43; 模板元编程之编译时归并排序，源自水木社区 ilovecpp
+
+Cpp Template Meta Programming MergeSort
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+
+
+#include &lt;boost/mpl/vector.hpp&gt;
+#include &lt;boost/mpl/vector_c.hpp&gt;
+#include &lt;boost/mpl/eval_if.hpp&gt;
+#include &lt;boost/mpl/identity.hpp&gt;
+#include &lt;boost/mpl/empty.hpp&gt;
+#include &lt;boost/mpl/less.hpp&gt;
+#include &lt;boost/mpl/front.hpp&gt;
+#include &lt;boost/mpl/pop_front.hpp&gt;
+#include &lt;boost/mpl/push_front.hpp&gt;
+#include &lt;boost/mpl/size.hpp&gt;
+#include &lt;boost/mpl/iterator_range.hpp&gt;
+#include &lt;boost/mpl/int.hpp&gt;
+#include &lt;boost/mpl/for_each.hpp&gt;
+#include &lt;iostream&gt;
+
+using namespace boost::mpl;
+
+template&lt;typename V1, typename V2&gt;
+struct Merge {
+    template&lt;typename T1, typename T2&gt;
+    struct F {
+        typedef typename push_front&lt;
+            typename Merge&lt;typename pop_front&lt;T1&gt;::type, T2&gt;::type,
+            typename front&lt;T1&gt;::type
+            &gt;::type type;
+    };
+        
+    typedef typename eval_if&lt;
+        empty&lt;V1&gt;,
+        identity&lt;V2&gt;,
+        eval_if&lt;
+            empty&lt;V2&gt;,
+            identity&lt;V1&gt;,
+            eval_if&lt;
+                less&lt;typename front&lt;V1&gt;::type, typename front&lt;V2&gt;::type&gt;,
+                F&lt;V1, V2&gt;,
+                F&lt;V2, V1&gt;
+                &gt;
+            &gt;
+        &gt;::type type;
+};
+
+template&lt;typename V&gt;
+struct MergeSort {
+    template&lt;typename T&gt;
+    struct F {
+        typedef typename begin&lt;T&gt;::type t0;
+        typedef typename advance&lt;t0, int_&lt;size&lt;T&gt;::value/2&gt;&gt;::type t1;
+        typedef typename end&lt;T&gt;::type t2;
+        typedef typename Merge&lt;
+            typename MergeSort&lt;iterator_range&lt;t0, t1&gt;&gt;::type,
+            typename MergeSort&lt;iterator_range&lt;t1, t2&gt;&gt;::type
+            &gt;::type type;
+    };
+    
+    typedef typename eval_if&lt;
+        empty&lt;V&gt;,
+        identity&lt;vector&lt;&gt;&gt;,
+        eval_if&lt;
+            less&lt;size&lt;V&gt;, int_&lt;2&gt;&gt;,
+            identity&lt;vector&lt;typename front&lt;V&gt;::type&gt;&gt;,
+            F&lt;V&gt;
+            &gt;
+        &gt;::type type;
+};
+
+typedef vector_c&lt;int, 0,2,1,3,4&gt; t1;
+typedef MergeSort&lt;t1&gt;::type t10;
+
+struct print {
+    template &lt;typename T&gt;
+    void operator()( T t ) const {
+       std::cout &lt;&lt; T::value &lt;&lt; &#34; &#34;;
+    }
+};
+
+int main() {
+    for_each&lt;t10&gt;(print());
+    return 0;
+}
+
+
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Wolfsky</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Wolfsky</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Cpp Template Meta Programming MergeSort</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-05-11 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <p>C++ 模板元编程之编译时归并排序，源自水木社区 ilovecpp</p>
+
+<p>Cpp Template Meta Programming MergeSort</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/vector.hpp&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/vector_c.hpp&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/eval_if.hpp&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/identity.hpp&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/empty.hpp&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/less.hpp&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/front.hpp&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/pop_front.hpp&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/push_front.hpp&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/size.hpp&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/iterator_range.hpp&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/int.hpp&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/for_each.hpp&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">mpl</span><span class="p">;</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">V1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">V2</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">Merge</span> <span class="p">{</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T2</span><span class="o">&gt;</span>
+    <span class="k">struct</span> <span class="n">F</span> <span class="p">{</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">push_front</span><span class="o">&lt;</span>
+            <span class="k">typename</span> <span class="n">Merge</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">pop_front</span><span class="o">&lt;</span><span class="n">T1</span><span class="o">&gt;::</span><span class="n">type</span><span class="p">,</span> <span class="n">T2</span><span class="o">&gt;::</span><span class="n">type</span><span class="p">,</span>
+            <span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">T1</span><span class="o">&gt;::</span><span class="n">type</span>
+            <span class="o">&gt;::</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
+    <span class="p">};</span>
+        
+    <span class="k">typedef</span> <span class="k">typename</span> <span class="n">eval_if</span><span class="o">&lt;</span>
+        <span class="n">empty</span><span class="o">&lt;</span><span class="n">V1</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">identity</span><span class="o">&lt;</span><span class="n">V2</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">eval_if</span><span class="o">&lt;</span>
+            <span class="n">empty</span><span class="o">&lt;</span><span class="n">V2</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="n">identity</span><span class="o">&lt;</span><span class="n">V1</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="n">eval_if</span><span class="o">&lt;</span>
+                <span class="n">less</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">V1</span><span class="o">&gt;::</span><span class="n">type</span><span class="p">,</span> <span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">V2</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&gt;</span><span class="p">,</span>
+                <span class="n">F</span><span class="o">&lt;</span><span class="n">V1</span><span class="p">,</span> <span class="n">V2</span><span class="o">&gt;</span><span class="p">,</span>
+                <span class="n">F</span><span class="o">&lt;</span><span class="n">V2</span><span class="p">,</span> <span class="n">V1</span><span class="o">&gt;</span>
+                <span class="o">&gt;</span>
+            <span class="o">&gt;</span>
+        <span class="o">&gt;::</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">V</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">MergeSort</span> <span class="p">{</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="k">struct</span> <span class="n">F</span> <span class="p">{</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">begin</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span> <span class="n">t0</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">advance</span><span class="o">&lt;</span><span class="n">t0</span><span class="p">,</span> <span class="n">int_</span><span class="o">&lt;</span><span class="n">size</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">/</span><span class="mi">2</span><span class="o">&gt;&gt;::</span><span class="n">type</span> <span class="n">t1</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">end</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span> <span class="n">t2</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">Merge</span><span class="o">&lt;</span>
+            <span class="k">typename</span> <span class="n">MergeSort</span><span class="o">&lt;</span><span class="n">iterator_range</span><span class="o">&lt;</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="o">&gt;&gt;::</span><span class="n">type</span><span class="p">,</span>
+            <span class="k">typename</span> <span class="n">MergeSort</span><span class="o">&lt;</span><span class="n">iterator_range</span><span class="o">&lt;</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="o">&gt;&gt;::</span><span class="n">type</span>
+            <span class="o">&gt;::</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
+    <span class="p">};</span>
+    
+    <span class="k">typedef</span> <span class="k">typename</span> <span class="n">eval_if</span><span class="o">&lt;</span>
+        <span class="n">empty</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="n">identity</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;&gt;&gt;</span><span class="p">,</span>
+        <span class="n">eval_if</span><span class="o">&lt;</span>
+            <span class="n">less</span><span class="o">&lt;</span><span class="n">size</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">int_</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;&gt;</span><span class="p">,</span>
+            <span class="n">identity</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&gt;&gt;</span><span class="p">,</span>
+            <span class="n">F</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span>
+            <span class="o">&gt;</span>
+        <span class="o">&gt;::</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">typedef</span> <span class="n">vector_c</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="o">&gt;</span> <span class="n">t1</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">MergeSort</span><span class="o">&lt;</span><span class="n">t1</span><span class="o">&gt;::</span><span class="n">type</span> <span class="n">t10</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">print</span> <span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="k">operator</span><span class="p">()(</span> <span class="n">T</span> <span class="n">t</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+       <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">T</span><span class="o">::</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">for_each</span><span class="o">&lt;</span><span class="n">t10</span><span class="o">&gt;</span><span class="p">(</span><span class="n">print</span><span class="p">());</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>顺便说一下怎么读这类代码。困难主要来自不熟悉编译时的这套完全不同的语法，而概念和运行其实没多大差别。</p>
+
+<ul>
+<li><p>所有的typename关键字都是C++的语法限制，没有意义，先删掉。</p></li>
+
+<li><p>形如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T2</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">F</span> <span class="p">{</span>
+<span class="k">typedef</span> <span class="p">...</span> <span class="n">type</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>的是编译时函数，相当于运行时的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">F</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">return</span> <span class="p">...;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>形如<code>F&lt;T1, T2&gt;::type</code> 的是编译时的函数调用，相当于运行时的 <code>F(T1, T2)</code></p></li>
+</ul>
+
+<p>如果没有<code>::type</code>，形如<code>F&lt;T1, T2&gt;</code>则是lazy的函数，相当于运行时的 function object，例如<code>bind(F, T1, T2)</code>。</p>
+
+<ul>
+<li><p><code>eval_if&lt;C, T1, T2&gt;</code>相当于运行时的if，根据C的真值决定对T1或T2 lazy求值。由于C++对模板实参是eager求值的，我们递归的话就不能用<code>T1::type</code>这种函数调用的形式，而只能把T1传进去让eval_if做lazy求值，否则会无穷递归。</p></li>
+
+<li><p><code>typedef foo bar</code>相当于运行时的<code>bar=foo</code></p></li>
+
+<li><p>类型相当于运行时的值。所以像2这样的常数需要用<code>int_&lt;2&gt;</code>包装成类型。</p></li>
+</ul>
+
+<p>好，我按照上述几条规则翻译一下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Merge</span><span class="p">(</span><span class="n">V1</span><span class="p">,</span> <span class="n">V2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">F</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">push_front</span><span class="p">(</span><span class="n">Merge</span><span class="p">(</span><span class="n">pop_front</span><span class="p">(</span><span class="n">T1</span><span class="p">),</span> <span class="n">T2</span><span class="p">),</span> <span class="n">front</span><span class="p">(</span><span class="n">T1</span><span class="p">));</span>
+    <span class="p">};</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">empty</span><span class="p">(</span><span class="n">V1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">V2</span><span class="p">;</span>
+    <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">empty</span><span class="p">(</span><span class="n">V2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">V1</span><span class="p">;</span>
+    <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">front</span><span class="p">(</span><span class="n">V1</span><span class="p">)</span><span class="o">&lt;</span><span class="n">front</span><span class="p">(</span><span class="n">V2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">F</span><span class="p">(</span><span class="n">V1</span><span class="p">,</span> <span class="n">V2</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="nf">F</span><span class="p">(</span><span class="n">V2</span><span class="p">,</span> <span class="n">V1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">MergeSort</span><span class="p">(</span><span class="n">V</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">F</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">t0</span> <span class="o">=</span> <span class="n">begin</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">advance</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+        <span class="n">t2</span> <span class="o">=</span> <span class="n">end</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nf">Merge</span><span class="p">(</span><span class="n">MergeSort</span><span class="p">(</span><span class="n">iterator_range</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">)),</span>
+                     <span class="n">MergeSort</span><span class="p">(</span><span class="n">iterator_range</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)));</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">empty</span><span class="p">(</span><span class="n">V</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">vector</span><span class="p">();</span>
+    <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">V</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">vector</span><span class="p">(</span><span class="n">front</span><span class="p">(</span><span class="n">V</span><span class="p">));</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="n">F</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">josephpei</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-05-11
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/cpp/">cpp</a>
+          <a href="/tags/algorithm/">algorithm</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2018/11/08/ubuntu-18-04-%E4%BF%AE%E5%A4%8D%E4%B8%8E-windows-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%8F%8A%E6%89%93%E5%8D%B0%E6%9C%BA/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Ubuntu 18.04 修复与 Windows 共享文件及打印机</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2018/05/04/vscode-cquery-lsp-%E5%AE%9E%E7%8E%B0-c-c-%E8%A1%A5%E5%85%A8/">
+            <span class="next-text nav-default">VSCode cquery(lsp) 实现 C/C&#43;&#43; 补全</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'josephpei-github-io';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
+  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">josephpei</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,384 +1,626 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#33363b">
-    <meta name="msapplication-TileColor" content="#33363b">
-    
-    
-    
-    
-    <meta name="keywords" content="Life, Linux, Hexo">
-    
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-    
-    
-    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
-    
-    
-    <link rel="manifest" href="/favicons/site.webmanifest">
-    
-    
-    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
-    
-    
-    <link rel="alternate" href="/atom.xml" title="有翅膀的天狼" type="application/atom+xml" />
-    
-    
-    
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
-    
-    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
-    
-    
-<link rel="stylesheet" type="text/css" href="/css/page.css">
-<link rel="stylesheet" type="text/css" href="/css/post.css">
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>POJ 1001 求高精度幂 - 有翅膀的天狼</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    <link rel="stylesheet" type="text/css" href="/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
-    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script defer type="text/javascript" src="/js/util.js"></script>
-    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
-    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
-    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
-    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
-    
-    <script defer src="/js/busuanzi.pure.mini.js"></script>
-    
-    
-    <script defer type="text/javascript" src="/js/search.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var searchPath = "search.xml";
-      if (searchPath.length === 0) {
-        searchPath = "search.xml";
-      }
-      var path = "/" + searchPath;
-      searchFunc(path, "search-input", "search-result");
-    });
-    </script>
-    
-    
-    <script defer type="text/javascript" src="/js/index.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var cb = null;
-      var els = $(".post figure.highlight");
-      if (els.length) {
-        // Enabled Hexo highlight line number.
-        $(els).each(function (i, e) {
-          $(e).before("<button class=\"copy button\">复制</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout with line number.
-              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
-          }
-        });
-      } else {
-        // Disabled Hexo highlight line number.
-        els = $(".post pre code");
-        $(els).each(function (i, e) {
-          // Add button before pre, not code.
-          $(e).parent().before("<button class=\"copy button\">复制</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout without line number.
-              return trigger.nextElementSibling.firstChild;
-          }
-        });
-      }
-      cb.on("success", function (e) {
-        e.clearSelection();
-        var trigger = e.trigger;
-        // Change button text as a user tip.
-        trigger.innerHTML = "已复制";
-        $(trigger).addClass("copied");
-        // Change button text back;
-        setTimeout(function () {
-          trigger.innerHTML = "复制";
-          $(trigger).removeClass("copied");
-        }, 1500);
-      });
-    });
-    </script>
-    
-    <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>POJ 1001 求高精度幂 | 有翅膀的天狼 - Whisper to the world</title>
-  </head>
-  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
-    
-<header id="header" class="header" style="background: #33363b;">
-  <div class="container">
-    <div class="header-container">
-      <div class="header-title">
-        <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
-        <h2 class="subtitle">Whisper to the world</h2>
-      </div>
-      
-      <div class="logo">
-        <img src="/img/logo.png" alt="logo">
-      </div>
-      
-    </div>
-    <nav id="nav" class="nav">
-      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
-      <ul id="menu" role="menubar" aria-hidden="false">
-        
-      </ul>
-    </nav>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="josephpei" /><meta name="description" content="问题：对一个实数R( 0.0 &amp;lt; R &amp;lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &amp;lt; n &amp;lt;= 25。
+计算结果位数的确定  两数之和的最大为较大的数的位数加1 乘积的位数最大为两个因子的位数之和 阶乘：lgn! = lgn &#43; lg(n-1) &#43; &amp;hellip; &#43; lg1 = lnn/ln10 &#43; ln(n-1)/ln10 &#43; &amp;hellip; &#43; ln1/ln10 = trunc(1/ln10 * (lnn &#43; ln(n-1) &#43; &amp;hellip; &#43; ln1)) 乘方：lg(a^b) = trunc(lg(a^b)) &#43; 1 = trunc(b * lga) &#43; 1 = trunc(b * lna/ln10) &#43; 1 " /><meta name="keywords" content="life, linux, program" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://josephpei.github.io/2013/09/25/poj-1001-%E6%B1%82%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%B9%82/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="POJ 1001 求高精度幂" />
+<meta property="og:description" content="问题：对一个实数R( 0.0 &lt; R &lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &lt; n &lt;= 25。
+
+计算结果位数的确定
+
+
+两数之和的最大为较大的数的位数加1
+乘积的位数最大为两个因子的位数之和
+阶乘：lgn! = lgn &#43; lg(n-1) &#43; &hellip; &#43; lg1 = lnn/ln10 &#43; ln(n-1)/ln10 &#43; &hellip; &#43; ln1/ln10 = trunc(1/ln10 * (lnn &#43; ln(n-1) &#43; &hellip; &#43; ln1))
+乘方：lg(a^b) = trunc(lg(a^b)) &#43; 1 = trunc(b * lga) &#43; 1 = trunc(b * lna/ln10) &#43; 1
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://josephpei.github.io/2013/09/25/poj-1001-%E6%B1%82%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%B9%82/" />
+<meta property="article:published_time" content="2013-09-25T16:11:48&#43;08:00"/>
+<meta property="article:modified_time" content="2013-09-25T16:11:48&#43;08:00"/>
+
+<meta itemprop="name" content="POJ 1001 求高精度幂">
+<meta itemprop="description" content="问题：对一个实数R( 0.0 &lt; R &lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &lt; n &lt;= 25。
+
+计算结果位数的确定
+
+
+两数之和的最大为较大的数的位数加1
+乘积的位数最大为两个因子的位数之和
+阶乘：lgn! = lgn &#43; lg(n-1) &#43; &hellip; &#43; lg1 = lnn/ln10 &#43; ln(n-1)/ln10 &#43; &hellip; &#43; ln1/ln10 = trunc(1/ln10 * (lnn &#43; ln(n-1) &#43; &hellip; &#43; ln1))
+乘方：lg(a^b) = trunc(lg(a^b)) &#43; 1 = trunc(b * lga) &#43; 1 = trunc(b * lna/ln10) &#43; 1
+">
+
+
+<meta itemprop="datePublished" content="2013-09-25T16:11:48&#43;08:00" />
+<meta itemprop="dateModified" content="2013-09-25T16:11:48&#43;08:00" />
+<meta itemprop="wordCount" content="1037">
+
+
+
+<meta itemprop="keywords" content="poj," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="POJ 1001 求高精度幂"/>
+<meta name="twitter:description" content="问题：对一个实数R( 0.0 &lt; R &lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &lt; n &lt;= 25。
+
+计算结果位数的确定
+
+
+两数之和的最大为较大的数的位数加1
+乘积的位数最大为两个因子的位数之和
+阶乘：lgn! = lgn &#43; lg(n-1) &#43; &hellip; &#43; lg1 = lnn/ln10 &#43; ln(n-1)/ln10 &#43; &hellip; &#43; ln1/ln10 = trunc(1/ln10 * (lnn &#43; ln(n-1) &#43; &hellip; &#43; ln1))
+乘方：lg(a^b) = trunc(lg(a^b)) &#43; 1 = trunc(b * lga) &#43; 1 = trunc(b * lna/ln10) &#43; 1
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Wolfsky</a>
   </div>
-</header>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Wolfsky</a>
+</div>
 
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
 
     <main id="main" class="main">
-      <div class="container">
-        <div class="main-container">
-          <div class="content">
-            
-<div id="post" class="page">
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/09/25/poj-1001-求高精度幂/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="Joseph Pei">
-       <meta itemprop="description" content="">
-       <meta itemprop="image" content="/img/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="有翅膀的天狼">
-      </span>
-    </div>
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">POJ 1001 求高精度幂</h1>
+      <h1 class="post-title">POJ 1001 求高精度幂</h1>
+
       <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2013-09-25T16:11:48+08:00">2013-09-25 16:11:48</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2013/09/25/poj-1001-求高精度幂/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/09/25/poj-1001-求高精度幂/" itemprop="commentCount"></span></a></span>
-        </span>
+        <span class="post-time"> 2013-09-25 </span>
         
         
       </div>
     </header>
-    <main class="post-main" itemprop="articleBody">
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#计算结果位数的确定">计算结果位数的确定</a></li>
+<li><a href="#高精度加法">高精度加法</a></li>
+<li><a href="#高精度减法">高精度减法</a></li>
+<li><a href="#高精度乘法">高精度乘法</a></li>
+<li><a href="#代码">代码</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
       <p>问题：对一个实数R( 0.0 &lt; R &lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &lt; n &lt;= 25。</p>
-<h2 id="计算结果位数的确定"><a href="#计算结果位数的确定" class="headerlink" title="计算结果位数的确定"></a>计算结果位数的确定</h2><ul>
+
+<h2 id="计算结果位数的确定">计算结果位数的确定</h2>
+
+<ul>
 <li>两数之和的最大为较大的数的位数加1</li>
 <li>乘积的位数最大为两个因子的位数之和</li>
-<li>阶乘：lgn! = lgn + lg(n-1) + … + lg1 = lnn/ln10 + ln(n-1)/ln10 + … + ln1/ln10 = trunc(1/ln10 * (lnn + ln(n-1) + … + ln1))</li>
+<li>阶乘：lgn! = lgn + lg(n-1) + &hellip; + lg1 = lnn/ln10 + ln(n-1)/ln10 + &hellip; + ln1/ln10 = trunc(1/ln10 * (lnn + ln(n-1) + &hellip; + ln1))</li>
 <li>乘方：lg(a^b) = trunc(lg(a^b)) + 1 = trunc(b * lga) + 1 = trunc(b * lna/ln10) + 1</li>
 </ul>
-<a id="more"></a>
-<h2 id="高精度加法"><a href="#高精度加法" class="headerlink" title="高精度加法"></a>高精度加法</h2><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ncarry = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt;= len; i++)<br>&#123;<br>    k = a[i] + b[i] + ncarry;<br>    a[i+<span class="hljs-number">1</span>] += k/N;<br>    ncarry = k%N;<br>&#125;<br><span class="hljs-comment">//当最后 ncarry &gt; 0 时，len会变化</span><br></code></pre></td></tr></table></figure>
-<h2 id="高精度减法"><a href="#高精度减法" class="headerlink" title="高精度减法"></a>高精度减法</h2><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//先比较大小，大的为a</span><br>ncarry = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt;= len; i++)<br>&#123;<br>    <span class="hljs-keyword">if</span> (a[i] - b[i] - ncarry) &gt;= <span class="hljs-number">0</span>)<br>        a[i] = a[i] - b[i] - ncarry, ncarry = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">else</span><br>        a[i] = a[i] + N - b[i] - ncarry, ncarry = <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="高精度乘法"><a href="#高精度乘法" class="headerlink" title="高精度乘法"></a>高精度乘法</h2><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt;= lena; i++)<br>    <span class="hljs-keyword">for</span> (j = <span class="hljs-number">0</span>; j &lt;= lenb; j++)<br>        c[i+j] += a[i] * b[j];<br><span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt;= lena + lenb; i++)<br>&#123;<br>    c[i+<span class="hljs-number">1</span>] += c[i]/N;<br>    c[i] = c[i]/N;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/*<br>POJ-1001<br>提交状态：<br>Accepted    244K 0MS   C++    2039B<br>解题思路：<br>1、首先要保证两个整数的乘法运算是正确的<br>2、接受数据之后，先去掉小数点，并且根据幂指数确定小数点的位数，此时要注意的是如果出现1.0000这样有无效零的情况，先将0去掉。<br>3、多次调用高精度乘法函数得到整数结果<br>4、补上小数点并输出，因为在2中已经去掉了无效零，于是结果中便不会出现小数点右边末尾出现零的情况。<br>5、还有就是如果小数点的总位数大于等于结果的长度，应该先输出"."<br>*/</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SIZE 1000</span><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">process</span><span class="hljs-params">(<span class="hljs-keyword">char</span> s[], <span class="hljs-keyword">int</span> *point)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">reverse</span><span class="hljs-params">(<span class="hljs-keyword">char</span> t[], <span class="hljs-keyword">int</span> n)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">check</span><span class="hljs-params">( <span class="hljs-keyword">int</span> tmp[], <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">char</span> result[])</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mul</span><span class="hljs-params">(<span class="hljs-keyword">char</span> s[], <span class="hljs-keyword">char</span> t[], <span class="hljs-keyword">char</span> result[])</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">(<span class="hljs-keyword">int</span> point, <span class="hljs-keyword">char</span> result[])</span></span>;<br><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span><br></span>&#123;<br>    <span class="hljs-keyword">char</span> s[SIZE];<br>    <span class="hljs-keyword">int</span> n;<br><br>    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s%d"</span>, s, &amp;n) != EOF) &#123;<br>        <span class="hljs-keyword">int</span> i, point = <span class="hljs-number">0</span>;<br>        process(s, &amp;point);<br>        <span class="hljs-keyword">char</span> result[SIZE * <span class="hljs-number">2</span>];<br>        <span class="hljs-keyword">char</span> tmp[SIZE];<br>        <span class="hljs-built_in">strcpy</span>(result, s);<br>        <span class="hljs-built_in">strcpy</span>(tmp, s);<br>        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">1</span>; i++) &#123;<br>            <span class="hljs-built_in">strcpy</span>(s, tmp);<br>            mul(s, result, result);<br>        &#125;<br>        show(point * n, result);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">process</span><span class="hljs-params">(<span class="hljs-keyword">char</span> s[], <span class="hljs-keyword">int</span> *point)</span><br></span>&#123;<br>    <span class="hljs-keyword">int</span> len = <span class="hljs-built_in">strlen</span>(s);<br>    <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (s[i] != <span class="hljs-string">'\0'</span>)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (s[i] == <span class="hljs-string">'.'</span>) <span class="hljs-keyword">break</span>;<br>        ++i;<br>    &#125;<br><br>    <span class="hljs-keyword">while</span> (s[len - <span class="hljs-number">1</span>] == <span class="hljs-string">'0'</span>) --len;<br>    s[len] = <span class="hljs-string">'\0'</span>;<br>    *point = i &lt; len ? (len - i - <span class="hljs-number">1</span>) : <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (i &lt; len) &#123;<br>        s[i] = s[i + <span class="hljs-number">1</span>];<br>        ++i;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">reverse</span><span class="hljs-params">(<span class="hljs-keyword">char</span> t[], <span class="hljs-keyword">int</span> n)</span><br></span>&#123;<br>    <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j = n - <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">char</span> tmp;<br>    <span class="hljs-keyword">while</span> (i &lt; j)<br>    &#123;<br>        tmp = t[i];<br>        t[i] = t[j];<br>        t[j] = tmp;<br>        ++i, --j;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">check</span><span class="hljs-params">(<span class="hljs-keyword">int</span> tmp[], <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">char</span> result[])</span><br></span>&#123;<br>    <span class="hljs-keyword">int</span> i, j, k = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; n; ++i)<br>    &#123;<br>        tmp[i + <span class="hljs-number">1</span>] += tmp[i] / <span class="hljs-number">10</span>;<br>        tmp[i] = tmp[i] % <span class="hljs-number">10</span>;<br>    &#125;<br>    <span class="hljs-keyword">while</span> (tmp[i] == <span class="hljs-number">0</span>) --i;<br>    <span class="hljs-keyword">for</span> (j = i; j &gt;= <span class="hljs-number">0</span>; j--)<br>        result[k++] = tmp[j] + <span class="hljs-string">'0'</span>;<br>    result[k] = <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mul</span><span class="hljs-params">(<span class="hljs-keyword">char</span> s[], <span class="hljs-keyword">char</span> t[], <span class="hljs-keyword">char</span> result[])</span><br></span>&#123;<br>    <span class="hljs-keyword">int</span> ls = <span class="hljs-built_in">strlen</span>(s);<br>    <span class="hljs-keyword">int</span> lt = <span class="hljs-built_in">strlen</span>(t);<br>    reverse(s, ls);<br>    reverse(t, lt);<br>    <span class="hljs-keyword">int</span> tmp[SIZE * <span class="hljs-number">2</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br>    <span class="hljs-keyword">int</span> i, j, k;<br>    <span class="hljs-keyword">int</span> a = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; ls; i++)<br>        <span class="hljs-keyword">for</span> (j = <span class="hljs-number">0</span>; j &lt; lt; j++)<br>            tmp [i + j] += (<span class="hljs-keyword">int</span>)(s[i] - <span class="hljs-string">'0'</span>)*(<span class="hljs-keyword">int</span>)(t[j] - <span class="hljs-string">'0'</span>);<br>    check(tmp, i + j, result);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">(<span class="hljs-keyword">int</span> point, <span class="hljs-keyword">char</span> result[])</span><br></span>&#123;<br>    <span class="hljs-keyword">int</span> len = <span class="hljs-built_in">strlen</span>(result);<br>    <span class="hljs-keyword">if</span> (point &gt;= len)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"."</span>);<br>    <span class="hljs-keyword">while</span> (point &gt; len)<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"0"</span>);<br>        point--;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++)<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%c"</span>, result[i]);<br>        <span class="hljs-keyword">if</span> (i == len - <span class="hljs-number">1</span> - point &amp;&amp; point != <span class="hljs-number">0</span>)<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"."</span>);<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n"</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-    </main>
-    <footer class="post-footer">
-      
+
+<h2 id="高精度加法">高精度加法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">ncarry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">ncarry</span><span class="p">;</span>
+    <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">k</span><span class="o">/</span><span class="n">N</span><span class="p">;</span>
+    <span class="n">ncarry</span> <span class="o">=</span> <span class="n">k</span><span class="o">%</span><span class="n">N</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//当最后 ncarry &gt; 0 时，len会变化
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="高精度减法">高精度减法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">//先比较大小，大的为a
+</span><span class="c1"></span><span class="n">ncarry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">ncarry</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">ncarry</span><span class="p">,</span> <span class="n">ncarry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">N</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">ncarry</span><span class="p">,</span> <span class="n">ncarry</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="高精度乘法">高精度乘法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">lena</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">lenb</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">lena</span> <span class="o">+</span> <span class="n">lenb</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">N</span><span class="p">;</span>
+    <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">N</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="代码">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cm">/*
+</span><span class="cm">POJ-1001
+</span><span class="cm">提交状态：
+</span><span class="cm">Accepted    244K 0MS   C++    2039B
+</span><span class="cm">解题思路：
+</span><span class="cm">1、首先要保证两个整数的乘法运算是正确的
+</span><span class="cm">2、接受数据之后，先去掉小数点，并且根据幂指数确定小数点的位数，此时要注意的是如果出现1.0000这样有无效零的情况，先将0去掉。
+</span><span class="cm">3、多次调用高精度乘法函数得到整数结果
+</span><span class="cm">4、补上小数点并输出，因为在2中已经去掉了无效零，于是结果中便不会出现小数点右边末尾出现零的情况。
+</span><span class="cm">5、还有就是如果小数点的总位数大于等于结果的长度，应该先输出&#34;.&#34;
+</span><span class="cm">*/</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="cp">#define SIZE 1000
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">process</span><span class="p">(</span><span class="kt">char</span> <span class="n">s</span><span class="p">[],</span> <span class="kt">int</span> <span class="o">*</span><span class="n">point</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">reverse</span><span class="p">(</span><span class="kt">char</span> <span class="n">t</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">check</span><span class="p">(</span> <span class="kt">int</span> <span class="n">tmp</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">char</span> <span class="n">result</span><span class="p">[]);</span>
+<span class="kt">void</span> <span class="nf">mul</span><span class="p">(</span><span class="kt">char</span> <span class="n">s</span><span class="p">[],</span> <span class="kt">char</span> <span class="n">t</span><span class="p">[],</span> <span class="kt">char</span> <span class="n">result</span><span class="p">[]);</span>
+<span class="kt">void</span> <span class="nf">show</span><span class="p">(</span><span class="kt">int</span> <span class="n">point</span><span class="p">,</span> <span class="kt">char</span> <span class="n">result</span><span class="p">[]);</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="n">SIZE</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%s%d&#34;</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">)</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">point</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">process</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">point</span><span class="p">);</span>
+        <span class="kt">char</span> <span class="n">result</span><span class="p">[</span><span class="n">SIZE</span> <span class="o">*</span> <span class="mi">2</span><span class="p">];</span>
+        <span class="kt">char</span> <span class="n">tmp</span><span class="p">[</span><span class="n">SIZE</span><span class="p">];</span>
+        <span class="n">strcpy</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+        <span class="n">strcpy</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">strcpy</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">tmp</span><span class="p">);</span>
+            <span class="n">mul</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">show</span><span class="p">(</span><span class="n">point</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="nf">process</span><span class="p">(</span><span class="kt">char</span> <span class="n">s</span><span class="p">[],</span> <span class="kt">int</span> <span class="o">*</span><span class="n">point</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+        <span class="o">++</span><span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="o">--</span><span class="n">len</span><span class="p">;</span>
+    <span class="n">s</span><span class="p">[</span><span class="n">len</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">point</span> <span class="o">=</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span> <span class="o">?</span> <span class="p">(</span><span class="n">len</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+        <span class="o">++</span><span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">reverse</span><span class="p">(</span><span class="kt">char</span> <span class="n">t</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+        <span class="n">t</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+        <span class="o">++</span><span class="n">i</span><span class="p">,</span> <span class="o">--</span><span class="n">j</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">check</span><span class="p">(</span><span class="kt">int</span> <span class="n">tmp</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">char</span> <span class="n">result</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">tmp</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">--</span><span class="n">i</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">k</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+    <span class="n">result</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">mul</span><span class="p">(</span><span class="kt">char</span> <span class="n">s</span><span class="p">[],</span> <span class="kt">char</span> <span class="n">t</span><span class="p">[],</span> <span class="kt">char</span> <span class="n">result</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">ls</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">lt</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+    <span class="n">reverse</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">ls</span><span class="p">);</span>
+    <span class="n">reverse</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">lt</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">tmp</span><span class="p">[</span><span class="n">SIZE</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ls</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">lt</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">tmp</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">t</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="p">);</span>
+    <span class="n">check</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">show</span><span class="p">(</span><span class="kt">int</span> <span class="n">point</span><span class="p">,</span> <span class="kt">char</span> <span class="n">result</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">point</span> <span class="o">&gt;=</span> <span class="n">len</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">point</span> <span class="o">&gt;</span> <span class="n">len</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;0&#34;</span><span class="p">);</span>
+        <span class="n">point</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">point</span> <span class="o">&amp;&amp;</span> <span class="n">point</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">josephpei</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2013-09-25
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
       <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/poj/" rel="tag"><i class="fas fa-tags"></i>poj</a>
-        
-      </div>
-      
+          <a href="/tags/poj/">poj</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2013/09/26/poj-1002-%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">POJ 1002 电话号码</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2013/09/16/python-%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8decorator/">
+            <span class="next-text nav-default">Python 中的装饰器(decorator)</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
     </footer>
   </article>
-  
-  
-  <nav class="page-nav">
-    <div class="page-nav-next page-nav-item">
-      
-      <a href="/2013/09/16/python-中的装饰器(decorator)/" rel="next" title="Python 中的装饰器(decorator)"><i class="fas fa-angle-left"></i><span class="nav-title">Python 中的装饰器(decorator)</span></a>
-      
-    </div>
-    <div class="page-nav-prev page-nav-item">
-      
-      <a href="/2013/09/26/poj-1002-电话号码/" rel="prev" title="POJ 1002 电话号码"><span class="nav-title">POJ 1002 电话号码</span><i class="fas fa-angle-right"></i></a>
-      
-    </div>
-  </nav>
-  
-  
-  
-
-<div class="comments" id="comments">
-  
-  <script defer id="dsq-count-scr" src="//josephpei-github-io.disqus.com/count.js"></script>
-  
-  <div id="disqus_thread" class="disqus_thread"></div>
-  <script type="text/javascript">
-  var disqus_config = function () {
-    this.page.url = "http://josephpei.github.io/2013/09/25/poj-1001-求高精度幂/";
-    this.page.identifier = "2013/09/25/poj-1001-求高精度幂/";
-  };
-  (function() {
-    var d = document, s = d.createElement("script");
-    s.src = "https://josephpei-github-io.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-  </script>
-  
-  
-</div>
-
-
-
-  
-</div>
-
-          </div>
-          
-          
-          
-<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
-  
-  <div class="search">
-    <div class="form-group">
-      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
-    </div>
-  </div>
-  <div class="search-result-box" id="search-result"></div>
-  
-  
-<div class="info sidebar-item" id="info">
-  
-  <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
-  
-  <h1 class="author-name">Joseph Pei</h1>
-  <h2 class="author-description"></h2>
-  <div class="site-count">
-    
-  </div>
-  
-  <div class="rss">
-    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
-  </div>
-  
-</div>
-
-
-  <div class="sidebar-sticky">
-    
-    
-    
-    
-    
-    <hr>
-    <div class="post-toc sidebar-item" id="toc-div">
-      <div><i class="fas fa-list-ol"></i>文章目录</div>
-      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#计算结果位数的确定"><span class="toc-text">计算结果位数的确定</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#高精度加法"><span class="toc-text">高精度加法</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#高精度减法"><span class="toc-text">高精度减法</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#高精度乘法"><span class="toc-text">高精度乘法</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol></div>
-    </div>
-    
-    
-    
-    <hr>
-    <div class="social-link sidebar-item">
-      <div><i class="far fa-address-card"></i>社交链接</p></div>
-      <ul>
-        
-        <li>fas fa-envelope<a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
-        
-        <li>fab fa-github<a href="https://github.com/" target="_blank">GitHub</a></li>
-        
-        <li>fab fa-weibo<a href="https://weibo.com/" target="_blank">Weibo</a></li>
-        
-      </ul>
-    </div>
-    
-    
-    <hr>
-    <div class="blogroll sidebar-item">
-      <div><i class="fas fa-link"></i>友情链接</div>
-      <ul>
-        
-        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-        
-        <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-        
-        <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-        
-      </ul>
-    </div>
-    
-  </div>
-</aside>
-
-
-          
         </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'josephpei-github-io';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
       </div>
     </main>
-    
-<footer id="footer" class="footer" style="background: #33363b;">
-  <div class="container">
-    <div class="back-to-top">
-      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
-    </div>
-    <div class="footer-container">
-      <div class="footer-left">
-        <div class="copyright">
-          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
-        </div>
-        
-        <div class="busuanzi">
-          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
-        </div>
-        
-      </div>
-      <div class="footer-right">
-        <div class="custom-info">
-          
-          托管于 <i class="fab fa-github-alt"></i> <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
-          
-        </div>
-        <div class="powered-by">
-          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
-        </div>
-      </div>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
+  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">josephpei</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
     </div>
   </div>
-</footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
 
 
-  </body>
+
+
+
+
+
+
+</body>
 </html>

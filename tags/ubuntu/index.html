@@ -1,315 +1,210 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#33363b">
-    <meta name="msapplication-TileColor" content="#33363b">
-    
-    
-    
-    
-    <meta name="keywords" content="Life, Linux, Hexo">
-    
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-    
-    
-    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
-    
-    
-    <link rel="manifest" href="/favicons/site.webmanifest">
-    
-    
-    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
-    
-    
-    <link rel="alternate" href="/atom.xml" title="有翅膀的天狼" type="application/atom+xml" />
-    
-    
-    
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
-    
-    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
-    
-    
-<link rel="stylesheet" type="text/css" href="/css/page.css">
-<link rel="stylesheet" type="text/css" href="/css/post.css">
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>ubuntu · 有翅膀的天狼</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    <link rel="stylesheet" type="text/css" href="/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
-    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script defer type="text/javascript" src="/js/util.js"></script>
-    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
-    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
-    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
-    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
-    
-    <script defer src="/js/busuanzi.pure.mini.js"></script>
-    
-    
-    <script defer type="text/javascript" src="/js/search.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var searchPath = "search.xml";
-      if (searchPath.length === 0) {
-        searchPath = "search.xml";
-      }
-      var path = "/" + searchPath;
-      searchFunc(path, "search-input", "search-result");
-    });
-    </script>
-    
-    
-    <script defer type="text/javascript" src="/js/index.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var cb = null;
-      var els = $(".post figure.highlight");
-      if (els.length) {
-        // Enabled Hexo highlight line number.
-        $(els).each(function (i, e) {
-          $(e).before("<button class=\"copy button\">复制</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout with line number.
-              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
-          }
-        });
-      } else {
-        // Disabled Hexo highlight line number.
-        els = $(".post pre code");
-        $(els).each(function (i, e) {
-          // Add button before pre, not code.
-          $(e).parent().before("<button class=\"copy button\">复制</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout without line number.
-              return trigger.nextElementSibling.firstChild;
-          }
-        });
-      }
-      cb.on("success", function (e) {
-        e.clearSelection();
-        var trigger = e.trigger;
-        // Change button text as a user tip.
-        trigger.innerHTML = "已复制";
-        $(trigger).addClass("copied");
-        // Change button text back;
-        setTimeout(function () {
-          trigger.innerHTML = "复制";
-          $(trigger).removeClass("copied");
-        }, 1500);
-      });
-    });
-    </script>
-    
-    <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>标签: ubuntu | 有翅膀的天狼 - Whisper to the world</title>
-  </head>
-  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
-    
-<header id="header" class="header" style="background: #33363b;">
-  <div class="container">
-    <div class="header-container">
-      <div class="header-title">
-        <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
-        <h2 class="subtitle">Whisper to the world</h2>
-      </div>
-      
-      <div class="logo">
-        <img src="/img/logo.png" alt="logo">
-      </div>
-      
-    </div>
-    <nav id="nav" class="nav">
-      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
-      <ul id="menu" role="menubar" aria-hidden="false">
-        
-      </ul>
-    </nav>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="josephpei" /><meta name="description" content="常无事，痛饮酒，熟读离骚" /><meta name="keywords" content="life, linux, program" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://josephpei.github.io/tags/ubuntu/" />
+  <link href="http://josephpei.github.io/tags/ubuntu/index.xml" rel="alternate" type="application/rss+xml" title="有翅膀的天狼" />
+  <link href="http://josephpei.github.io/tags/ubuntu/index.xml" rel="feed" type="application/rss+xml" title="有翅膀的天狼" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="ubuntu" />
+<meta property="og:description" content="常无事，痛饮酒，熟读离骚" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://josephpei.github.io/tags/ubuntu/" />
+
+<meta property="og:updated_time" content="2018-11-08T13:16:28&#43;08:00"/>
+
+<meta itemprop="name" content="ubuntu">
+<meta itemprop="description" content="常无事，痛饮酒，熟读离骚">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ubuntu"/>
+<meta name="twitter:description" content="常无事，痛饮酒，熟读离骚"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Wolfsky</a>
   </div>
-</header>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Wolfsky</a>
+</div>
 
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
 
     <main id="main" class="main">
-      <div class="container">
-        <div class="main-container">
-          <div class="content">
-            
-<div id="tag" class="tag page">
-  <h1 class="page-title">ubuntu</h1>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <header id="post-header" class="post-header">
-      <h1 class="post-title-simple" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/11/08/Ubuntu-18-04-修复与-Windows-共享文件及打印机/" itemprop="url">Ubuntu 18.04 修复与 Windows 共享文件及打印机</a>
-      </h1>
-      
-      <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="2018-11-08T13:16:28+08:00">11-08</time>
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <section id="archive" class="archive">
+  <div class="archive-title tag">
+        <h2 class="archive-name">ubuntu</h2>
+      </div>
+
+  <div class="archive-post">
+      <span class="archive-post-time">
+        2018-11-08
       </span>
-      
-    </header>
-  </article>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <header id="post-header" class="post-header">
-      <h1 class="post-title-simple" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/04/28/ubuntu-awesome-terminal/" itemprop="url">ubuntu awesome terminal</a>
-      </h1>
-      
-      <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="2018-04-28T10:53:07+08:00">04-28</time>
+      <span class="archive-post-title">
+        <a href="/2018/11/08/ubuntu-18-04-%E4%BF%AE%E5%A4%8D%E4%B8%8E-windows-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%8F%8A%E6%89%93%E5%8D%B0%E6%9C%BA/" class="archive-post-link">
+          Ubuntu 18.04 修复与 Windows 共享文件及打印机
+        </a>
       </span>
-      
-    </header>
-  </article>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <header id="post-header" class="post-header">
-      <h1 class="post-title-simple" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2015/06/24/Linux-Ubuntu-下为-Android-创建无线分享热点/" itemprop="url">Linux/Ubuntu 下为 Android 创建无线分享热点</a>
-      </h1>
-      
-      <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="2015-06-24T11:34:40+08:00">06-24</time>
+    </div><div class="archive-post">
+      <span class="archive-post-time">
+        2018-04-28
       </span>
-      
-    </header>
-  </article>
-  
-  
-</div>
-
-          </div>
-          
-          
-          
-<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
-  
-  <div class="search">
-    <div class="form-group">
-      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+      <span class="archive-post-title">
+        <a href="/2018/04/28/ubuntu-awesome-terminal/" class="archive-post-link">
+          ubuntu awesome terminal
+        </a>
+      </span>
+    </div><div class="archive-post">
+      <span class="archive-post-time">
+        2015-06-24
+      </span>
+      <span class="archive-post-title">
+        <a href="/2015/06/24/linux-ubuntu-%E4%B8%8B%E4%B8%BA-android-%E5%88%9B%E5%BB%BA%E6%97%A0%E7%BA%BF%E5%88%86%E4%BA%AB%E7%83%AD%E7%82%B9/" class="archive-post-link">
+          Linux/Ubuntu 下为 Android 创建无线分享热点
+        </a>
+      </span>
     </div>
-  </div>
-  <div class="search-result-box" id="search-result"></div>
-  
-  
-<div class="info sidebar-item" id="info">
-  
-  <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
-  
-  <h1 class="author-name">Joseph Pei</h1>
-  <h2 class="author-description"></h2>
-  <div class="site-count">
-    
-  </div>
-  
-  <div class="rss">
-    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
-  </div>
-  
-</div>
+</section>
 
-
-  <div class="sidebar-sticky">
-    
-    
-    <hr>
-    <div class="social-link sidebar-item">
-      <div><i class="far fa-address-card"></i>社交链接</p></div>
-      <ul>
-        
-        <li>fas fa-envelope<a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
-        
-        <li>fab fa-github<a href="https://github.com/" target="_blank">GitHub</a></li>
-        
-        <li>fab fa-weibo<a href="https://weibo.com/" target="_blank">Weibo</a></li>
-        
-      </ul>
-    </div>
-    
-    
-    <hr>
-    <div class="blogroll sidebar-item">
-      <div><i class="fas fa-link"></i>友情链接</div>
-      <ul>
-        
-        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-        
-        <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-        
-        <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-        
-      </ul>
-    </div>
-    
-  </div>
-</aside>
-
-
-          
+<nav class="pagination">
+  
+  
+</nav>
         </div>
+        
+
       </div>
     </main>
-    
-<footer id="footer" class="footer" style="background: #33363b;">
-  <div class="container">
-    <div class="back-to-top">
-      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
-    </div>
-    <div class="footer-container">
-      <div class="footer-left">
-        <div class="copyright">
-          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
-        </div>
-        
-        <div class="busuanzi">
-          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
-        </div>
-        
-      </div>
-      <div class="footer-right">
-        <div class="custom-info">
-          
-          托管于 <i class="fab fa-github-alt"></i> <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
-          
-        </div>
-        <div class="powered-by">
-          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
-        </div>
-      </div>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
+  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">josephpei</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
     </div>
   </div>
-</footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
 
 
-  </body>
+
+
+
+
+
+
+</body>
 </html>

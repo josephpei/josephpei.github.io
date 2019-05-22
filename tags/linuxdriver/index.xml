@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LinuxDriver on 有翅膀的天狼</title>
+    <link>http://josephpei.github.io/tags/linuxdriver/</link>
+    <description>Recent content in LinuxDriver on 有翅膀的天狼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 19 Jul 2015 10:21:47 +0800</lastBuildDate>
+    
+	<atom:link href="http://josephpei.github.io/tags/linuxdriver/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linux驱动开发之一 Hello World</title>
+      <link>http://josephpei.github.io/2015/07/19/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%80-hello-world/</link>
+      <pubDate>Sun, 19 Jul 2015 10:21:47 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2015/07/19/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%80-hello-world/</guid>
+      <description>完整的 Hello World 内核模块 hello.c 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include &amp;lt;linux/init.h&amp;gt;#include &amp;lt;linux/module.h&amp;gt;MODULE_LICENSE(&amp;#34;Dual BSD/GPL&amp;#34;); static int hello_init(void) { printk(KERN_ALERT &amp;#34;Hello, world\n&amp;#34;); return 0; } static void hello_exit(void) { printk(KERN_ALERT &amp;#34;Goodbye, cruel world\n&amp;#34;); } module_init(hello_init); module_exit(hello_exit); Makefile 1 2 3 4 5 6 7 8 9 obj-m +=hello.o KDIR = /usr/src/linux-headers-3.19.0-21-generic all: $(MAKE) -C</description>
+    </item>
+    
+  </channel>
+</rss>

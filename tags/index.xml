@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 有翅膀的天狼</title>
+    <link>http://josephpei.github.io/tags/</link>
+    <description>Recent content in Tags on 有翅膀的天狼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 08 Nov 2018 13:16:28 +0800</lastBuildDate>
+    
+	<atom:link href="http://josephpei.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ubuntu</title>
+      <link>http://josephpei.github.io/tags/ubuntu/</link>
+      <pubDate>Thu, 08 Nov 2018 13:16:28 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>algorithm</title>
+      <link>http://josephpei.github.io/tags/algorithm/</link>
+      <pubDate>Fri, 11 May 2018 15:43:51 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cpp</title>
+      <link>http://josephpei.github.io/tags/cpp/</link>
+      <pubDate>Fri, 11 May 2018 15:43:51 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/cpp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>editor</title>
+      <link>http://josephpei.github.io/tags/editor/</link>
+      <pubDate>Fri, 04 May 2018 14:03:02 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/editor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lsp</title>
+      <link>http://josephpei.github.io/tags/lsp/</link>
+      <pubDate>Fri, 04 May 2018 14:03:02 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/lsp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>django</title>
+      <link>http://josephpei.github.io/tags/django/</link>
+      <pubDate>Fri, 05 Aug 2016 18:05:03 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/django/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>http://josephpei.github.io/tags/python/</link>
+      <pubDate>Fri, 05 Aug 2016 18:05:03 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LinuxDriver</title>
+      <link>http://josephpei.github.io/tags/linuxdriver/</link>
+      <pubDate>Sun, 19 Jul 2015 10:21:47 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/linuxdriver/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>android</title>
+      <link>http://josephpei.github.io/tags/android/</link>
+      <pubDate>Wed, 24 Jun 2015 11:34:40 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SpringMVC</title>
+      <link>http://josephpei.github.io/tags/springmvc/</link>
+      <pubDate>Thu, 04 Sep 2014 20:21:09 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/springmvc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mooc</title>
+      <link>http://josephpei.github.io/tags/mooc/</link>
+      <pubDate>Sat, 02 Aug 2014 22:31:49 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/mooc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>leetcode</title>
+      <link>http://josephpei.github.io/tags/leetcode/</link>
+      <pubDate>Sun, 04 May 2014 09:46:02 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/leetcode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>design pattern</title>
+      <link>http://josephpei.github.io/tags/design-pattern/</link>
+      <pubDate>Fri, 21 Feb 2014 10:35:29 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/design-pattern/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>http://josephpei.github.io/tags/java/</link>
+      <pubDate>Fri, 21 Feb 2014 10:35:29 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FP</title>
+      <link>http://josephpei.github.io/tags/fp/</link>
+      <pubDate>Thu, 09 Jan 2014 12:10:41 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/fp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>poj</title>
+      <link>http://josephpei.github.io/tags/poj/</link>
+      <pubDate>Fri, 20 Dec 2013 13:09:27 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/poj/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shell</title>
+      <link>http://josephpei.github.io/tags/shell/</link>
+      <pubDate>Sun, 15 Sep 2013 21:09:49 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/tags/shell/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,403 +1,543 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#33363b">
-    <meta name="msapplication-TileColor" content="#33363b">
-    
-    
-    
-    
-    <meta name="keywords" content="Life, Linux, Hexo">
-    
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-    
-    
-    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
-    
-    
-    <link rel="manifest" href="/favicons/site.webmanifest">
-    
-    
-    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
-    
-    
-    <link rel="alternate" href="/atom.xml" title="有翅膀的天狼" type="application/atom+xml" />
-    
-    
-    
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
-    
-    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
-    
-    
-<link rel="stylesheet" type="text/css" href="/css/page.css">
-<link rel="stylesheet" type="text/css" href="/css/post.css">
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Eclipse中使用Maven Tomcat构建Web应用 - 有翅膀的天狼</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    <link rel="stylesheet" type="text/css" href="/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
-    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script defer type="text/javascript" src="/js/util.js"></script>
-    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
-    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
-    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
-    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
-    
-    <script defer src="/js/busuanzi.pure.mini.js"></script>
-    
-    
-    <script defer type="text/javascript" src="/js/search.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var searchPath = "search.xml";
-      if (searchPath.length === 0) {
-        searchPath = "search.xml";
-      }
-      var path = "/" + searchPath;
-      searchFunc(path, "search-input", "search-result");
-    });
-    </script>
-    
-    
-    <script defer type="text/javascript" src="/js/index.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var cb = null;
-      var els = $(".post figure.highlight");
-      if (els.length) {
-        // Enabled Hexo highlight line number.
-        $(els).each(function (i, e) {
-          $(e).before("<button class=\"copy button\">复制</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout with line number.
-              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
-          }
-        });
-      } else {
-        // Disabled Hexo highlight line number.
-        els = $(".post pre code");
-        $(els).each(function (i, e) {
-          // Add button before pre, not code.
-          $(e).parent().before("<button class=\"copy button\">复制</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout without line number.
-              return trigger.nextElementSibling.firstChild;
-          }
-        });
-      }
-      cb.on("success", function (e) {
-        e.clearSelection();
-        var trigger = e.trigger;
-        // Change button text as a user tip.
-        trigger.innerHTML = "已复制";
-        $(trigger).addClass("copied");
-        // Change button text back;
-        setTimeout(function () {
-          trigger.innerHTML = "复制";
-          $(trigger).removeClass("copied");
-        }, 1500);
-      });
-    });
-    </script>
-    
-    <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>Eclipse中使用Maven Tomcat构建Web应用 | 有翅膀的天狼 - Whisper to the world</title>
-  </head>
-  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
-    
-<header id="header" class="header" style="background: #33363b;">
-  <div class="container">
-    <div class="header-container">
-      <div class="header-title">
-        <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
-        <h2 class="subtitle">Whisper to the world</h2>
-      </div>
-      
-      <div class="logo">
-        <img src="/img/logo.png" alt="logo">
-      </div>
-      
-    </div>
-    <nav id="nav" class="nav">
-      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
-      <ul id="menu" role="menubar" aria-hidden="false">
-        
-      </ul>
-    </nav>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="josephpei" /><meta name="description" content="建立web应用 使用eclipse建立maven的web工程
+配置web工程 完善目录
+让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。
+" /><meta name="keywords" content="life, linux, program" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://josephpei.github.io/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Eclipse中使用Maven Tomcat构建Web应用" />
+<meta property="og:description" content="建立web应用
+
+使用eclipse建立maven的web工程
+
+配置web工程
+
+完善目录
+
+让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://josephpei.github.io/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/" />
+<meta property="article:published_time" content="2014-02-08T11:33:22&#43;08:00"/>
+<meta property="article:modified_time" content="2014-02-08T11:33:22&#43;08:00"/>
+
+<meta itemprop="name" content="Eclipse中使用Maven Tomcat构建Web应用">
+<meta itemprop="description" content="建立web应用
+
+使用eclipse建立maven的web工程
+
+配置web工程
+
+完善目录
+
+让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。">
+
+
+<meta itemprop="datePublished" content="2014-02-08T11:33:22&#43;08:00" />
+<meta itemprop="dateModified" content="2014-02-08T11:33:22&#43;08:00" />
+<meta itemprop="wordCount" content="552">
+
+
+
+<meta itemprop="keywords" content="java," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Eclipse中使用Maven Tomcat构建Web应用"/>
+<meta name="twitter:description" content="建立web应用
+
+使用eclipse建立maven的web工程
+
+配置web工程
+
+完善目录
+
+让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Wolfsky</a>
   </div>
-</header>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Wolfsky</a>
+</div>
 
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
 
     <main id="main" class="main">
-      <div class="container">
-        <div class="main-container">
-          <div class="content">
-            
-<div id="post" class="page">
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2014/02/08/eclipse中使用maven-tomcat构建web应用/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="Joseph Pei">
-       <meta itemprop="description" content="">
-       <meta itemprop="image" content="/img/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="有翅膀的天狼">
-      </span>
-    </div>
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">Eclipse中使用Maven Tomcat构建Web应用</h1>
+      <h1 class="post-title">Eclipse中使用Maven Tomcat构建Web应用</h1>
+
       <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-02-08T11:33:22+08:00">2014-02-08 11:33:22</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2014/02/08/eclipse中使用maven-tomcat构建web应用/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/02/08/eclipse中使用maven-tomcat构建web应用/" itemprop="commentCount"></span></a></span>
-        </span>
+        <span class="post-time"> 2014-02-08 </span>
         
         
       </div>
     </header>
-    <main class="post-main" itemprop="articleBody">
-      <h2 id="建立web应用"><a href="#建立web应用" class="headerlink" title="建立web应用"></a>建立web应用</h2><p>使用eclipse建立maven的web工程</p>
-<h2 id="配置web工程"><a href="#配置web工程" class="headerlink" title="配置web工程"></a>配置web工程</h2><p>完善目录</p>
-<p>让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。<br><a id="more"></a><br>参考 <a href="http://blog.rockcms.com/archives/159" target="_blank" rel="noopener">http://blog.rockcms.com/archives/159</a></p>
-<h2 id="配置tomcat-maven"><a href="#配置tomcat-maven" class="headerlink" title="配置tomcat maven"></a>配置tomcat maven</h2><p>tomcat 添加用户</p>
-<figure class="hljs highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">role</span> <span class="hljs-attr">rolename</span>=<span class="hljs-string">"manager-gui"</span>/&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">role</span> <span class="hljs-attr">rolename</span>=<span class="hljs-string">"admin-gui"</span>/&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">user</span> <span class="hljs-attr">password</span>=<span class="hljs-string">"admin"</span> <span class="hljs-attr">roles</span>=<span class="hljs-string">"manager-gui,manager-script,admin-gui"</span> <span class="hljs-attr">username</span>=<span class="hljs-string">"admin"</span>/&gt;</span><br></code></pre></td></tr></table></figure>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#建立web应用">建立web应用</a></li>
+<li><a href="#配置web工程">配置web工程</a></li>
+<li><a href="#配置tomcat-maven">配置tomcat maven</a></li>
+<li><a href="#配置-eclipse-项目">配置 Eclipse 项目</a></li>
+<li><a href="#servlet">Servlet</a></li>
+<li><a href="#直接在-tomcat-下部署并调试">直接在 Tomcat 下部署并调试</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="建立web应用">建立web应用</h2>
+
+<p>使用eclipse建立maven的web工程</p>
+
+<h2 id="配置web工程">配置web工程</h2>
+
+<p>完善目录</p>
+
+<p>让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。</p>
+
+<p>参考 <a href="http://blog.rockcms.com/archives/159">http://blog.rockcms.com/archives/159</a></p>
+
+<h2 id="配置tomcat-maven">配置tomcat maven</h2>
+
+<p>tomcat 添加用户</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;manager-gui&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;admin-gui&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;user</span> <span class="na">password=</span><span class="s">&#34;admin&#34;</span> <span class="na">roles=</span><span class="s">&#34;manager-gui,manager-script,admin-gui&#34;</span> <span class="na">username=</span><span class="s">&#34;admin&#34;</span><span class="nt">/&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>maven settings.xml添加</p>
-<figure class="hljs highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">server</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>tomcat7<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">username</span>&gt;</span>admin<span class="hljs-tag">&lt;/<span class="hljs-name">username</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">password</span>&gt;</span>admin<span class="hljs-tag">&lt;/<span class="hljs-name">password</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">server</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<h2 id="配置-Eclipse-项目"><a href="#配置-Eclipse-项目" class="headerlink" title="配置 Eclipse 项目"></a>配置 Eclipse 项目</h2><p>Preferences -&gt; Maven -&gt; Installations</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;server&gt;</span>
+    <span class="nt">&lt;id&gt;</span>tomcat7<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;username&gt;</span>admin<span class="nt">&lt;/username&gt;</span>
+    <span class="nt">&lt;password&gt;</span>admin<span class="nt">&lt;/password&gt;</span>
+<span class="nt">&lt;/server&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="配置-eclipse-项目">配置 Eclipse 项目</h2>
+
+<p>Preferences -&gt; Maven -&gt; Installations</p>
+
 <p>不使用内置maven，使用我们自己安装的maven</p>
+
 <p>项目 pom.xml</p>
-<p><a href="http://tomcat.apache.org/maven-plugin.html" target="_blank" rel="noopener">http://tomcat.apache.org/maven-plugin.html</a></p>
-<figure class="hljs highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">finalName</span>&gt;</span>SimpleDB<span class="hljs-tag">&lt;/<span class="hljs-name">finalName</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>http://localhost:8080/manager/text<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">server</span>&gt;</span>tomcat7<span class="hljs-tag">&lt;/<span class="hljs-name">server</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">port</span>&gt;</span>8080<span class="hljs-tag">&lt;/<span class="hljs-name">port</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">path</span>&gt;</span>/simpledb<span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">charset</span>&gt;</span>utf-8<span class="hljs-tag">&lt;/<span class="hljs-name">charset</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><a href="http://tomcat.apache.org/maven-plugin.html">http://tomcat.apache.org/maven-plugin.html</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;build&gt;</span>
+<span class="nt">&lt;finalName&gt;</span>SimpleDB<span class="nt">&lt;/finalName&gt;</span>
+<span class="nt">&lt;plugins&gt;</span>
+  <span class="nt">&lt;plugin&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.apache.tomcat.maven<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>tomcat7-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.2<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;configuration&gt;</span>
+      <span class="nt">&lt;url&gt;</span>http://localhost:8080/manager/text<span class="nt">&lt;/url&gt;</span>
+      <span class="nt">&lt;server&gt;</span>tomcat7<span class="nt">&lt;/server&gt;</span>
+      <span class="nt">&lt;port&gt;</span>8080<span class="nt">&lt;/port&gt;</span>
+      <span class="nt">&lt;path&gt;</span>/simpledb<span class="nt">&lt;/path&gt;</span>
+      <span class="nt">&lt;charset&gt;</span>utf-8<span class="nt">&lt;/charset&gt;</span>
+  <span class="nt">&lt;/configuration&gt;</span>
+  <span class="nt">&lt;/plugin&gt;</span>
+	<span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>eclipse Debug Configuration</p>
-<p><img src="/img/em01.jpg" alt="eclipse maven"></p>
-<p>浏览器访问 <a href="http://127.0.0.1:8080/simpledb/" target="_blank" rel="noopener">http://127.0.0.1:8080/simpledb/</a></p>
-<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><p>pom.xml</p>
-<figure class="hljs highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>servlet-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet.jsp<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jsp-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/em01.jpg" alt="eclipse maven" /></p>
+
+<p>浏览器访问 <a href="http://127.0.0.1:8080/simpledb/">http://127.0.0.1:8080/simpledb/</a></p>
+
+<h2 id="servlet">Servlet</h2>
+
+<p>pom.xml</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>javax.servlet<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>servlet-api<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>2.4<span class="nt">&lt;/version&gt;</span>
+	<span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>javax.servlet.jsp<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>jsp-api<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>2.0<span class="nt">&lt;/version&gt;</span>
+	<span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>src/main/java 下载创建名为 TestServlet 的jave类</p>
-<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.simpledb;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> javax.servlet.ServletException;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServlet;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;<br> <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestServlet</span>  <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span><br></span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;<br>  <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest req,HttpServletResponse res)</span><br>                 <span class="hljs-keyword">throws</span> ServletException, IOException<br>  </span>&#123;<br>    String hello=<span class="hljs-string">"Test : Hello April!"</span>;<br>    System.out.print(hello);<br>    res.getWriter().write(hello);<br>  &#125;<br> <br>  <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest req,HttpServletResponse res)</span><br>                 <span class="hljs-keyword">throws</span> ServletException, IOException<br>  </span>&#123;<br>    doPost(req, res);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.example.simpledb</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.ServletException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServlet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletRequest</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletResponse</span><span class="o">;</span>
+ 
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestServlet</span>  <span class="kd">extends</span> <span class="n">HttpServlet</span>
+<span class="o">{</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="n">1L</span><span class="o">;</span>
+  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span><span class="n">HttpServletResponse</span> <span class="n">res</span><span class="o">)</span>
+                 <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span>
+  <span class="o">{</span>
+    <span class="n">String</span> <span class="n">hello</span><span class="o">=</span><span class="s">&#34;Test : Hello April!&#34;</span><span class="o">;</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">hello</span><span class="o">);</span>
+    <span class="n">res</span><span class="o">.</span><span class="na">getWriter</span><span class="o">().</span><span class="na">write</span><span class="o">(</span><span class="n">hello</span><span class="o">);</span>
+  <span class="o">}</span>
+ 
+  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span><span class="n">HttpServletResponse</span> <span class="n">res</span><span class="o">)</span>
+                 <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span>
+  <span class="o">{</span>
+    <span class="n">doPost</span><span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="n">res</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>src/main/webapp/WEB-INF/web.xml</p>
-<figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs undefined">&lt;web-app&gt;<br>  &lt;display-name&gt;simpledb&lt;/display-name&gt;<br>  &lt;servlet&gt;<br>    &lt;servlet-name&gt;test&lt;/servlet-name&gt;<br>    &lt;servlet-class&gt;com.example.TestServlet&lt;/servlet-class&gt;<br>  &lt;/servlet&gt;<br>  &lt;servlet-mapping&gt;<br>    &lt;servlet-name&gt;test&lt;/servlet-name&gt;<br>    &lt;url-pattern&gt;/test&lt;/url-pattern&gt;<br>  &lt;/servlet-mapping&gt;<br>  &lt;welcome-file-list&gt;<br>    &lt;welcome-file&gt;index.html&lt;/welcome-file&gt;<br>    &lt;welcome-file&gt;index.htm&lt;/welcome-file&gt;<br>    &lt;welcome-file&gt;index.shtml&lt;/welcome-file&gt;<br>    &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;<br>  &lt;/welcome-file-list&gt;<br>&lt;/web-app&gt;<br></code></pre></td></tr></table></figure>
-<p>浏览器访问 <a href="http://127.0.0.1:8080/simpledb/test" target="_blank" rel="noopener">http://127.0.0.1:8080/simpledb/test</a></p>
-<h2 id="直接在-Tomcat-下部署并调试"><a href="#直接在-Tomcat-下部署并调试" class="headerlink" title="直接在 Tomcat 下部署并调试"></a>直接在 Tomcat 下部署并调试</h2><p>进入 conf\Catalina\localhost 目录，添加simpledb.xml文件</p>
-<figure class="hljs highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">Context</span>  <span class="hljs-attr">path</span>=<span class="hljs-string">"/simpledb"</span> <span class="hljs-attr">docBase</span>=<span class="hljs-string">"D:\code\java\simpledb\src\main\webapp"</span> <span class="hljs-attr">debug</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">reloadable</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">privileged</span>=<span class="hljs-string">"true"</span>/&gt;</span><br></code></pre></td></tr></table></figure>
-<p>现在可以点击<img src="/img/em02.png" alt="tomcat maven">来运行和调试maven的web工程了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&lt;web-app&gt;
+  &lt;display-name&gt;simpledb&lt;/display-name&gt;
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;test&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;com.example.TestServlet&lt;/servlet-class&gt;
+  &lt;/servlet&gt;
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;test&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/test&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+  &lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;index.html&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;index.htm&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;index.shtml&lt;/welcome-file&gt;
+    &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+  &lt;/welcome-file-list&gt;
+&lt;/web-app&gt;</pre></td></tr></table>
+</div>
+</div>
+<p>浏览器访问 <a href="http://127.0.0.1:8080/simpledb/test">http://127.0.0.1:8080/simpledb/test</a></p>
+
+<h2 id="直接在-tomcat-下部署并调试">直接在 Tomcat 下部署并调试</h2>
+
+<p>进入 conf\Catalina\localhost 目录，添加simpledb.xml文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;Context</span>  <span class="na">path=</span><span class="s">&#34;/simpledb&#34;</span> <span class="na">docBase=</span><span class="s">&#34;D:\code\java\simpledb\src\main\webapp&#34;</span> <span class="na">debug=</span><span class="s">&#34;0&#34;</span> <span class="na">reloadable=</span><span class="s">&#34;true&#34;</span> <span class="na">privileged=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>现在可以点击<img src="/img/em02.png" alt="tomcat maven" />来运行和调试maven的web工程了</p>
+
 <p>注：如果遇到 Fatal error compiling: tools.jar not found: C:\Program Files\Java\jre7..\lib\tools.jar 错误，注意 JAVA_HOME 要设置为 JDK_HOME，或者在eclipse里</p>
-<pre><code>Step 1 : Right Click on Eclipse project Properties
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">Step 1 : Right Click on Eclipse project Properties
 Step 2 : Java Build Path &gt;Libraries
 Step 3 : Click on JRE &gt; Edit &gt; Installed JRE
-Step 4 : Edit Jre &gt; Set JRE Home = JDK_HOME
-</code></pre>
-    </main>
-    <footer class="post-footer">
-      
+Step 4 : Edit Jre &gt; Set JRE Home = JDK_HOME</pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">josephpei</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2014-02-08
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
       <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/java/" rel="tag"><i class="fas fa-tags"></i>java</a>
-        
-      </div>
-      
+          <a href="/tags/java/">java</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2014/02/16/tomcat-%E7%BC%96%E7%A0%81%E8%AE%BE%E5%AE%9A/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Tomcat 编码设定</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2014/02/08/maven-%E5%85%A5%E9%97%A8/">
+            <span class="next-text nav-default">Maven 入门</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
     </footer>
   </article>
-  
-  
-  <nav class="page-nav">
-    <div class="page-nav-next page-nav-item">
-      
-      <a href="/2014/02/08/maven-入门/" rel="next" title="Maven 入门"><i class="fas fa-angle-left"></i><span class="nav-title">Maven 入门</span></a>
-      
-    </div>
-    <div class="page-nav-prev page-nav-item">
-      
-      <a href="/2014/02/16/tomcat-编码设定/" rel="prev" title="Tomcat 编码设定"><span class="nav-title">Tomcat 编码设定</span><i class="fas fa-angle-right"></i></a>
-      
-    </div>
-  </nav>
-  
-  
-  
-
-<div class="comments" id="comments">
-  
-  <script defer id="dsq-count-scr" src="//josephpei-github-io.disqus.com/count.js"></script>
-  
-  <div id="disqus_thread" class="disqus_thread"></div>
-  <script type="text/javascript">
-  var disqus_config = function () {
-    this.page.url = "http://josephpei.github.io/2014/02/08/eclipse中使用maven-tomcat构建web应用/";
-    this.page.identifier = "2014/02/08/eclipse中使用maven-tomcat构建web应用/";
-  };
-  (function() {
-    var d = document, s = d.createElement("script");
-    s.src = "https://josephpei-github-io.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-  </script>
-  
-  
-</div>
-
-
-
-  
-</div>
-
-          </div>
-          
-          
-          
-<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
-  
-  <div class="search">
-    <div class="form-group">
-      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
-    </div>
-  </div>
-  <div class="search-result-box" id="search-result"></div>
-  
-  
-<div class="info sidebar-item" id="info">
-  
-  <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
-  
-  <h1 class="author-name">Joseph Pei</h1>
-  <h2 class="author-description"></h2>
-  <div class="site-count">
-    
-  </div>
-  
-  <div class="rss">
-    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
-  </div>
-  
-</div>
-
-
-  <div class="sidebar-sticky">
-    
-    
-    
-    
-    
-    <hr>
-    <div class="post-toc sidebar-item" id="toc-div">
-      <div><i class="fas fa-list-ol"></i>文章目录</div>
-      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#建立web应用"><span class="toc-text">建立web应用</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#配置web工程"><span class="toc-text">配置web工程</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#配置tomcat-maven"><span class="toc-text">配置tomcat maven</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#配置-Eclipse-项目"><span class="toc-text">配置 Eclipse 项目</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#Servlet"><span class="toc-text">Servlet</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#直接在-Tomcat-下部署并调试"><span class="toc-text">直接在 Tomcat 下部署并调试</span></a></li></ol></div>
-    </div>
-    
-    
-    
-    <hr>
-    <div class="social-link sidebar-item">
-      <div><i class="far fa-address-card"></i>社交链接</p></div>
-      <ul>
-        
-        <li>fas fa-envelope<a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
-        
-        <li>fab fa-github<a href="https://github.com/" target="_blank">GitHub</a></li>
-        
-        <li>fab fa-weibo<a href="https://weibo.com/" target="_blank">Weibo</a></li>
-        
-      </ul>
-    </div>
-    
-    
-    <hr>
-    <div class="blogroll sidebar-item">
-      <div><i class="fas fa-link"></i>友情链接</div>
-      <ul>
-        
-        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-        
-        <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-        
-        <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-        
-      </ul>
-    </div>
-    
-  </div>
-</aside>
-
-
-          
         </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'josephpei-github-io';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
       </div>
     </main>
-    
-<footer id="footer" class="footer" style="background: #33363b;">
-  <div class="container">
-    <div class="back-to-top">
-      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
-    </div>
-    <div class="footer-container">
-      <div class="footer-left">
-        <div class="copyright">
-          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
-        </div>
-        
-        <div class="busuanzi">
-          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
-        </div>
-        
-      </div>
-      <div class="footer-right">
-        <div class="custom-info">
-          
-          托管于 <i class="fab fa-github-alt"></i> <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
-          
-        </div>
-        <div class="powered-by">
-          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
-        </div>
-      </div>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
+  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">josephpei</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
     </div>
   </div>
-</footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
 
 
-  </body>
+
+
+
+
+
+
+</body>
 </html>

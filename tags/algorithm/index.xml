@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algorithm on 有翅膀的天狼</title>
+    <link>http://josephpei.github.io/tags/algorithm/</link>
+    <description>Recent content in algorithm on 有翅膀的天狼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 11 May 2018 15:43:51 +0800</lastBuildDate>
+    
+	<atom:link href="http://josephpei.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cpp Template Meta Programming MergeSort</title>
+      <link>http://josephpei.github.io/2018/05/11/cpp-template-meta-programming-mergesort/</link>
+      <pubDate>Fri, 11 May 2018 15:43:51 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2018/05/11/cpp-template-meta-programming-mergesort/</guid>
+      <description>&lt;p&gt;C++ 模板元编程之编译时归并排序，源自水木社区 ilovecpp&lt;/p&gt;
+
+&lt;p&gt;Cpp Template Meta Programming MergeSort&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;66
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;67
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;68
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;69
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;70
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;71
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;72
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;73
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;74
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;75
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;76
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;77
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;78
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;79
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;80
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;boost/mpl/vector.hpp&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;boost/mpl/vector_c.hpp&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;boost/mpl/eval_if.hpp&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;boost/mpl/identity.hpp&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;boost/mpl/empty.hpp&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;boost/mpl/less.hpp&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;boost/mpl/front.hpp&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;boost/mpl/pop_front.hpp&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;boost/mpl/push_front.hpp&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;boost/mpl/size.hpp&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;boost/mpl/iterator_range.hpp&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;boost/mpl/int.hpp&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;boost/mpl/for_each.hpp&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;using&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;namespace&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;boost&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mpl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;V1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;V2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Merge&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;F&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;push_front&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Merge&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pop_front&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;front&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt;
+            &lt;span class=&#34;o&#34;&gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+        
+    &lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;eval_if&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;empty&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;V1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;identity&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;V2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;eval_if&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;empty&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;V2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;identity&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;V1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;eval_if&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;front&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;V1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;front&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;V2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;V1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;V2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;V2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;V1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+                &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;o&#34;&gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MergeSort&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;F&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;begin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;t0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;advance&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;int_&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;end&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;t2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Merge&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MergeSort&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;iterator_range&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MergeSort&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;iterator_range&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;t2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt;
+            &lt;span class=&#34;o&#34;&gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+    
+    &lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;eval_if&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;empty&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;identity&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;eval_if&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;less&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;int_&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;identity&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;front&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;o&#34;&gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vector_c&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MergeSort&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;t10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;print&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;template&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;operator&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;t&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+       &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34; &amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+
+&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;for_each&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t10&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>动态规划 DP 应用之 01 背包</title>
+      <link>http://josephpei.github.io/2014/08/06/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-dp-%E5%BA%94%E7%94%A8%E4%B9%8B-01-%E8%83%8C%E5%8C%85/</link>
+      <pubDate>Wed, 06 Aug 2014 10:21:29 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2014/08/06/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-dp-%E5%BA%94%E7%94%A8%E4%B9%8B-01-%E8%83%8C%E5%8C%85/</guid>
+      <description>&lt;p&gt;问题描述：n 个不同的物品，每个物品只有一个，有价值 value 和重量 weight 两个属性；背包容量 w。求背包所能容纳的最大价值。&lt;/p&gt;
+
+&lt;p&gt;最优子结构：当我们把一件物品放进背包里时，会让总价值变高，并且让背包变重。对某一件物品来说，我们可以选择放或不放，然后移去这件物品所带来的影响。&lt;/p&gt;
+
+&lt;p&gt;c(n, w) = max( c(n-1, w), c(n-1, w-W[n]) + C[n] )
+               ^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^
+               不放 -&amp;gt; 0         放 -&amp;gt; 1&lt;/p&gt;
+
+&lt;p&gt;n：第1个到第n个物品要放进背包内。
+w：背包负重上限。
+c(n, w)：第1个到第n个物品尽量塞进负重限制为w的背包时，最大价值。
+W[n]：第n个物品的重量。
+C[n]：第n个物品的价值。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>动态规划 DP 应用 HamiltonPath 及 TSP</title>
+      <link>http://josephpei.github.io/2014/08/05/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-dp-%E5%BA%94%E7%94%A8-hamiltonpath-%E5%8F%8A-tsp/</link>
+      <pubDate>Tue, 05 Aug 2014 11:17:41 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2014/08/05/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-dp-%E5%BA%94%E7%94%A8-hamiltonpath-%E5%8F%8A-tsp/</guid>
+      <description>&lt;p&gt;Hamilton Path 及 TSP 都属于 NP 完全问题，目前理论上尚无多项式算法，穷举法的时间复杂度是 O(N!)，通过运用动态规划 DP，可以缩短至 O(2^N * N^2)。&lt;/p&gt;
+
+&lt;p&gt;输入：无向图 G = (V, E)，点集 V = {0, 1, &amp;hellip; , n-1}，起始点 0&lt;/p&gt;
+
+&lt;p&gt;最优子结构：考虑路径上的最后一条边&lt;/p&gt;
+
+&lt;p&gt;dp[s,j] = min ( dp[s-{j},i] + adj[i,j] )&lt;/p&gt;
+
+&lt;p&gt;dp[s+{j},j] = min ( dp[s,i] + adj[i,j] )&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>leetcode - two-sum</title>
+      <link>http://josephpei.github.io/2014/05/04/leetcode-two-sum/</link>
+      <pubDate>Sun, 04 May 2014 09:46:02 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2014/05/04/leetcode-two-sum/</guid>
+      <description>&lt;p&gt;原题：&lt;/p&gt;
+
+&lt;p&gt;Given an array of integers, find two numbers such that they add up to a specific target number.&lt;/p&gt;
+
+&lt;p&gt;The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.&lt;/p&gt;
+
+&lt;p&gt;You may assume that each input would have exactly one solution.&lt;/p&gt;
+
+&lt;p&gt;Input: numbers={2, 7, 11, 15}, target=9&lt;/p&gt;
+
+&lt;p&gt;Output: index1=1, index2=2&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>String Hash 字符串散列</title>
+      <link>http://josephpei.github.io/2014/01/01/string-hash-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%A3%E5%88%97/</link>
+      <pubDate>Wed, 01 Jan 2014 00:36:47 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2014/01/01/string-hash-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%A3%E5%88%97/</guid>
+      <description>&lt;p&gt;参考&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.partow.net/programming/hashfunctions/index.html&#34;&gt;http://www.partow.net/programming/hashfunctions/index.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;有人翻译了一下&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://blog.csdn.net/eaglex/article/details/6310727&#34;&gt;http://blog.csdn.net/eaglex/article/details/6310727&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MinMaxHeap 最小最大堆</title>
+      <link>http://josephpei.github.io/2013/12/23/minmaxheap-%E6%9C%80%E5%B0%8F%E6%9C%80%E5%A4%A7%E5%A0%86/</link>
+      <pubDate>Mon, 23 Dec 2013 13:11:30 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/12/23/minmaxheap-%E6%9C%80%E5%B0%8F%E6%9C%80%E5%A4%A7%E5%A0%86/</guid>
+      <description>&lt;p&gt;MinMaxHeap，最小最大堆，或称双端优先队列，提供操作&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;插入一个数&lt;/li&gt;
+&lt;li&gt;取出最小值&lt;/li&gt;
+&lt;li&gt;取出最大值&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>算法：线段树</title>
+      <link>http://josephpei.github.io/2013/12/20/%E7%AE%97%E6%B3%95%E7%BA%BF%E6%AE%B5%E6%A0%91/</link>
+      <pubDate>Fri, 20 Dec 2013 18:56:37 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/12/20/%E7%AE%97%E6%B3%95%E7%BA%BF%E6%AE%B5%E6%A0%91/</guid>
+      <description>&lt;p&gt;线段树 Interval Tree，又称区间树 Segment Tree，其中每一个非叶子节点[a,b]，它的左儿子表示的区间为[a,(a+b)/2]，右儿子表示的区间为[(a+b)/2+1,b]。因此线段树是平衡二叉树，最后的子节点数目为N，即整个线段区间的长度。，因而常用于解决数列维护问题，它基本能保证每个操作的复杂度为O(lgN)。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>poj 2388 寻找中位数</title>
+      <link>http://josephpei.github.io/2013/12/20/poj-2388-%E5%AF%BB%E6%89%BE%E4%B8%AD%E4%BD%8D%E6%95%B0/</link>
+      <pubDate>Fri, 20 Dec 2013 13:09:27 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/12/20/poj-2388-%E5%AF%BB%E6%89%BE%E4%B8%AD%E4%BD%8D%E6%95%B0/</guid>
+      <description>&lt;p&gt;这也是Google面试题&lt;/p&gt;
+
+&lt;p&gt;股市上一个股票的价格从开市开始是不停的变化的，需要开发一个系统，给定一个股票，它能实时显示从开市到当前时间的这个股票的价格的中位数（中值）。&lt;/p&gt;
+
+&lt;p&gt;用双堆存储，一个大根堆，一个小根堆，则Inert为O(logn)，Median为O(1)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>poj 3164 最小树形图 朱刘算法</title>
+      <link>http://josephpei.github.io/2013/12/20/poj-3164-%E6%9C%80%E5%B0%8F%E6%A0%91%E5%BD%A2%E5%9B%BE-%E6%9C%B1%E5%88%98%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Fri, 20 Dec 2013 13:07:07 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/12/20/poj-3164-%E6%9C%80%E5%B0%8F%E6%A0%91%E5%BD%A2%E5%9B%BE-%E6%9C%B1%E5%88%98%E7%AE%97%E6%B3%95/</guid>
+      <description>&lt;p&gt;最小树形图，就是给有向带权图中指定一个特殊的点root，求一棵以root为根的有向生成树T，并且T中所有边的总权值最小。最小树形图的第一个算法是 1965年朱永津和刘振宏提出的复杂度为O(VE)的算法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>算法：工作分配</title>
+      <link>http://josephpei.github.io/2013/11/13/%E7%AE%97%E6%B3%95%E5%B7%A5%E4%BD%9C%E5%88%86%E9%85%8D/</link>
+      <pubDate>Wed, 13 Nov 2013 10:40:15 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/11/13/%E7%AE%97%E6%B3%95%E5%B7%A5%E4%BD%9C%E5%88%86%E9%85%8D/</guid>
+      <description>&lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
+
+&lt;p&gt;设有n件工作分配给n个人。工人i完成工作j所需的费用为c[i][j] 。试设计一个算法，计算最佳工作分配方案，为每一个人都分配1 件不同的工作，并使总费用达到最小。&lt;/p&gt;
+
+&lt;h2 id=&#34;方法一-回溯法&#34;&gt;方法一：回溯法&lt;/h2&gt;
+
+&lt;p&gt;n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排列数，如果遍历的路径已经比当前最小的话费则舍弃对当前路径的遍历，返回上层节点，寻找合适的路径，即回溯，如果最后可行解比当前的最小费用小，那么就更新最佳的作业安排顺序，同时更新最小的耗费时间。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>二叉树的重建</title>
+      <link>http://josephpei.github.io/2013/11/12/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%87%8D%E5%BB%BA/</link>
+      <pubDate>Tue, 12 Nov 2013 11:24:42 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/11/12/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%87%8D%E5%BB%BA/</guid>
+      <description>&lt;p&gt;对于二叉树，中序加其它任何一个序列（前序、后序、层序）即可重建二叉树，其它序列组合则不能重建。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>约瑟夫问题 Josephus Problem</title>
+      <link>http://josephpei.github.io/2013/10/29/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98-josephus-problem/</link>
+      <pubDate>Tue, 29 Oct 2013 21:32:31 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/10/29/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98-josephus-problem/</guid>
+      <description>&lt;p&gt;约瑟夫问题（Josephus Problem）&lt;/p&gt;
+
+&lt;p&gt;据说着名犹太历史学家 Josephus有过以下的故事：在罗马人占领乔塔帕特后，39 个犹太人与Josephus及他的朋友躲到一个洞中，39个犹太人决定宁愿死也不要被敌人抓到，于是决定了一个自杀方式，41个人排成一个圆圈，由第1个人 开始报数，每报数到第3人该人就必须自杀，然后再由下一个重新报数，直到所有人都自杀身亡为止。&lt;/p&gt;
+
+&lt;p&gt;然而Josephus 和他的朋友并不想遵从，Josephus要他的朋友先假装遵从，他将朋友与自己安排在第16个与第31个位置，于是逃过了这场死亡游戏。&lt;/p&gt;
+
+&lt;p&gt;UVA &lt;a href=&#34;http://uva.onlinejudge.org/external/1/133.html&#34;&gt;133&lt;/a&gt; &lt;a href=&#34;http://uva.onlinejudge.org/external/3/305.html&#34;&gt;305&lt;/a&gt; &lt;a href=&#34;http://uva.onlinejudge.org/external/4/402.html&#34;&gt;402&lt;/a&gt; &lt;a href=&#34;http://uva.onlinejudge.org/external/100/10015.html&#34;&gt;10015&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>递归算法转换为非递归算法</title>
+      <link>http://josephpei.github.io/2013/10/29/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E8%BD%AC%E6%8D%A2%E4%B8%BA%E9%9D%9E%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Tue, 29 Oct 2013 14:39:46 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/10/29/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E8%BD%AC%E6%8D%A2%E4%B8%BA%E9%9D%9E%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/</guid>
+      <description>&lt;p&gt;递归算法实际上是一种分而治之的方法，它把复杂问题分解为简单问题来求解。对于某些复杂问题(例如hanio塔问题)，递归算法是一种自然且合乎逻辑的解决问题的方式，但是递归算法的执行效率通常比较差。因此，在求解某些问题时，常采用递归算法来分析问题，用非递归算法来求解问题；另外，有些程序设计语言不支持递归，这就需要把递归算法转换为非递归算法。&lt;/p&gt;
+
+&lt;p&gt;将递归算法转换为非递归算法有两种方法，一种是直接求值，不需要回溯；另一种是不能直接求值，需要回溯。前者使用一些变量保存中间结果，称为直接转换法；后者使用栈保存中间结果，称为间接转换法，下面分别讨论这两种方法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>中缀表达式求值</title>
+      <link>http://josephpei.github.io/2013/10/23/%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC/</link>
+      <pubDate>Wed, 23 Oct 2013 16:53:43 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/10/23/%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC/</guid>
+      <description>&lt;p&gt;给定一个中缀表达式，求出该表达式的值。&lt;/p&gt;
+
+&lt;p&gt;要求支持“加减乘除 + - * /、取余 %、幂运算 ^、一元正负号 + -、括号 ()、数的科学表示法符号 E e”，其中含有一元操作符&amp;rsquo;+ -&amp;lsquo;，也含有从右向左结合性的操作符&amp;rsquo;^&amp;lsquo;，注意操作数的位数可以为多位。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>快速排序 QuickSort</title>
+      <link>http://josephpei.github.io/2013/10/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-quicksort/</link>
+      <pubDate>Mon, 21 Oct 2013 11:34:49 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/10/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-quicksort/</guid>
+      <description>7-4 快速排序中的堆栈深度 7.1节中QUICKSORT算法包含有两个对其自身的递归调用。在调用PARTITION后，左边的子数组和右边的子数组分</description>
+    </item>
+    
+    <item>
+      <title>POJ 1664 放苹果</title>
+      <link>http://josephpei.github.io/2013/10/20/poj-1664-%E6%94%BE%E8%8B%B9%E6%9E%9C/</link>
+      <pubDate>Sun, 20 Oct 2013 10:50:57 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/10/20/poj-1664-%E6%94%BE%E8%8B%B9%E6%9E%9C/</guid>
+      <description>&lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;
+
+&lt;p&gt;把M个同样的苹果放在N个同样的盘子里，允许有的盘子空着不放，问共有多少种不同的分法？（用K表示）5，1，1和1，5，1 是同一种分法。&lt;/p&gt;
+
+&lt;p&gt;自己想了半天，什么排列组合之类的，后来去搜题解，才知道是用递归……&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

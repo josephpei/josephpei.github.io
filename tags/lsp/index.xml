@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>lsp on 有翅膀的天狼</title>
+    <link>http://josephpei.github.io/tags/lsp/</link>
+    <description>Recent content in lsp on 有翅膀的天狼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 04 May 2018 14:03:02 +0800</lastBuildDate>
+    
+	<atom:link href="http://josephpei.github.io/tags/lsp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>VSCode cquery(lsp) 实现 C/C&#43;&#43; 补全</title>
+      <link>http://josephpei.github.io/2018/05/04/vscode-cquery-lsp-%E5%AE%9E%E7%8E%B0-c-c-%E8%A1%A5%E5%85%A8/</link>
+      <pubDate>Fri, 04 May 2018 14:03:02 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2018/05/04/vscode-cquery-lsp-%E5%AE%9E%E7%8E%B0-c-c-%E8%A1%A5%E5%85%A8/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://microsoft.github.io/language-server-protocol/&#34;&gt;LSP&lt;/a&gt;（Language-Server-Protocol）开源的语言服务器协定，微软出品，语言服务端提供索引代码的服务，编辑器直接调用。套用官话就是，可以让不同的程序编辑器与集成开发环境（IDE）方便嵌入各种程序语言，允许开发人员在最喜爱的工具中使用各种语言来撰写程序。&lt;/p&gt;
+
+&lt;p&gt;目前语言与编辑器支持情况见 &lt;a href=&#34;https://langserver.org/&#34;&gt;https://langserver.org/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/cquery-project/cquery&#34;&gt;cquery&lt;/a&gt; 就是 C/C++/Objective-C 的 language server，VSCode, Vim, Emacs 等只要安装了 lsp 插件，就可调用它来实现 C/C++/Objective-C 语法补全等功能。&lt;/p&gt;
+
+&lt;p&gt;下面以 Visual Studio Code 为例来实现 C/C++ 补全。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

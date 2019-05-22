@@ -1,419 +1,651 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#33363b">
-    <meta name="msapplication-TileColor" content="#33363b">
-    
-    
-    
-    
-    <meta name="keywords" content="Life, Linux, Hexo">
-    
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-    
-    
-    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
-    
-    
-    <link rel="manifest" href="/favicons/site.webmanifest">
-    
-    
-    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
-    
-    
-    <link rel="alternate" href="/atom.xml" title="有翅膀的天狼" type="application/atom+xml" />
-    
-    
-    
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
-    
-    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
-    
-    
-<link rel="stylesheet" type="text/css" href="/css/page.css">
-<link rel="stylesheet" type="text/css" href="/css/post.css">
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>用Python秒掉八皇后问题 - 有翅膀的天狼</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    <link rel="stylesheet" type="text/css" href="/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
-    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script defer type="text/javascript" src="/js/util.js"></script>
-    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
-    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
-    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
-    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
-    
-    <script defer src="/js/busuanzi.pure.mini.js"></script>
-    
-    
-    <script defer type="text/javascript" src="/js/search.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var searchPath = "search.xml";
-      if (searchPath.length === 0) {
-        searchPath = "search.xml";
-      }
-      var path = "/" + searchPath;
-      searchFunc(path, "search-input", "search-result");
-    });
-    </script>
-    
-    
-    <script defer type="text/javascript" src="/js/index.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var cb = null;
-      var els = $(".post figure.highlight");
-      if (els.length) {
-        // Enabled Hexo highlight line number.
-        $(els).each(function (i, e) {
-          $(e).before("<button class=\"copy button\">复制</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout with line number.
-              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
-          }
-        });
-      } else {
-        // Disabled Hexo highlight line number.
-        els = $(".post pre code");
-        $(els).each(function (i, e) {
-          // Add button before pre, not code.
-          $(e).parent().before("<button class=\"copy button\">复制</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout without line number.
-              return trigger.nextElementSibling.firstChild;
-          }
-        });
-      }
-      cb.on("success", function (e) {
-        e.clearSelection();
-        var trigger = e.trigger;
-        // Change button text as a user tip.
-        trigger.innerHTML = "已复制";
-        $(trigger).addClass("copied");
-        // Change button text back;
-        setTimeout(function () {
-          trigger.innerHTML = "复制";
-          $(trigger).removeClass("copied");
-        }, 1500);
-      });
-    });
-    </script>
-    
-    <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>用Python秒掉八皇后问题 | 有翅膀的天狼 - Whisper to the world</title>
-  </head>
-  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
-    
-<header id="header" class="header" style="background: #33363b;">
-  <div class="container">
-    <div class="header-container">
-      <div class="header-title">
-        <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
-        <h2 class="subtitle">Whisper to the world</h2>
-      </div>
-      
-      <div class="logo">
-        <img src="/img/logo.png" alt="logo">
-      </div>
-      
-    </div>
-    <nav id="nav" class="nav">
-      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
-      <ul id="menu" role="menubar" aria-hidden="false">
-        
-      </ul>
-    </nav>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="josephpei" /><meta name="description" content="来源：http://www.iteye.com/topic/106747
+在 函数式编程语言曲高和寡？ 一文中，我们看到 Haskell 能用两行代码
+1 2  sort [] = [] sort (x:xs) = sort [y | y &amp;lt;- xs, y &amp;lt; x] &#43;&#43; [x] &#43;&#43; sort [y | y &amp;lt;- xs, y &amp;gt;= x]   搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。
+" /><meta name="keywords" content="life, linux, program" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://josephpei.github.io/2014/01/09/%E7%94%A8python%E7%A7%92%E6%8E%89%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="用Python秒掉八皇后问题" />
+<meta property="og:description" content="来源：http://www.iteye.com/topic/106747
+
+在 函数式编程语言曲高和寡？ 一文中，我们看到 Haskell 能用两行代码
+
+
+1
+2
+
+
+sort [] = []
+sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y | y &lt;- xs, y &gt;= x]
+
+
+搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://josephpei.github.io/2014/01/09/%E7%94%A8python%E7%A7%92%E6%8E%89%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" />
+<meta property="article:published_time" content="2014-01-09T12:10:41&#43;08:00"/>
+<meta property="article:modified_time" content="2014-01-09T12:10:41&#43;08:00"/>
+
+<meta itemprop="name" content="用Python秒掉八皇后问题">
+<meta itemprop="description" content="来源：http://www.iteye.com/topic/106747
+
+在 函数式编程语言曲高和寡？ 一文中，我们看到 Haskell 能用两行代码
+
+
+1
+2
+
+
+sort [] = []
+sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y | y &lt;- xs, y &gt;= x]
+
+
+搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。">
+
+
+<meta itemprop="datePublished" content="2014-01-09T12:10:41&#43;08:00" />
+<meta itemprop="dateModified" content="2014-01-09T12:10:41&#43;08:00" />
+<meta itemprop="wordCount" content="3517">
+
+
+
+<meta itemprop="keywords" content="FP,python," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="用Python秒掉八皇后问题"/>
+<meta name="twitter:description" content="来源：http://www.iteye.com/topic/106747
+
+在 函数式编程语言曲高和寡？ 一文中，我们看到 Haskell 能用两行代码
+
+
+1
+2
+
+
+sort [] = []
+sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y | y &lt;- xs, y &gt;= x]
+
+
+搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Wolfsky</a>
   </div>
-</header>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Wolfsky</a>
+</div>
 
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
 
     <main id="main" class="main">
-      <div class="container">
-        <div class="main-container">
-          <div class="content">
-            
-<div id="post" class="page">
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2014/01/09/用python秒掉八皇后问题/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="Joseph Pei">
-       <meta itemprop="description" content="">
-       <meta itemprop="image" content="/img/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="有翅膀的天狼">
-      </span>
-    </div>
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">用Python秒掉八皇后问题</h1>
+      <h1 class="post-title">用Python秒掉八皇后问题</h1>
+
       <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2014-01-09T12:10:41+08:00">2014-01-09 12:10:41</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2014/01/09/用python秒掉八皇后问题/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2014/01/09/用python秒掉八皇后问题/" itemprop="commentCount"></span></a></span>
-        </span>
+        <span class="post-time"> 2014-01-09 </span>
         
         
       </div>
     </header>
-    <main class="post-main" itemprop="articleBody">
-      <p>来源：<a href="http://www.iteye.com/topic/106747" target="_blank" rel="noopener">http://www.iteye.com/topic/106747</a></p>
-<p>在 <a href="http://www.iteye.com/topic/101055" target="_blank" rel="noopener">函数式编程语言曲高和寡？</a> 一文中，我们看到 Haskell 能用两行代码</p>
-<figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs undefined">sort [] = []<br>sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] ++ [x] ++ sort [y | y &lt;- xs, y &gt;= x]<br></code></pre></td></tr></table></figure>
-<p>搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。<a id="more"></a></p>
-<h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><p>这一部分对于那些 Python 老手和已经知道八皇后问题定义的程序员来说是多余的。 </p>
-<p>八皇后问题（摘自 SICP ed2 中文版 P84 练习2.42）<br>　　<br>“八皇后谜题”问的是怎样将八个皇后摆在国际象棋棋盘上，使得任意一个皇后都不能攻击另一个皇后（也就是说，任意两个皇后都不在同一行、同一列或者同一对角线上）。</p>
-<p>在这篇文章中，我们要解决的问题比这个范围还要更广一点，即：允许棋盘是 n × m 大小的。也就是说，所谓的 n 皇后问题只是我们给出的程序的 n ＝ m 时的版本。不过别担心，函数式编程的力量就在于抽象等级的空前提高，问题越抽象，解决起来越顺手。<br>　　<br>列表领悟特性 </p>
-<p>现在应该绝大多数动态语言的程序员都对这个特性很了解了，因为常见的 Python, Ruby, ErLang, Haskell 甚至是 JavaScript 都加上了这个特性。这是一种通过给出列表中每一项的形式和组成形式的元素要满足的条件自动生成列表的语法糖。下面是 Python 中的两个例子：<br><figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 得到一个 2 到 20 中的偶数组成的列表，只要写</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>[x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>, <span class="hljs-number">21</span>) <span class="hljs-keyword">if</span> x % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>]<br>[<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>, <span class="hljs-number">10</span>, <span class="hljs-number">12</span>, <span class="hljs-number">14</span>, <span class="hljs-number">16</span>, <span class="hljs-number">18</span>, <span class="hljs-number">20</span>]<br><br><span class="hljs-comment"># 记住，只需给出一个形式，比方说想求两个列表的“笛卡尔乘积”</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>[(x , y) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">4</span>) <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> [<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>]]<br></code></pre></td></tr></table></figure></p>
-<p>很明显，仅仅使用列表领悟特性就可以表示一些算法了，比如提到过的快速排序： </p>
-<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sort</span> <span class="hljs-params">(ls)</span>:</span> <br>　　<span class="hljs-keyword">return</span> [] <span class="hljs-keyword">if</span> ls == [] \<br>　　　<span class="hljs-keyword">else</span> sort([y <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> ls[<span class="hljs-number">1</span>:] <span class="hljs-keyword">if</span> y &lt; ls[<span class="hljs-number">0</span>]]) + \<br>　　　[ls[<span class="hljs-number">0</span>]] + \<br>　　　sort([y <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> ls[<span class="hljs-number">1</span>:] <span class="hljs-keyword">if</span> y &gt;= ls[<span class="hljs-number">0</span>]])<br>　　<span class="hljs-comment"># 别忘了 python-2.5 的新特性条件分支表达式哦！可惜太长，不得不强制换行。</span><br>``` <br><br><span class="hljs-comment">## 算法描述</span><br><br>首先我们要认识到一点，算法所对应的函数的输入和输出分别是什么。我们需要的是一个函数 queens()，它接受两个参数，自然数 row 和 col，分别表示行数和列数；坐标是 (col, row) 形式的序对，下标 从 <span class="hljs-number">0</span> 开始计数。<br>　　　　<br>我们把输出的结果表示为棋盘格局描述组成的列表。那棋盘格局呢？难道表示为所有棋子的坐标，像 [(<span class="hljs-number">5</span>,<span class="hljs-number">0</span>), (<span class="hljs-number">2</span>,<span class="hljs-number">1</span>), (<span class="hljs-number">0</span>,<span class="hljs-number">2</span>),(<span class="hljs-number">6</span>,<span class="hljs-number">3</span>), (<span class="hljs-number">4</span>,<span class="hljs-number">4</span>), (<span class="hljs-number">7</span>,<span class="hljs-number">5</span>), (<span class="hljs-number">1</span>,<span class="hljs-number">6</span>), (<span class="hljs-number">3</span>,<span class="hljs-number">7</span>)] ？不需要吧，看也能看出来，完全可以使得下标 col、row 中有一个是有序排列的。在这里，我们认为 row 是有序的，对于上面的例子，只须表示为 [<span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>] 即可，row 是一个解的下标。<br><br>那么，整个函数的输出就应该类似这样：[[<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>]]；这是 queens(<span class="hljs-number">4</span>,<span class="hljs-number">4</span>) 的输出结果。 <br><br>归纳法定义<br><br>什么是归纳法定义？回忆一下经典的求级数例程是怎么写出来的。我们根据数学归纳法得到：<br><br>    f (<span class="hljs-number">0</span>) = <span class="hljs-number">1</span> <br>    f (n) = <span class="hljs-number">1</span> + f (n - <span class="hljs-number">1</span>) <br><br>然后把这些抄成编程语言的形式。对于函数 queens 也是这样，我们要确定这个函数的递归下界和递推表示。 <br><br>递归下界很好办，就是 queens(n,<span class="hljs-number">0</span>) （此处 n 忽略，因为不影响结果）的输出结果。对于一个没有列数的棋盘，只有一个解，空解 []；同时，输出的解集也只有这一个元素，为 [[]]（下面的数学定义使用了集合表示代替列表）。<br><br>递推表示是什么呢？我们可以在纸上画画图，不难发现，对于一个解，你画出的最后一个位置就是在前面已画出的少一个棋子的格局的基础上再加一个位置安全的棋子。设这个“加”函数为 g (x,y)，“安全”函数为 s (x,y)。那么 <br><br>    f (n,m) = &#123;g (x,y) | x ∈ [<span class="hljs-number">0</span>, n], y ∈ f (n,m<span class="hljs-number">-1</span>) s (x,y) = true&#125; <br><br>形式化的思考：<br><br>有了上面的数学定义，抄成 Python 代码，那就是用脚趾都能搞定呀。<br>```python<br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">queens</span> <span class="hljs-params">(row, col)</span>:</span><br>　　<span class="hljs-keyword">return</span> [[]] <span class="hljs-keyword">if</span> col == <span class="hljs-number">0</span> \<br>　　　<span class="hljs-keyword">else</span> [[ran] + rst \  <span class="hljs-comment"># 在 Python 中，g(x,y)=[x]+y </span><br>　　　<span class="hljs-keyword">for</span> ran <span class="hljs-keyword">in</span> range(row) \<br>　　　<span class="hljs-keyword">for</span> rst <span class="hljs-keyword">in</span> queens(row, col - <span class="hljs-number">1</span>) \<br>　　　<span class="hljs-keyword">if</span> safe(ran, rst)]<br></code></pre></td></tr></table></figure>
-<p>不难看出，有了列表领悟这个强大的武器，我们就可以放心大胆地利用描述一个元素形式的思路来解决这类列表输出的问题。这就是列表领悟最根本的思想：“形式化的思维方式”。 </p>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#预备知识">预备知识</a></li>
+<li><a href="#算法描述">算法描述</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>来源：<a href="http://www.iteye.com/topic/106747">http://www.iteye.com/topic/106747</a></p>
+
+<p>在 <a href="http://www.iteye.com/topic/101055">函数式编程语言曲高和寡？</a> 一文中，我们看到 Haskell 能用两行代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">sort [] = []
+sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] ++ [x] ++ sort [y | y &lt;- xs, y &gt;= x]</pre></td></tr></table>
+</div>
+</div>
+<p>搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。</p>
+
+<h2 id="预备知识">预备知识</h2>
+
+<p>这一部分对于那些 Python 老手和已经知道八皇后问题定义的程序员来说是多余的。</p>
+
+<p>八皇后问题（摘自 SICP ed2 中文版 P84 练习2.42）
+　　
+“八皇后谜题”问的是怎样将八个皇后摆在国际象棋棋盘上，使得任意一个皇后都不能攻击另一个皇后（也就是说，任意两个皇后都不在同一行、同一列或者同一对角线上）。</p>
+
+<p>在这篇文章中，我们要解决的问题比这个范围还要更广一点，即：允许棋盘是 n × m 大小的。也就是说，所谓的 n 皇后问题只是我们给出的程序的 n ＝ m 时的版本。不过别担心，函数式编程的力量就在于抽象等级的空前提高，问题越抽象，解决起来越顺手。
+　　
+列表领悟特性</p>
+
+<p>现在应该绝大多数动态语言的程序员都对这个特性很了解了，因为常见的 Python, Ruby, ErLang, Haskell 甚至是 JavaScript 都加上了这个特性。这是一种通过给出列表中每一项的形式和组成形式的元素要满足的条件自动生成列表的语法糖。下面是 Python 中的两个例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 得到一个 2 到 20 中的偶数组成的列表，只要写</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+
+<span class="c1"># 记住，只需给出一个形式，比方说想求两个列表的“笛卡尔乘积”</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[(</span><span class="n">x</span> <span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]]</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>很明显，仅仅使用列表领悟特性就可以表示一些算法了，比如提到过的快速排序：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">sort</span> <span class="p">(</span><span class="n">ls</span><span class="p">):</span> 
+　　<span class="k">return</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="p">[]</span> \
+　　　<span class="k">else</span> <span class="n">sort</span><span class="p">([</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span> <span class="o">+</span> \
+　　　<span class="p">[</span><span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> \
+　　　<span class="n">sort</span><span class="p">([</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+　　<span class="c1"># 别忘了 python-2.5 的新特性条件分支表达式哦！可惜太长，不得不强制换行。</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="算法描述">算法描述</h2>
+
+<p>首先我们要认识到一点，算法所对应的函数的输入和输出分别是什么。我们需要的是一个函数 queens()，它接受两个参数，自然数 row 和 col，分别表示行数和列数；坐标是 (col, row) 形式的序对，下标 从 0 开始计数。
+　　　　
+我们把输出的结果表示为棋盘格局描述组成的列表。那棋盘格局呢？难道表示为所有棋子的坐标，像 [(5,0), (2,1), (0,2),(6,3), (4,4), (7,5), (1,6), (3,7)] ？不需要吧，看也能看出来，完全可以使得下标 col、row 中有一个是有序排列的。在这里，我们认为 row 是有序的，对于上面的例子，只须表示为 [5, 2, 0, 6, 4, 7, 1, 3] 即可，row 是一个解的下标。</p>
+
+<p>那么，整个函数的输出就应该类似这样：[[1, 3, 0, 2], [2, 0, 3, 1]]；这是 queens(4,4) 的输出结果。</p>
+
+<p>归纳法定义</p>
+
+<p>什么是归纳法定义？回忆一下经典的求级数例程是怎么写出来的。我们根据数学归纳法得到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">f (0) = 1 
+f (n) = 1 + f (n - 1) </pre></td></tr></table>
+</div>
+</div>
+<p>然后把这些抄成编程语言的形式。对于函数 queens 也是这样，我们要确定这个函数的递归下界和递推表示。</p>
+
+<p>递归下界很好办，就是 queens(n,0) （此处 n 忽略，因为不影响结果）的输出结果。对于一个没有列数的棋盘，只有一个解，空解 []；同时，输出的解集也只有这一个元素，为 [[]]（下面的数学定义使用了集合表示代替列表）。</p>
+
+<p>递推表示是什么呢？我们可以在纸上画画图，不难发现，对于一个解，你画出的最后一个位置就是在前面已画出的少一个棋子的格局的基础上再加一个位置安全的棋子。设这个“加”函数为 g (x,y)，“安全”函数为 s (x,y)。那么</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">f (n,m) = {g (x,y) | x ∈ [0, n], y ∈ f (n,m-1) s (x,y) = true} </pre></td></tr></table>
+</div>
+</div>
+<p>形式化的思考：</p>
+
+<p>有了上面的数学定义，抄成 Python 代码，那就是用脚趾都能搞定呀。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">queens</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
+　　<span class="k">return</span> <span class="p">[[]]</span> <span class="k">if</span> <span class="n">col</span> <span class="o">==</span> <span class="mi">0</span> \
+　　　<span class="k">else</span> <span class="p">[[</span><span class="n">ran</span><span class="p">]</span> <span class="o">+</span> <span class="n">rst</span> \  <span class="c1"># 在 Python 中，g(x,y)=[x]+y </span>
+　　　<span class="k">for</span> <span class="n">ran</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> \
+　　　<span class="k">for</span> <span class="n">rst</span> <span class="ow">in</span> <span class="n">queens</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> \
+　　　<span class="k">if</span> <span class="n">safe</span><span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">)]</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>不难看出，有了列表领悟这个强大的武器，我们就可以放心大胆地利用描述一个元素形式的思路来解决这类列表输出的问题。这就是列表领悟最根本的思想：“形式化的思维方式”。</p>
+
 <p>现在只剩一个问题了：safe() 函数。先应用一次我们的“图形化的思考”。对一个格局（解，rst）来说，新加入的棋子的 col 值 ran 必须对这个格局中所有已存在的位置满足一个测试 check()，这个测试对于一个位置 (x,y)，要求（col 值不等已自动满足） ran ≠ x and |ran - x| ≠ y + 1。</p>
+
 <p>an ≠ x 很好理解，就是不为同一列；|ran - x| ≠ y + 1 则意味着左右不在同一斜线上。</p>
+
 <p>由于这里要同时用到 rst 中点的 col 值和 row 值，这样解决：在前文的算法描述中已经指出，因为 row 值被认为是有序的，事实上是一个解的下标，我们 check 一下这个下标，在 check() 的过程中去获取 col 值不就行了？</p>
-<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">　　<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">check</span> <span class="hljs-params">(pos)</span>:</span><br>　　　　<span class="hljs-comment"># 表达式变个形式，少打点字</span><br>　　　　<span class="hljs-keyword">return</span> <span class="hljs-keyword">not</span> (ran == rst[pos] <span class="hljs-keyword">or</span> abs(ran - rst[pos]) == pos + <span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">　　<span class="k">def</span> <span class="nf">check</span> <span class="p">(</span><span class="n">pos</span><span class="p">):</span>
+　　　　<span class="c1"># 表达式变个形式，少打点字</span>
+　　　　<span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="n">ran</span> <span class="o">==</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ran</span> <span class="o">-</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">])</span> <span class="o">==</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>值得注意的是，由于这里 check() 用到了逃逸变量 ran 和 rst，check 函数体就必须写在 safe() 函数体内部以使这它们在其闭包环境中出现。</p>
+
 <p>safe() 函数也就很明了了：先生成一个由全部 check(pos), pos ∈ [0, #rst] 结果组成的列表，然后判断一下这个列表中每一项是否都为真。假设我们已得到这样的一种测试一个列表中元素是否全为 True 的函数叫 ands()。</p>
-<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">safe</span> <span class="hljs-params">(ran, rst)</span>:</span><br>　　<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">check</span> <span class="hljs-params">(pos)</span>:</span><br>　　　　<span class="hljs-keyword">return</span> <span class="hljs-keyword">not</span> (ran == rst[pos] <span class="hljs-keyword">or</span> abs(ran - rst[pos]) == pos + <span class="hljs-number">1</span>)<br>　　<span class="hljs-keyword">return</span> ands([check(pos) <span class="hljs-keyword">for</span> pos <span class="hljs-keyword">in</span> range(len(rst))])<br></code></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">safe</span> <span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">):</span>
+　　<span class="k">def</span> <span class="nf">check</span> <span class="p">(</span><span class="n">pos</span><span class="p">):</span>
+　　　　<span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="n">ran</span> <span class="o">==</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ran</span> <span class="o">-</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">])</span> <span class="o">==</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+　　<span class="k">return</span> <span class="n">ands</span><span class="p">([</span><span class="n">check</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rst</span><span class="p">))])</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>前文已经说明，ands() 函数接受一个列表为参数，如果列表中每一项都为 True 则返回 True，否则返回 False。还是直接把数学定义抄一遍</p>
-<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ands</span> <span class="hljs-params">(ls)</span>:</span><br>　　<span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span> <span class="hljs-keyword">if</span> ls == [] \<br>　　　<span class="hljs-keyword">else</span> (<span class="hljs-keyword">False</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> ls[<span class="hljs-number">0</span>] \<br>　　　<span class="hljs-keyword">else</span> ands(ls[<span class="hljs-number">1</span>:]))<br></code></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">ands</span> <span class="p">(</span><span class="n">ls</span><span class="p">):</span>
+　　<span class="k">return</span> <span class="bp">True</span> <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="p">[]</span> \
+　　　<span class="k">else</span> <span class="p">(</span><span class="bp">False</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> \
+　　　<span class="k">else</span> <span class="n">ands</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>于是，我们的程序就写完啦！试着跑一下 queens(4,4)，</p>
-<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>queens(<span class="hljs-number">4</span>,<span class="hljs-number">4</span>)<br>[[<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>]]<br></code></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">queens</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>没问题！再跑一下 queens(8,8)！奇怪，为什么跑了 10 分钟还没出结果？</p>
-<p>问题在哪儿： </p>
-<p>拙劣的列表领悟实现。Python 在处理列表领悟时，一方面把“形式”部分封装为一个函数，然后找出所有未知数的列表，组装成一个大的矩阵，然后对矩阵中的每一项应用该函数。问题出在哪儿？先生成了所有项，占用了过多的空间。如果在 Haskell 里面，这样做是无所谓的，因为惰性的列表会生成一点，计算一点，抛弃一点，输出一点；但这对于严格（采用应用序求值）的命令式语言 Python 来说，这种实现仅仅是玩具级的。 </p>
+
+<p>问题在哪儿：</p>
+
+<p>拙劣的列表领悟实现。Python 在处理列表领悟时，一方面把“形式”部分封装为一个函数，然后找出所有未知数的列表，组装成一个大的矩阵，然后对矩阵中的每一项应用该函数。问题出在哪儿？先生成了所有项，占用了过多的空间。如果在 Haskell 里面，这样做是无所谓的，因为惰性的列表会生成一点，计算一点，抛弃一点，输出一点；但这对于严格（采用应用序求值）的命令式语言 Python 来说，这种实现仅仅是玩具级的。</p>
+
 <p>其实，列表领悟不仅仅是一个语法糖，在严格的语言实现它需要一定技巧：首先分析未知数对于的列表的计算所消耗时间（数据流分析 call 的次数），把计算耗时最多的列表应用群体操作，对结果的每一项应用产生下一个列表的群体操作，依此类推，只要产生一个包含所有未知数的序对就应用包装好的函数。空泛的讲这些用处不大，下面我们手工把这个该死的程序救活。</p>
-<p>通用列表操作：<br>　　关键在于处理掉这一句：</p>
-<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">[[ran] + rst \<br>　　　<span class="hljs-keyword">for</span> ran <span class="hljs-keyword">in</span> range(row) \<br>　　　<span class="hljs-keyword">for</span> rst <span class="hljs-keyword">in</span> queens(row, col - <span class="hljs-number">1</span>) \<br>　　　<span class="hljs-keyword">if</span> safe(ran, rst)]<br></code></pre></td></tr></table></figure>
+
+<p>通用列表操作：
+　　关键在于处理掉这一句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">	<span class="p">[[</span><span class="n">ran</span><span class="p">]</span> <span class="o">+</span> <span class="n">rst</span> \
+　　　<span class="k">for</span> <span class="n">ran</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> \
+　　　<span class="k">for</span> <span class="n">rst</span> <span class="ow">in</span> <span class="n">queens</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> \
+　　　<span class="k">if</span> <span class="n">safe</span><span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">)]</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>首先对最耗时的列表 queens(row, col - 1) 应用群体操作 flatmap(newcol, queens(row, col - 1))。这里需要注意的是，光用 map() 是不够的，因为下面会根据另一个列表 rang(row) 中的每一项产生一个新列表，导致多出一个列表层。所以我们需要用 flatmap() 函数，它在普通的 map() 操作之后会用 append() 把产生的列表联结起来（所以叫“展平”的 map），把多出的一层列表消去：</p>
-<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">flatmap</span> <span class="hljs-params">(opt, ls)</span>:</span><br>　　<span class="hljs-comment"># 小技巧：累积器在连接列表时可以不用 lambda x,y: x+y，直接用 list.__add__，</span><br>　　<span class="hljs-comment"># 重点是类型出错时有报警</span><br>　　<span class="hljs-keyword">return</span> reduce(list.__add__, map(opt, ls))<br></code></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">flatmap</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="n">ls</span><span class="p">):</span>
+　　<span class="c1"># 小技巧：累积器在连接列表时可以不用 lambda x,y: x+y，直接用 list.__add__，</span>
+　　<span class="c1"># 重点是类型出错时有报警</span>
+　　<span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="fm">__add__</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="n">ls</span><span class="p">))</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>接下来，根据列表和列表生成列表（在通用列表操作的世界中，就是 list, list, and list），注意原来的形式 [ran] + rst 是怎么被函数封装掉的：</p>
-<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">newcol</span> <span class="hljs-params">(rst)</span>:</span><br>　　<span class="hljs-comment"># 顺手解决 filter 只能传递一个参数的限制，用 lambda 代掉</span><br>　　<span class="hljs-keyword">return</span> filter(<span class="hljs-keyword">lambda</span> ls: safe(ls[<span class="hljs-number">0</span>], rst), map(<span class="hljs-keyword">lambda</span> x: [x] + rst, range(row)))<br></code></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">newcol</span> <span class="p">(</span><span class="n">rst</span><span class="p">):</span>
+　　<span class="c1"># 顺手解决 filter 只能传递一个参数的限制，用 lambda 代掉</span>
+　　<span class="k">return</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">ls</span><span class="p">:</span> <span class="n">safe</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rst</span><span class="p">),</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">rst</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)))</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>其它什么内容都不用改了（当然了，如果你有心情，还可以把另一个列表领悟替换掉</p>
-<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">safe</span> <span class="hljs-params">(ran, rst)</span>:</span><br>　　<span class="hljs-keyword">return</span> every(check, range(len(rst)))<br><span class="hljs-comment"># every() 函数相当于打过兴奋剂的 ands</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">every</span> <span class="hljs-params">(test, ls)</span>:</span><br>　　<span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span> <span class="hljs-keyword">if</span> ls == [] \<br>　　　<span class="hljs-keyword">else</span> (<span class="hljs-keyword">False</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> test(ls[<span class="hljs-number">0</span>]) \<br>　　　<span class="hljs-keyword">else</span> every(test, ls[<span class="hljs-number">1</span>:]))<br></code></pre></td></tr></table></figure>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">safe</span> <span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">):</span>
+　　<span class="k">return</span> <span class="n">every</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rst</span><span class="p">)))</span>
+<span class="c1"># every() 函数相当于打过兴奋剂的 ands</span>
+<span class="k">def</span> <span class="nf">every</span> <span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">ls</span><span class="p">):</span>
+　　<span class="k">return</span> <span class="bp">True</span> <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="p">[]</span> \
+　　　<span class="k">else</span> <span class="p">(</span><span class="bp">False</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> \
+　　　<span class="k">else</span> <span class="n">every</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>不过单层的列表领悟没有性能问题）。现在可以完美地输出八皇后问题的 92 个解了（这里就不列了，太长了）。</p>
-<p>反思： </p>
+
+<p>反思：</p>
+
 <ul>
 <li>函数式编程的思想描述算法绝对强，无论是列表领悟还是通用列表操作都十分清晰，仿佛能感受到数据在表达式间游动；</li>
 <li>和平起见，就不把我那个传说中的只有一行代码的版本拿来和几十行的命令式风格的代码比较了，但大家应该心领神会；</li>
 <li>有时候，把问题想的简单一些，思维更“形而上学”一些，反而能更快的得到解决问题的思路，顺着思路再改进也不迟；</li>
 <li>Python 的表达式版的分支语句很漂亮，但被该死的换行限制给玷污了；另外列表领悟实现得够烂，眼下只能是玩玩儿。</li>
 </ul>
-<p>最后留个小问题：我们在算法描述一节中提到了一种解的表示方法，把一个格局中所有棋子的坐标表示为序对，然后返回解的列表。请给出一个小函数，把我们现在的实现版本输出的解转换为这种形式。数据的本质是信息。信息的完全是首要的，数据的表示只是个次要问题。 </p>
-<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python">BOARD_SIZE = <span class="hljs-number">8</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">under_attack</span><span class="hljs-params">(col, queens)</span>:</span><br>    left = right = col<br><br>    <span class="hljs-keyword">for</span> r, c <span class="hljs-keyword">in</span> reversed(queens):<br>        left, right = left - <span class="hljs-number">1</span>, right + <span class="hljs-number">1</span><br><br>        <span class="hljs-keyword">if</span> c <span class="hljs-keyword">in</span> (left, col, right):<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">solve</span><span class="hljs-params">(n)</span>:</span><br>    <span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span>:<br>        <span class="hljs-keyword">return</span> [[]]<br><br>    smaller_solutions = solve(n - <span class="hljs-number">1</span>)<br><br>    <span class="hljs-keyword">return</span> [solution+[(n,i+<span class="hljs-number">1</span>)]<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> xrange(BOARD_SIZE)<br>            <span class="hljs-keyword">for</span> solution <span class="hljs-keyword">in</span> smaller_solutions<br>                <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> under_attack(i+<span class="hljs-number">1</span>, solution)]<br><br><span class="hljs-keyword">for</span> answer <span class="hljs-keyword">in</span> solve(BOARD_SIZE):<br>    <span class="hljs-keyword">print</span> answer<br></code></pre></td></tr></table></figure>
-<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span> permutations <span class="hljs-keyword">as</span> perm<br><br>cols = perm(range(<span class="hljs-number">1</span>, <span class="hljs-number">9</span>))<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">OK</span><span class="hljs-params">(s)</span>:</span><br>    sl = set(r - c <span class="hljs-keyword">for</span> r, c <span class="hljs-keyword">in</span> enumerate(s))  <span class="hljs-comment"># r for row</span><br>    bs = set(r + c <span class="hljs-keyword">for</span> r, c <span class="hljs-keyword">in</span> enumerate(s))  <span class="hljs-comment"># c for column</span><br>    <span class="hljs-keyword">return</span> len(sl) == len(bs) == <span class="hljs-number">8</span><br><br>solutions = [c <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> cols <span class="hljs-keyword">if</span> OK(c)]<br><br><span class="hljs-keyword">for</span> i, s <span class="hljs-keyword">in</span> enumerate(solutions, <span class="hljs-number">1</span>):<br>    <span class="hljs-keyword">print</span> i, <span class="hljs-string">":"</span>, s<br></code></pre></td></tr></table></figure>
-    </main>
-    <footer class="post-footer">
-      
+
+<p>最后留个小问题：我们在算法描述一节中提到了一种解的表示方法，把一个格局中所有棋子的坐标表示为序对，然后返回解的列表。请给出一个小函数，把我们现在的实现版本输出的解转换为这种形式。数据的本质是信息。信息的完全是首要的，数据的表示只是个次要问题。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">BOARD_SIZE</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="k">def</span> <span class="nf">under_attack</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">queens</span><span class="p">):</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="n">col</span>
+
+    <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">queens</span><span class="p">):</span>
+        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">left</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">right</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[[]]</span>
+
+    <span class="n">smaller_solutions</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">solution</span><span class="o">+</span><span class="p">[(</span><span class="n">n</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">BOARD_SIZE</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">solution</span> <span class="ow">in</span> <span class="n">smaller_solutions</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">under_attack</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">solution</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">answer</span> <span class="ow">in</span> <span class="n">solve</span><span class="p">(</span><span class="n">BOARD_SIZE</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">answer</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span> <span class="k">as</span> <span class="n">perm</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="n">perm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">OK</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">sl</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">c</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>  <span class="c1"># r for row</span>
+    <span class="n">bs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">c</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>  <span class="c1"># c for column</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">sl</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">bs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">8</span>
+
+<span class="n">solutions</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cols</span> <span class="k">if</span> <span class="n">OK</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">solutions</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&#34;:&#34;</span><span class="p">,</span> <span class="n">s</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">josephpei</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2014-01-09
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
       <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/python/" rel="tag"><i class="fas fa-tags"></i>python</a>
-        
-        <a class="post-tag button" href="/tags/FP/" rel="tag"><i class="fas fa-tags"></i>FP</a>
-        
-      </div>
-      
+          <a href="/tags/fp/">FP</a>
+          <a href="/tags/python/">python</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2014/02/08/maven-%E5%85%A5%E9%97%A8/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Maven 入门</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2014/01/01/string-hash-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%A3%E5%88%97/">
+            <span class="next-text nav-default">String Hash 字符串散列</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
     </footer>
   </article>
-  
-  
-  <nav class="page-nav">
-    <div class="page-nav-next page-nav-item">
-      
-      <a href="/2014/01/01/string-hash-字符串散列/" rel="next" title="String Hash 字符串散列"><i class="fas fa-angle-left"></i><span class="nav-title">String Hash 字符串散列</span></a>
-      
-    </div>
-    <div class="page-nav-prev page-nav-item">
-      
-      <a href="/2014/02/08/maven-入门/" rel="prev" title="Maven 入门"><span class="nav-title">Maven 入门</span><i class="fas fa-angle-right"></i></a>
-      
-    </div>
-  </nav>
-  
-  
-  
-
-<div class="comments" id="comments">
-  
-  <script defer id="dsq-count-scr" src="//josephpei-github-io.disqus.com/count.js"></script>
-  
-  <div id="disqus_thread" class="disqus_thread"></div>
-  <script type="text/javascript">
-  var disqus_config = function () {
-    this.page.url = "http://josephpei.github.io/2014/01/09/用python秒掉八皇后问题/";
-    this.page.identifier = "2014/01/09/用python秒掉八皇后问题/";
-  };
-  (function() {
-    var d = document, s = d.createElement("script");
-    s.src = "https://josephpei-github-io.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-  </script>
-  
-  
-</div>
-
-
-
-  
-</div>
-
-          </div>
-          
-          
-          
-<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
-  
-  <div class="search">
-    <div class="form-group">
-      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
-    </div>
-  </div>
-  <div class="search-result-box" id="search-result"></div>
-  
-  
-<div class="info sidebar-item" id="info">
-  
-  <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
-  
-  <h1 class="author-name">Joseph Pei</h1>
-  <h2 class="author-description"></h2>
-  <div class="site-count">
-    
-  </div>
-  
-  <div class="rss">
-    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
-  </div>
-  
-</div>
-
-
-  <div class="sidebar-sticky">
-    
-    
-    
-    
-    
-    <hr>
-    <div class="post-toc sidebar-item" id="toc-div">
-      <div><i class="fas fa-list-ol"></i>文章目录</div>
-      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#预备知识"><span class="toc-text">预备知识</span></a></li></ol></div>
-    </div>
-    
-    
-    
-    <hr>
-    <div class="social-link sidebar-item">
-      <div><i class="far fa-address-card"></i>社交链接</p></div>
-      <ul>
-        
-        <li>fas fa-envelope<a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
-        
-        <li>fab fa-github<a href="https://github.com/" target="_blank">GitHub</a></li>
-        
-        <li>fab fa-weibo<a href="https://weibo.com/" target="_blank">Weibo</a></li>
-        
-      </ul>
-    </div>
-    
-    
-    <hr>
-    <div class="blogroll sidebar-item">
-      <div><i class="fas fa-link"></i>友情链接</div>
-      <ul>
-        
-        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-        
-        <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-        
-        <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-        
-      </ul>
-    </div>
-    
-  </div>
-</aside>
-
-
-          
         </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'josephpei-github-io';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
       </div>
     </main>
-    
-<footer id="footer" class="footer" style="background: #33363b;">
-  <div class="container">
-    <div class="back-to-top">
-      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
-    </div>
-    <div class="footer-container">
-      <div class="footer-left">
-        <div class="copyright">
-          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
-        </div>
-        
-        <div class="busuanzi">
-          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
-        </div>
-        
-      </div>
-      <div class="footer-right">
-        <div class="custom-info">
-          
-          托管于 <i class="fab fa-github-alt"></i> <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
-          
-        </div>
-        <div class="powered-by">
-          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
-        </div>
-      </div>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
+  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">josephpei</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
     </div>
   </div>
-</footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
 
 
-  </body>
+
+
+
+
+
+
+</body>
 </html>

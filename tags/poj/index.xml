@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>poj on 有翅膀的天狼</title>
+    <link>http://josephpei.github.io/tags/poj/</link>
+    <description>Recent content in poj on 有翅膀的天狼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 20 Dec 2013 13:09:27 +0800</lastBuildDate>
+    
+	<atom:link href="http://josephpei.github.io/tags/poj/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>poj 2388 寻找中位数</title>
+      <link>http://josephpei.github.io/2013/12/20/poj-2388-%E5%AF%BB%E6%89%BE%E4%B8%AD%E4%BD%8D%E6%95%B0/</link>
+      <pubDate>Fri, 20 Dec 2013 13:09:27 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/12/20/poj-2388-%E5%AF%BB%E6%89%BE%E4%B8%AD%E4%BD%8D%E6%95%B0/</guid>
+      <description>&lt;p&gt;这也是Google面试题&lt;/p&gt;
+
+&lt;p&gt;股市上一个股票的价格从开市开始是不停的变化的，需要开发一个系统，给定一个股票，它能实时显示从开市到当前时间的这个股票的价格的中位数（中值）。&lt;/p&gt;
+
+&lt;p&gt;用双堆存储，一个大根堆，一个小根堆，则Inert为O(logn)，Median为O(1)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>poj 3164 最小树形图 朱刘算法</title>
+      <link>http://josephpei.github.io/2013/12/20/poj-3164-%E6%9C%80%E5%B0%8F%E6%A0%91%E5%BD%A2%E5%9B%BE-%E6%9C%B1%E5%88%98%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Fri, 20 Dec 2013 13:07:07 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/12/20/poj-3164-%E6%9C%80%E5%B0%8F%E6%A0%91%E5%BD%A2%E5%9B%BE-%E6%9C%B1%E5%88%98%E7%AE%97%E6%B3%95/</guid>
+      <description>&lt;p&gt;最小树形图，就是给有向带权图中指定一个特殊的点root，求一棵以root为根的有向生成树T，并且T中所有边的总权值最小。最小树形图的第一个算法是 1965年朱永津和刘振宏提出的复杂度为O(VE)的算法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>poj 3630 phone list</title>
+      <link>http://josephpei.github.io/2013/12/02/poj-3630-phone-list/</link>
+      <pubDate>Mon, 02 Dec 2013 17:26:41 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/12/02/poj-3630-phone-list/</guid>
+      <description>&lt;p&gt;方法一、先排序，前缀子串肯定是与父串挨着的&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>poj 2524 ubiquitous religions</title>
+      <link>http://josephpei.github.io/2013/12/02/poj-2524-ubiquitous-religions/</link>
+      <pubDate>Mon, 02 Dec 2013 17:22:38 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/12/02/poj-2524-ubiquitous-religions/</guid>
+      <description>&lt;p&gt;水题，并查集简单应用&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>POJ 3437 Tree Grafting</title>
+      <link>http://josephpei.github.io/2013/12/02/poj-3437-tree-grafting/</link>
+      <pubDate>Mon, 02 Dec 2013 16:34:15 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/12/02/poj-3437-tree-grafting/</guid>
+      <description>&lt;p&gt;当前结点在二叉树表示中的深度等于父结点深度加上当前节点左兄弟的个数再加1&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>POJ 2820 Ancient Cipher 古代密码</title>
+      <link>http://josephpei.github.io/2013/11/01/poj-2820-ancient-cipher-%E5%8F%A4%E4%BB%A3%E5%AF%86%E7%A0%81/</link>
+      <pubDate>Fri, 01 Nov 2013 21:26:06 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/11/01/poj-2820-ancient-cipher-%E5%8F%A4%E4%BB%A3%E5%AF%86%E7%A0%81/</guid>
+      <description>&lt;p&gt;摘要： 巧妙的解法，借鉴了别人的 只要看字母频率就可以直接得出结论&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>POJ 1664 放苹果</title>
+      <link>http://josephpei.github.io/2013/10/20/poj-1664-%E6%94%BE%E8%8B%B9%E6%9E%9C/</link>
+      <pubDate>Sun, 20 Oct 2013 10:50:57 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/10/20/poj-1664-%E6%94%BE%E8%8B%B9%E6%9E%9C/</guid>
+      <description>&lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;
+
+&lt;p&gt;把M个同样的苹果放在N个同样的盘子里，允许有的盘子空着不放，问共有多少种不同的分法？（用K表示）5，1，1和1，5，1 是同一种分法。&lt;/p&gt;
+
+&lt;p&gt;自己想了半天，什么排列组合之类的，后来去搜题解，才知道是用递归……&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>POJ 1007 DNA逆序对</title>
+      <link>http://josephpei.github.io/2013/09/27/poj-1007-dna%E9%80%86%E5%BA%8F%E5%AF%B9/</link>
+      <pubDate>Fri, 27 Sep 2013 16:21:38 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/09/27/poj-1007-dna%E9%80%86%E5%BA%8F%E5%AF%B9/</guid>
+      <description>题意就是让你求逆序对，然后按照逆序对的大小将字符串输出，如果逆序对数目一样，则不要改变原来的顺序输出。 至于逆序对数&amp;hellip;对于&amp;rd</description>
+    </item>
+    
+    <item>
+      <title>POJ 1006 Biorhythms</title>
+      <link>http://josephpei.github.io/2013/09/26/poj-1006-biorhythms/</link>
+      <pubDate>Thu, 26 Sep 2013 14:37:21 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/09/26/poj-1006-biorhythms/</guid>
+      <description>问题描述 人自出生起就有体力，情感和智力三个生理周期，分别为23，28和33天。一个周期内有一天为峰值，在这一天，人在对应的方面（体力，情感或</description>
+    </item>
+    
+    <item>
+      <title>POJ 1002 电话号码</title>
+      <link>http://josephpei.github.io/2013/09/26/poj-1002-%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/</link>
+      <pubDate>Thu, 26 Sep 2013 12:39:11 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/09/26/poj-1002-%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81/</guid>
+      <description>Input 输入的格式是，第一行是一个正整数，指定电话号码薄中号码的数量（最多100000）。余下的每行是一个电话号码。每个电话号码由数字，大写字母（</description>
+    </item>
+    
+    <item>
+      <title>POJ 1001 求高精度幂</title>
+      <link>http://josephpei.github.io/2013/09/25/poj-1001-%E6%B1%82%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%B9%82/</link>
+      <pubDate>Wed, 25 Sep 2013 16:11:48 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2013/09/25/poj-1001-%E6%B1%82%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%B9%82/</guid>
+      <description>&lt;p&gt;问题：对一个实数R( 0.0 &amp;lt; R &amp;lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &amp;lt; n &amp;lt;= 25。&lt;/p&gt;
+
+&lt;h2 id=&#34;计算结果位数的确定&#34;&gt;计算结果位数的确定&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;两数之和的最大为较大的数的位数加1&lt;/li&gt;
+&lt;li&gt;乘积的位数最大为两个因子的位数之和&lt;/li&gt;
+&lt;li&gt;阶乘：lgn! = lgn + lg(n-1) + &amp;hellip; + lg1 = lnn/ln10 + ln(n-1)/ln10 + &amp;hellip; + ln1/ln10 = trunc(1/ln10 * (lnn + ln(n-1) + &amp;hellip; + ln1))&lt;/li&gt;
+&lt;li&gt;乘方：lg(a^b) = trunc(lg(a^b)) + 1 = trunc(b * lga) + 1 = trunc(b * lna/ln10) + 1&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

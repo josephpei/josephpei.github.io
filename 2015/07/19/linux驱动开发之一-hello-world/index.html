@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux驱动开发之一 Hello World - 有翅膀的天狼</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="josephpei" /><meta name="description" content="完整的 Hello World 内核模块 hello.c 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include &amp;lt;linux/init.h&amp;gt;#include &amp;lt;linux/module.h&amp;gt;MODULE_LICENSE(&amp;#34;Dual BSD/GPL&amp;#34;); static int hello_init(void) { printk(KERN_ALERT &amp;#34;Hello, world\n&amp;#34;); return 0; } static void hello_exit(void) { printk(KERN_ALERT &amp;#34;Goodbye, cruel world\n&amp;#34;); } module_init(hello_init); module_exit(hello_exit); Makefile 1 2 3 4 5 6 7 8 9 obj-m &#43;=hello.o KDIR = /usr/src/linux-headers-3.19.0-21-generic all: $(MAKE) -C" /><meta name="keywords" content="life, linux, program" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://josephpei.github.io/2015/07/19/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%80-hello-world/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Linux驱动开发之一 Hello World" />
+<meta property="og:description" content="完整的 Hello World 内核模块 hello.c 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include &lt;linux/init.h&gt;#include &lt;linux/module.h&gt;MODULE_LICENSE(&#34;Dual BSD/GPL&#34;); static int hello_init(void) { printk(KERN_ALERT &#34;Hello, world\n&#34;); return 0; } static void hello_exit(void) { printk(KERN_ALERT &#34;Goodbye, cruel world\n&#34;); } module_init(hello_init); module_exit(hello_exit); Makefile 1 2 3 4 5 6 7 8 9 obj-m &#43;=hello.o KDIR = /usr/src/linux-headers-3.19.0-21-generic all: $(MAKE) -C" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://josephpei.github.io/2015/07/19/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%80-hello-world/" />
+<meta property="article:published_time" content="2015-07-19T10:21:47&#43;08:00"/>
+<meta property="article:modified_time" content="2015-07-19T10:21:47&#43;08:00"/>
+
+<meta itemprop="name" content="Linux驱动开发之一 Hello World">
+<meta itemprop="description" content="完整的 Hello World 内核模块 hello.c 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include &lt;linux/init.h&gt;#include &lt;linux/module.h&gt;MODULE_LICENSE(&#34;Dual BSD/GPL&#34;); static int hello_init(void) { printk(KERN_ALERT &#34;Hello, world\n&#34;); return 0; } static void hello_exit(void) { printk(KERN_ALERT &#34;Goodbye, cruel world\n&#34;); } module_init(hello_init); module_exit(hello_exit); Makefile 1 2 3 4 5 6 7 8 9 obj-m &#43;=hello.o KDIR = /usr/src/linux-headers-3.19.0-21-generic all: $(MAKE) -C">
+
+
+<meta itemprop="datePublished" content="2015-07-19T10:21:47&#43;08:00" />
+<meta itemprop="dateModified" content="2015-07-19T10:21:47&#43;08:00" />
+<meta itemprop="wordCount" content="103">
+
+
+
+<meta itemprop="keywords" content="LinuxDriver," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux驱动开发之一 Hello World"/>
+<meta name="twitter:description" content="完整的 Hello World 内核模块 hello.c 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include &lt;linux/init.h&gt;#include &lt;linux/module.h&gt;MODULE_LICENSE(&#34;Dual BSD/GPL&#34;); static int hello_init(void) { printk(KERN_ALERT &#34;Hello, world\n&#34;); return 0; } static void hello_exit(void) { printk(KERN_ALERT &#34;Goodbye, cruel world\n&#34;); } module_init(hello_init); module_exit(hello_exit); Makefile 1 2 3 4 5 6 7 8 9 obj-m &#43;=hello.o KDIR = /usr/src/linux-headers-3.19.0-21-generic all: $(MAKE) -C"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Wolfsky</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Wolfsky</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux驱动开发之一 Hello World</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-07-19 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <p>完整的 Hello World 内核模块 hello.c</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;linux/init.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;linux/module.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">&#34;Dual BSD/GPL&#34;</span><span class="p">);</span>
+
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">hello_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Hello, world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">hello_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Goodbye, cruel world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">);</span>
+<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_exit</span><span class="p">);</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Makefile</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="nv">obj-m</span> <span class="o">+=</span>hello.o
+
+<span class="nv">KDIR</span> <span class="o">=</span> /usr/src/linux-headers-3.19.0-21-generic
+
+<span class="nf">all</span><span class="o">:</span>
+	<span class="k">$(</span>MAKE<span class="k">)</span> -C <span class="k">$(</span>KDIR<span class="k">)</span> <span class="nv">SUBDIRS</span><span class="o">=</span><span class="k">$(</span>PWD<span class="k">)</span> modules
+
+<span class="nf">clean</span><span class="o">:</span>
+	rm -rf *.o *.ko *.mod.* *.symvers *.order
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>To run the code</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> insmod hello.ko
+<span class="nv">$dmesg</span>
+u will get the output
+<span class="nv">$sudo</span> rmmod hello.ko
+<span class="nv">$dmesg</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">josephpei</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2015-07-19
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linuxdriver/">LinuxDriver</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2016/08/05/django%E4%B9%8B%E8%B7%AF-python-decouple/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Django之路: Python Decouple</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2015/06/24/linux-ubuntu-%E4%B8%8B%E4%B8%BA-android-%E5%88%9B%E5%BB%BA%E6%97%A0%E7%BA%BF%E5%88%86%E4%BA%AB%E7%83%AD%E7%82%B9/">
+            <span class="next-text nav-default">Linux/Ubuntu 下为 Android 创建无线分享热点</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'josephpei-github-io';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
+  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">josephpei</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

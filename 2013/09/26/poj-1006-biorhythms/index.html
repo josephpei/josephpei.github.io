@@ -1,419 +1,356 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#33363b">
-    <meta name="msapplication-TileColor" content="#33363b">
-    
-    
-    
-    
-    <meta name="keywords" content="Life, Linux, Hexo">
-    
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
-    
-    
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-    
-    
-    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
-    
-    
-    <link rel="manifest" href="/favicons/site.webmanifest">
-    
-    
-    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
-    
-    
-    <link rel="alternate" href="/atom.xml" title="有翅膀的天狼" type="application/atom+xml" />
-    
-    
-    
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
-    
-    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
-    
-    
-<link rel="stylesheet" type="text/css" href="/css/page.css">
-<link rel="stylesheet" type="text/css" href="/css/post.css">
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>POJ 1006 Biorhythms - 有翅膀的天狼</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    <link rel="stylesheet" type="text/css" href="/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
-    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script defer type="text/javascript" src="/js/util.js"></script>
-    <script defer type="text/javascript" src="/js/clipboard.min.js"></script>
-    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
-    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
-    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
-    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
-    
-    <script defer src="/js/busuanzi.pure.mini.js"></script>
-    
-    
-    <script defer type="text/javascript" src="/js/search.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var searchPath = "search.xml";
-      if (searchPath.length === 0) {
-        searchPath = "search.xml";
-      }
-      var path = "/" + searchPath;
-      searchFunc(path, "search-input", "search-result");
-    });
-    </script>
-    
-    
-    <script defer type="text/javascript" src="/js/index.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var cb = null;
-      var els = $(".post figure.highlight");
-      if (els.length) {
-        // Enabled Hexo highlight line number.
-        $(els).each(function (i, e) {
-          $(e).before("<button class=\"copy button\">复制</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout with line number.
-              return trigger.nextElementSibling.firstChild.firstChild.firstChild.lastChild.firstChild.firstChild;
-          }
-        });
-      } else {
-        // Disabled Hexo highlight line number.
-        els = $(".post pre code");
-        $(els).each(function (i, e) {
-          // Add button before pre, not code.
-          $(e).parent().before("<button class=\"copy button\">复制</button>");
-        });
-        cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
-              // Get target element by DOM API.
-              // nextElementSibling is figure,highlight.
-              // And following is the sequence of Hexo's internal
-              // highlight layout without line number.
-              return trigger.nextElementSibling.firstChild;
-          }
-        });
-      }
-      cb.on("success", function (e) {
-        e.clearSelection();
-        var trigger = e.trigger;
-        // Change button text as a user tip.
-        trigger.innerHTML = "已复制";
-        $(trigger).addClass("copied");
-        // Change button text back;
-        setTimeout(function () {
-          trigger.innerHTML = "复制";
-          $(trigger).removeClass("copied");
-        }, 1500);
-      });
-    });
-    </script>
-    
-    <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>POJ 1006 Biorhythms | 有翅膀的天狼 - Whisper to the world</title>
-  </head>
-  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
-    
-<header id="header" class="header" style="background: #33363b;">
-  <div class="container">
-    <div class="header-container">
-      <div class="header-title">
-        <h1 class="title"><a href="/">有翅膀的天狼</a></h1>
-        <h2 class="subtitle">Whisper to the world</h2>
-      </div>
-      
-      <div class="logo">
-        <img src="/img/logo.png" alt="logo">
-      </div>
-      
-    </div>
-    <nav id="nav" class="nav">
-      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
-      <ul id="menu" role="menubar" aria-hidden="false">
-        
-      </ul>
-    </nav>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="josephpei" /><meta name="description" content="问题描述 人自出生起就有体力，情感和智力三个生理周期，分别为23，28和33天。一个周期内有一天为峰值，在这一天，人在对应的方面（体力，情感或" /><meta name="keywords" content="life, linux, program" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://josephpei.github.io/2013/09/26/poj-1006-biorhythms/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="POJ 1006 Biorhythms" />
+<meta property="og:description" content="问题描述 人自出生起就有体力，情感和智力三个生理周期，分别为23，28和33天。一个周期内有一天为峰值，在这一天，人在对应的方面（体力，情感或" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://josephpei.github.io/2013/09/26/poj-1006-biorhythms/" />
+<meta property="article:published_time" content="2013-09-26T14:37:21&#43;08:00"/>
+<meta property="article:modified_time" content="2013-09-26T14:37:21&#43;08:00"/>
+
+<meta itemprop="name" content="POJ 1006 Biorhythms">
+<meta itemprop="description" content="问题描述 人自出生起就有体力，情感和智力三个生理周期，分别为23，28和33天。一个周期内有一天为峰值，在这一天，人在对应的方面（体力，情感或">
+
+
+<meta itemprop="datePublished" content="2013-09-26T14:37:21&#43;08:00" />
+<meta itemprop="dateModified" content="2013-09-26T14:37:21&#43;08:00" />
+<meta itemprop="wordCount" content="2364">
+
+
+
+<meta itemprop="keywords" content="poj," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="POJ 1006 Biorhythms"/>
+<meta name="twitter:description" content="问题描述 人自出生起就有体力，情感和智力三个生理周期，分别为23，28和33天。一个周期内有一天为峰值，在这一天，人在对应的方面（体力，情感或"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Wolfsky</a>
   </div>
-</header>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Wolfsky</a>
+</div>
 
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
 
     <main id="main" class="main">
-      <div class="container">
-        <div class="main-container">
-          <div class="content">
-            
-<div id="post" class="page">
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://josephpei.github.io/2013/09/26/poj-1006-biorhythms/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="Joseph Pei">
-       <meta itemprop="description" content="">
-       <meta itemprop="image" content="/img/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="有翅膀的天狼">
-      </span>
-    </div>
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">POJ 1006 Biorhythms</h1>
+      <h1 class="post-title">POJ 1006 Biorhythms</h1>
+
       <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2013-09-26T14:37:21+08:00">2013-09-26 14:37:21</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2013/09/26/poj-1006-biorhythms/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2013/09/26/poj-1006-biorhythms/" itemprop="commentCount"></span></a></span>
-        </span>
+        <span class="post-time"> 2013-09-26 </span>
         
         
       </div>
     </header>
-    <main class="post-main" itemprop="articleBody">
-      <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>人自出生起就有体力，情感和智力三个生理周期，分别为23，28和33天。一个周期内有一天为峰值，在这一天，人在对应的方面（体力，情感或智力）表现最好。通常这三个周期的峰值不会是同一天。现在给出三个日期，分别对应于体力，情感，智力出现峰值的日期。然后再给出一个起始日期，要求从这一天开始，算出最少再过多少天后三个峰值同时出现。</p>
-<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>首先我们要知道，任意两个峰值之间一定相距整数倍的周期。假设一年的第N天达到峰值，则下次达到峰值的时间为N+Tk(T是周期，k是任意正整数)。所以，三个峰值同时出现的那一天(S)应满足</p>
-<pre><code>S = N1 + T1*k1 = N2 + T2*k2 = N3 + T3*k3
-</code></pre><p>N1,N2,N3分别为为体力，情感，智力出现峰值的日期， T1，T2,T3分别为体力，情感，智力周期。 我们需要求出k1,k2,k3三个非负整数使上面的等式成立。</p>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#问题描述">问题描述</a></li>
+<li><a href="#问题分析">问题分析</a></li>
+<li><a href="#中国剩余定理介绍">中国剩余定理介绍</a></li>
+<li><a href="#中国剩余定理分析">中国剩余定理分析</a></li>
+<li><a href="#总结">总结</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h2 id="问题描述">问题描述</h2>
+
+<p>人自出生起就有体力，情感和智力三个生理周期，分别为23，28和33天。一个周期内有一天为峰值，在这一天，人在对应的方面（体力，情感或智力）表现最好。通常这三个周期的峰值不会是同一天。现在给出三个日期，分别对应于体力，情感，智力出现峰值的日期。然后再给出一个起始日期，要求从这一天开始，算出最少再过多少天后三个峰值同时出现。</p>
+
+<h2 id="问题分析">问题分析</h2>
+
+<p>首先我们要知道，任意两个峰值之间一定相距整数倍的周期。假设一年的第N天达到峰值，则下次达到峰值的时间为N+Tk(T是周期，k是任意正整数)。所以，三个峰值同时出现的那一天(S)应满足</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">  S = N1 + T1*k1 = N2 + T2*k2 = N3 + T3*k3</pre></td></tr></table>
+</div>
+</div>
+<p>N1,N2,N3分别为为体力，情感，智力出现峰值的日期， T1，T2,T3分别为体力，情感，智力周期。 我们需要求出k1,k2,k3三个非负整数使上面的等式成立。</p>
+
 <p>想直接求出k1,k2,k3貌似很难，但是我们的目的是求出S， 可以考虑从结果逆推。根据上面的等式，S满足三个要求：除以T1余数为N1，除以T2余数为N2，除以T3余数为N3。这样我们就把问题转化为求一个最小数，该数除以T1余N1，除以T2余N2,除以T3余N3。这就是著名的中国剩余定理，我们的老祖宗在几千年前已经对这个问题想出了一个精妙的解法。依据此解法的算法，时间复杂度可达到O(1)。下面就介绍一下中国剩余定理。</p>
-<h2 id="中国剩余定理介绍"><a href="#中国剩余定理介绍" class="headerlink" title="中国剩余定理介绍"></a>中国剩余定理介绍</h2><p>在《孙子算经》中有这样一个问题：“今有物不知其数，三三数之剩二（除以3余2），五五数之剩三（除以5余3），七七数之剩二（除以7余2），问物几何？”这个问题称为“孙子问题”，该问题的一般解法国际上称为“中国剩余定理”。具体解法分三步：</p>
-<p>找出三个数：从3和5的公倍数中找出被7除余1的最小数15，从3和7的公倍数中找出被5除余1 的最小数21，最后从5和7的公倍数中找出除3余1的最小数70。<br>用15乘以2（2为最终结果除以7的余数），用21乘以3（3为最终结果除以5的余数），同理，用70乘以2（2为最终结果除以3的余数），然后把三个乘积相加（15<em>2+21</em>3+70*2）得到和233。<br>用233除以3，5，7三个数的最小公倍数105，得到余数23，即233%105=23。这个余数23就是符合条件的最小数。</p>
+
+<h2 id="中国剩余定理介绍">中国剩余定理介绍</h2>
+
+<p>在《孙子算经》中有这样一个问题：“今有物不知其数，三三数之剩二（除以3余2），五五数之剩三（除以5余3），七七数之剩二（除以7余2），问物几何？”这个问题称为“孙子问题”，该问题的一般解法国际上称为“中国剩余定理”。具体解法分三步：</p>
+
+<p>找出三个数：从3和5的公倍数中找出被7除余1的最小数15，从3和7的公倍数中找出被5除余1 的最小数21，最后从5和7的公倍数中找出除3余1的最小数70。
+用15乘以2（2为最终结果除以7的余数），用21乘以3（3为最终结果除以5的余数），同理，用70乘以2（2为最终结果除以3的余数），然后把三个乘积相加（15*2+21*3+70*2）得到和233。
+用233除以3，5，7三个数的最小公倍数105，得到余数23，即233%105=23。这个余数23就是符合条件的最小数。</p>
+
 <p>就这么简单。我们在感叹神奇的同时不禁想知道古人是如何想到这个方法的，有什么基本的数学依据吗？</p>
-<h2 id="中国剩余定理分析"><a href="#中国剩余定理分析" class="headerlink" title="中国剩余定理分析"></a>中国剩余定理分析</h2><p>我们将“孙子问题”拆分成几个简单的小问题，从零开始，试图揣测古人是如何推导出这个解法的。</p>
+
+<h2 id="中国剩余定理分析">中国剩余定理分析</h2>
+
+<p>我们将“孙子问题”拆分成几个简单的小问题，从零开始，试图揣测古人是如何推导出这个解法的。</p>
+
 <p>首先，我们假设n1是满足除以3余2的一个数，比如2，5，8等等，也就是满足3*k+2（k&gt;=0）的一个任意数。同样，我们假设n2是满足除以5余3的一个数，n3是满足除以7余2的一个数。</p>
+
 <p>有了前面的假设，我们先从n1这个角度出发，已知n1满足除以3余2，能不能使得 n1+n2 的和仍然满足除以3余2？进而使得n1+n2+n3的和仍然满足除以3余2？</p>
+
 <p>这就牵涉到一个最基本数学定理，如果有a%b=c,则有(a+kb)%b=c(k为非零整数)，换句话说，如果一个除法运算的余数为c，那么被除数与k倍的除数相加（或相减）的和（差）再与除数相除，余数不变。这个是很好证明的。</p>
+
 <p>以此定理为依据，如果n2是3的倍数，n1+n2就依然满足除以3余2。同理，如果n3也是3的倍数，那么n1+n2+n3的和就满足除以3余2。这是从n1的角度考虑的，再从n2，n3的角度出发，我们可推导出以下三点：</p>
+
 <ul>
 <li>为使n1+n2+n3的和满足除以3余2，n2和n3必须是3的倍数。</li>
 <li>为使n1+n2+n3的和满足除以5余3，n1和n3必须是5的倍数。</li>
 <li>为使n1+n2+n3的和满足除以7余2，n1和n2必须是7的倍数。</li>
 </ul>
+
 <p>因此，为使n1+n2+n3的和作为“孙子问题”的一个最终解，需满足：</p>
+
 <ul>
 <li>n1除以3余2，且是5和7的公倍数。</li>
 <li>n2除以5余3，且是3和7的公倍数。</li>
 <li>n3除以7余2，且是3和5的公倍数。</li>
 </ul>
+
 <p>所以，孙子问题解法的本质是从5和7的公倍数中找一个除以3余2的数n1，从3和7的公倍数中找一个除以5余3的数n2，从3和5的公倍数中找一个除以7余2的数n3，再将三个数相加得到解。在求n1，n2，n3时又用了一个小技巧，以n1为例，并非从5和7的公倍数中直接找一个除以3余2的数，而是先找一个除以3余1的数，再乘以2。</p>
+
 <p>这里又有一个数学公式，如果a%b=c，那么（a*k）%b=a%b+a%b+…+a%b=c+c+…+c=kc（k&gt;0）,也就是说，如果一个除法的余数为c，那么被除数的k倍与除数相除的余数为kc。展开式中已证明。</p>
+
 <p>最后，我们还要清楚一点，n1+n2+n3只是问题的一个解，并不是最小的解。如何得到最小解？我们只需要从中最大限度的减掉掉3，5，7的公倍数105即可。道理就是前面讲过的定理“如果a%b=c,则有(a-kb)%b=c”。所以（n1+n2+n3）%105就是最终的最小解。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>经过分析发现，中国剩余定理的孙子解法并没有什么高深的技巧，就是以下两个基本数学定理的灵活运用：</p>
+
+<h2 id="总结">总结</h2>
+
+<p>经过分析发现，中国剩余定理的孙子解法并没有什么高深的技巧，就是以下两个基本数学定理的灵活运用：</p>
+
 <ul>
 <li>如果 a%b=c , 则有 (a+kb)%b=c (k为非零整数)。</li>
 <li>如果 a%b=c，那么 (a*k)%b=kc (k为大于零的整数)。</li>
 </ul>
-<p>再看我们这道题，读入p,e,i,d 4个整数</p>
-<p>已知(n+d)%23=p;   (n+d)%28=e;   (n+d)%33=i ,求n 。</p>
-<p>解法就是：</p>
-<p>已知(n+d)%23=p;   (n+d)%28=e;   (n+d)%33=i</p>
-<p>使33×28×a被23除余1，用33×28×8=5544；</p>
-<p>使23×33×b被28除余1，用23×33×19=14421；</p>
-<p>使23×28×c被33除余1，用23×28×2=1288。</p>
-<p>因此有（5544×p+14421×e+1288×i）% lcm(23,28,33) =n+d</p>
-<p>又23、28、33互质，即lcm(23,28,33)= 21252;</p>
-<p>所以有n=（5544×p+14421×e+1288×i-d）%21252</p>
-<p>本题所求的是最小整数解，避免n为负，因此最后结果为n= [n+21252]% 21252</p>
-<p>那么最终求解n的表达式就是：<br>n=(5544<em>p+14421</em>e+1288*i-d+21252)%21252</p>
-<p>参考：</p>
-<p><a href="http://www.cnblogs.com/walker01/archive/2010/01/23/1654880.html" target="_blank" rel="noopener">http://www.cnblogs.com/walker01/archive/2010/01/23/1654880.html</a></p>
 
-    </main>
-    <footer class="post-footer">
-      
+<p>再看我们这道题，读入p,e,i,d 4个整数</p>
+
+<p>已知(n+d)%23=p;   (n+d)%28=e;   (n+d)%33=i ,求n 。</p>
+
+<p>解法就是：</p>
+
+<p>已知(n+d)%23=p;   (n+d)%28=e;   (n+d)%33=i</p>
+
+<p>使33×28×a被23除余1，用33×28×8=5544；</p>
+
+<p>使23×33×b被28除余1，用23×33×19=14421；</p>
+
+<p>使23×28×c被33除余1，用23×28×2=1288。</p>
+
+<p>因此有（5544×p+14421×e+1288×i）% lcm(23,28,33) =n+d</p>
+
+<p>又23、28、33互质，即lcm(23,28,33)= 21252;</p>
+
+<p>所以有n=（5544×p+14421×e+1288×i-d）%21252</p>
+
+<p>本题所求的是最小整数解，避免n为负，因此最后结果为n= [n+21252]% 21252</p>
+
+<p>那么最终求解n的表达式就是：
+n=(5544*p+14421*e+1288*i-d+21252)%21252</p>
+
+<p>参考：</p>
+
+<p><a href="http://www.cnblogs.com/walker01/archive/2010/01/23/1654880.html">http://www.cnblogs.com/walker01/archive/2010/01/23/1654880.html</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">josephpei</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2013-09-26
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
       <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/poj/" rel="tag"><i class="fas fa-tags"></i>poj</a>
-        
-      </div>
-      
+          <a href="/tags/poj/">poj</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2013/09/27/poj-1007-dna%E9%80%86%E5%BA%8F%E5%AF%B9/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">POJ 1007 DNA逆序对</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2013/09/26/generate-ctags-files/">
+            <span class="next-text nav-default">Generate Ctags Files</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
     </footer>
   </article>
-  
-  
-  <nav class="page-nav">
-    <div class="page-nav-next page-nav-item">
-      
-      <a href="/2013/09/26/generate-ctags-files/" rel="next" title="Generate Ctags Files"><i class="fas fa-angle-left"></i><span class="nav-title">Generate Ctags Files</span></a>
-      
-    </div>
-    <div class="page-nav-prev page-nav-item">
-      
-      <a href="/2013/09/27/poj-1007-dna逆序对/" rel="prev" title="POJ 1007 DNA逆序对"><span class="nav-title">POJ 1007 DNA逆序对</span><i class="fas fa-angle-right"></i></a>
-      
-    </div>
-  </nav>
-  
-  
-  
-
-<div class="comments" id="comments">
-  
-  <script defer id="dsq-count-scr" src="//josephpei-github-io.disqus.com/count.js"></script>
-  
-  <div id="disqus_thread" class="disqus_thread"></div>
-  <script type="text/javascript">
-  var disqus_config = function () {
-    this.page.url = "http://josephpei.github.io/2013/09/26/poj-1006-biorhythms/";
-    this.page.identifier = "2013/09/26/poj-1006-biorhythms/";
-  };
-  (function() {
-    var d = document, s = d.createElement("script");
-    s.src = "https://josephpei-github-io.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-  </script>
-  
-  
-</div>
-
-
-
-  
-</div>
-
-          </div>
-          
-          
-          
-<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
-  
-  <div class="search">
-    <div class="form-group">
-      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
-    </div>
-  </div>
-  <div class="search-result-box" id="search-result"></div>
-  
-  
-<div class="info sidebar-item" id="info">
-  
-  <img class="author-avatar" src="/img/avatar.png" alt="Joseph Pei">
-  
-  <h1 class="author-name">Joseph Pei</h1>
-  <h2 class="author-description"></h2>
-  <div class="site-count">
-    
-  </div>
-  
-  <div class="rss">
-    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
-  </div>
-  
-</div>
-
-
-  <div class="sidebar-sticky">
-    
-    
-    
-    
-    
-    <hr>
-    <div class="post-toc sidebar-item" id="toc-div">
-      <div><i class="fas fa-list-ol"></i>文章目录</div>
-      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#问题描述"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#问题分析"><span class="toc-text">问题分析</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#中国剩余定理介绍"><span class="toc-text">中国剩余定理介绍</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#中国剩余定理分析"><span class="toc-text">中国剩余定理分析</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></div>
-    </div>
-    
-    
-    
-    <hr>
-    <div class="social-link sidebar-item">
-      <div><i class="far fa-address-card"></i>社交链接</p></div>
-      <ul>
-        
-        <li>fas fa-envelope<a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
-        
-        <li>fab fa-github<a href="https://github.com/" target="_blank">GitHub</a></li>
-        
-        <li>fab fa-weibo<a href="https://weibo.com/" target="_blank">Weibo</a></li>
-        
-      </ul>
-    </div>
-    
-    
-    <hr>
-    <div class="blogroll sidebar-item">
-      <div><i class="fas fa-link"></i>友情链接</div>
-      <ul>
-        
-        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-        
-        <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-        
-        <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
-        
-      </ul>
-    </div>
-    
-  </div>
-</aside>
-
-
-          
         </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'josephpei-github-io';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
       </div>
     </main>
-    
-<footer id="footer" class="footer" style="background: #33363b;">
-  <div class="container">
-    <div class="back-to-top">
-      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
-    </div>
-    <div class="footer-container">
-      <div class="footer-left">
-        <div class="copyright">
-          <span class="author">Joseph Pei</span><span class="year"><i class="far fa-copyright"></i>2016 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a></span>
-        </div>
-        
-        <div class="busuanzi">
-          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
-        </div>
-        
-      </div>
-      <div class="footer-right">
-        <div class="custom-info">
-          
-          托管于 <i class="fab fa-github-alt"></i> <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
-          
-        </div>
-        <div class="powered-by">
-          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
-        </div>
-      </div>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
+  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">josephpei</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
     </div>
   </div>
-</footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
 
 
-  </body>
+
+
+
+
+
+
+</body>
 </html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ubuntu on 有翅膀的天狼</title>
+    <link>http://josephpei.github.io/tags/ubuntu/</link>
+    <description>Recent content in ubuntu on 有翅膀的天狼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 08 Nov 2018 13:16:28 +0800</lastBuildDate>
+    
+	<atom:link href="http://josephpei.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ubuntu 18.04 修复与 Windows 共享文件及打印机</title>
+      <link>http://josephpei.github.io/2018/11/08/ubuntu-18-04-%E4%BF%AE%E5%A4%8D%E4%B8%8E-windows-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%8F%8A%E6%89%93%E5%8D%B0%E6%9C%BA/</link>
+      <pubDate>Thu, 08 Nov 2018 13:16:28 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2018/11/08/ubuntu-18-04-%E4%BF%AE%E5%A4%8D%E4%B8%8E-windows-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%8F%8A%E6%89%93%E5%8D%B0%E6%9C%BA/</guid>
+      <description>Ubuntu 升级到 18.04 后，在网络共享中看不到同一局域网内 Windows 共享的文件，同时 Windows 上共享的打印机也不能正常工作，表现为“需要身份认证”，但是输入对应用户名密码</description>
+    </item>
+    
+    <item>
+      <title>ubuntu awesome terminal</title>
+      <link>http://josephpei.github.io/2018/04/28/ubuntu-awesome-terminal/</link>
+      <pubDate>Sat, 28 Apr 2018 10:53:07 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2018/04/28/ubuntu-awesome-terminal/</guid>
+      <description>&lt;h2 id=&#34;gnome-terminal-theme&#34;&gt;gnome-terminal theme&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/aaron-williamson/base16-gnome-terminal&#34;&gt;base16 gnome terminal&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;选择一个，运行相应的 &lt;code&gt;.sh&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux/Ubuntu 下为 Android 创建无线分享热点</title>
+      <link>http://josephpei.github.io/2015/06/24/linux-ubuntu-%E4%B8%8B%E4%B8%BA-android-%E5%88%9B%E5%BB%BA%E6%97%A0%E7%BA%BF%E5%88%86%E4%BA%AB%E7%83%AD%E7%82%B9/</link>
+      <pubDate>Wed, 24 Jun 2015 11:34:40 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2015/06/24/linux-ubuntu-%E4%B8%8B%E4%B8%BA-android-%E5%88%9B%E5%BB%BA%E6%97%A0%E7%BA%BF%E5%88%86%E4%BA%AB%E7%83%AD%E7%82%B9/</guid>
+      <description>create ap hotspot for ubuntu linux 准备 https://w1.fi/hostapd/ https://github.com/oblique/create_ap 编译 hostapd 1 2 sudo apt-get install libnl-3-dev libnl-gen-3-dev make &amp;amp;&amp;amp; sudo make install 安装 create_ap 1 2 git clone https://github.com/oblique/create_ap.git cd create_ap &amp;amp;&amp;amp; make install 创建无线热点 1 sudo create_ap wlan0 ppp0 hotspot password</description>
+    </item>
+    
+  </channel>
+</rss>
