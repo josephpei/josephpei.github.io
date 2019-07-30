@@ -26,7 +26,28 @@
       <pubDate>Sun, 16 Feb 2014 12:51:13 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2014/02/16/tomcat-%E7%BC%96%E7%A0%81%E8%AE%BE%E5%AE%9A/</guid>
-      <description>大部分网上文章都是Connector标签里面添加 URIEncoding=&amp;ldquo;utf-8&amp;rdquo;，这种方法过于暴力。 正确的做法</description>
+      <description>&lt;p&gt;大部分网上文章都是Connector标签里面添加 URIEncoding=&amp;ldquo;utf-8&amp;rdquo;，这种方法过于暴力。&lt;/p&gt;
+
+&lt;p&gt;正确的做法是添加 useBodyEncodingForURI=&amp;ldquo;true&amp;rdquo;，这句的话告诉tomcat用页面的编码去处理post，推荐使用。&lt;/p&gt;
+
+&lt;p&gt;JSP页面头&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&amp;lt;%@ page language=&amp;#34;java&amp;#34;  pageEncoding=&amp;#34;UTF-8&amp;#34;%&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;html标签的head标签里加上&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&amp;lt;meta http-equiv=&amp;#34;Content-Type&amp;#34; content=&amp;#34;text/html; charset=utf-8&amp;#34;&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -63,7 +84,9 @@
       <pubDate>Sat, 28 Sep 2013 13:37:52 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2013/09/28/mac-osx-%E4%B8%8B-java-%E7%8E%AF%E5%A2%83/</guid>
-      <description>解决javac和java命令在Mac OSX终端里的乱码问题 解决方法有3个： 1）指定输出的编码为UTF-8 1 javac -J-Dfile.encoding=UTF-8 .profile添加 1 export _JAVA_OPTIONS=&amp;#34;-Dfile.encoding=UTF-8&amp;#34; 2）</description>
+      <description>&lt;h2 id=&#34;解决javac和java命令在mac-osx终端里的乱码问题&#34;&gt;解决javac和java命令在Mac OSX终端里的乱码问题&lt;/h2&gt;
+
+&lt;p&gt;解决方法有3个：&lt;/p&gt;</description>
     </item>
     
   </channel>

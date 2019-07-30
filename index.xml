@@ -17,7 +17,29 @@
       <pubDate>Thu, 08 Nov 2018 13:16:28 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2018/11/08/ubuntu-18-04-%E4%BF%AE%E5%A4%8D%E4%B8%8E-windows-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%8F%8A%E6%89%93%E5%8D%B0%E6%9C%BA/</guid>
-      <description>Ubuntu 升级到 18.04 后，在网络共享中看不到同一局域网内 Windows 共享的文件，同时 Windows 上共享的打印机也不能正常工作，表现为“需要身份认证”，但是输入对应用户名密码</description>
+      <description>&lt;p&gt;Ubuntu 升级到 18.04 后，在网络共享中看不到同一局域网内 Windows
+共享的文件，同时 Windows
+上共享的打印机也不能正常工作，表现为“需要身份认证”，但是输入对应用户名密码之后毫无反应。&lt;/p&gt;
+
+&lt;p&gt;修复方法：&lt;a href=&#34;https://www.dedoimedo.com/computers/ubuntu-beaver-samba-shares.html&#34;&gt;https://www.dedoimedo.com/computers/ubuntu-beaver-samba-shares.html&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ sudo vi /etc/samba/smb.conf
+
+&lt;span class=&#34;c1&#34;&gt;# Add a line&lt;/span&gt;
+client max &lt;span class=&#34;nv&#34;&gt;protocol&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; NT1
+
+$ sudo systemctl restart smbd.service&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -256,7 +278,47 @@
       <pubDate>Sun, 19 Jul 2015 10:21:47 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2015/07/19/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%80-hello-world/</guid>
-      <description>完整的 Hello World 内核模块 hello.c 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include &amp;lt;linux/init.h&amp;gt;#include &amp;lt;linux/module.h&amp;gt;MODULE_LICENSE(&amp;#34;Dual BSD/GPL&amp;#34;); static int hello_init(void) { printk(KERN_ALERT &amp;#34;Hello, world\n&amp;#34;); return 0; } static void hello_exit(void) { printk(KERN_ALERT &amp;#34;Goodbye, cruel world\n&amp;#34;); } module_init(hello_init); module_exit(hello_exit); Makefile 1 2 3 4 5 6 7 8 9 obj-m +=hello.o KDIR = /usr/src/linux-headers-3.19.0-21-generic all: $(MAKE) -C</description>
+      <description>&lt;p&gt;完整的 Hello World 内核模块 hello.c&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;linux/init.h&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;linux/module.h&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MODULE_LICENSE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Dual BSD/GPL&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;hello_init&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;printk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;KERN_ALERT&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Hello, world&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;hello_exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;printk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;KERN_ALERT&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Goodbye, cruel world&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;module_init&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hello_init&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;module_exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hello_exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -265,7 +327,45 @@
       <pubDate>Wed, 24 Jun 2015 11:34:40 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2015/06/24/linux-ubuntu-%E4%B8%8B%E4%B8%BA-android-%E5%88%9B%E5%BB%BA%E6%97%A0%E7%BA%BF%E5%88%86%E4%BA%AB%E7%83%AD%E7%82%B9/</guid>
-      <description>create ap hotspot for ubuntu linux 准备 https://w1.fi/hostapd/ https://github.com/oblique/create_ap 编译 hostapd 1 2 sudo apt-get install libnl-3-dev libnl-gen-3-dev make &amp;amp;&amp;amp; sudo make install 安装 create_ap 1 2 git clone https://github.com/oblique/create_ap.git cd create_ap &amp;amp;&amp;amp; make install 创建无线热点 1 sudo create_ap wlan0 ppp0 hotspot password</description>
+      <description>&lt;p&gt;create ap hotspot for ubuntu linux&lt;/p&gt;
+
+&lt;p&gt;准备&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://w1.fi/hostapd/&#34;&gt;https://w1.fi/hostapd/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/oblique/create_ap&#34;&gt;https://github.com/oblique/create_ap&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;编译 hostapd&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;sudo apt-get install libnl-3-dev libnl-gen-3-dev
+make &amp;amp;&amp;amp; sudo make install&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;安装 create_ap&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;git clone https://github.com/oblique/create_ap.git
+cd create_ap &amp;amp;&amp;amp; make install&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;创建无线热点&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;sudo create_ap wlan0 ppp0 hotspot password&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -526,7 +626,28 @@ C[n]：第n个物品的价值。&lt;/p&gt;</description>
       <pubDate>Sun, 16 Feb 2014 12:51:13 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2014/02/16/tomcat-%E7%BC%96%E7%A0%81%E8%AE%BE%E5%AE%9A/</guid>
-      <description>大部分网上文章都是Connector标签里面添加 URIEncoding=&amp;ldquo;utf-8&amp;rdquo;，这种方法过于暴力。 正确的做法</description>
+      <description>&lt;p&gt;大部分网上文章都是Connector标签里面添加 URIEncoding=&amp;ldquo;utf-8&amp;rdquo;，这种方法过于暴力。&lt;/p&gt;
+
+&lt;p&gt;正确的做法是添加 useBodyEncodingForURI=&amp;ldquo;true&amp;rdquo;，这句的话告诉tomcat用页面的编码去处理post，推荐使用。&lt;/p&gt;
+
+&lt;p&gt;JSP页面头&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&amp;lt;%@ page language=&amp;#34;java&amp;#34;  pageEncoding=&amp;#34;UTF-8&amp;#34;%&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;html标签的head标签里加上&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&amp;lt;meta http-equiv=&amp;#34;Content-Type&amp;#34; content=&amp;#34;text/html; charset=utf-8&amp;#34;&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -655,7 +776,11 @@ sort (x:xs) = sort [y | y &amp;lt;- xs, y &amp;lt; x] ++ [x] ++ sort [y | y &amp
       <pubDate>Thu, 05 Dec 2013 20:44:29 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2013/12/05/windows-cmd%E6%9B%BF%E4%BB%A3/</guid>
-      <description>Console2 官网：http://sourceforge.net/projects/console/ 中文输入支持：https://github.com/</description>
+      <description>&lt;h2 id=&#34;console2&#34;&gt;Console2&lt;/h2&gt;
+
+&lt;p&gt;官网：&lt;a href=&#34;http://sourceforge.net/projects/console/&#34;&gt;http://sourceforge.net/projects/console/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;中文输入支持：&lt;a href=&#34;https://github.com/autosquid/Console2-Chinese-Input-Capable&#34;&gt;https://github.com/autosquid/Console2-Chinese-Input-Capable&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -770,7 +895,15 @@ sort (x:xs) = sort [y | y &amp;lt;- xs, y &amp;lt; x] ++ [x] ++ sort [y | y &amp
       <pubDate>Sat, 26 Oct 2013 15:54:56 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2013/10/26/vim-%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%94%BB%E7%95%A5/</guid>
-      <description>网友 k-vim 的配置 https://github.com/wklken 给人一条Vim 命令，他能折腾一晚上；告诉他怎么自定义Vim 命令，他能捣腾一辈子 生命不息,折腾不止 (╯‵□′)╯︵┻━┻) 编辑器</description>
+      <description>&lt;p&gt;网友 k-vim 的配置 &lt;a href=&#34;https://github.com/wklken&#34;&gt;https://github.com/wklken&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;给人一条Vim 命令，他能折腾一晚上；告诉他怎么自定义Vim 命令，他能捣腾一辈子&lt;/p&gt;
+
+&lt;p&gt;生命不息,折腾不止 (╯‵□′)╯︵┻━┻)&lt;/p&gt;
+
+&lt;p&gt;编辑器之神 = 生产力(效率为王) + 性感(界面快捷键) + 装x神器&lt;/p&gt;
+&lt;/blockquote&gt;</description>
     </item>
     
     <item>
@@ -812,7 +945,9 @@ sort (x:xs) = sort [y | y &amp;lt;- xs, y &amp;lt; x] ++ [x] ++ sort [y | y &amp
       <pubDate>Sat, 28 Sep 2013 13:37:52 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2013/09/28/mac-osx-%E4%B8%8B-java-%E7%8E%AF%E5%A2%83/</guid>
-      <description>解决javac和java命令在Mac OSX终端里的乱码问题 解决方法有3个： 1）指定输出的编码为UTF-8 1 javac -J-Dfile.encoding=UTF-8 .profile添加 1 export _JAVA_OPTIONS=&amp;#34;-Dfile.encoding=UTF-8&amp;#34; 2）</description>
+      <description>&lt;h2 id=&#34;解决javac和java命令在mac-osx终端里的乱码问题&#34;&gt;解决javac和java命令在Mac OSX终端里的乱码问题&lt;/h2&gt;
+
+&lt;p&gt;解决方法有3个：&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -839,7 +974,14 @@ sort (x:xs) = sort [y | y &amp;lt;- xs, y &amp;lt; x] ++ [x] ++ sort [y | y &amp
       <pubDate>Thu, 26 Sep 2013 12:52:15 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2013/09/26/generate-ctags-files/</guid>
-      <description>1  $ ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .  1  $ ctags -I __THROW -I __attribute_pure__ -I __nonnull -I __attribute__ --file-scope=yes --langmap=c:+.h --languages=c,c++ --links=yes --c-kinds=+p --c++-kinds=+p --fields=+iaS --extra=+q -f ~/.vim/systags /usr/include/* /usr/include/sys/* /usr/include/bits/* /usr/include/netinet/* /usr/include/arpa/* /usr/include/mysql/*  1 2 3 4 5 6 7  #!/bin/sh  # ./ctags_with_dep.sh file1.c file2.c ... to generate a tags file for these files. gcc -M $* | sed -e &amp;#39;s/[\\ ]/\n/g&amp;#39; | \  sed -e &amp;#39;/^$/d&amp;#39; -e &amp;#39;/\.</description>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ctags -R --c++-kinds&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;+p --fields&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;+iaS --extra&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;+q .&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -889,7 +1031,7 @@ sort (x:xs) = sort [y | y &amp;lt;- xs, y &amp;lt; x] ++ [x] ++ sort [y | y &amp
       <pubDate>Sun, 15 Sep 2013 21:09:49 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2013/09/15/zsh%E4%B8%8Eoh-my-zsh/</guid>
-      <description>zsh 介绍 http://foocoder.com/blog/wo-zai-yong-de-macruan-jian-2.html/ 安装 zsh 与 oh-my-zsh 1 2 brew install zsh curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh 修改/etc/shells，添加/usr/local/bin/zsh 更改默认 shell 为 zsh 1 chsh -s /usr/local/bin/zsh 配置 iTerm2 的主题</description>
+      <description>&lt;p&gt;zsh 介绍  &lt;a href=&#34;http://foocoder.com/blog/wo-zai-yong-de-macruan-jian-2.html/&#34;&gt;http://foocoder.com/blog/wo-zai-yong-de-macruan-jian-2.html/&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

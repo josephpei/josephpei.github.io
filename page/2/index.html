@@ -143,7 +143,47 @@
   
   <div class="post-content">
     <div class="post-summary">
-      完整的 Hello World 内核模块 hello.c 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include &lt;linux/init.h&gt;#include &lt;linux/module.h&gt;MODULE_LICENSE(&#34;Dual BSD/GPL&#34;); static int hello_init(void) { printk(KERN_ALERT &#34;Hello, world\n&#34;); return 0; } static void hello_exit(void) { printk(KERN_ALERT &#34;Goodbye, cruel world\n&#34;); } module_init(hello_init); module_exit(hello_exit); Makefile 1 2 3 4 5 6 7 8 9 obj-m +=hello.o KDIR = /usr/src/linux-headers-3.19.0-21-generic all: $(MAKE) -C
+      <p>完整的 Hello World 内核模块 hello.c</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;linux/init.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;linux/module.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">&#34;Dual BSD/GPL&#34;</span><span class="p">);</span>
+
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">hello_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Hello, world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">hello_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Goodbye, cruel world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">);</span>
+<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_exit</span><span class="p">);</span></code></pre></td></tr></table>
+</div>
+</div>
     </div>
     <div class="read-more">
       <a href="/2015/07/19/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%80-hello-world/" class="read-more-link">阅读更多</a>
@@ -162,7 +202,45 @@
   
   <div class="post-content">
     <div class="post-summary">
-      create ap hotspot for ubuntu linux 准备 https://w1.fi/hostapd/ https://github.com/oblique/create_ap 编译 hostapd 1 2 sudo apt-get install libnl-3-dev libnl-gen-3-dev make &amp;&amp; sudo make install 安装 create_ap 1 2 git clone https://github.com/oblique/create_ap.git cd create_ap &amp;&amp; make install 创建无线热点 1 sudo create_ap wlan0 ppp0 hotspot password
+      <p>create ap hotspot for ubuntu linux</p>
+
+<p>准备</p>
+
+<p><a href="https://w1.fi/hostapd/">https://w1.fi/hostapd/</a></p>
+
+<p><a href="https://github.com/oblique/create_ap">https://github.com/oblique/create_ap</a></p>
+
+<p>编译 hostapd</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">sudo apt-get install libnl-3-dev libnl-gen-3-dev
+make &amp;&amp; sudo make install</pre></td></tr></table>
+</div>
+</div>
+<p>安装 create_ap</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">git clone https://github.com/oblique/create_ap.git
+cd create_ap &amp;&amp; make install</pre></td></tr></table>
+</div>
+</div>
+<p>创建无线热点</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">sudo create_ap wlan0 ppp0 hotspot password</pre></td></tr></table>
+</div>
+</div>
     </div>
     <div class="read-more">
       <a href="/2015/06/24/linux-ubuntu-%E4%B8%8B%E4%B8%BA-android-%E5%88%9B%E5%BB%BA%E6%97%A0%E7%BA%BF%E5%88%86%E4%BA%AB%E7%83%AD%E7%82%B9/" class="read-more-link">阅读更多</a>

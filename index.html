@@ -124,7 +124,29 @@
   
   <div class="post-content">
     <div class="post-summary">
-      Ubuntu 升级到 18.04 后，在网络共享中看不到同一局域网内 Windows 共享的文件，同时 Windows 上共享的打印机也不能正常工作，表现为“需要身份认证”，但是输入对应用户名密码
+      <p>Ubuntu 升级到 18.04 后，在网络共享中看不到同一局域网内 Windows
+共享的文件，同时 Windows
+上共享的打印机也不能正常工作，表现为“需要身份认证”，但是输入对应用户名密码之后毫无反应。</p>
+
+<p>修复方法：<a href="https://www.dedoimedo.com/computers/ubuntu-beaver-samba-shares.html">https://www.dedoimedo.com/computers/ubuntu-beaver-samba-shares.html</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ sudo vi /etc/samba/smb.conf
+
+<span class="c1"># Add a line</span>
+client max <span class="nv">protocol</span> <span class="o">=</span> NT1
+
+$ sudo systemctl restart smbd.service</code></pre></td></tr></table>
+</div>
+</div>
     </div>
     <div class="read-more">
       <a href="/2018/11/08/ubuntu-18-04-%E4%BF%AE%E5%A4%8D%E4%B8%8E-windows-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%8F%8A%E6%89%93%E5%8D%B0%E6%9C%BA/" class="read-more-link">阅读更多</a>

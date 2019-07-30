@@ -214,7 +214,28 @@
   
   <div class="post-content">
     <div class="post-summary">
-      大部分网上文章都是Connector标签里面添加 URIEncoding=&ldquo;utf-8&rdquo;，这种方法过于暴力。 正确的做法
+      <p>大部分网上文章都是Connector标签里面添加 URIEncoding=&ldquo;utf-8&rdquo;，这种方法过于暴力。</p>
+
+<p>正确的做法是添加 useBodyEncodingForURI=&ldquo;true&rdquo;，这句的话告诉tomcat用页面的编码去处理post，推荐使用。</p>
+
+<p>JSP页面头</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&lt;%@ page language=&#34;java&#34;  pageEncoding=&#34;UTF-8&#34;%&gt;</pre></td></tr></table>
+</div>
+</div>
+<p>html标签的head标签里加上</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;&gt;</pre></td></tr></table>
+</div>
+</div>
     </div>
     <div class="read-more">
       <a href="/2014/02/16/tomcat-%E7%BC%96%E7%A0%81%E8%AE%BE%E5%AE%9A/" class="read-more-link">阅读更多</a>

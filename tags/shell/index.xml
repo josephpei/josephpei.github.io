@@ -17,7 +17,7 @@
       <pubDate>Sun, 15 Sep 2013 21:09:49 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2013/09/15/zsh%E4%B8%8Eoh-my-zsh/</guid>
-      <description>zsh 介绍 http://foocoder.com/blog/wo-zai-yong-de-macruan-jian-2.html/ 安装 zsh 与 oh-my-zsh 1 2 brew install zsh curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh 修改/etc/shells，添加/usr/local/bin/zsh 更改默认 shell 为 zsh 1 chsh -s /usr/local/bin/zsh 配置 iTerm2 的主题</description>
+      <description>&lt;p&gt;zsh 介绍  &lt;a href=&#34;http://foocoder.com/blog/wo-zai-yong-de-macruan-jian-2.html/&#34;&gt;http://foocoder.com/blog/wo-zai-yong-de-macruan-jian-2.html/&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

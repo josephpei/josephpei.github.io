@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="josephpei" /><meta name="description" content="1  $ ctags -R --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q .  1  $ ctags -I __THROW -I __attribute_pure__ -I __nonnull -I __attribute__ --file-scope=yes --langmap=c:&#43;.h --languages=c,c&#43;&#43; --links=yes --c-kinds=&#43;p --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q -f ~/.vim/systags /usr/include/* /usr/include/sys/* /usr/include/bits/* /usr/include/netinet/* /usr/include/arpa/* /usr/include/mysql/*  1 2 3 4 5 6 7  #!/bin/sh  # ./ctags_with_dep.sh file1.c file2.c ... to generate a tags file for these files. gcc -M $* | sed -e &amp;#39;s/[\\ ]/\n/g&amp;#39; | \  sed -e &amp;#39;/^$/d&amp;#39; -e &amp;#39;/\." /><meta name="keywords" content="life, linux, program" />
+<meta name="author" content="josephpei" /><meta name="description" content="1  $ ctags -R --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q .  " /><meta name="keywords" content="life, linux, program" />
 
 
 
@@ -39,14 +39,28 @@
 
 
 <meta property="og:title" content="Generate Ctags Files" />
-<meta property="og:description" content="1  $ ctags -R --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q .  1  $ ctags -I __THROW -I __attribute_pure__ -I __nonnull -I __attribute__ --file-scope=yes --langmap=c:&#43;.h --languages=c,c&#43;&#43; --links=yes --c-kinds=&#43;p --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q -f ~/.vim/systags /usr/include/* /usr/include/sys/* /usr/include/bits/* /usr/include/netinet/* /usr/include/arpa/* /usr/include/mysql/*  1 2 3 4 5 6 7  #!/bin/sh  # ./ctags_with_dep.sh file1.c file2.c ... to generate a tags file for these files. gcc -M $* | sed -e &#39;s/[\\ ]/\n/g&#39; | \  sed -e &#39;/^$/d&#39; -e &#39;/\." />
+<meta property="og:description" content="
+
+1
+
+
+$ ctags -R --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q .
+
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://josephpei.github.io/2013/09/26/generate-ctags-files/" />
 <meta property="article:published_time" content="2013-09-26T12:52:15&#43;08:00"/>
 <meta property="article:modified_time" content="2013-09-26T12:52:15&#43;08:00"/>
 
 <meta itemprop="name" content="Generate Ctags Files">
-<meta itemprop="description" content="1  $ ctags -R --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q .  1  $ ctags -I __THROW -I __attribute_pure__ -I __nonnull -I __attribute__ --file-scope=yes --langmap=c:&#43;.h --languages=c,c&#43;&#43; --links=yes --c-kinds=&#43;p --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q -f ~/.vim/systags /usr/include/* /usr/include/sys/* /usr/include/bits/* /usr/include/netinet/* /usr/include/arpa/* /usr/include/mysql/*  1 2 3 4 5 6 7  #!/bin/sh  # ./ctags_with_dep.sh file1.c file2.c ... to generate a tags file for these files. gcc -M $* | sed -e &#39;s/[\\ ]/\n/g&#39; | \  sed -e &#39;/^$/d&#39; -e &#39;/\.">
+<meta itemprop="description" content="
+
+1
+
+
+$ ctags -R --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q .
+
+">
 
 
 <meta itemprop="datePublished" content="2013-09-26T12:52:15&#43;08:00" />
@@ -58,7 +72,14 @@
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Generate Ctags Files"/>
-<meta name="twitter:description" content="1  $ ctags -R --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q .  1  $ ctags -I __THROW -I __attribute_pure__ -I __nonnull -I __attribute__ --file-scope=yes --langmap=c:&#43;.h --languages=c,c&#43;&#43; --links=yes --c-kinds=&#43;p --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q -f ~/.vim/systags /usr/include/* /usr/include/sys/* /usr/include/bits/* /usr/include/netinet/* /usr/include/arpa/* /usr/include/mysql/*  1 2 3 4 5 6 7  #!/bin/sh  # ./ctags_with_dep.sh file1.c file2.c ... to generate a tags file for these files. gcc -M $* | sed -e &#39;s/[\\ ]/\n/g&#39; | \  sed -e &#39;/^$/d&#39; -e &#39;/\."/>
+<meta name="twitter:description" content="
+
+1
+
+
+$ ctags -R --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q .
+
+"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -144,7 +165,8 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash">$ ctags -R --c++-kinds<span class="o">=</span>+p --fields<span class="o">=</span>+iaS --extra<span class="o">=</span>+q .</code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
 </span></code></pre></td>
