@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>迁移Hexo到Hugo - 有翅膀的天狼</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="josephpei" /><meta name="description" content="Hugo 安装与配置
+" /><meta name="keywords" content="life, linux, program" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://josephpei.github.io/2019/03/11/%E8%BF%81%E7%A7%BBhexo%E5%88%B0hugo/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="迁移Hexo到Hugo" />
+<meta property="og:description" content="Hugo 安装与配置" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://josephpei.github.io/2019/03/11/%E8%BF%81%E7%A7%BBhexo%E5%88%B0hugo/" />
+<meta property="article:published_time" content="2019-03-11T21:16:49&#43;08:00"/>
+<meta property="article:modified_time" content="2019-03-11T21:16:49&#43;08:00"/>
+
+<meta itemprop="name" content="迁移Hexo到Hugo">
+<meta itemprop="description" content="Hugo 安装与配置">
+
+
+<meta itemprop="datePublished" content="2019-03-11T21:16:49&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-11T21:16:49&#43;08:00" />
+<meta itemprop="wordCount" content="983">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="迁移Hexo到Hugo"/>
+<meta name="twitter:description" content="Hugo 安装与配置"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Wolfsky</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Wolfsky</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">迁移Hexo到Hugo</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-03-11 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <p>Hugo 安装与配置</p>
+
+<h1 id="安装">安装</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">apt install hugo  <span class="c1"># choco / scoop / brew / snap</span>
+
+hugo new sit wolfsky
+<span class="nb">cd</span> wolfsky
+git init
+git submodule add https://github.com/olOwOlo/hugo-theme-even themes/even
+copy themes/even/exampleSite/config.toml .
+
+hexo new post/my-first-post.md
+
+hexo server -D</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="url-设置">URL 设置</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># Hexo中配置</span>
+<span class="err">/:</span><span class="nx">year</span><span class="err">/:</span><span class="nx">month</span><span class="err">/:</span><span class="nx">day</span><span class="err">/:</span><span class="nx">title</span><span class="err">/</span>
+
+<span class="c"># Hugo中配置</span>
+<span class="p">[</span><span class="nx">permalinks</span><span class="p">]</span>
+    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;/:year/:month/:day/:filename/&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Hugo 默认会把 url 中的大写字符转为小写，如果不想转换，在配置文件中加入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">disablePathToLower</span> <span class="p">=</span> <span class="kc">true</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Hugo 默认会把分类（categories）名称转为小写，如果不想转换，在配置中加入，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">preserveTaxonomyNames</span> <span class="p">=</span> <span class="kc">true</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="文档格式">文档格式</h1>
+
+<p>markdown 是首要支持的格式，除了标准的 markdown 格式外，hugo 还内置了 <a href="https://github.com/mmarkdown/mmark">mmark</a> 渲染引擎，可以支持一些额外的格式。将文件名命名为 <code>*.mmark</code>，或者在文章的 front matter，加上一行设置 <code>markup: mmark</code>。</p>
+
+<p>这是 latex 公式演示</p>
+
+<p><code>$ v_\pi(s) = \sum_{a \in \mathcal{A}} \pi(a|s) q_\pi(s,a)  $</code></p>
+
+<p>$ v_\pi(s) = \sum_{a \in \mathcal{A}} \pi(a|s) q_\pi(s,a)  $</p>
+
+<p>hugo 也内置了对 Org-mode 支持，将文件命名为 <code>*.org</code>，或在 front matter 加上 <code>markup: org</code></p>
+
+<p>Hugo 也支持使用外部的处理程序来处理 Markdown 文件，例如 asciidoc，reStructuredText 和 Pandoc。比如 Pandoc，首先安装 Pandoc。然后把包含 LaTeX 公式的博文后缀为 pdc，重新生成博客即可，不需要其他设置。</p>
+
+<h1 id="图表">图表</h1>
+
+<p>在 markdown 中使用代码绘图，有<code>flowchart</code>, <code>mermaid</code>, <code>plantuml</code>, <code>graphviz</code> 等，我使用的主题 <code>even</code> 内置了 <code>flowchart</code> 的支持，我添加了 <code>mermaid</code> 的支持，参考 <a href="https://github.com/vjeantet/hugo-theme-docdock/blob/master/layouts/shortcodes/mermaid.html">hugo-theme-docdock</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-mermaid" data-lang="mermaid"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-mermaid" data-lang="mermaid">sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice-&gt;&gt;John: Hello John, how are you?
+    loop Healthcheck
+        John-&gt;John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts &lt;br/&gt;prevail...
+    John--&gt;Alice: Great!
+    John-&gt;Bob: How about you?
+    Bob--&gt;John: Jolly good!</code></pre></td></tr></table>
+</div>
+</div>
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.0.0/dist/mermaid.min.js">mermaid.initialize({startOnLoad:true});</script>
+<div class="mermaid" align="left" >
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts <br/>prevail...
+    John-->Alice: Great!
+    John->Bob: How about you?
+    Bob-->John: Jolly good!
+</div>
+
+<p>另一种方案是使用 <a href="http://www.gravizo.com/">gravizo</a> 提供的服务，参考 <a href="https://it.knightnet.org.uk/kb/hugo/embed-diagram/">https://it.knightnet.org.uk/kb/hugo/embed-diagram/</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-viz-dot" data-lang="viz-dot"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-viz-dot" data-lang="viz-dot">digraph G {
+    aize =&#34;4,4&#34;;
+    main [shape=box];
+    main -&gt; parse [weight=8];
+    parse -&gt; execute;
+    main -&gt; init [style=dotted];
+    main -&gt; cleanup;
+    execute -&gt; { make_string; printf}
+    init -&gt; make_string;
+    edge [color=red];
+    main -&gt; printf [style=bold,label=&#34;100 times&#34;];
+    make_string [label=&#34;make a string&#34;];
+    node [shape=box,style=filled,color=&#34;.7 .3 1.0&#34;];
+    execute -&gt; compare;
+  }</code></pre></td></tr></table>
+</div>
+</div>
+
+
+  
+    
+  
+
+
+<figure>
+  <img
+    src='https://g.gravizo.com/svg?%0a%20%20digraph%20G%20%7b%0a%20%20%20%20aize%20%3d%224%2c4%22%3b%0a%20%20%20%20main%20%5bshape%3dbox%5d%3b%0a%20%20%20%20main%20-%3e%20parse%20%5bweight%3d8%5d%3b%0a%20%20%20%20parse%20-%3e%20execute%3b%0a%20%20%20%20main%20-%3e%20init%20%5bstyle%3ddotted%5d%3b%0a%20%20%20%20main%20-%3e%20cleanup%3b%0a%20%20%20%20execute%20-%3e%20%7b%20make_string%3b%20printf%7d%0a%20%20%20%20init%20-%3e%20make_string%3b%0a%20%20%20%20edge%20%5bcolor%3dred%5d%3b%0a%20%20%20%20main%20-%3e%20printf%20%5bstyle%3dbold%2clabel%3d%22100%20times%22%5d%3b%0a%20%20%20%20make_string%20%5blabel%3d%22make%20a%20string%22%5d%3b%0a%20%20%20%20node%20%5bshape%3dbox%2cstyle%3dfilled%2ccolor%3d%22.7%20.3%201.0%22%5d%3b%0a%20%20%20%20execute%20-%3e%20compare%3b%0a%20%20%7d%0a'
+    alt='DOT Language (GraphViz) Example'
+    />
+    <figcaption>DOT Language (GraphViz) Example</figcaption>
+</figure>
+
+<h1 id="部署到-github-pages">部署到 github pages</h1>
+
+<p>如果之前已经建立了 github.io 的仓库，并且使用 Hexo 往里面部署过，但是不想要之前的东西了，采用下面的方式。在博客的根目录下，运行下面的命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">mkdir public
+cd public
+git init
+git remote add upstream https://github.com/josephpei/josephpei.github.io.git</pre></td></tr></table>
+</div>
+</div>
+<p>执行 <code>hugo -t even</code>，hugo 会生成 blog 内容，放到 public 目录。然后，我们把 public 下面的内容 push 到 github 即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">git add .
+git commit -m  &#34;switch to hugo&#34;
+git push -f upstream master # 第一次 push 必须使用 -f，因为此时远程仓库非空，和本地有冲突</pre></td></tr></table>
+</div>
+</div>
+<p>*nix deploy.sh</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nb">echo</span> -e <span class="s2">&#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;</span>
+
+<span class="c1"># build the project</span>
+hugo -t even
+
+<span class="nb">cd</span> public
+
+git add .
+
+<span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;rebuilding site `date`&#34;</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">1</span> <span class="o">]</span>
+  <span class="k">then</span> <span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span>
+<span class="k">fi</span>
+
+git commit -m <span class="s2">&#34;</span><span class="nv">$msg</span><span class="s2">&#34;</span>
+
+<span class="c1"># push source to github</span>
+
+git push upstream master
+
+<span class="c1"># come back to blog root</span>
+
+<span class="nb">cd</span> ..</code></pre></td></tr></table>
+</div>
+</div>
+<p>windows powershell deploy.ps1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-ps1" data-lang="ps1"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ps1" data-lang="ps1"><span class="c">#build site</span>
+<span class="n">hugo</span> <span class="n">-t</span> <span class="n">even</span>
+
+<span class="c"># add files to git</span>
+<span class="n">cd</span> <span class="n">public</span>
+<span class="n">git</span> <span class="n">add</span> <span class="n">-A</span>
+
+<span class="c">#set up commit message</span>
+<span class="nv">$msg</span><span class="p">=</span><span class="s2">&#34;rebuilding site &#34;</span> <span class="p">+</span> <span class="p">(</span><span class="nb">Get-Date</span><span class="p">)</span>
+<span class="k">If</span> <span class="p">(</span><span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">])</span> <span class="p">{</span><span class="nv">$msg</span> <span class="p">=</span> <span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">]}</span>
+
+<span class="c">#commit and push public repo</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="nv">$msg</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+
+<span class="c">#and back out and commit and push source repo</span>
+<span class="n">cd</span> <span class="p">..</span>
+<span class="n">git</span> <span class="n">add</span> <span class="n">-A</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="nv">$msg</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="参考">参考</h1>
+
+<ul>
+<li><a href="https://github.com/wd/hexo2hugo/blob/master/hexo2hugo.py">https://github.com/wd/hexo2hugo/blob/master/hexo2hugo.py</a></li>
+<li><a href="https://jdhao.github.io/2018/10/10/hexo_to_hugo/">https://jdhao.github.io/2018/10/10/hexo_to_hugo/</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">josephpei</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-03-11
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        
+        <a class="next" href="/2018/11/08/ubuntu-18-04-%E4%BF%AE%E5%A4%8D%E4%B8%8E-windows-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%8F%8A%E6%89%93%E5%8D%B0%E6%9C%BA/">
+            <span class="next-text nav-default">Ubuntu 18.04 修复与 Windows 共享文件及打印机</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'josephpei-github-io';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
+  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">josephpei</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
