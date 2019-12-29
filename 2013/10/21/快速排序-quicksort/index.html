@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/10/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-quicksort/" />
@@ -42,21 +42,17 @@
 <meta property="og:description" content="7-4 快速排序中的堆栈深度 7.1节中QUICKSORT算法包含有两个对其自身的递归调用。在调用PARTITION后，左边的子数组和右边的子数组分" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://josephpei.github.io/2013/10/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-quicksort/" />
-<meta property="article:published_time" content="2013-10-21T11:34:49&#43;08:00"/>
-<meta property="article:modified_time" content="2013-10-21T11:34:49&#43;08:00"/>
-
+<meta property="article:published_time" content="2013-10-21T11:34:49+08:00" />
+<meta property="article:modified_time" content="2013-10-21T11:34:49+08:00" />
 <meta itemprop="name" content="快速排序 QuickSort">
 <meta itemprop="description" content="7-4 快速排序中的堆栈深度 7.1节中QUICKSORT算法包含有两个对其自身的递归调用。在调用PARTITION后，左边的子数组和右边的子数组分">
-
-
 <meta itemprop="datePublished" content="2013-10-21T11:34:49&#43;08:00" />
 <meta itemprop="dateModified" content="2013-10-21T11:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="1133">
+<meta itemprop="wordCount" content="1115">
 
 
 
-<meta itemprop="keywords" content="algorithm," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="algorithm," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="快速排序 QuickSort"/>
 <meta name="twitter:description" content="7-4 快速排序中的堆栈深度 7.1节中QUICKSORT算法包含有两个对其自身的递归调用。在调用PARTITION后，左边的子数组和右边的子数组分"/>
 
@@ -133,62 +129,55 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    
+    <nav id="TableOfContents"></nav>
   </div>
 </div>
     <div class="post-content">
       <p>7-4 快速排序中的堆栈深度</p>
-
 <p>7.1节中QUICKSORT算法包含有两个对其自身的递归调用。在调用PARTITION后，左边的子数组和右边的子数组分别被递归调用。QUICKSORT中的第二次递归调用并不是必须的；可以用迭代控制来代替它。这种技术称作尾递归，大多数的编译程序都加以了采用。考虑下面这个快速排序的版本，它模拟了尾递归：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">QUICKSORT&#39;(A, p, r)
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">QUICKSORT&#39;(A, p, r)
 1  while p&lt;r
 2      do q &lt;- PARTITION(A, p, r)
 3         QUICKSORT(A, p, q-1)
-4         p &lt;- q+1</pre></td></tr></table>
+4         p &lt;- q+1
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>a) 论证QUICKSORT&rsquo;(A, 1, Length[A])能正确地对数组A进行排序。</p>
-
+</div><p>a) 论证QUICKSORT&rsquo;(A, 1, Length[A])能正确地对数组A进行排序。</p>
 <p>首先证明QUICKSORT(A, 1, Length[A])能正确地对数组A进行排序</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">QUICKSORT(A, p, r)
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">QUICKSORT(A, p, r)
 1  if p&lt;r
 2      then q &lt;- PARTITION(A, p, r)
 3           QUICKSORT(A, p, q-1)
-4           QUICKSORT(A, q+1, r)</pre></td></tr></table>
+4           QUICKSORT(A, q+1, r)
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>循环不变式：QUICKSORT(A, p, r)调用后，A[p..r]中的元素是有序的。</p>
-
+</div><p>循环不变式：QUICKSORT(A, p, r)调用后，A[p..r]中的元素是有序的。</p>
 <p>初始化：r-p=1时，调用QUICK(A, p, r)。因为p&lt;r，故进入if语句块，调用q&lt;-PARTITION(A, p, r)后，A[p..q-1]的元素一定小于A[q]，A[q+1..r]的元素一定大于A[q]，又因为A[p..r]此时只包含两个元素，所以在调用q&lt;-PARTITION(A, p, r)后A[p..r]有序。因为此时q只能等于p或r，所以下面的QUICKSORT(A, p, q-1)、QUICKSORT(A, q+1, r)将不做任何操作。显然，循环不变式是成立的。</p>
-
 <p>保持：对任意数组A下标范围内的p、r调用QUICKSORT(A, p, r)时，假设循环不变式成立，于是QUICKSORT(A, p, q-1)使A[p..q-1]有序，QUICKSORT(A, q+1, r)使A[q+1..r]有序。并且由于调用了q&lt;-PARTITION(A, p, r)，A[p..q-1]的元素都小于A[q]，A[q+1..r]的元素都大于A[q]，于是数组A[p..r]就有序了。</p>
-
 <p>终止：最外层QUICKSORT(A, 1, Length[A])调用结束时，根据循环不变式，A[1..n]有序。</p>
-
-<p>QUICKSORT&rsquo;调用与QUICKSORT相同的PARTITION，然后都以(A, p, q-1)调用自身。QUICKSORT以(A, q+1, r)再次调用自身，而QUICKSORT&rsquo;则是让p&lt;-q+1后执行了while循环的另一次迭代。实际上不难看出，这一操作与QUICKSORT的第二次自身调用效果相同。于是QUICKSORT&rsquo;(A, 1, Length[A])能正确对数组A进行排序。</p>
-
-<p>c) 修改QUICKSORT&rsquo;的代码，使其最坏情况栈深度为Θ(lgn)。保持算法的O(nlgn)期望运行时间不变。</p>
+<p>QUICKSORT'调用与QUICKSORT相同的PARTITION，然后都以(A, p, q-1)调用自身。QUICKSORT以(A, q+1, r)再次调用自身，而QUICKSORT'则是让p&lt;-q+1后执行了while循环的另一次迭代。实际上不难看出，这一操作与QUICKSORT的第二次自身调用效果相同。于是QUICKSORT&rsquo;(A, 1, Length[A])能正确对数组A进行排序。</p>
+<p>c) 修改QUICKSORT'的代码，使其最坏情况栈深度为Θ(lgn)。保持算法的O(nlgn)期望运行时间不变。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -196,16 +185,17 @@
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">QUICKSORT&#39;&#39;(A, p, r)
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">QUICKSORT&#39;&#39;(A, p, r)
 1 while p&lt;r
 2     do q &lt;- PARTITION(A, p, r)
 3        if q-p&lt;r-q
 4            then QUICKSORT&#39;&#39;(A, p, q-1)
 5                 p &lt;- q+1
 6            else QUICKSORT&#39;&#39;(A, q+1, r)
-7                 r &lt;- q-1</pre></td></tr></table>
+7                 r &lt;- q-1
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -258,7 +248,7 @@
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  
+
   
 
   

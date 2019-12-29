@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2019/03/11/%E8%BF%81%E7%A7%BBhexo%E5%88%B0hugo/" />
@@ -43,21 +43,17 @@
 <meta property="og:description" content="Hugo 安装与配置" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://josephpei.github.io/2019/03/11/%E8%BF%81%E7%A7%BBhexo%E5%88%B0hugo/" />
-<meta property="article:published_time" content="2019-03-11T21:16:49&#43;08:00"/>
-<meta property="article:modified_time" content="2019-03-11T21:16:49&#43;08:00"/>
-
+<meta property="article:published_time" content="2019-03-11T21:16:49+08:00" />
+<meta property="article:modified_time" content="2019-03-11T21:16:49+08:00" />
 <meta itemprop="name" content="迁移Hexo到Hugo">
 <meta itemprop="description" content="Hugo 安装与配置">
-
-
 <meta itemprop="datePublished" content="2019-03-11T21:16:49&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-11T21:16:49&#43;08:00" />
-<meta itemprop="wordCount" content="983">
+<meta itemprop="wordCount" content="984">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="迁移Hexo到Hugo"/>
 <meta name="twitter:description" content="Hugo 安装与配置"/>
 
@@ -134,16 +130,24 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">安装</a></li>
+    <li><a href="#url-">URL 设置</a></li>
+    <li><a href="#heading-1">文档格式</a></li>
+    <li><a href="#heading-2">图表</a></li>
+    <li><a href="#-github-pages">部署到 github pages</a></li>
+    <li><a href="#heading-3">参考</a></li>
+  </ul>
+</nav>
   </div>
 </div>
     <div class="post-content">
       <p>Hugo 安装与配置</p>
-
-<h1 id="安装">安装</h1>
+<h2 id="heading">安装</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -154,6 +158,7 @@
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
+</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash">apt install hugo  <span class="c1"># choco / scoop / brew / snap</span>
@@ -166,13 +171,14 @@ copy themes/even/exampleSite/config.toml .
 
 hexo new post/my-first-post.md
 
-hexo server -D</code></pre></td></tr></table>
+hexo server -D
+
+</code></pre></td></tr></table>
 </div>
-</div>
-<h1 id="url-设置">URL 设置</h1>
+</div><h2 id="url-">URL 设置</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -181,51 +187,43 @@ hexo server -D</code></pre></td></tr></table>
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># Hexo中配置</span>
-<span class="err">/:</span><span class="nx">year</span><span class="err">/:</span><span class="nx">month</span><span class="err">/:</span><span class="nx">day</span><span class="err">/:</span><span class="nx">title</span><span class="err">/</span>
+<span class="err">/</span><span class="err">:</span><span class="nx">year</span><span class="err">/</span><span class="err">:</span><span class="nx">month</span><span class="err">/</span><span class="err">:</span><span class="nx">day</span><span class="err">/</span><span class="err">:</span><span class="nx">title</span><span class="err">/</span>
 
 <span class="c"># Hugo中配置</span>
 <span class="p">[</span><span class="nx">permalinks</span><span class="p">]</span>
-    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;/:year/:month/:day/:filename/&#34;</span></code></pre></td></tr></table>
+    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;/:year/:month/:day/:filename/&#34;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Hugo 默认会把 url 中的大写字符转为小写，如果不想转换，在配置文件中加入</p>
+</div><p>Hugo 默认会把 url 中的大写字符转为小写，如果不想转换，在配置文件中加入</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">disablePathToLower</span> <span class="p">=</span> <span class="kc">true</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">disablePathToLower</span> <span class="p">=</span> <span class="kc">true</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Hugo 默认会把分类（categories）名称转为小写，如果不想转换，在配置中加入，</p>
+</div><p>Hugo 默认会把分类（categories）名称转为小写，如果不想转换，在配置中加入，</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">preserveTaxonomyNames</span> <span class="p">=</span> <span class="kc">true</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">preserveTaxonomyNames</span> <span class="p">=</span> <span class="kc">true</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h1 id="文档格式">文档格式</h1>
-
+</div><h2 id="heading-1">文档格式</h2>
 <p>markdown 是首要支持的格式，除了标准的 markdown 格式外，hugo 还内置了 <a href="https://github.com/mmarkdown/mmark">mmark</a> 渲染引擎，可以支持一些额外的格式。将文件名命名为 <code>*.mmark</code>，或者在文章的 front matter，加上一行设置 <code>markup: mmark</code>。</p>
-
 <p>这是 latex 公式演示</p>
-
 <p><code>$ v_\pi(s) = \sum_{a \in \mathcal{A}} \pi(a|s) q_\pi(s,a)  $</code></p>
-
 <p>$ v_\pi(s) = \sum_{a \in \mathcal{A}} \pi(a|s) q_\pi(s,a)  $</p>
-
 <p>hugo 也内置了对 Org-mode 支持，将文件命名为 <code>*.org</code>，或在 front matter 加上 <code>markup: org</code></p>
-
 <p>Hugo 也支持使用外部的处理程序来处理 Markdown 文件，例如 asciidoc，reStructuredText 和 Pandoc。比如 Pandoc，首先安装 Pandoc。然后把包含 LaTeX 公式的博文后缀为 pdc，重新生成博客即可，不需要其他设置。</p>
-
-<h1 id="图表">图表</h1>
-
+<h2 id="heading-2">图表</h2>
 <p>在 markdown 中使用代码绘图，有<code>flowchart</code>, <code>mermaid</code>, <code>plantuml</code>, <code>graphviz</code> 等，我使用的主题 <code>even</code> 内置了 <code>flowchart</code> 的支持，我添加了 <code>mermaid</code> 的支持，参考 <a href="https://github.com/vjeantet/hugo-theme-docdock/blob/master/layouts/shortcodes/mermaid.html">hugo-theme-docdock</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-mermaid" data-lang="mermaid"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -238,7 +236,7 @@ hexo server -D</code></pre></td></tr></table>
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-mermaid" data-lang="mermaid">sequenceDiagram
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">sequenceDiagram
     participant Alice
     participant Bob
     Alice-&gt;&gt;John: Hello John, how are you?
@@ -248,10 +246,10 @@ hexo server -D</code></pre></td></tr></table>
     Note right of John: Rational thoughts &lt;br/&gt;prevail...
     John--&gt;Alice: Great!
     John-&gt;Bob: How about you?
-    Bob--&gt;John: Jolly good!</code></pre></td></tr></table>
+    Bob--&gt;John: Jolly good!
+</code></pre></td></tr></table>
 </div>
 </div>
-
 <script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.0.0/dist/mermaid.min.js">mermaid.initialize({startOnLoad:true});</script>
 <div class="mermaid" align="left" >
 sequenceDiagram
@@ -266,11 +264,10 @@ sequenceDiagram
     John->Bob: How about you?
     Bob-->John: Jolly good!
 </div>
-
 <p>另一种方案是使用 <a href="http://www.gravizo.com/">gravizo</a> 提供的服务，参考 <a href="https://it.knightnet.org.uk/kb/hugo/embed-diagram/">https://it.knightnet.org.uk/kb/hugo/embed-diagram/</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-viz-dot" data-lang="viz-dot"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -287,7 +284,7 @@ sequenceDiagram
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-viz-dot" data-lang="viz-dot">digraph G {
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">digraph G {
     aize =&#34;4,4&#34;;
     main [shape=box];
     main -&gt; parse [weight=8];
@@ -301,10 +298,10 @@ sequenceDiagram
     make_string [label=&#34;make a string&#34;];
     node [shape=box,style=filled,color=&#34;.7 .3 1.0&#34;];
     execute -&gt; compare;
-  }</code></pre></td></tr></table>
+  }
+</code></pre></td></tr></table>
 </div>
 </div>
-
 
   
     
@@ -318,41 +315,39 @@ sequenceDiagram
     />
     <figcaption>DOT Language (GraphViz) Example</figcaption>
 </figure>
-
-<h1 id="部署到-github-pages">部署到 github pages</h1>
-
+<h2 id="-github-pages">部署到 github pages</h2>
 <p>如果之前已经建立了 github.io 的仓库，并且使用 Hexo 往里面部署过，但是不想要之前的东西了，采用下面的方式。在博客的根目录下，运行下面的命令：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">mkdir public
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">mkdir public
 cd public
 git init
-git remote add upstream https://github.com/josephpei/josephpei.github.io.git</pre></td></tr></table>
+git remote add upstream https://github.com/josephpei/josephpei.github.io.git
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>执行 <code>hugo -t even</code>，hugo 会生成 blog 内容，放到 public 目录。然后，我们把 public 下面的内容 push 到 github 即可。</p>
+</div><p>执行 <code>hugo -t even</code>，hugo 会生成 blog 内容，放到 public 目录。然后，我们把 public 下面的内容 push 到 github 即可。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">git add .
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">git add .
 git commit -m  &#34;switch to hugo&#34;
-git push -f upstream master # 第一次 push 必须使用 -f，因为此时远程仓库非空，和本地有冲突</pre></td></tr></table>
+git push -f upstream master # 第一次 push 必须使用 -f，因为此时远程仓库非空，和本地有冲突
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>*nix deploy.sh</p>
+</div><p>*nix deploy.sh</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -405,13 +400,13 @@ git push upstream master
 
 <span class="c1"># come back to blog root</span>
 
-<span class="nb">cd</span> ..</code></pre></td></tr></table>
+<span class="nb">cd</span> ..
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>windows powershell deploy.ps1</p>
+</div><p>windows powershell deploy.ps1</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-ps1" data-lang="ps1"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -441,22 +436,21 @@ git push upstream master
 <span class="n">git</span> <span class="n">add</span> <span class="n">-A</span>
 
 <span class="c">#set up commit message</span>
-<span class="nv">$msg</span><span class="p">=</span><span class="s2">&#34;rebuilding site &#34;</span> <span class="p">+</span> <span class="p">(</span><span class="nb">Get-Date</span><span class="p">)</span>
-<span class="k">If</span> <span class="p">(</span><span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">])</span> <span class="p">{</span><span class="nv">$msg</span> <span class="p">=</span> <span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">]}</span>
+<span class="nv">$msg</span><span class="p">=</span><span class="s2">&#34;</span><span class="s2">rebuilding site </span><span class="s2">&#34;</span> <span class="p">+</span> <span class="p">(</span><span class="nb">Get-Date</span><span class="p">)</span>
+<span class="k">If</span> <span class="p">(</span><span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">]</span><span class="p">)</span> <span class="p">{</span><span class="nv">$msg</span> <span class="p">=</span> <span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">]</span><span class="p">}</span>
 
 <span class="c">#commit and push public repo</span>
 <span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="nv">$msg</span>
 <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
 
 <span class="c">#and back out and commit and push source repo</span>
-<span class="n">cd</span> <span class="p">..</span>
+<span class="n">cd</span> <span class="p">.</span><span class="p">.</span>
 <span class="n">git</span> <span class="n">add</span> <span class="n">-A</span>
 <span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="nv">$msg</span>
-<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span></code></pre></td></tr></table>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h1 id="参考">参考</h1>
-
+</div><h2 id="heading-3">参考</h2>
 <ul>
 <li><a href="https://github.com/wd/hexo2hugo/blob/master/hexo2hugo.py">https://github.com/wd/hexo2hugo/blob/master/hexo2hugo.py</a></li>
 <li><a href="https://jdhao.github.io/2018/10/10/hexo_to_hugo/">https://jdhao.github.io/2018/10/10/hexo_to_hugo/</a></li>
@@ -481,7 +475,11 @@ git push upstream master
 <footer class="post-footer">
       
       <nav class="post-nav">
-        
+        <a class="prev" href="/2019/12/29/leetcode-49-group-anagrams-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Leetcode 49 Group Anagrams 字母异位词分组</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/2018/11/08/ubuntu-18-04-%E4%BF%AE%E5%A4%8D%E4%B8%8E-windows-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%8F%8A%E6%89%93%E5%8D%B0%E6%9C%BA/">
             <span class="next-text nav-default">Ubuntu 18.04 修复与 Windows 共享文件及打印机</span>
             <span class="next-text nav-mobile">下一篇</span>
@@ -505,7 +503,7 @@ git push upstream master
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  
+
   
 
   

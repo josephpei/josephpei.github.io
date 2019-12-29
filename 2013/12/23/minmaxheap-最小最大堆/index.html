@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/12/23/minmaxheap-%E6%9C%80%E5%B0%8F%E6%9C%80%E5%A4%A7%E5%A0%86/" />
@@ -42,37 +42,30 @@
 <meta property="og:title" content="MinMaxHeap 最小最大堆" />
 <meta property="og:description" content="MinMaxHeap，最小最大堆，或称双端优先队列，提供操作
 
-
 插入一个数
 取出最小值
 取出最大值
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://josephpei.github.io/2013/12/23/minmaxheap-%E6%9C%80%E5%B0%8F%E6%9C%80%E5%A4%A7%E5%A0%86/" />
-<meta property="article:published_time" content="2013-12-23T13:11:30&#43;08:00"/>
-<meta property="article:modified_time" content="2013-12-23T13:11:30&#43;08:00"/>
-
+<meta property="article:published_time" content="2013-12-23T13:11:30+08:00" />
+<meta property="article:modified_time" content="2013-12-23T13:11:30+08:00" />
 <meta itemprop="name" content="MinMaxHeap 最小最大堆">
 <meta itemprop="description" content="MinMaxHeap，最小最大堆，或称双端优先队列，提供操作
-
 
 插入一个数
 取出最小值
 取出最大值
 ">
-
-
 <meta itemprop="datePublished" content="2013-12-23T13:11:30&#43;08:00" />
 <meta itemprop="dateModified" content="2013-12-23T13:11:30&#43;08:00" />
 <meta itemprop="wordCount" content="2028">
 
 
 
-<meta itemprop="keywords" content="algorithm," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="algorithm," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="MinMaxHeap 最小最大堆"/>
 <meta name="twitter:description" content="MinMaxHeap，最小最大堆，或称双端优先队列，提供操作
-
 
 插入一个数
 取出最小值
@@ -152,36 +145,27 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    
+    <nav id="TableOfContents"></nav>
   </div>
 </div>
     <div class="post-content">
       <p>MinMaxHeap，最小最大堆，或称双端优先队列，提供操作</p>
-
 <ul>
 <li>插入一个数</li>
 <li>取出最小值</li>
 <li>取出最大值</li>
 </ul>
-
 <p>最小最大堆是一棵完全二叉树，且其中每个元素有一个key数据成员。树的各层交替为最小层和最大层。根结点在最小层。设x是最小最大堆的任意结点。若x在最小（最大）层上，则x中的元素的key值在以x为根的子树的所有元素中是最小（最大）的。位于最小（最大）层的结点称为最小（最大）结点。</p>
-
 <p>1）插入</p>
-
 <p>和普通的堆一样，先放到堆尾再调整。调整的过程，以插入元素在小根层为例：先和父亲比较，如果大于父亲则和父亲对调，以后在只在大根层作大顶堆调整；否则在小根层作小顶堆调整。</p>
-
 <p>2）取出最小的数</p>
-
 <p>也和普通堆相似，取堆头元素并把队尾元素放在堆头再调整堆。以堆头即第一层为小层为例：先和儿子比较（如果有儿子），如果比儿子大（儿子层是大层），和该儿子交换。</p>
-
 <p>然后，如果有孙子，则在孙子层（小层）4个元素中找出最小的，与之交换，则在该孙子位置的情况和调整开始时堆头的情况是一样的，所以在该位置继续上面的调整过程。</p>
-
 <p>3）取出最大的数</p>
-
 <p>以第一层为小层为例：比较堆头的两个儿子谁大，取出作为最大的数，把堆尾元素填到该位置，在该位置开始调整。调整的过程和取出最小数的调整过程是一致的，大小相反。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">  1
+<pre class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -424,47 +408,47 @@
 </span><span class="lnt">241
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#pragma once
-</span><span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;stddef.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#</span><span class="cp">pragma once</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stddef.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">class</span><span class="err"> </span><span class="nc">MinMaxHeap</span>
+<span class="k">class</span> <span class="nc">MinMaxHeap</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="n">MinMaxHeap</span><span class="p">(</span><span class="kt">int</span> <span class="n">sz</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
         <span class="n">maxSize</span> <span class="o">=</span> <span class="n">sz</span><span class="p">;</span>
-        <span class="n">_heap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">sz</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+        <span class="n">_heap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">sz</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="kt">void</span> <span class="n">push</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
-    <span class="n">T</span> <span class="nf">popMin</span><span class="p">();</span>
-    <span class="n">T</span> <span class="nf">popMax</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">T</span> <span class="nf">popMin</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">T</span> <span class="nf">popMax</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 
-    <span class="kt">void</span> <span class="nf">printRaw</span><span class="p">()</span>
+    <span class="kt">void</span> <span class="nf">printRaw</span><span class="p">(</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
-        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
+            <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> </span><span class="s">&#34;</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
     <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
     <span class="kt">int</span> <span class="n">level</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="n">log</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">=</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">MAX</span><span class="p">;</span>
         <span class="k">else</span>
             <span class="k">return</span> <span class="n">MIN</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="kt">void</span> <span class="n">VerifyMax</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="p">);</span>
-    <span class="kt">void</span> <span class="nf">VerifyMin</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="nf">MinChildGrandChild</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="nf">MaxChildGrandChild</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="nf">VerifyMax</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="p">)</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">VerifyMin</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="p">)</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="nf">MinChildGrandChild</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="nf">MaxChildGrandChild</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span><span class="p">;</span>
 
 <span class="k">private</span><span class="o">:</span>
     <span class="n">T</span> <span class="o">*</span><span class="n">_heap</span><span class="p">;</span>
@@ -472,87 +456,87 @@
 
     <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">MIN</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">MAX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="p">}</span><span class="p">;</span>
 
 
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="kt">void</span> <span class="n">MinMaxHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">push</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">x</span> <span class="p">)</span>
+<span class="kt">void</span> <span class="n">MinMaxHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">push</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">x</span> <span class="p">)</span>
 <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="n">maxSize</span> <span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">=</span><span class="o">=</span> <span class="n">maxSize</span> <span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">//MinMaxFull( );
 </span><span class="c1"></span>        <span class="k">throw</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="n">n</span><span class="o">++</span><span class="p">;</span>
+    <span class="n">n</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>     <span class="c1">//p is new node&#39;s parent
 </span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">p</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="n">_heap</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
         <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="k">switch</span> <span class="p">(</span><span class="n">level</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">level</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="p">)</span>
     <span class="p">{</span>
     <span class="k">case</span> <span class="nl">MIN</span><span class="p">:</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">])</span>             <span class="c1">// 沿着最小层检查
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="p">)</span>             <span class="c1">// 沿着最小层检查
 </span><span class="c1"></span>        <span class="p">{</span>
-            <span class="n">_heap</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
-            <span class="n">VerifyMin</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+            <span class="n">_heap</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="p">;</span>
+            <span class="n">VerifyMin</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="p">;</span>
         <span class="p">}</span>
-        <span class="k">else</span> <span class="n">VerifyMax</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>            <span class="c1">// 沿着最大层检查
+        <span class="k">else</span> <span class="nf">VerifyMax</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="p">;</span>            <span class="c1">// 沿着最大层检查
 </span><span class="c1"></span>        <span class="k">break</span><span class="p">;</span>
     <span class="k">case</span> <span class="nl">MAX</span><span class="p">:</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">])</span>             <span class="c1">// 沿着最大层检查
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="p">)</span>             <span class="c1">// 沿着最大层检查
 </span><span class="c1"></span>        <span class="p">{</span>
-            <span class="n">_heap</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
-            <span class="n">VerifyMax</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+            <span class="n">_heap</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="p">;</span>
+            <span class="n">VerifyMax</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="p">;</span>
         <span class="p">}</span>
-        <span class="k">else</span> <span class="n">VerifyMin</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>             <span class="c1">// 沿着最小层检查
+        <span class="k">else</span> <span class="nf">VerifyMin</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="p">;</span>             <span class="c1">// 沿着最小层检查
 </span><span class="c1"></span>        <span class="k">break</span><span class="p">;</span>
     <span class="p">}</span>                           <span class="c1">//switch结束
 </span><span class="c1"></span><span class="p">}</span>              <span class="c1">// Insert结束
 </span><span class="c1"></span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="kt">void</span> <span class="n">MinMaxHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">VerifyMax</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">x</span> <span class="p">)</span>
+<span class="kt">void</span> <span class="n">MinMaxHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">VerifyMax</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">x</span> <span class="p">)</span>
 <span class="p">{</span>
     <span class="c1">// 沿着从最大结点i
 </span><span class="c1"></span>    <span class="c1">// 到根结点的路径检查最大结点，将x插入正确位置
-</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">gp</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="mi">4</span><span class="p">;</span> <span class="n">gp</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">gp</span><span class="p">]);</span> <span class="n">gp</span> <span class="o">/=</span> <span class="mi">4</span><span class="p">)</span>   <span class="c1">// gp是 i的祖父
+</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">gp</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="mi">4</span><span class="p">;</span> <span class="n">gp</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">gp</span><span class="p">]</span><span class="p">)</span><span class="p">;</span> <span class="n">gp</span> <span class="o">/</span><span class="o">=</span> <span class="mi">4</span><span class="p">)</span>   <span class="c1">// gp是 i的祖父
 </span><span class="c1"></span>    <span class="p">{</span>
-        <span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">gp</span><span class="p">];</span>             <span class="c1">// 将_heap[gp]移到_heap[i]
+        <span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">gp</span><span class="p">]</span><span class="p">;</span>             <span class="c1">// 将_heap[gp]移到_heap[i]
 </span><span class="c1"></span>        <span class="n">i</span> <span class="o">=</span> <span class="n">gp</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>         <span class="c1">// 将x插入结点i
 </span><span class="c1"></span><span class="p">}</span>
 
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="kt">void</span> <span class="n">MinMaxHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">VerifyMin</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">x</span> <span class="p">)</span>
+<span class="kt">void</span> <span class="n">MinMaxHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">VerifyMin</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">x</span> <span class="p">)</span>
 <span class="p">{</span>
     <span class="c1">// 沿着从最小结点i
 </span><span class="c1"></span>    <span class="c1">// 到根结点的路径检查最小结点，将x插入正确位置
-</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">gp</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="mi">4</span><span class="p">;</span> <span class="n">gp</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">gp</span><span class="p">]);</span> <span class="n">gp</span> <span class="o">/=</span> <span class="mi">4</span><span class="p">)</span>   <span class="c1">// gp是 i的祖父
+</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">gp</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="mi">4</span><span class="p">;</span> <span class="n">gp</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">gp</span><span class="p">]</span><span class="p">)</span><span class="p">;</span> <span class="n">gp</span> <span class="o">/</span><span class="o">=</span> <span class="mi">4</span><span class="p">)</span>   <span class="c1">// gp是 i的祖父
 </span><span class="c1"></span>    <span class="p">{</span>
-        <span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">gp</span><span class="p">];</span>             <span class="c1">// 将_heap[gp]移到_heap[i]
+        <span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">gp</span><span class="p">]</span><span class="p">;</span>             <span class="c1">// 将_heap[gp]移到_heap[i]
 </span><span class="c1"></span>        <span class="n">i</span> <span class="o">=</span> <span class="n">gp</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>         <span class="c1">// 将x插入结点i
 </span><span class="c1"></span><span class="p">}</span>
 
 
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span><span class="err"> </span><span class="nc">Type</span><span class="o">&gt;</span>
-<span class="kt">int</span> <span class="n">MinMaxHeap</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;::</span><span class="n">MinChildGrandChild</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Type</span><span class="o">&gt;</span>
+<span class="kt">int</span> <span class="n">MinMaxHeap</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">MinChildGrandChild</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
 <span class="p">{</span>
-	<span class="kt">int</span> <span class="n">temp</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span> <span class="p">};</span>
+	<span class="kt">int</span> <span class="n">temp</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span> <span class="p">}</span><span class="p">;</span>
 	<span class="k">if</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="kt">int</span> <span class="n">minVal</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">];</span>
+	<span class="kt">int</span> <span class="n">minVal</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">]</span><span class="p">;</span>
 	<span class="kt">int</span> <span class="n">minIndex</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span>
-	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span> <span class="n">j</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
 	<span class="p">{</span>
-		<span class="k">if</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">)</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">n</span><span class="p">)</span>
 		<span class="p">{</span>
-			<span class="k">if</span> <span class="p">(</span><span class="n">_heap</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">&lt;</span> <span class="n">minVal</span><span class="p">)</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">_heap</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">minVal</span><span class="p">)</span>
 			<span class="p">{</span>
-				<span class="n">minVal</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]];</span>
-				<span class="n">minIndex</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+				<span class="n">minVal</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">]</span><span class="p">;</span>
+				<span class="n">minIndex</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">;</span>
 			<span class="p">}</span>
 		<span class="p">}</span>
 		<span class="k">else</span> <span class="k">break</span><span class="p">;</span>
@@ -561,7 +545,7 @@
 <span class="p">}</span>
 
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="n">T</span> <span class="n">MinMaxHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">popMin</span><span class="p">()</span>   <span class="c1">// 从最小最大堆中删除并返回最小元素
+<span class="n">T</span> <span class="n">MinMaxHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">popMin</span><span class="p">(</span><span class="p">)</span>   <span class="c1">// 从最小最大堆中删除并返回最小元素
 </span><span class="c1"></span><span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">n</span><span class="p">)</span>
     <span class="p">{</span>
@@ -569,18 +553,18 @@
 </span><span class="c1"></span>        <span class="k">throw</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="n">_heap</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
-    <span class="n">T</span> <span class="n">y</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>            <span class="c1">// 保存根元素
-</span><span class="c1"></span>    <span class="n">T</span> <span class="n">x</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">n</span><span class="o">--</span><span class="p">];</span>
+    <span class="n">T</span> <span class="n">y</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">;</span>            <span class="c1">// 保存根元素
+</span><span class="c1"></span>    <span class="n">T</span> <span class="n">x</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="o">-</span><span class="p">]</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>            <span class="c1">// 为重新插入x作初始化，寻找插入x的位置
-</span><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">j</span><span class="p">)</span>   <span class="c1">// i 有子女，情况(2)
+</span><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">j</span><span class="p">)</span>   <span class="c1">// i 有子女，情况(2)
 </span><span class="c1"></span>    <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">MinChildGrandChild</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">MinChildGrandChild</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="p">)</span>
             <span class="k">break</span><span class="p">;</span>          <span class="c1">// 情况 2(a)，可将x 插入_heap[i]
 </span><span class="c1"></span>        <span class="k">else</span>   <span class="c1">//情况2(b)或 (c)
 </span><span class="c1"></span>        <span class="p">{</span>
-            <span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// k 是i的子女，情况2(b)
+            <span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">&lt;</span><span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// k 是i的子女，情况2(b)
 </span><span class="c1"></span>            <span class="p">{</span>
                 <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>                           <span class="c1">// 可将x插入_heap[k]
 </span><span class="c1"></span>                <span class="k">break</span><span class="p">;</span>
@@ -588,9 +572,9 @@
             <span class="k">else</span>              <span class="c1">// k是i的孙子女，情况2(c)
 </span><span class="c1"></span>            <span class="p">{</span>
                 <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">k</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>            <span class="c1">// p是k的双亲
-</span><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">])</span>
+</span><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="p">)</span>
                 <span class="p">{</span>
-                    <span class="n">T</span> <span class="n">t</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">];</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+                    <span class="n">T</span> <span class="n">t</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="p">;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
                 <span class="p">}</span>
             <span class="p">}</span>     <span class="c1">// if (k&lt;=2*i+1)结束
 </span><span class="c1"></span>            <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
@@ -602,20 +586,20 @@
 
 
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="kt">int</span> <span class="n">MinMaxHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">MaxChildGrandChild</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
+<span class="kt">int</span> <span class="n">MinMaxHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">MaxChildGrandChild</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
 <span class="p">{</span>
-	<span class="kt">int</span> <span class="n">temp</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span> <span class="p">};</span>
+	<span class="kt">int</span> <span class="n">temp</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span> <span class="p">}</span><span class="p">;</span>
 	<span class="k">if</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="kt">int</span> <span class="n">maxVal</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">];</span>
+	<span class="kt">int</span> <span class="n">maxVal</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">]</span><span class="p">;</span>
 	<span class="kt">int</span> <span class="n">maxIndex</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span>
-	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span> <span class="n">j</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
 	<span class="p">{</span>
-		<span class="k">if</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">)</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">n</span><span class="p">)</span>
 		<span class="p">{</span>
-			<span class="k">if</span> <span class="p">(</span><span class="n">_heap</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="n">maxVal</span><span class="p">)</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">_heap</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">maxVal</span><span class="p">)</span>
 			<span class="p">{</span>
-				<span class="n">maxVal</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]];</span>
-				<span class="n">maxIndex</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+				<span class="n">maxVal</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">]</span><span class="p">;</span>
+				<span class="n">maxIndex</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">;</span>
 			<span class="p">}</span>
 		<span class="p">}</span>
 		<span class="k">else</span> <span class="k">break</span><span class="p">;</span>
@@ -624,29 +608,29 @@
 <span class="p">}</span>
 
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="n">T</span> <span class="n">MinMaxHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">popMax</span><span class="p">()</span>   <span class="c1">// 从最小最大堆中删除并返回最大元素
+<span class="n">T</span> <span class="n">MinMaxHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">popMax</span><span class="p">(</span><span class="p">)</span>   <span class="c1">// 从最小最大堆中删除并返回最大元素
 </span><span class="c1"></span><span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">n</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">//MinMaxEmpty( );
 </span><span class="c1"></span>        <span class="k">throw</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="n">n</span><span class="o">--</span><span class="p">;</span> <span class="k">return</span> <span class="n">_heap</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span> <span class="n">n</span><span class="o">--</span><span class="p">;</span> <span class="k">return</span> <span class="n">_heap</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">=</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="n">n</span><span class="o">-</span><span class="o">-</span><span class="p">;</span> <span class="k">return</span> <span class="n">_heap</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">=</span><span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span> <span class="n">n</span><span class="o">-</span><span class="o">-</span><span class="p">;</span> <span class="k">return</span> <span class="n">_heap</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="p">;</span> <span class="p">}</span>
     <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">_heap</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">?</span> <span class="mi">2</span> <span class="o">:</span> <span class="mi">3</span><span class="p">;</span>
-    <span class="n">T</span> <span class="n">y</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>            <span class="c1">// 保存根元素
-</span><span class="c1"></span>    <span class="n">T</span> <span class="n">x</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">n</span><span class="o">--</span><span class="p">];</span>
+    <span class="n">T</span> <span class="n">y</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>            <span class="c1">// 保存根元素
+</span><span class="c1"></span>    <span class="n">T</span> <span class="n">x</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="o">-</span><span class="p">]</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>            <span class="c1">// 为重新插入x作初始化，寻找插入x的位置
 </span><span class="c1"></span>    <span class="n">_heap</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">INT_MIN</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">j</span><span class="p">)</span>   <span class="c1">// i 有子女，情况(2)
+    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">j</span><span class="p">)</span>   <span class="c1">// i 有子女，情况(2)
 </span><span class="c1"></span>    <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">MaxChildGrandChild</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">MaxChildGrandChild</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="p">)</span>
             <span class="k">break</span><span class="p">;</span>          <span class="c1">// 情况 2(a)，可将x 插入_heap[i]
 </span><span class="c1"></span>        <span class="k">else</span>   <span class="c1">//情况2(b)或 (c)
 </span><span class="c1"></span>        <span class="p">{</span>
-            <span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// k 是i的子女，情况2(b)
+            <span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">&lt;</span><span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// k 是i的子女，情况2(b)
 </span><span class="c1"></span>            <span class="p">{</span>
                 <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>                           <span class="c1">// 可将x插入_heap[k]
 </span><span class="c1"></span>                <span class="k">break</span><span class="p">;</span>
@@ -654,9 +638,9 @@
             <span class="k">else</span>              <span class="c1">// k是i的孙子女，情况2(c)
 </span><span class="c1"></span>            <span class="p">{</span>
                 <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">k</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>            <span class="c1">// p是k的双亲
-</span><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">])</span>
+</span><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="p">)</span>
                 <span class="p">{</span>
-                    <span class="n">T</span> <span class="n">t</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">];</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+                    <span class="n">T</span> <span class="n">t</span> <span class="o">=</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="p">;</span> <span class="n">_heap</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
                 <span class="p">}</span>
             <span class="p">}</span>     <span class="c1">// if (k&lt;=2*i+1)结束
 </span><span class="c1"></span>            <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
@@ -667,13 +651,9 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>参考</p>
-
+</div><p>参考</p>
 <p><a href="http://arxiv.org/ftp/cs/papers/0007/0007043.pdf">http://arxiv.org/ftp/cs/papers/0007/0007043.pdf</a></p>
-
 <p><a href="http://www.cs.otago.ac.nz/staffpriv/mike/Papers/MinMaxHeaps/MinMaxHeaps.pdf">http://www.cs.otago.ac.nz/staffpriv/mike/Papers/MinMaxHeaps/MinMaxHeaps.pdf</a></p>
-
 <p><a href="https://github.com/brownhead/minmaxheap-cpp">https://github.com/brownhead/minmaxheap-cpp</a></p>
     </div>
 
@@ -725,7 +705,7 @@
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  
+
   
 
   

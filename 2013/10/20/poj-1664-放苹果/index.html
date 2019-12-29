@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/10/20/poj-1664-%E6%94%BE%E8%8B%B9%E6%9E%9C/" />
@@ -42,36 +42,26 @@
 
 <meta property="og:title" content="POJ 1664 放苹果" />
 <meta property="og:description" content="Description
-
 把M个同样的苹果放在N个同样的盘子里，允许有的盘子空着不放，问共有多少种不同的分法？（用K表示）5，1，1和1，5，1 是同一种分法。
-
 自己想了半天，什么排列组合之类的，后来去搜题解，才知道是用递归……" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://josephpei.github.io/2013/10/20/poj-1664-%E6%94%BE%E8%8B%B9%E6%9E%9C/" />
-<meta property="article:published_time" content="2013-10-20T10:50:57&#43;08:00"/>
-<meta property="article:modified_time" content="2013-10-20T10:50:57&#43;08:00"/>
-
+<meta property="article:published_time" content="2013-10-20T10:50:57+08:00" />
+<meta property="article:modified_time" content="2013-10-20T10:50:57+08:00" />
 <meta itemprop="name" content="POJ 1664 放苹果">
 <meta itemprop="description" content="Description
-
 把M个同样的苹果放在N个同样的盘子里，允许有的盘子空着不放，问共有多少种不同的分法？（用K表示）5，1，1和1，5，1 是同一种分法。
-
 自己想了半天，什么排列组合之类的，后来去搜题解，才知道是用递归……">
-
-
 <meta itemprop="datePublished" content="2013-10-20T10:50:57&#43;08:00" />
 <meta itemprop="dateModified" content="2013-10-20T10:50:57&#43;08:00" />
-<meta itemprop="wordCount" content="617">
+<meta itemprop="wordCount" content="614">
 
 
 
-<meta itemprop="keywords" content="poj,algorithm," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="poj,algorithm," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="POJ 1664 放苹果"/>
 <meta name="twitter:description" content="Description
-
 把M个同样的苹果放在N个同样的盘子里，允许有的盘子空着不放，问共有多少种不同的分法？（用K表示）5，1，1和1，5，1 是同一种分法。
-
 自己想了半天，什么排列组合之类的，后来去搜题解，才知道是用递归……"/>
 
 <!--[if lte IE 9]>
@@ -148,45 +138,28 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#description">Description</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#description">Description</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <h2 id="description">Description</h2>
-
 <p>把M个同样的苹果放在N个同样的盘子里，允许有的盘子空着不放，问共有多少种不同的分法？（用K表示）5，1，1和1，5，1 是同一种分法。</p>
-
 <p>自己想了半天，什么排列组合之类的，后来去搜题解，才知道是用递归……</p>
-
 <p>动态规划：其实这根将一个整数m分成n个整数之和是类似的。</p>
-
 <p>另外一种表述是，给定了任意数量的现金，我们能写出一个程序，计算出所有换零钱方式的和数吗？（见《计算机程序的构造和解释》 p26）</p>
-
 <p>设f[m][n]为将m分成最多n份的方案数，且其中的方案不重复，即每个方案前一个份的值一定不会比后面的大。则有：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">f(m,n) = f(m,n - 1) + f(m - n,n)
+<pre><code>f(m,n) = f(m,n - 1) + f(m - n,n)
        = 1 // m== 0 || n == 1
-       = 0 // m &lt; 0</pre></td></tr></table>
-</div>
-</div>
+       = 0 // m &lt; 0
+</code></pre>
 <p>f(m,n - 1)相当于第一盘子中为0，只用将数分成n - 1份即可。因为0不会大于任何数，相当于f(m,n - 1)中的方案前面加一个为0的盘子，而且不违背f的定义。所以f(m,n - 1)一定是f(m,n)的方案的一部分，即含有0的方案数。</p>
-
 <p>f(m - n,n)相当于在每个盘子中加一个数1。因为每个盘子中加一个数1不会影响f(m,n - 1)中的方案的可行性，也不会影响f的定义。所以f(m - n,n)一定是f(m,n)的方案的一部分，即不含有0的方案数。(先把每个都放一个苹果，这样问题就转化为：m-n个苹果放进n个盘子里，盘子允许空)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -209,23 +182,23 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
 <span class="kt">int</span> <span class="nf">dynamic</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
 <span class="p">{</span>
 	<span class="k">if</span> <span class="p">(</span><span class="n">m</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="k">if</span> <span class="p">(</span><span class="n">m</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-	<span class="k">return</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">m</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span> <span class="o">|</span><span class="o">|</span> <span class="n">n</span> <span class="o">=</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="k">return</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[</span><span class="p">]</span><span class="p">)</span>
 <span class="p">{</span>
 	<span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">num</span><span class="p">;</span>
-	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">num</span><span class="p">;</span>
-	<span class="k">while</span> <span class="p">(</span><span class="n">num</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
-		<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">m</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
-		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="n">cin</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="n">num</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span><span class="n">num</span><span class="o">-</span><span class="o">-</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">cin</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="n">m</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="n">n</span><span class="p">;</span>
+		<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">dynamic</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
 	<span class="p">}</span>
 
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -284,7 +257,7 @@
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  
+
   
 
   

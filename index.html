@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/" />
@@ -44,13 +44,9 @@
 <meta property="og:description" content="常无事，痛饮酒，熟读离骚" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://josephpei.github.io/" />
-
-<meta property="og:updated_time" content="2019-03-11T21:16:49&#43;08:00"/>
-
+<meta property="og:updated_time" content="2019-12-29T22:22:59+08:00" />
 <meta itemprop="name" content="有翅膀的天狼">
-<meta itemprop="description" content="常无事，痛饮酒，熟读离骚">
-
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content="常无事，痛饮酒，熟读离骚"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="有翅膀的天狼"/>
 <meta name="twitter:description" content="常无事，痛饮酒，熟读离骚"/>
 
@@ -115,6 +111,39 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/12/29/leetcode-49-group-anagrams-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/">Leetcode 49 Group Anagrams 字母异位词分组</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-12-29 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <h2 id="heading">题目</h2>
+<p>给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。</p>
+<p>示例:</p>
+<p>输入:</p>
+<pre><code>[&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;],
+</code></pre>
+<p>输出:</p>
+<pre><code>[
+  [&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;],
+  [&quot;nat&quot;,&quot;tan&quot;],
+  [&quot;bat&quot;]
+]
+</code></pre>
+<p>说明：</p>
+<p>所有输入均为小写字母。不考虑答案输出的顺序。</p>
+    </div>
+    <div class="read-more">
+      <a href="/2019/12/29/leetcode-49-group-anagrams-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2019/03/11/%E8%BF%81%E7%A7%BBhexo%E5%88%B0hugo/">迁移Hexo到Hugo</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2019-03-11 </span>
@@ -146,11 +175,10 @@
       <p>Ubuntu 升级到 18.04 后，在网络共享中看不到同一局域网内 Windows
 共享的文件，同时 Windows
 上共享的打印机也不能正常工作，表现为“需要身份认证”，但是输入对应用户名密码之后毫无反应。</p>
-
 <p>修复方法：<a href="https://www.dedoimedo.com/computers/ubuntu-beaver-samba-shares.html">https://www.dedoimedo.com/computers/ubuntu-beaver-samba-shares.html</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -163,7 +191,8 @@
 <span class="c1"># Add a line</span>
 client max <span class="nv">protocol</span> <span class="o">=</span> NT1
 
-$ sudo systemctl restart smbd.service</code></pre></td></tr></table>
+$ sudo systemctl restart smbd.service
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -185,11 +214,10 @@ $ sudo systemctl restart smbd.service</code></pre></td></tr></table>
   <div class="post-content">
     <div class="post-summary">
       <p>C++ 模板元编程之编译时归并排序，源自水木社区 ilovecpp</p>
-
 <p>Cpp Template Meta Programming MergeSort</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -271,32 +299,32 @@ $ sudo systemctl restart smbd.service</code></pre></td></tr></table>
 </span><span class="lnt">80
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/vector.hpp&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/vector_c.hpp&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/eval_if.hpp&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/identity.hpp&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/empty.hpp&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/less.hpp&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/front.hpp&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/pop_front.hpp&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/push_front.hpp&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/size.hpp&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/iterator_range.hpp&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/int.hpp&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;boost/mpl/for_each.hpp&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/vector.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/vector_c.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/eval_if.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/identity.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/empty.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/less.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/front.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/pop_front.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/push_front.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/size.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/iterator_range.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/int.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/for_each.hpp&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">mpl</span><span class="p">;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">:</span><span class="o">:</span><span class="n">mpl</span><span class="p">;</span>
 
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">V1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">V2</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="n">Merge</span> <span class="p">{</span>
+<span class="k">struct</span> <span class="nc">Merge</span> <span class="p">{</span>
     <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T2</span><span class="o">&gt;</span>
-    <span class="k">struct</span> <span class="n">F</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="nc">F</span> <span class="p">{</span>
         <span class="k">typedef</span> <span class="k">typename</span> <span class="n">push_front</span><span class="o">&lt;</span>
-            <span class="k">typename</span> <span class="n">Merge</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">pop_front</span><span class="o">&lt;</span><span class="n">T1</span><span class="o">&gt;::</span><span class="n">type</span><span class="p">,</span> <span class="n">T2</span><span class="o">&gt;::</span><span class="n">type</span><span class="p">,</span>
-            <span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">T1</span><span class="o">&gt;::</span><span class="n">type</span>
-            <span class="o">&gt;::</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
-    <span class="p">};</span>
+            <span class="k">typename</span> <span class="n">Merge</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">pop_front</span><span class="o">&lt;</span><span class="n">T1</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span><span class="p">,</span> <span class="n">T2</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span><span class="p">,</span>
+            <span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">T1</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span>
+            <span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
+    <span class="p">}</span><span class="p">;</span>
         
     <span class="k">typedef</span> <span class="k">typename</span> <span class="n">eval_if</span><span class="o">&lt;</span>
         <span class="n">empty</span><span class="o">&lt;</span><span class="n">V1</span><span class="o">&gt;</span><span class="p">,</span>
@@ -305,50 +333,50 @@ $ sudo systemctl restart smbd.service</code></pre></td></tr></table>
             <span class="n">empty</span><span class="o">&lt;</span><span class="n">V2</span><span class="o">&gt;</span><span class="p">,</span>
             <span class="n">identity</span><span class="o">&lt;</span><span class="n">V1</span><span class="o">&gt;</span><span class="p">,</span>
             <span class="n">eval_if</span><span class="o">&lt;</span>
-                <span class="n">less</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">V1</span><span class="o">&gt;::</span><span class="n">type</span><span class="p">,</span> <span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">V2</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&gt;</span><span class="p">,</span>
+                <span class="n">less</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">V1</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span><span class="p">,</span> <span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">V2</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span><span class="o">&gt;</span><span class="p">,</span>
                 <span class="n">F</span><span class="o">&lt;</span><span class="n">V1</span><span class="p">,</span> <span class="n">V2</span><span class="o">&gt;</span><span class="p">,</span>
                 <span class="n">F</span><span class="o">&lt;</span><span class="n">V2</span><span class="p">,</span> <span class="n">V1</span><span class="o">&gt;</span>
                 <span class="o">&gt;</span>
             <span class="o">&gt;</span>
-        <span class="o">&gt;::</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
-<span class="p">};</span>
+        <span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
 
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">V</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="n">MergeSort</span> <span class="p">{</span>
+<span class="k">struct</span> <span class="nc">MergeSort</span> <span class="p">{</span>
     <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-    <span class="k">struct</span> <span class="n">F</span> <span class="p">{</span>
-        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">begin</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span> <span class="n">t0</span><span class="p">;</span>
-        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">advance</span><span class="o">&lt;</span><span class="n">t0</span><span class="p">,</span> <span class="n">int_</span><span class="o">&lt;</span><span class="n">size</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">/</span><span class="mi">2</span><span class="o">&gt;&gt;::</span><span class="n">type</span> <span class="n">t1</span><span class="p">;</span>
-        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">end</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span> <span class="n">t2</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="nc">F</span> <span class="p">{</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">begin</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">t0</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">advance</span><span class="o">&lt;</span><span class="n">t0</span><span class="p">,</span> <span class="n">int_</span><span class="o">&lt;</span><span class="n">size</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">value</span><span class="o">/</span><span class="mi">2</span><span class="o">&gt;</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">t1</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">end</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">t2</span><span class="p">;</span>
         <span class="k">typedef</span> <span class="k">typename</span> <span class="n">Merge</span><span class="o">&lt;</span>
-            <span class="k">typename</span> <span class="n">MergeSort</span><span class="o">&lt;</span><span class="n">iterator_range</span><span class="o">&lt;</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="o">&gt;&gt;::</span><span class="n">type</span><span class="p">,</span>
-            <span class="k">typename</span> <span class="n">MergeSort</span><span class="o">&lt;</span><span class="n">iterator_range</span><span class="o">&lt;</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="o">&gt;&gt;::</span><span class="n">type</span>
-            <span class="o">&gt;::</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
-    <span class="p">};</span>
+            <span class="k">typename</span> <span class="n">MergeSort</span><span class="o">&lt;</span><span class="n">iterator_range</span><span class="o">&lt;</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="o">&gt;</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span><span class="p">,</span>
+            <span class="k">typename</span> <span class="n">MergeSort</span><span class="o">&lt;</span><span class="n">iterator_range</span><span class="o">&lt;</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="o">&gt;</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span>
+            <span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
+    <span class="p">}</span><span class="p">;</span>
     
     <span class="k">typedef</span> <span class="k">typename</span> <span class="n">eval_if</span><span class="o">&lt;</span>
         <span class="n">empty</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="n">identity</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;&gt;&gt;</span><span class="p">,</span>
+        <span class="n">identity</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="o">&gt;</span><span class="o">&gt;</span><span class="p">,</span>
         <span class="n">eval_if</span><span class="o">&lt;</span>
-            <span class="n">less</span><span class="o">&lt;</span><span class="n">size</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">int_</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;&gt;</span><span class="p">,</span>
-            <span class="n">identity</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;::</span><span class="n">type</span><span class="o">&gt;&gt;</span><span class="p">,</span>
+            <span class="n">less</span><span class="o">&lt;</span><span class="n">size</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">int_</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="n">identity</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span><span class="o">&gt;</span><span class="o">&gt;</span><span class="p">,</span>
             <span class="n">F</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span>
             <span class="o">&gt;</span>
-        <span class="o">&gt;::</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
-<span class="p">};</span>
+        <span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
 
 <span class="k">typedef</span> <span class="n">vector_c</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="o">&gt;</span> <span class="n">t1</span><span class="p">;</span>
-<span class="k">typedef</span> <span class="n">MergeSort</span><span class="o">&lt;</span><span class="n">t1</span><span class="o">&gt;::</span><span class="n">type</span> <span class="n">t10</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">MergeSort</span><span class="o">&lt;</span><span class="n">t1</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">t10</span><span class="p">;</span>
 
-<span class="k">struct</span> <span class="n">print</span> <span class="p">{</span>
+<span class="k">struct</span> <span class="nc">print</span> <span class="p">{</span>
     <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-    <span class="kt">void</span> <span class="k">operator</span><span class="p">()(</span> <span class="n">T</span> <span class="n">t</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
-       <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">T</span><span class="o">::</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="k">operator</span><span class="p">(</span><span class="p">)</span><span class="p">(</span> <span class="n">T</span> <span class="n">t</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+       <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">T</span><span class="o">:</span><span class="o">:</span><span class="n">value</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> </span><span class="s">&#34;</span><span class="p">;</span>
     <span class="p">}</span>
-<span class="p">};</span>
+<span class="p">}</span><span class="p">;</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">for_each</span><span class="o">&lt;</span><span class="n">t10</span><span class="o">&gt;</span><span class="p">(</span><span class="n">print</span><span class="p">());</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">for_each</span><span class="o">&lt;</span><span class="n">t10</span><span class="o">&gt;</span><span class="p">(</span><span class="n">print</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
@@ -373,38 +401,12 @@ $ sudo systemctl restart smbd.service</code></pre></td></tr></table>
   <div class="post-content">
     <div class="post-summary">
       <p><a href="https://microsoft.github.io/language-server-protocol/">LSP</a>（Language-Server-Protocol）开源的语言服务器协定，微软出品，语言服务端提供索引代码的服务，编辑器直接调用。套用官话就是，可以让不同的程序编辑器与集成开发环境（IDE）方便嵌入各种程序语言，允许开发人员在最喜爱的工具中使用各种语言来撰写程序。</p>
-
 <p>目前语言与编辑器支持情况见 <a href="https://langserver.org/">https://langserver.org/</a></p>
-
 <p><a href="https://github.com/cquery-project/cquery">cquery</a> 就是 C/C++/Objective-C 的 language server，VSCode, Vim, Emacs 等只要安装了 lsp 插件，就可调用它来实现 C/C++/Objective-C 语法补全等功能。</p>
-
 <p>下面以 Visual Studio Code 为例来实现 C/C++ 补全。</p>
     </div>
     <div class="read-more">
       <a href="/2018/05/04/vscode-cquery-lsp-%E5%AE%9E%E7%8E%B0-c-c-%E8%A1%A5%E5%85%A8/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/04/28/ubuntu-awesome-terminal/">ubuntu awesome terminal</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-04-28 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <h2 id="gnome-terminal-theme">gnome-terminal theme</h2>
-
-<p><a href="https://github.com/aaron-williamson/base16-gnome-terminal">base16 gnome terminal</a></p>
-
-<p>选择一个，运行相应的 <code>.sh</code></p>
-    </div>
-    <div class="read-more">
-      <a href="/2018/04/28/ubuntu-awesome-terminal/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

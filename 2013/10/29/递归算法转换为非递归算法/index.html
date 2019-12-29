@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/10/29/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E8%BD%AC%E6%8D%A2%E4%B8%BA%E9%9D%9E%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/" />
@@ -42,30 +42,23 @@
 
 <meta property="og:title" content="递归算法转换为非递归算法" />
 <meta property="og:description" content="递归算法实际上是一种分而治之的方法，它把复杂问题分解为简单问题来求解。对于某些复杂问题(例如hanio塔问题)，递归算法是一种自然且合乎逻辑的解决问题的方式，但是递归算法的执行效率通常比较差。因此，在求解某些问题时，常采用递归算法来分析问题，用非递归算法来求解问题；另外，有些程序设计语言不支持递归，这就需要把递归算法转换为非递归算法。
-
 将递归算法转换为非递归算法有两种方法，一种是直接求值，不需要回溯；另一种是不能直接求值，需要回溯。前者使用一些变量保存中间结果，称为直接转换法；后者使用栈保存中间结果，称为间接转换法，下面分别讨论这两种方法。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://josephpei.github.io/2013/10/29/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E8%BD%AC%E6%8D%A2%E4%B8%BA%E9%9D%9E%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/" />
-<meta property="article:published_time" content="2013-10-29T14:39:46&#43;08:00"/>
-<meta property="article:modified_time" content="2013-10-29T14:39:46&#43;08:00"/>
-
+<meta property="article:published_time" content="2013-10-29T14:39:46+08:00" />
+<meta property="article:modified_time" content="2013-10-29T14:39:46+08:00" />
 <meta itemprop="name" content="递归算法转换为非递归算法">
 <meta itemprop="description" content="递归算法实际上是一种分而治之的方法，它把复杂问题分解为简单问题来求解。对于某些复杂问题(例如hanio塔问题)，递归算法是一种自然且合乎逻辑的解决问题的方式，但是递归算法的执行效率通常比较差。因此，在求解某些问题时，常采用递归算法来分析问题，用非递归算法来求解问题；另外，有些程序设计语言不支持递归，这就需要把递归算法转换为非递归算法。
-
 将递归算法转换为非递归算法有两种方法，一种是直接求值，不需要回溯；另一种是不能直接求值，需要回溯。前者使用一些变量保存中间结果，称为直接转换法；后者使用栈保存中间结果，称为间接转换法，下面分别讨论这两种方法。">
-
-
 <meta itemprop="datePublished" content="2013-10-29T14:39:46&#43;08:00" />
 <meta itemprop="dateModified" content="2013-10-29T14:39:46&#43;08:00" />
-<meta itemprop="wordCount" content="2395">
+<meta itemprop="wordCount" content="2389">
 
 
 
-<meta itemprop="keywords" content="algorithm," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="algorithm," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="递归算法转换为非递归算法"/>
 <meta name="twitter:description" content="递归算法实际上是一种分而治之的方法，它把复杂问题分解为简单问题来求解。对于某些复杂问题(例如hanio塔问题)，递归算法是一种自然且合乎逻辑的解决问题的方式，但是递归算法的执行效率通常比较差。因此，在求解某些问题时，常采用递归算法来分析问题，用非递归算法来求解问题；另外，有些程序设计语言不支持递归，这就需要把递归算法转换为非递归算法。
-
 将递归算法转换为非递归算法有两种方法，一种是直接求值，不需要回溯；另一种是不能直接求值，需要回溯。前者使用一些变量保存中间结果，称为直接转换法；后者使用栈保存中间结果，称为间接转换法，下面分别讨论这两种方法。"/>
 
 <!--[if lte IE 9]>
@@ -142,31 +135,23 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#直接转换法">直接转换法</a></li>
-<li><a href="#基于栈结构的间接转换">基于栈结构的间接转换</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#heading">直接转换法</a></li>
+    <li><a href="#heading-1">基于栈结构的间接转换</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>递归算法实际上是一种分而治之的方法，它把复杂问题分解为简单问题来求解。对于某些复杂问题(例如hanio塔问题)，递归算法是一种自然且合乎逻辑的解决问题的方式，但是递归算法的执行效率通常比较差。因此，在求解某些问题时，常采用递归算法来分析问题，用非递归算法来求解问题；另外，有些程序设计语言不支持递归，这就需要把递归算法转换为非递归算法。</p>
-
 <p>将递归算法转换为非递归算法有两种方法，一种是直接求值，不需要回溯；另一种是不能直接求值，需要回溯。前者使用一些变量保存中间结果，称为直接转换法；后者使用栈保存中间结果，称为间接转换法，下面分别讨论这两种方法。</p>
-
-<h2 id="直接转换法">直接转换法</h2>
-
+<h2 id="heading">直接转换法</h2>
 <p>直接转换法通常用来消除尾递归和单向递归，将递归结构用循环结构来替代。</p>
-
 <p>尾递归是指在递归算法中，递归调用语句只有一个，而且是处在算法的最后。对于尾递归形式的递归算法，可以利用循环结构来替代。</p>
-
 <p>单向递归是指递归算法中虽然有多处递归调用语句，但各递归调用语句的参数之间没有关系，并且这些递归调用语句都处在递归算法的最后。显然，尾递归是单向递归的特例。对于单向递归，可以设置一些变量保存中间结构，将递归结构用循环结构来替代。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -194,11 +179,11 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">//斐波那契数列
-</span><span class="c1">//递归
+</span><span class="c1"></span><span class="c1">//递归
 </span><span class="c1"></span><span class="kt">int</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">=</span> <span class="o">=</span><span class="mi">1</span> <span class="o">|</span> <span class="o">|</span> <span class="n">n</span><span class="o">=</span> <span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-　　    <span class="k">else</span> <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+　　    <span class="k">else</span> <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="c1">//非递归
@@ -210,7 +195,7 @@
       <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">)</span>
           <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
 　　<span class="kt">int</span> <span class="n">s1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">s2</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-　　<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+　　<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
      <span class="p">{</span>
 　　     <span class="n">s</span><span class="o">=</span><span class="n">s1</span><span class="o">+</span><span class="n">s2</span><span class="p">;</span>
 　　     <span class="n">s2</span><span class="o">=</span><span class="n">s1</span><span class="p">;</span> <span class="c1">// 保存f(n-2)的值
@@ -220,15 +205,12 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="基于栈结构的间接转换">基于栈结构的间接转换</h2>
-
+</div><h2 id="heading-1">基于栈结构的间接转换</h2>
 <p>通用的变换规则如下：假设template P(p1, p2, &hellip;,pm)是一个递归过程或函数（省略参数类型说明），其中p1, … , pm为参数，并设过程中有n个局部变量q1, …, qn和t个递归调用本过程P的语句。</p>
-
 <p>(1) 在P中增设工作栈S，以存放当前层工作记录。每个工作记录包含m+n+2个数据项，其说明如下。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -237,88 +219,66 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="n">levelstr</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">levelstr</span>
 <span class="p">{</span>   <span class="kt">int</span> <span class="n">p0</span><span class="p">;</span> <span class="c1">// 返回语句标号
 </span><span class="c1"></span>    <span class="n">ParaType</span> <span class="n">p</span><span class="err">；</span>    <span class="c1">// p用来保存返回值, 类型与递归过程返回值类型ParaType一致
 </span><span class="c1"></span>    <span class="c1">// 若递归过程为void, 则此项无意义
-</span><span class="c1"></span>    <span class="n">ParaType</span> <span class="n">p1</span><span class="p">,</span> <span class="p">...,</span> <span class="n">pm</span><span class="p">;</span>   <span class="c1">// 按原类型定义
-</span><span class="c1"></span>    <span class="n">ParaType</span> <span class="n">q1</span><span class="p">,</span> <span class="p">...,</span> <span class="n">qn</span><span class="p">;</span>   <span class="c1">// 按原类型定义
+</span><span class="c1"></span>    <span class="n">ParaType</span> <span class="n">p1</span><span class="p">,</span> <span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">,</span> <span class="n">pm</span><span class="p">;</span>   <span class="c1">// 按原类型定义
+</span><span class="c1"></span>    <span class="n">ParaType</span> <span class="n">q1</span><span class="p">,</span> <span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">,</span> <span class="n">qn</span><span class="p">;</span>   <span class="c1">// 按原类型定义
 </span><span class="c1"></span><span class="p">}</span> <span class="n">s</span><span class="err">；</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>(2) 在P中设置t+2个语句标号：&lt;标号0＞, &lt;标号1＞, …, &lt;标号t+1＞。其中，&lt;标号0＞设在过程体中第一个可执行的语句上，&lt;标号t+1＞设在过程体结束处之前，其余t个标号分别设置在t个调用过程语句的返回处。</p>
-
+</div><p>(2) 在P中设置t+2个语句标号：&lt;标号0＞, &lt;标号1＞, …, &lt;标号t+1＞。其中，&lt;标号0＞设在过程体中第一个可执行的语句上，&lt;标号t+1＞设在过程体结束处之前，其余t个标号分别设置在t个调用过程语句的返回处。</p>
 <p>(3) 在过程体的第一个执行语句（即&lt;标号0＞的语句为过程P的递归入口）之前，增加下列两个语句作为过程P的非递归入口（从调用过程P的主过程进入过程P的入口）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">Stack</span><span class="o">&lt;</span><span class="n">levelstr</span><span class="o">&gt;</span> <span class="n">s</span><span class="p">;</span> <span class="c1">// 栈初始化
-</span><span class="c1"></span><span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="o">&lt;</span><span class="err">标号</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="p">...,</span> <span class="n">pm</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="p">...,</span> <span class="n">qn</span><span class="p">);</span> <span class="c1">// 当前参量进栈
+</span><span class="c1"></span><span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="o">&lt;</span><span class="err">标</span><span class="err">号</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">,</span> <span class="n">pm</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">,</span> <span class="n">qn</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 当前参量进栈
 </span></code></pre></td></tr></table>
 </div>
-</div>
-<p>(4) 假设过程体中第I(i＝1, &hellip;, t)个递归调用语句为P(a1, a2, &hellip;, am)，其中，ai(i＝1, &hellip;, m)为实参。则用下列3个语句替换它。</p>
+</div><p>(4) 假设过程体中第I(i＝1, &hellip;, t)个递归调用语句为P(a1, a2, &hellip;, am)，其中，ai(i＝1, &hellip;, m)为实参。则用下列3个语句替换它。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">S</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="o">&lt;</span><span class="err">标号</span><span class="n">i</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="p">...,</span> <span class="n">am</span><span class="p">);</span>   <span class="c1">// 调用实参进栈
-</span><span class="c1"></span><span class="k">goto</span> <span class="o">&lt;</span><span class="err">标号</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">;</span>   <span class="c1">// 转向递归入口处
-</span><span class="c1"></span><span class="o">&lt;</span><span class="err">标号</span><span class="n">i</span><span class="o">&gt;</span><span class="err">：</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span> <span class="p">);</span>  <span class="c1">// 退栈操作
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">S</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="o">&lt;</span><span class="err">标</span><span class="err">号</span><span class="n">i</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">,</span> <span class="n">am</span><span class="p">)</span><span class="p">;</span>   <span class="c1">// 调用实参进栈
+</span><span class="c1"></span><span class="k">goto</span> <span class="o">&lt;</span><span class="err">标</span><span class="err">号</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">;</span>   <span class="c1">// 转向递归入口处
+</span><span class="c1"></span><span class="o">&lt;</span><span class="err">标</span><span class="err">号</span><span class="n">i</span><span class="o">&gt;</span><span class="err">：</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span> <span class="p">)</span><span class="p">;</span>  <span class="c1">// 退栈操作
 </span></code></pre></td></tr></table>
 </div>
-</div>
-<p>由于goto语句不能转向一个语句的内部，因此，如果某个递归调用语句包含在另一个语句的内部，则应加以适当处理使所有的语句标号只出现在第一层。</p>
-
+</div><p>由于goto语句不能转向一个语句的内部，因此，如果某个递归调用语句包含在另一个语句的内部，则应加以适当处理使所有的语句标号只出现在第一层。</p>
 <p>如下列语句组:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">while(条件w)LINESw;
-LINES;（其中LINESw为第k个递归调用语句）</pre></td></tr></table>
-</div>
-</div>
+<pre><code>while(条件w)LINESw;
+LINES;（其中LINESw为第k个递归调用语句）
+</code></pre>
 <p>可改为：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">&lt;标号w1&gt;：if(条件w){ s.push(...)； goto &lt;标号0&gt;;}
+<pre><code>&lt;标号w1&gt;：if(条件w){ s.push(...)； goto &lt;标号0&gt;;}
         else goto &lt;标号w2&gt;
 &lt;标号k&gt;： s.pop(); goto &lt;标号w1&gt;;
-&lt;标号w2&gt;： LINES; ...</pre></td></tr></table>
-</div>
-</div>
+&lt;标号w2&gt;： LINES; ...
+</code></pre>
 <p>(5) 在过程体中所有递归出口处增加语句。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">().</span><span class="n">p</span> <span class="o">=</span> <span class="p">...</span><span class="err">；</span> <span class="c1">// 若递归过程有返回值，执行此赋值语句
-</span><span class="c1"></span><span class="k">goto</span> <span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">().</span><span class="n">p0</span><span class="err">；</span> <span class="c1">// 转向栈顶的返回语句标号处
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="n">p</span> <span class="o">=</span> <span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="err">；</span> <span class="c1">// 若递归过程有返回值，执行此赋值语句
+</span><span class="c1"></span><span class="k">goto</span> <span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="n">p0</span><span class="err">；</span> <span class="c1">// 转向栈顶的返回语句标号处
 </span></code></pre></td></tr></table>
 </div>
-</div>
-<p>此goto语句的正规写法为：</p>
+</div><p>此goto语句的正规写法为：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -327,40 +287,36 @@ LINES;（其中LINESw为第k个递归调用语句）</pre></td></tr></table>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">switch</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">(</span> <span class="p">).</span> <span class="n">p0</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">switch</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">(</span> <span class="p">)</span><span class="p">.</span> <span class="n">p0</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="k">case</span> <span class="o">&lt;</span><span class="err">标号</span><span class="mi">0</span><span class="o">&gt;:</span><span class="k">goto</span> <span class="o">&lt;</span><span class="err">标号</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
-    <span class="k">case</span> <span class="o">&lt;</span><span class="err">标号</span><span class="mi">1</span><span class="o">&gt;:</span><span class="k">goto</span> <span class="o">&lt;</span><span class="err">标号</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
-                 <span class="p">...</span>
-    <span class="k">case</span> <span class="o">&lt;</span><span class="err">标号</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;:</span><span class="k">goto</span> <span class="o">&lt;</span><span class="err">标号</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="o">&lt;</span><span class="err">标</span><span class="err">号</span><span class="mi">0</span><span class="o">&gt;</span><span class="o">:</span><span class="k">goto</span> <span class="o">&lt;</span><span class="err">标</span><span class="err">号</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="o">&lt;</span><span class="err">标</span><span class="err">号</span><span class="mi">1</span><span class="o">&gt;</span><span class="o">:</span><span class="k">goto</span> <span class="o">&lt;</span><span class="err">标</span><span class="err">号</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+                 <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+    <span class="k">case</span> <span class="o">&lt;</span><span class="err">标</span><span class="err">号</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;</span><span class="o">:</span><span class="k">goto</span> <span class="o">&lt;</span><span class="err">标</span><span class="err">号</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>(6) 标号为t+1的语句是增添的实现函数值出栈操作的语句，作为过程P的非递归出口（即返回调用该递归过程的主过程）。</p>
+</div><p>(6) 标号为t+1的语句是增添的实现函数值出栈操作的语句，作为过程P的非递归出口（即返回调用该递归过程的主过程）。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="o">&lt;</span><span class="err">标号</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;:</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">().</span><span class="n">p</span><span class="err">；</span> <span class="c1">// temp为临时变量, 保存返回值
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="o">&lt;</span><span class="err">标</span><span class="err">号</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;</span><span class="o">:</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="n">p</span><span class="err">；</span> <span class="c1">// temp为临时变量, 保存返回值
 </span><span class="c1"></span>                   <span class="c1">// 如递归无返回值, 此语句和下面的return语句可以省略
-</span><span class="c1"></span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span><span class="c1"></span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="n">retutn</span> <span class="n">temp</span><span class="err">；</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>(7) 切记实现参量“当前层化”，过程体中出现的所有参变量和局部变量均以栈顶工作记录中相应的数据项代替。</p>
-
+</div><p>(7) 切记实现参量“当前层化”，过程体中出现的所有参变量和局部变量均以栈顶工作记录中相应的数据项代替。</p>
 <p>(8) 若算法中有复合递归调用的语句，则应增设局部变量消除复合调用，即，将形如f(&hellip;, f(&hellip;), &hellip;);的语句改写为&lt;局部变量＞：f(&hellip;);&hellip;f(&hellip;, &lt;局部变量＞,&hellip;);的形式。</p>
-
 <p>(9) 经过上述变换规则得到的不含递归的算法尚需进行最后一步变换，即简化不必要的操作，如消去冗余进栈的内容等，并画出相应的流程图，从流程图中找出各循环的循环体和循环条件，从而消去goto语句，得到结构清晰的非递归算法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -433,70 +389,70 @@ LINES;（其中LINESw为第k个递归调用语句）</pre></td></tr></table>
 <pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">//汉诺塔递归
 </span><span class="c1"></span><span class="kt">void</span> <span class="nf">Hanoi</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="err">，</span><span class="kt">char</span> <span class="n">x</span><span class="err">，</span><span class="n">y</span><span class="err">，</span><span class="n">z</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">move</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">z</span><span class="p">);</span> <span class="c1">// 将编号为1的盘子从x移到z
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">move</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 将编号为1的盘子从x移到z
 </span><span class="c1"></span>    <span class="k">else</span>
     <span class="p">{</span>
-        <span class="n">Hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
-        <span class="n">Move</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
-        <span class="n">Hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
+        <span class="n">Hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">Move</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">Hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1">//机械转换
 </span><span class="c1"></span><span class="kt">void</span> <span class="nf">Hanoi</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">char</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="k">struct</span> <span class="n">levelstr</span>
+    <span class="k">struct</span> <span class="nc">levelstr</span>
     <span class="p">{</span>
         <span class="kt">int</span> <span class="n">adr</span><span class="p">,</span> <span class="n">ptrn</span><span class="p">;</span> <span class="kt">char</span> <span class="n">xp</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="n">zp</span><span class="err">；</span>
     <span class="p">}</span> <span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="n">currentp</span><span class="p">;</span>
-    <span class="n">s</span><span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>    <span class="c1">// m*m-1是栈的初始化大小
-</span><span class="c1"></span>    <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
-    <span class="mi">0</span><span class="o">:</span><span class="n">currentp</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">();</span>  <span class="c1">// 局部变量currentp用来保存栈顶元素
-</span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">currentp</span><span class="p">.</span><span class="n">prtn</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span>
-          <span class="n">move</span><span class="p">(</span><span class="n">currentp</span><span class="p">.</span><span class="n">xp</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span><span class="n">Zp</span><span class="p">);</span>
+    <span class="n">s</span><span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>    <span class="c1">// m*m-1是栈的初始化大小
+</span><span class="c1"></span>    <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span><span class="p">;</span>
+    <span class="mi">0</span><span class="o">:</span><span class="n">currentp</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// 局部变量currentp用来保存栈顶元素
+</span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">currentp</span><span class="p">.</span><span class="n">prtn</span> <span class="o">=</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="p">{</span>
+          <span class="n">move</span><span class="p">(</span><span class="n">currentp</span><span class="p">.</span><span class="n">xp</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span><span class="n">Zp</span><span class="p">)</span><span class="p">;</span>
           <span class="k">goto</span> <span class="n">currentp</span><span class="p">.</span><span class="n">adr</span><span class="p">;</span>
         <span class="p">}</span>
         <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span><span class="n">ptrn</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span><span class="n">xp</span><span class="p">,</span>
-              <span class="n">currentp</span><span class="p">.</span><span class="n">zp</span><span class="p">,</span> <span class="n">cutrretnp</span><span class="p">.</span><span class="n">Yp</span><span class="p">);</span>
+              <span class="n">currentp</span><span class="p">.</span><span class="n">zp</span><span class="p">,</span> <span class="n">cutrretnp</span><span class="p">.</span><span class="n">Yp</span><span class="p">)</span><span class="p">;</span>
         <span class="k">goto</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="mi">1</span><span class="o">:</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
-        <span class="n">currentp</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">();</span>
-        <span class="n">move</span><span class="p">(</span><span class="n">currentp</span><span class="p">.</span><span class="n">Xp</span><span class="p">,</span><span class="n">currentp</span><span class="p">.</span><span class="n">Ptrn</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span><span class="n">zp</span><span class="p">);</span>
+    <span class="mi">1</span><span class="o">:</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">currentp</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">move</span><span class="p">(</span><span class="n">currentp</span><span class="p">.</span><span class="n">Xp</span><span class="p">,</span><span class="n">currentp</span><span class="p">.</span><span class="n">Ptrn</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span><span class="n">zp</span><span class="p">)</span><span class="p">;</span>
         <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span><span class="n">ptrn</span> <span class="err">–</span><span class="mi">1</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span><span class="n">yp</span><span class="p">,</span>
-              <span class="n">currentp</span><span class="p">.</span><span class="n">xp</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span> <span class="n">zp</span><span class="p">);</span>
+              <span class="n">currentp</span><span class="p">.</span><span class="n">xp</span><span class="p">,</span> <span class="n">currentp</span><span class="p">.</span> <span class="n">zp</span><span class="p">)</span><span class="p">;</span>
         <span class="k">goto</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="mi">2</span><span class="o">:</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
-        <span class="n">currentp</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">();</span>
+    <span class="mi">2</span><span class="o">:</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">currentp</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">peek</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
         <span class="k">goto</span> <span class="n">currentp</span><span class="p">.</span><span class="n">adr</span><span class="p">;</span>
-    <span class="mi">3</span><span class="o">:</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+    <span class="mi">3</span><span class="o">:</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="c1">//优化，去goto
 </span><span class="c1"></span><span class="kt">void</span> <span class="nf">hanoi2</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">char</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="k">struct</span> <span class="n">levelstr</span>
+    <span class="k">struct</span> <span class="nc">levelstr</span>
     <span class="p">{</span>
         <span class="kt">int</span> <span class="n">ptrn</span><span class="p">;</span> <span class="kt">char</span> <span class="n">xp</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="n">zp</span><span class="p">;</span>
-    <span class="p">}</span> <span class="n">s</span><span class="p">[</span><span class="n">arrmax</span><span class="p">];</span>
+    <span class="p">}</span> <span class="n">s</span><span class="p">[</span><span class="n">arrmax</span><span class="p">]</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">top</span><span class="p">;</span> <span class="kt">char</span> <span class="n">temp</span><span class="p">;</span> <span class="n">top</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span> <span class="c1">// 栈初始化
-</span><span class="c1"></span>    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">((</span><span class="n">top</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">ptrn</span><span class="o">==</span><span class="mi">1</span><span class="p">)))</span>
+    <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 栈初始化
+</span><span class="c1"></span>    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">&amp;</span><span class="o">&amp;</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">ptrn</span><span class="o">=</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">while</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">ptrn</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">ptrn</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">xp</span><span class="p">,</span>
-                        <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">zp</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">yp</span><span class="p">);</span>
-        <span class="n">move</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">xp</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">zp</span><span class="p">);</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">ptrn</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="o">+</span><span class="o">+</span><span class="p">]</span> <span class="o">=</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">ptrn</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">xp</span><span class="p">,</span>
+                        <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">zp</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">yp</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">move</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">xp</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">zp</span><span class="p">)</span><span class="p">;</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">top</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">top</span><span class="o">--</span><span class="p">;</span>
-            <span class="n">move</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">xp</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">ptrn</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">zp</span><span class="p">);</span>
-            <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">ptrn</span><span class="o">--</span><span class="p">;</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">xp</span><span class="p">;</span>
-            <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">xp</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">Yp</span><span class="p">;</span>
-            <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">yp</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+            <span class="n">top</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
+            <span class="n">move</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">xp</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">ptrn</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">zp</span><span class="p">)</span><span class="p">;</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">ptrn</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">xp</span><span class="p">;</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">xp</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">Yp</span><span class="p">;</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">yp</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
-    <span class="n">move</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">xp</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">zp</span><span class="p">);</span>
-    <span class="n">top</span><span class="o">--</span><span class="p">;</span>
+    <span class="n">move</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">xp</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">top</span><span class="p">]</span><span class="p">.</span><span class="n">zp</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">top</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
@@ -551,7 +507,7 @@ LINES;（其中LINESw为第k个递归调用语句）</pre></td></tr></table>
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  
+
   
 
   

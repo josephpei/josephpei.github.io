@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/08/02/uw-%E8%BD%AF%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3lab3-bufbomb/" />
@@ -43,36 +43,26 @@
 
 <meta property="og:title" content="UW 软硬件接口lab3 bufbomb" />
 <meta property="og:description" content="本实验即常见的缓冲区溢出攻击。（注：新的 64bit Win8/Linux 下这种简单方式无效，x86_64 cpu 的可执行标志位 exec-shield，gcc 栈保护选项开关 -fno-stack-protector）
-
 主函数为 test()，首先声明一个局部变量 volatile int local = 0xdeadbeef，volatile 是编译时不使用 register 优化，必须分配栈空间，后面的实验过程不能覆盖这个 local 变量。
-
 然后就是存在缓冲区溢出漏洞的 getbuf 函数，也就是我们要操作的对象。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://josephpei.github.io/2014/08/02/uw-%E8%BD%AF%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3lab3-bufbomb/" />
-<meta property="article:published_time" content="2014-08-02T22:31:49&#43;08:00"/>
-<meta property="article:modified_time" content="2014-08-02T22:31:49&#43;08:00"/>
-
+<meta property="article:published_time" content="2014-08-02T22:31:49+08:00" />
+<meta property="article:modified_time" content="2014-08-02T22:31:49+08:00" />
 <meta itemprop="name" content="UW 软硬件接口lab3 bufbomb">
 <meta itemprop="description" content="本实验即常见的缓冲区溢出攻击。（注：新的 64bit Win8/Linux 下这种简单方式无效，x86_64 cpu 的可执行标志位 exec-shield，gcc 栈保护选项开关 -fno-stack-protector）
-
 主函数为 test()，首先声明一个局部变量 volatile int local = 0xdeadbeef，volatile 是编译时不使用 register 优化，必须分配栈空间，后面的实验过程不能覆盖这个 local 变量。
-
 然后就是存在缓冲区溢出漏洞的 getbuf 函数，也就是我们要操作的对象。">
-
-
 <meta itemprop="datePublished" content="2014-08-02T22:31:49&#43;08:00" />
 <meta itemprop="dateModified" content="2014-08-02T22:31:49&#43;08:00" />
 <meta itemprop="wordCount" content="474">
 
 
 
-<meta itemprop="keywords" content="mooc," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="mooc," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="UW 软硬件接口lab3 bufbomb"/>
 <meta name="twitter:description" content="本实验即常见的缓冲区溢出攻击。（注：新的 64bit Win8/Linux 下这种简单方式无效，x86_64 cpu 的可执行标志位 exec-shield，gcc 栈保护选项开关 -fno-stack-protector）
-
 主函数为 test()，首先声明一个局部变量 volatile int local = 0xdeadbeef，volatile 是编译时不使用 register 优化，必须分配栈空间，后面的实验过程不能覆盖这个 local 变量。
-
 然后就是存在缓冲区溢出漏洞的 getbuf 函数，也就是我们要操作的对象。"/>
 
 <!--[if lte IE 9]>
@@ -149,104 +139,92 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#第一关">第一关</a></li>
-<li><a href="#第二关">第二关</a></li>
-<li><a href="#第三关">第三关</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#heading">第一关</a></li>
+    <li><a href="#heading-1">第二关</a></li>
+    <li><a href="#heading-2">第三关</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>本实验即常见的缓冲区溢出攻击。（注：新的 64bit Win8/Linux 下这种简单方式无效，x86_64 cpu 的可执行标志位 exec-shield，gcc 栈保护选项开关 -fno-stack-protector）</p>
-
 <p>主函数为 test()，首先声明一个局部变量 volatile int local = 0xdeadbeef，volatile 是编译时不使用 register 优化，必须分配栈空间，后面的实验过程不能覆盖这个 local 变量。</p>
-
 <p>然后就是存在缓冲区溢出漏洞的 getbuf 函数，也就是我们要操作的对象。</p>
-
-<h2 id="第一关">第一关</h2>
-
+<h2 id="heading">第一关</h2>
 <p>getbuf 函数</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">(gdb)p $rbp
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">(gdb)p $rbp
 $1 = (void *) 0x7fffffffb730
 (gdb)p $rsp
 $2 = (void *) 0x7fffffffb700
 (gdb)p &amp;buf
-$3 = (char (*)[36]) 0x7fffffffb700</pre></td></tr></table>
+$3 = (char (*)[36]) 0x7fffffffb700
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>&amp;buf 到 %rbp 距离 48(0x30) Byte，加上 old %rbp 和 return address，一共 64 Byte</p>
-
+</div><p>&amp;buf 到 %rbp 距离 48(0x30) Byte，加上 old %rbp 和 return address，一共 64 Byte</p>
 <p>smoke.txt 内容应该是</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">48 Byte 无意义内容
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">48 Byte 无意义内容
 8 Byte old %rbp
-8 Byte smoke 函数地址  (intel 是 little endian)</pre></td></tr></table>
+8 Byte smoke 函数地址  (intel 是 little endian)
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="第二关">第二关</h2>
-
+</div><h2 id="heading-1">第二关</h2>
 <p>fizz 函数一共有7个参数，前6个进 register，最后一个参数 val 进栈</p>
-
 <p>fizz.txt 内容应该是</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">48 Byte 无意义内容
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">48 Byte 无意义内容
 8 Byte old %rbp
 8 Byte fizz 函数地址
 8 Byte fizz 函数返回地址(这个可以是任意值)
-8 Byte val 参数值 (makecookie得到的值)</pre></td></tr></table>
+8 Byte val 参数值 (makecookie得到的值)
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="第三关">第三关</h2>
-
+</div><h2 id="heading-2">第三关</h2>
 <p>修改全局变量 global_value 等于 cookie，并跳转到指定函数 bang</p>
-
 <p>bang.txt 内容应该是</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">指令代码
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">指令代码
 填充够 48 Byte 无意义内容
 8 Byte old %rbp
-8 Byte buff 首地址</pre></td></tr></table>
+8 Byte buff 首地址
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>bang.s</p>
+</div><p>bang.s</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -255,7 +233,8 @@ $3 = (char (*)[36]) 0x7fffffffb700</pre></td></tr></table>
 <pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">movq</span> <span class="mi">0x602320</span><span class="p">,</span> <span class="nv">%r9</span>
 <span class="nf">movq</span> <span class="nv">%r9</span><span class="p">,</span> <span class="mi">0x602308</span>
 <span class="nf">pushq</span> <span class="no">$0x401020</span>
-<span class="nf">retq</span></code></pre></td></tr></table>
+<span class="nf">retq</span>
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -308,7 +287,7 @@ $3 = (char (*)[36]) 0x7fffffffb700</pre></td></tr></table>
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  
+
   
 
   

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>poj on 有翅膀的天狼</title>
@@ -18,9 +18,7 @@
       
       <guid>http://josephpei.github.io/2013/12/20/poj-2388-%E5%AF%BB%E6%89%BE%E4%B8%AD%E4%BD%8D%E6%95%B0/</guid>
       <description>&lt;p&gt;这也是Google面试题&lt;/p&gt;
-
 &lt;p&gt;股市上一个股票的价格从开市开始是不停的变化的，需要开发一个系统，给定一个股票，它能实时显示从开市到当前时间的这个股票的价格的中位数（中值）。&lt;/p&gt;
-
 &lt;p&gt;用双堆存储，一个大根堆，一个小根堆，则Inert为O(logn)，Median为O(1)&lt;/p&gt;</description>
     </item>
     
@@ -76,9 +74,7 @@
       
       <guid>http://josephpei.github.io/2013/10/20/poj-1664-%E6%94%BE%E8%8B%B9%E6%9E%9C/</guid>
       <description>&lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;
-
 &lt;p&gt;把M个同样的苹果放在N个同样的盘子里，允许有的盘子空着不放，问共有多少种不同的分法？（用K表示）5，1，1和1，5，1 是同一种分法。&lt;/p&gt;
-
 &lt;p&gt;自己想了半天，什么排列组合之类的，后来去搜题解，才知道是用递归……&lt;/p&gt;</description>
     </item>
     
@@ -88,7 +84,7 @@
       <pubDate>Fri, 27 Sep 2013 16:21:38 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2013/09/27/poj-1007-dna%E9%80%86%E5%BA%8F%E5%AF%B9/</guid>
-      <description>题意就是让你求逆序对，然后按照逆序对的大小将字符串输出，如果逆序对数目一样，则不要改变原来的顺序输出。 至于逆序对数&amp;hellip;对于&amp;rd</description>
+      <description>题意就是让你求逆序对，然后按照逆序对的大小将字符串输出，如果逆序对数目一样，则不要改变原来的顺序输出。 至于逆序对数&amp;hellip;对于&amp;qu</description>
     </item>
     
     <item>
@@ -116,9 +112,7 @@
       
       <guid>http://josephpei.github.io/2013/09/25/poj-1001-%E6%B1%82%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%B9%82/</guid>
       <description>&lt;p&gt;问题：对一个实数R( 0.0 &amp;lt; R &amp;lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &amp;lt; n &amp;lt;= 25。&lt;/p&gt;
-
-&lt;h2 id=&#34;计算结果位数的确定&#34;&gt;计算结果位数的确定&lt;/h2&gt;
-
+&lt;h2 id=&#34;heading&#34;&gt;计算结果位数的确定&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;两数之和的最大为较大的数的位数加1&lt;/li&gt;
 &lt;li&gt;乘积的位数最大为两个因子的位数之和&lt;/li&gt;

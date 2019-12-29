@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/12/16/%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%B7%B1%E7%9A%84stl-iterator/" />
@@ -43,21 +43,17 @@
 <meta property="og:description" content="STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://josephpei.github.io/2013/12/16/%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%B7%B1%E7%9A%84stl-iterator/" />
-<meta property="article:published_time" content="2013-12-16T11:10:08&#43;08:00"/>
-<meta property="article:modified_time" content="2013-12-16T11:10:08&#43;08:00"/>
-
+<meta property="article:published_time" content="2013-12-16T11:10:08+08:00" />
+<meta property="article:modified_time" content="2013-12-16T11:10:08+08:00" />
 <meta itemprop="name" content="实现自己的STL Iterator">
 <meta itemprop="description" content="STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。">
-
-
 <meta itemprop="datePublished" content="2013-12-16T11:10:08&#43;08:00" />
 <meta itemprop="dateModified" content="2013-12-16T11:10:08&#43;08:00" />
-<meta itemprop="wordCount" content="1918">
+<meta itemprop="wordCount" content="1935">
 
 
 
-<meta itemprop="keywords" content="cpp," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="cpp," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="实现自己的STL Iterator"/>
 <meta name="twitter:description" content="STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。"/>
 
@@ -135,27 +131,22 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-内嵌stl-container">1 内嵌STL Container</a></li>
-<li><a href="#2-在自己的-collection-中实现-stl-iterator">2 在自己的 Collection 中实现 STL Iterator</a></li>
-<li><a href="#3-特殊行为的iterator">3 特殊行为的Iterator</a></li>
-<li><a href="#iterator完整实现">Iterator完整实现</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#1-stl-container">1 内嵌STL Container</a></li>
+    <li><a href="#2--collection--stl-iterator">2 在自己的 Collection 中实现 STL Iterator</a></li>
+    <li><a href="#3-iterator">3 特殊行为的Iterator</a></li>
+    <li><a href="#iterator">Iterator完整实现</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。</p>
-
-<h2 id="1-内嵌stl-container">1 内嵌STL Container</h2>
-
+<h2 id="1-stl-container">1 内嵌STL Container</h2>
 <p>代理模式</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -168,26 +159,24 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span><span class="err"> </span><span class="nc">CourseList</span> <span class="p">{</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">CourseList</span> <span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>
   <span class="k">typedef</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="n">StudentList</span><span class="p">;</span>
   <span class="n">StudentList</span> <span class="n">students</span><span class="p">;</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">typedef</span> <span class="n">StudentList</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iterator</span><span class="p">;</span>
-  <span class="k">typedef</span> <span class="n">StudentList</span><span class="o">::</span><span class="n">const_iterator</span> <span class="n">const_iterator</span><span class="p">;</span>
-  <span class="n">iterator</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">students</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="p">}</span>
-  <span class="n">iterator</span> <span class="nf">end</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">students</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="p">}</span>
-  <span class="p">...</span>
-<span class="p">};</span>
+  <span class="k">typedef</span> <span class="n">StudentList</span><span class="o">:</span><span class="o">:</span><span class="n">iterator</span> <span class="n">iterator</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">StudentList</span><span class="o">:</span><span class="o">:</span><span class="n">const_iterator</span> <span class="n">const_iterator</span><span class="p">;</span>
+  <span class="n">iterator</span> <span class="nf">begin</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">students</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">iterator</span> <span class="nf">end</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">students</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+<span class="p">}</span><span class="p">;</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="2-在自己的-collection-中实现-stl-iterator">2 在自己的 Collection 中实现 STL Iterator</h2>
-
+</div><h2 id="2--collection--stl-iterator">2 在自己的 Collection 中实现 STL Iterator</h2>
 <p>stl iterator class</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -200,20 +189,20 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Category</span><span class="p">,</span> <span class="k">typename</span> <span class="n">_Tp</span><span class="p">,</span> <span class="k">typename</span> <span class="n">_Distance</span> <span class="o">=</span> <span class="n">ptrdiff_t</span><span class="p">,</span>
-            <span class="k">typename</span> <span class="n">_Pointer</span> <span class="o">=</span> <span class="n">_Tp</span><span class="o">*</span><span class="p">,</span> <span class="k">typename</span> <span class="n">_Reference</span> <span class="o">=</span> <span class="n">_Tp</span><span class="o">&amp;&gt;</span>
-<span class="k">struct</span> <span class="n">iterator</span>
+            <span class="k">typename</span> <span class="n">_Pointer</span> <span class="o">=</span> <span class="n">_Tp</span><span class="o">*</span><span class="p">,</span> <span class="k">typename</span> <span class="n">_Reference</span> <span class="o">=</span> <span class="n">_Tp</span><span class="o">&amp;</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="nc">iterator</span>
 <span class="p">{</span>
    <span class="k">typedef</span> <span class="n">_Category</span>  <span class="n">iterator_category</span><span class="p">;</span>
    <span class="k">typedef</span> <span class="n">_Tp</span>        <span class="n">value_type</span><span class="p">;</span>
    <span class="k">typedef</span> <span class="n">_Distance</span>  <span class="n">difference_type</span><span class="p">;</span>
    <span class="k">typedef</span> <span class="n">_Pointer</span>   <span class="n">pointer</span><span class="p">;</span>
    <span class="k">typedef</span> <span class="n">_Reference</span> <span class="n">reference</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="p">}</span><span class="p">;</span>
 </code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -271,73 +260,70 @@
 </span><span class="lnt">56
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">mylist</span><span class="p">;</span>  <span class="c1">// forward declare
-</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">mylist_iterator</span><span class="p">;</span> <span class="c1">// forward declare
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">mylist</span><span class="p">;</span>  <span class="c1">// forward declare
+</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">mylist_iterator</span><span class="p">;</span> <span class="c1">// forward declare
 </span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">class</span><span class="err"> </span><span class="nc">mylist_node</span> <span class="p">{</span>
-	<span class="k">friend</span> <span class="k">class</span><span class="err"> </span><span class="nc">mylist</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
-	<span class="k">friend</span> <span class="k">class</span><span class="err"> </span><span class="nc">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">mylist_node</span> <span class="p">{</span>
+	<span class="k">friend</span> <span class="k">class</span> <span class="nc">mylist</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
+	<span class="k">friend</span> <span class="k">class</span> <span class="nc">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
 <span class="k">private</span><span class="o">:</span>
-	<span class="n">mylist_node</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">t</span><span class="p">,</span> <span class="n">mylist_node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">next</span><span class="p">)</span> <span class="o">:</span> <span class="n">elem</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="n">next</span><span class="p">)</span> <span class="p">{}</span>
-	<span class="o">~</span><span class="n">mylist_node</span><span class="p">()</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">next</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">mylist_node</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">t</span><span class="p">,</span> <span class="n">mylist_node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">next</span><span class="p">)</span> <span class="o">:</span> <span class="n">elem</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="p">,</span> <span class="n">next</span><span class="p">(</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
+	<span class="o">~</span><span class="n">mylist_node</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">next</span><span class="p">;</span> <span class="p">}</span>
 	<span class="n">T</span> <span class="n">elem</span><span class="p">;</span>
 	<span class="n">mylist_node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="p">}</span><span class="p">;</span>
 
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">class</span><span class="err"> </span><span class="nc">mylist</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">mylist</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
 	<span class="k">typedef</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">iterator</span>    <span class="p">;</span>
 <span class="k">public</span><span class="o">:</span>
-	<span class="n">mylist</span><span class="p">()</span> <span class="o">:</span> <span class="n">head</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span> <span class="n">tail</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span> <span class="p">{}</span>
-	<span class="o">~</span><span class="n">mylist</span><span class="p">()</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">head</span><span class="p">;</span> <span class="p">}</span>
-	<span class="kt">bool</span> <span class="n">empty</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">;</span> <span class="p">}</span>
-	<span class="kt">void</span> <span class="n">push_back</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">elem</span><span class="p">);</span>
-	<span class="n">iterator</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">head</span><span class="p">);</span> <span class="p">}</span>
-	<span class="n">iterator</span> <span class="nf">end</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span> <span class="p">}</span>
+	<span class="n">mylist</span><span class="p">(</span><span class="p">)</span> <span class="o">:</span> <span class="n">head</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span><span class="p">,</span> <span class="n">tail</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
+	<span class="o">~</span><span class="n">mylist</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">head</span><span class="p">;</span> <span class="p">}</span>
+	<span class="kt">bool</span> <span class="nf">empty</span><span class="p">(</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">head</span> <span class="o">=</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="p">}</span>
+	<span class="kt">void</span> <span class="nf">push_back</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">elem</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">iterator</span> <span class="nf">begin</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">head</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">iterator</span> <span class="nf">end</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
 <span class="k">private</span><span class="o">:</span>
 	<span class="n">mylist_node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">tail</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="p">}</span><span class="p">;</span>
 
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">class</span><span class="err"> </span><span class="nc">mylist_iterator</span> <span class="o">:</span> <span class="k">public</span> <span class="n">iterator</span><span class="o">&lt;</span><span class="n">forward_iterator_tag</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
-	<span class="k">friend</span> <span class="k">class</span><span class="err"> </span><span class="nc">mylist</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">mylist_iterator</span> <span class="o">:</span> <span class="k">public</span> <span class="n">iterator</span><span class="o">&lt;</span><span class="n">forward_iterator_tag</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+	<span class="k">friend</span> <span class="k">class</span> <span class="nc">mylist</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
 <span class="k">public</span><span class="o">:</span>
-	<span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*</span><span class="p">();</span>
-	<span class="k">const</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="k">operator</span><span class="o">++</span><span class="p">();</span>
-	<span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+	<span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+	<span class="k">const</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+</span><span class="o">+</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+	<span class="kt">bool</span> <span class="k">operator</span><span class="o">!</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
 <span class="k">private</span><span class="o">:</span>
 	<span class="n">mylist_node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">pointee</span><span class="p">;</span>
-	<span class="n">mylist_iterator</span><span class="p">(</span><span class="n">mylist_node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">pointee</span><span class="p">)</span> <span class="o">:</span> <span class="n">pointee</span><span class="p">(</span><span class="n">pointee</span><span class="p">)</span> <span class="p">{}</span>
-<span class="p">};</span>
+	<span class="n">mylist_iterator</span><span class="p">(</span><span class="n">mylist_node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">pointee</span><span class="p">)</span> <span class="o">:</span> <span class="n">pointee</span><span class="p">(</span><span class="n">pointee</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="n">T</span><span class="o">&amp;</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">*</span><span class="p">()</span>
+<span class="n">T</span><span class="o">&amp;</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="p">)</span>
 <span class="p">{</span>
-	<span class="k">return</span> <span class="n">pointee</span><span class="o">-&gt;</span><span class="n">elem</span><span class="p">;</span>
+	<span class="k">return</span> <span class="n">pointee</span><span class="o">-</span><span class="o">&gt;</span><span class="n">elem</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">const</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">++</span><span class="p">()</span>
+<span class="k">const</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">&amp;</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="k">operator</span><span class="o">+</span><span class="o">+</span><span class="p">(</span><span class="p">)</span>
 <span class="p">{</span>
-	<span class="n">assert</span><span class="p">(</span><span class="n">pointee</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">);</span>
-	<span class="n">pointee</span> <span class="o">=</span> <span class="n">pointee</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+	<span class="n">assert</span><span class="p">(</span><span class="n">pointee</span> <span class="o">!</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">pointee</span> <span class="o">=</span> <span class="n">pointee</span><span class="o">-</span><span class="o">&gt;</span><span class="n">next</span><span class="p">;</span>
 	<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="kt">bool</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span>
+<span class="kt">bool</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span> <span class="k">operator</span><span class="o">!</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">mylist_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span>
 <span class="p">{</span>
-	<span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">pointee</span> <span class="o">!=</span> <span class="n">other</span><span class="p">.</span><span class="n">pointee</span><span class="p">;</span>
+	<span class="k">return</span> <span class="k">this</span><span class="o">-</span><span class="o">&gt;</span><span class="n">pointee</span> <span class="o">!</span><span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">pointee</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="3-特殊行为的iterator">3 特殊行为的Iterator</h2>
-
+</div><h2 id="3-iterator">3 特殊行为的Iterator</h2>
 <p>Stroustrup The C++ Programming Language gives an example of range-checking iterator.</p>
-
 <p>下面我们来实现一个even numbers iterator</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -407,40 +393,40 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">IterT</span><span class="p">,</span> <span class="k">typename</span> <span class="n">TypeT</span><span class="o">&gt;</span>
-<span class="k">class</span><span class="err"> </span><span class="nc">even_iterator</span> <span class="o">:</span>
-<span class="k">public</span> <span class="n">std</span><span class="o">::</span><span class="n">iterator</span><span class="o">&lt;</span><span class="n">input_iterator_tag</span><span class="p">,</span> <span class="n">TypeT</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">even_iterator</span> <span class="o">:</span>
+<span class="k">public</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">iterator</span><span class="o">&lt;</span><span class="n">input_iterator_tag</span><span class="p">,</span> <span class="n">TypeT</span><span class="o">&gt;</span>
 <span class="p">{</span>
 <span class="k">protected</span><span class="o">:</span>
 	<span class="n">IterT</span> <span class="n">m_itCur</span><span class="p">;</span>
 	<span class="n">IterT</span> <span class="n">m_itEnd</span><span class="p">;</span>
 
 <span class="k">protected</span><span class="o">:</span>
-	<span class="kt">void</span> <span class="n">__find_first_even</span><span class="p">()</span>
+	<span class="kt">void</span> <span class="n">__find_first_even</span><span class="p">(</span><span class="p">)</span>
 	<span class="p">{</span>
-		<span class="k">for</span> <span class="p">(;</span> <span class="n">m_itCur</span> <span class="o">!=</span> <span class="n">m_itEnd</span><span class="p">;</span> <span class="o">++</span><span class="n">m_itCur</span><span class="p">)</span>
-			<span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">m_itCur</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="p">;</span> <span class="n">m_itCur</span> <span class="o">!</span><span class="o">=</span> <span class="n">m_itEnd</span><span class="p">;</span> <span class="o">+</span><span class="o">+</span><span class="n">m_itCur</span><span class="p">)</span>
+			<span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">m_itCur</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
 	<span class="p">}</span>
 
-	<span class="kt">void</span> <span class="n">__find_next_even</span><span class="p">()</span>
+	<span class="kt">void</span> <span class="nf">__find_next_even</span><span class="p">(</span><span class="p">)</span>
 	<span class="p">{</span>
-		<span class="k">if</span> <span class="p">(</span><span class="n">m_itCur</span> <span class="o">==</span> <span class="n">m_itEnd</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-		<span class="k">for</span> <span class="p">(</span><span class="o">++</span><span class="n">m_itCur</span><span class="p">;</span> <span class="n">m_itCur</span> <span class="o">!=</span> <span class="n">m_itEnd</span><span class="p">;</span> <span class="o">++</span><span class="n">m_itCur</span><span class="p">)</span>
-			<span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">m_itCur</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">m_itCur</span> <span class="o">=</span><span class="o">=</span> <span class="n">m_itEnd</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="o">+</span><span class="o">+</span><span class="n">m_itCur</span><span class="p">;</span> <span class="n">m_itCur</span> <span class="o">!</span><span class="o">=</span> <span class="n">m_itEnd</span><span class="p">;</span> <span class="o">+</span><span class="o">+</span><span class="n">m_itCur</span><span class="p">)</span>
+			<span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">m_itCur</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
 	<span class="p">}</span>
 
 <span class="k">public</span><span class="o">:</span>
-	<span class="n">even_iterator</span><span class="p">()</span> <span class="o">:</span>
-	<span class="n">m_itEnd</span><span class="p">(),</span> <span class="n">m_itCur</span><span class="p">()</span> <span class="p">{}</span>
+	<span class="n">even_iterator</span><span class="p">(</span><span class="p">)</span> <span class="o">:</span>
+	<span class="n">m_itEnd</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">m_itCur</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
 
 	<span class="n">even_iterator</span><span class="p">(</span><span class="k">const</span> <span class="n">IterT</span><span class="o">&amp;</span> <span class="n">itCur</span><span class="p">,</span> <span class="k">const</span> <span class="n">IterT</span><span class="o">&amp;</span> <span class="n">itEnd</span><span class="p">)</span> <span class="o">:</span>
-	<span class="n">m_itCur</span><span class="p">(</span><span class="n">itCur</span><span class="p">),</span> <span class="n">m_itEnd</span><span class="p">(</span><span class="n">itEnd</span><span class="p">)</span>
-	<span class="p">{</span> <span class="n">__find_first_even</span><span class="p">();</span> <span class="p">}</span>
+	<span class="n">m_itCur</span><span class="p">(</span><span class="n">itCur</span><span class="p">)</span><span class="p">,</span> <span class="n">m_itEnd</span><span class="p">(</span><span class="n">itEnd</span><span class="p">)</span>
+	<span class="p">{</span> <span class="n">__find_first_even</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
 
 	<span class="n">even_iterator</span><span class="p">(</span><span class="k">const</span> <span class="n">even_iterator</span><span class="o">&amp;</span> <span class="n">r</span><span class="p">)</span> <span class="o">:</span>
-	<span class="n">m_itCur</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">m_itCur</span><span class="p">),</span>
-	<span class="n">m_itEnd</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">m_itEnd</span><span class="p">)</span> <span class="p">{}</span>
+	<span class="n">m_itCur</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">m_itCur</span><span class="p">)</span><span class="p">,</span>
+	<span class="n">m_itEnd</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">m_itEnd</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
 
-	<span class="n">even_iterator</span><span class="o">&lt;</span><span class="n">IterT</span><span class="p">,</span> <span class="n">TypeT</span><span class="o">&gt;&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">even_iterator</span><span class="o">&amp;</span> <span class="n">r</span><span class="p">)</span>
+	<span class="n">even_iterator</span><span class="o">&lt;</span><span class="n">IterT</span><span class="p">,</span> <span class="n">TypeT</span><span class="o">&gt;</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">even_iterator</span><span class="o">&amp;</span> <span class="n">r</span><span class="p">)</span>
 	<span class="p">{</span>
 		<span class="n">m_itCur</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="n">m_itCur</span><span class="p">;</span>
 		<span class="n">m_itEnd</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="n">m_itEnd</span><span class="p">;</span>
@@ -448,38 +434,37 @@
 		<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
 	<span class="p">}</span>
 
-	<span class="n">even_iterator</span><span class="o">&lt;</span><span class="n">IterT</span><span class="p">,</span> <span class="n">TypeT</span><span class="o">&gt;&amp;</span> <span class="k">operator</span><span class="o">++</span><span class="p">()</span>
+	<span class="n">even_iterator</span><span class="o">&lt;</span><span class="n">IterT</span><span class="p">,</span> <span class="n">TypeT</span><span class="o">&gt;</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+</span><span class="o">+</span><span class="p">(</span><span class="p">)</span>
 	<span class="p">{</span>
-		<span class="n">__find_next_even</span><span class="p">();</span>
+		<span class="n">__find_next_even</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 		<span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
 	<span class="p">}</span>
 
-	<span class="n">even_iterator</span><span class="o">&lt;</span><span class="n">IterT</span><span class="p">,</span> <span class="n">TypeT</span><span class="o">&gt;</span> <span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+	<span class="n">even_iterator</span><span class="o">&lt;</span><span class="n">IterT</span><span class="p">,</span> <span class="n">TypeT</span><span class="o">&gt;</span> <span class="k">operator</span><span class="o">+</span><span class="o">+</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
 	<span class="p">{</span>
 		<span class="n">even_iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
-		<span class="n">__find_next_even</span><span class="p">();</span>
+		<span class="n">__find_next_even</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 		<span class="k">return</span> <span class="n">it</span><span class="p">;</span>
 	<span class="p">}</span>
 
-	<span class="n">TypeT</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*</span><span class="p">()</span>
+	<span class="n">TypeT</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="p">)</span>
 	<span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="n">m_itCur</span><span class="p">;</span> <span class="p">}</span>
 
-	<span class="n">TypeT</span><span class="o">*</span> <span class="k">operator</span><span class="o">-&gt;</span><span class="p">()</span>
-	<span class="p">{</span> <span class="k">return</span> <span class="o">&amp;</span><span class="p">(</span><span class="o">*</span><span class="n">m_itCur</span><span class="p">);</span> <span class="p">}</span>
+	<span class="n">TypeT</span><span class="o">*</span> <span class="k">operator</span><span class="o">-</span><span class="o">&gt;</span><span class="p">(</span><span class="p">)</span>
+	<span class="p">{</span> <span class="k">return</span> <span class="o">&amp;</span><span class="p">(</span><span class="o">*</span><span class="n">m_itCur</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
 
-	<span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">even_iterator</span><span class="o">&amp;</span> <span class="n">r</span><span class="p">)</span> <span class="k">const</span>
-	<span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">m_itCur</span> <span class="o">!=</span> <span class="n">r</span><span class="p">.</span><span class="n">m_itCur</span><span class="p">);</span> <span class="p">}</span>
+	<span class="kt">bool</span> <span class="k">operator</span><span class="o">!</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">even_iterator</span><span class="o">&amp;</span> <span class="n">r</span><span class="p">)</span> <span class="k">const</span>
+	<span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">m_itCur</span> <span class="o">!</span><span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="n">m_itCur</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
 
-	<span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">even_iterator</span><span class="o">&amp;</span> <span class="n">r</span><span class="p">)</span> <span class="k">const</span>
-	<span class="p">{</span> <span class="k">return</span> <span class="o">!</span><span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="n">r</span><span class="p">);</span> <span class="p">}</span>
-<span class="p">};</span>
+	<span class="kt">bool</span> <span class="k">operator</span><span class="o">=</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">even_iterator</span><span class="o">&amp;</span> <span class="n">r</span><span class="p">)</span> <span class="k">const</span>
+	<span class="p">{</span> <span class="k">return</span> <span class="o">!</span><span class="k">operator</span><span class="o">!</span><span class="o">=</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>Test</p>
+</div><p>Test</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -506,40 +491,38 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[</span><span class="p">]</span><span class="p">)</span>
 <span class="p">{</span>
-	<span class="n">srand</span><span class="p">((</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span> <span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
+	<span class="n">srand</span><span class="p">(</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span> <span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
 
-	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vnNums</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
-	<span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">u</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">;</span> <span class="o">++</span><span class="n">u</span><span class="p">)</span>
-		<span class="n">vnNums</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="n">RAND_MAX</span> <span class="o">*</span> <span class="mi">100</span><span class="p">;</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vnNums</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">u</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">;</span> <span class="o">+</span><span class="o">+</span><span class="n">u</span><span class="p">)</span>
+		<span class="n">vnNums</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="n">RAND_MAX</span> <span class="o">*</span> <span class="mi">100</span><span class="p">;</span>
 
-	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;initial vector:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-	<span class="n">copy</span><span class="p">(</span><span class="n">vnNums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vnNums</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">ostream_iterator</span><span class="p">(</span><span class="n">cout</span><span class="p">,</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">));</span>
-	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">initial vector:</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="n">copy</span><span class="p">(</span><span class="n">vnNums</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">vnNums</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">ostream_iterator</span><span class="p">(</span><span class="n">cout</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
 
 
-	<span class="k">typedef</span> <span class="n">even_iterator</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">const_iterator</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">int_vec_even_iter</span><span class="p">;</span>
-	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;even vector:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;even vector:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="k">typedef</span> <span class="n">even_iterator</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">const_iterator</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">int_vec_even_iter</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">even vector:</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">even vector:</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
 
-	<span class="n">copy</span><span class="p">(</span><span class="n">int_vec_even_iter</span><span class="p">(</span><span class="n">vnNums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vnNums</span><span class="p">.</span><span class="n">end</span><span class="p">()),</span>
-		<span class="n">int_vec_even_iter</span><span class="p">(</span><span class="n">vnNums</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">vnNums</span><span class="p">.</span><span class="n">end</span><span class="p">()),</span>
-		<span class="n">ostream_iterator</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">cout</span><span class="p">,</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">)</span>
-		<span class="p">);</span>
-	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="n">copy</span><span class="p">(</span><span class="n">int_vec_even_iter</span><span class="p">(</span><span class="n">vnNums</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">vnNums</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">,</span>
+		<span class="n">int_vec_even_iter</span><span class="p">(</span><span class="n">vnNums</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">vnNums</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">,</span>
+		<span class="n">ostream_iterator</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">cout</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span><span class="p">)</span>
+		<span class="p">)</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
 
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="iterator完整实现">Iterator完整实现</h2>
-
+</div><h2 id="iterator">Iterator完整实现</h2>
 <p>simple</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -586,19 +569,20 @@
 </span><span class="lnt">45
 </span><span class="lnt">46
 </span><span class="lnt">47
+</span><span class="lnt">48
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// forward declare the iterator
 </span><span class="c1"></span>
-<span class="k">template</span> <span class="o">&lt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">RingIter</span><span class="p">;</span>
+<span class="k">template</span> <span class="o">&lt;</span> <span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">&gt;</span> <span class="k">class</span> <span class="nc">RingIter</span><span class="p">;</span>
 
 
 <span class="c1">// define the container, make the iterator a friend
 </span><span class="c1"></span>
-<span class="k">template</span> <span class="o">&lt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">&gt;</span>
-<span class="k">class</span><span class="err"> </span><span class="nc">RingQueue</span> <span class="p">{</span>
+<span class="k">template</span> <span class="o">&lt;</span> <span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">RingQueue</span> <span class="p">{</span>
 
-	<span class="k">friend</span> <span class="k">class</span><span class="err"> </span><span class="nc">RingIter</span><span class="o">&lt;</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span> <span class="o">&gt;</span><span class="p">;</span>
+	<span class="k">friend</span> <span class="k">class</span> <span class="nc">RingIter</span><span class="o">&lt;</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span> <span class="o">&gt;</span><span class="p">;</span>
 	<span class="k">typedef</span> <span class="n">RingIter</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="n">iterator</span><span class="p">;</span>
 	<span class="k">typedef</span> <span class="n">ptrdiff_t</span> <span class="n">difference_type</span><span class="p">;</span>
 	<span class="k">typedef</span> <span class="n">size_t</span> <span class="n">size_type</span><span class="p">;</span>
@@ -606,44 +590,43 @@
 	<span class="k">typedef</span> <span class="n">T</span> <span class="o">*</span> <span class="n">pointer</span><span class="p">;</span>
 	<span class="k">typedef</span> <span class="n">T</span> <span class="o">&amp;</span> <span class="n">reference</span><span class="p">;</span>
 
-	<span class="n">iterator</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">iterator</span><span class="p">(</span> <span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="mi">0</span> <span class="p">);</span> <span class="p">}</span>
-	<span class="n">iterator</span> <span class="nf">begin</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">const_iterator</span><span class="p">(</span> <span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="mi">0</span> <span class="p">);</span> <span class="p">}</span>
-	<span class="n">iterator</span> <span class="nf">end</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">iterator</span><span class="p">(</span> <span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="n">mySize</span> <span class="p">);</span> <span class="p">}</span>
-<span class="p">};</span>
+	<span class="n">iterator</span> <span class="nf">begin</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">iterator</span><span class="p">(</span> <span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="mi">0</span> <span class="p">)</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">iterator</span> <span class="nf">begin</span><span class="p">(</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">const_iterator</span><span class="p">(</span> <span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="mi">0</span> <span class="p">)</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">iterator</span> <span class="nf">end</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">iterator</span><span class="p">(</span> <span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="n">mySize</span> <span class="p">)</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
 
 
 <span class="c1">// define the iterator
 </span><span class="c1"></span>
-<span class="k">template</span> <span class="o">&lt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">&gt;</span>
-<span class="k">class</span><span class="err"> </span><span class="nc">RingIter</span> <span class="p">{</span>
+<span class="k">template</span> <span class="o">&lt;</span> <span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">RingIter</span> <span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>
 	<span class="n">RingQueue</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">myRingQueue</span><span class="p">;</span>
 	<span class="kt">int</span> <span class="n">mySize</span><span class="p">;</span>
 <span class="k">public</span><span class="o">:</span>
 	<span class="n">RingIter</span><span class="p">(</span> <span class="n">RingQueue</span> <span class="o">&amp;</span> <span class="n">rq</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span> <span class="p">)</span>
-	<span class="o">:</span> <span class="n">myRingQueue</span><span class="p">(</span> <span class="n">rq</span> <span class="p">),</span> <span class="n">mySize</span> <span class="p">(</span> <span class="n">size</span> <span class="p">)</span>
-	<span class="p">{}</span>
+	<span class="o">:</span> <span class="n">myRingQueue</span><span class="p">(</span> <span class="n">rq</span> <span class="p">)</span><span class="p">,</span> <span class="n">mySize</span> <span class="p">(</span> <span class="n">size</span> <span class="p">)</span>
+	<span class="p">{</span><span class="p">}</span>
 
-	<span class="n">T</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">*</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">myRingQueue</span><span class="p">[</span> <span class="n">myIncrement</span> <span class="p">];</span> <span class="p">}</span>
-	<span class="n">iterator</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">++</span><span class="p">()</span> <span class="p">{</span> <span class="o">++</span><span class="n">myOffset</span><span class="p">;</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span> <span class="p">}</span>
-	<span class="n">iterator</span> <span class="k">operator</span><span class="o">++</span> <span class="p">(</span> <span class="kt">int</span> <span class="p">)</span>
+	<span class="n">T</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">myRingQueue</span><span class="p">[</span> <span class="n">myIncrement</span> <span class="p">]</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">iterator</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">+</span><span class="o">+</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="o">+</span><span class="o">+</span><span class="n">myOffset</span><span class="p">;</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">iterator</span> <span class="k">operator</span><span class="o">+</span><span class="o">+</span> <span class="p">(</span> <span class="kt">int</span> <span class="p">)</span>
 	<span class="p">{</span>
-		<span class="n">RingIter</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="n">clone</span><span class="p">(</span> <span class="o">*</span><span class="k">this</span> <span class="p">);</span>
-		<span class="o">++</span><span class="n">myOffset</span><span class="p">;</span>
+		<span class="n">RingIter</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="n">clone</span><span class="p">(</span> <span class="o">*</span><span class="k">this</span> <span class="p">)</span><span class="p">;</span>
+		<span class="o">+</span><span class="o">+</span><span class="n">myOffset</span><span class="p">;</span>
 		<span class="k">return</span> <span class="n">clone</span><span class="p">;</span>
 	<span class="p">}</span>
-<span class="p">};</span>
+<span class="p">}</span><span class="p">;</span>
 
 <span class="k">typedef</span> <span class="n">RingCIter</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="n">const_iterator</span><span class="p">;</span>
+
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>complete</p>
-
+</div><p>complete</p>
 <p>文件iterator_base.h</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">  1
+<pre class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -814,12 +797,12 @@
 </span><span class="cm"> * iterator_traits and struct iterator and functions, such as distance() 
 </span><span class="cm"> *and advance().
 </span><span class="cm"> */</span>
-<span class="cp">#ifndef _MITERATOR_BASE_H
-</span><span class="cp">#define _MITERATOR_BASE_H
-</span><span class="cp">#include</span><span class="cpf">&lt;cassert&gt; //for debug</span><span class="cp">
+<span class="cp">#</span><span class="cp">ifndef _MITERATOR_BASE_H</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">define _MITERATOR_BASE_H</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span><span class="cpf">&lt;cassert&gt; //for debug</span><span class="cp">
 </span><span class="cp"></span><span class="k">namespace</span> <span class="n">numb</span>
 <span class="p">{</span>
-    <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">ptrdiff_t</span><span class="p">;</span>
+    <span class="k">using</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">ptrdiff_t</span><span class="p">;</span>
 <span class="cm">/* Abstructions for uniform iterator,
 </span><span class="cm"> * general iterator-related utility types
 </span><span class="cm"> */</span>
@@ -828,15 +811,15 @@
 </span><span class="cm">    * output iterator.
 </span><span class="cm">    */</span>
     <span class="c1">///Input Iterator
-</span><span class="c1"></span>    <span class="k">struct</span> <span class="n">input_iterator_tag</span><span class="p">{};</span>
+</span><span class="c1"></span>    <span class="k">struct</span> <span class="nc">input_iterator_tag</span><span class="p">{</span><span class="p">}</span><span class="p">;</span>
     <span class="c1">///Output Iterator
-</span><span class="c1"></span>    <span class="k">struct</span> <span class="n">output_iterator_tag</span><span class="p">{};</span>
+</span><span class="c1"></span>    <span class="k">struct</span> <span class="nc">output_iterator_tag</span><span class="p">{</span><span class="p">}</span><span class="p">;</span>
     <span class="c1">///Forward Iterator
-</span><span class="c1"></span>    <span class="k">struct</span> <span class="nl">forward_iterator_tag</span><span class="p">:</span><span class="k">public</span> <span class="n">input_iterator_tag</span> <span class="p">{};</span>
+</span><span class="c1"></span>    <span class="k">struct</span> <span class="nc">forward_iterator_tag</span><span class="o">:</span><span class="k">public</span> <span class="n">input_iterator_tag</span> <span class="p">{</span><span class="p">}</span><span class="p">;</span>
     <span class="c1">///Bidirectional Iterator
-</span><span class="c1"></span>    <span class="k">struct</span> <span class="nl">bidirectional_iterator_tag</span><span class="p">:</span><span class="k">public</span> <span class="n">forward_iterator_tag</span> <span class="p">{};</span>
+</span><span class="c1"></span>    <span class="k">struct</span> <span class="nc">bidirectional_iterator_tag</span><span class="o">:</span><span class="k">public</span> <span class="n">forward_iterator_tag</span> <span class="p">{</span><span class="p">}</span><span class="p">;</span>
     <span class="c1">///Random Acess Iterator
-</span><span class="c1"></span>    <span class="k">struct</span> <span class="nl">random_iterator_tag</span><span class="p">:</span><span class="k">public</span> <span class="n">bidirectional_iterator_tag</span> <span class="p">{};</span>
+</span><span class="c1"></span>    <span class="k">struct</span> <span class="nc">random_iterator_tag</span><span class="o">:</span><span class="k">public</span> <span class="n">bidirectional_iterator_tag</span> <span class="p">{</span><span class="p">}</span><span class="p">;</span>
     
     <span class="cm">/* Common iterator class
 </span><span class="cm">    * It contains nothing but some nested typedefs
@@ -846,8 +829,8 @@
              <span class="k">typename</span> <span class="n">_T</span><span class="p">,</span>
              <span class="k">typename</span> <span class="n">_Distance</span><span class="o">=</span><span class="n">ptrdiff_t</span><span class="p">,</span>
              <span class="k">typename</span> <span class="n">_Pointer</span><span class="o">=</span><span class="n">_T</span><span class="o">*</span><span class="p">,</span>
-             <span class="k">typename</span> <span class="n">_Reference</span><span class="o">=</span><span class="n">_T</span><span class="o">&amp;&gt;</span>
-    <span class="k">struct</span> <span class="n">iterator</span>
+             <span class="k">typename</span> <span class="n">_Reference</span><span class="o">=</span><span class="n">_T</span><span class="o">&amp;</span><span class="o">&gt;</span>
+    <span class="k">struct</span> <span class="nc">iterator</span>
     <span class="p">{</span>
         <span class="c1">//5 associated types
 </span><span class="c1"></span>        <span class="k">typedef</span> <span class="n">_Category</span> <span class="n">iterator_category</span><span class="p">;</span>
@@ -855,53 +838,53 @@
         <span class="k">typedef</span> <span class="n">_Distance</span> <span class="n">difference_type</span><span class="p">;</span>
         <span class="k">typedef</span> <span class="n">_Pointer</span>  <span class="n">pointer</span><span class="p">;</span>
         <span class="k">typedef</span> <span class="n">_Reference</span>  <span class="n">reference</span><span class="p">;</span>
-    <span class="p">};</span>
+    <span class="p">}</span><span class="p">;</span>
     
     <span class="cm">/* Traits classes for iterators
 </span><span class="cm">    * It contains nothing but some nested typedefs
 </span><span class="cm">    */</span>
     <span class="c1">//General version
 </span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Iterator</span><span class="o">&gt;</span>
-    <span class="k">struct</span> <span class="n">iterator_traits</span>
+    <span class="k">struct</span> <span class="nc">iterator_traits</span>
     <span class="p">{</span>
-        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">_Iterator</span><span class="o">::</span><span class="n">value_type</span>           <span class="n">value_type</span><span class="p">;</span>
-        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">_Iterator</span><span class="o">::</span><span class="n">iterator_category</span>    <span class="n">iterator_category</span><span class="p">;</span>
-        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">_Iterator</span><span class="o">::</span><span class="n">difference_type</span>  <span class="n">difference_type</span><span class="p">;</span>
-        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">_Iterator</span><span class="o">::</span><span class="n">pointer</span>          <span class="n">pointer</span><span class="p">;</span>
-        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">_Iterator</span><span class="o">::</span><span class="n">reference</span>            <span class="n">reference</span><span class="p">;</span>
-    <span class="p">};</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">_Iterator</span><span class="o">:</span><span class="o">:</span><span class="n">value_type</span>           <span class="n">value_type</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">_Iterator</span><span class="o">:</span><span class="o">:</span><span class="n">iterator_category</span>    <span class="n">iterator_category</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">_Iterator</span><span class="o">:</span><span class="o">:</span><span class="n">difference_type</span>  <span class="n">difference_type</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">_Iterator</span><span class="o">:</span><span class="o">:</span><span class="n">pointer</span>          <span class="n">pointer</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">_Iterator</span><span class="o">:</span><span class="o">:</span><span class="n">reference</span>            <span class="n">reference</span><span class="p">;</span>
+    <span class="p">}</span><span class="p">;</span>
     <span class="c1">//Partial specialization for pointer types.
 </span><span class="c1"></span>    <span class="c1">//(such as int*,char*,etc.)
 </span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="o">&gt;</span>
-    <span class="k">struct</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="o">*&gt;</span>
+    <span class="k">struct</span> <span class="nc">iterator_traits</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="o">*</span><span class="o">&gt;</span>
     <span class="p">{</span>
         <span class="k">typedef</span> <span class="n">_Tp</span>                   <span class="n">value_type</span><span class="p">;</span>
         <span class="k">typedef</span> <span class="n">random_iterator_tag</span>   <span class="n">iterator_category</span><span class="p">;</span>
         <span class="k">typedef</span> <span class="n">ptrdiff_t</span>                <span class="n">difference_type</span><span class="p">;</span>
         <span class="k">typedef</span> <span class="n">_Tp</span><span class="o">*</span>                   <span class="n">pointer</span><span class="p">;</span>
         <span class="k">typedef</span> <span class="n">_Tp</span><span class="o">&amp;</span>                   <span class="n">reference</span><span class="p">;</span>
-    <span class="p">};</span>
+    <span class="p">}</span><span class="p">;</span>
     <span class="c1">//Partial specialization for pointer-to-const types.
 </span><span class="c1"></span>    <span class="c1">//(such as coonst int*,const char*,etc.)
 </span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="o">&gt;</span>
-    <span class="k">struct</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">_Tp</span><span class="o">*&gt;</span>
+    <span class="k">struct</span> <span class="nc">iterator_traits</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">_Tp</span><span class="o">*</span><span class="o">&gt;</span>
     <span class="p">{</span>
         <span class="k">typedef</span> <span class="n">_Tp</span>                   <span class="n">value_type</span><span class="p">;</span>
         <span class="k">typedef</span> <span class="n">random_iterator_tag</span>   <span class="n">iterator_category</span><span class="p">;</span>
         <span class="k">typedef</span> <span class="n">ptrdiff_t</span>                <span class="n">difference_type</span><span class="p">;</span>
         <span class="k">typedef</span> <span class="k">const</span> <span class="n">_Tp</span><span class="o">*</span>                  <span class="n">pointer</span><span class="p">;</span>
         <span class="k">typedef</span> <span class="k">const</span> <span class="n">_Tp</span><span class="o">&amp;</span>                  <span class="n">reference</span><span class="p">;</span>
-    <span class="p">};</span>
+    <span class="p">}</span><span class="p">;</span>
     <span class="cm">/*
 </span><span class="cm">    *Some general functionals
 </span><span class="cm">    */</span>
      
     <span class="c1">//A function that get the category of a iterator
 </span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Iter</span><span class="o">&gt;</span>
-    <span class="kr">inline</span> <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">_Iter</span><span class="o">&gt;::</span><span class="n">iterator_category</span>
+    <span class="kr">inline</span> <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">_Iter</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">iterator_category</span>
     <span class="n">_iterator_category</span><span class="p">(</span><span class="k">const</span> <span class="n">_Iter</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">_Iter</span><span class="o">&gt;::</span><span class="n">iterator_category</span><span class="p">();</span>
+        <span class="k">return</span> <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">_Iter</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">iterator_category</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="cm">/* Distance between iterators .
@@ -911,20 +894,20 @@
 </span><span class="cm">    */</span>
     <span class="c1">//For all iterators but random acces iterator
 </span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">InputIter</span><span class="o">&gt;</span>
-    <span class="kr">inline</span> <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">InputIter</span><span class="o">&gt;::</span><span class="n">difference_type</span>
+    <span class="kr">inline</span> <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">InputIter</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">difference_type</span>
     <span class="n">_distance</span><span class="p">(</span><span class="n">InputIter</span> <span class="n">first</span><span class="p">,</span><span class="n">InputIter</span> <span class="n">last</span><span class="p">,</span><span class="n">input_iterator_tag</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">InputIter</span><span class="o">&gt;::</span><span class="n">difference_type</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-        <span class="k">while</span><span class="p">(</span><span class="n">first</span><span class="o">!=</span><span class="n">last</span><span class="p">)</span>
+        <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">InputIter</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">difference_type</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">first</span><span class="o">!</span><span class="o">=</span><span class="n">last</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="o">++</span><span class="n">first</span><span class="p">;</span>
-            <span class="o">++</span><span class="n">n</span><span class="p">;</span>
+            <span class="o">+</span><span class="o">+</span><span class="n">first</span><span class="p">;</span>
+            <span class="o">+</span><span class="o">+</span><span class="n">n</span><span class="p">;</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="c1">//For random acces iterator,@n maybe negetive.
 </span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">RandomIter</span><span class="o">&gt;</span>
-    <span class="kr">inline</span> <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">RandomIter</span><span class="o">&gt;::</span><span class="n">difference_type</span>
+    <span class="kr">inline</span> <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">RandomIter</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">difference_type</span>
     <span class="n">_distance</span><span class="p">(</span><span class="n">RandomIter</span> <span class="n">first</span><span class="p">,</span><span class="n">RandomIter</span> <span class="n">last</span><span class="p">,</span><span class="n">random_iterator_tag</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">return</span> <span class="n">last</span><span class="o">-</span><span class="n">first</span><span class="p">;</span>
@@ -932,11 +915,11 @@
     <span class="c1">//interface for client
 </span><span class="c1"></span>    <span class="c1">//InputIter stands for it is an input iterator at least.
 </span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">InputIter</span><span class="o">&gt;</span>
-    <span class="kr">inline</span> <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">InputIter</span><span class="o">&gt;::</span><span class="n">difference_type</span>
+    <span class="kr">inline</span> <span class="k">typename</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">InputIter</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">difference_type</span>
     <span class="n">distance</span><span class="p">(</span><span class="n">InputIter</span> <span class="n">first</span><span class="p">,</span><span class="n">InputIter</span> <span class="n">last</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">return</span> <span class="n">_distance</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="n">last</span><span class="p">,</span>
-                         <span class="n">_iterator_category</span><span class="p">(</span><span class="n">first</span><span class="p">));</span>
+        <span class="k">return</span> <span class="nf">_distance</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="n">last</span><span class="p">,</span>
+                         <span class="n">_iterator_category</span><span class="p">(</span><span class="n">first</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="cm">/* Increment/decrement iterators .
 </span><span class="cm">    * @param   i   An input iterator
@@ -947,39 +930,38 @@
 </span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">InputIter</span><span class="p">,</span><span class="k">typename</span> <span class="n">Distance</span><span class="o">&gt;</span>
     <span class="kr">inline</span> <span class="kt">void</span> <span class="n">_advance</span><span class="p">(</span><span class="n">InputIter</span> <span class="n">i</span><span class="p">,</span><span class="n">Distance</span> <span class="n">n</span><span class="p">,</span><span class="n">input_iterator_tag</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="n">assert</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">);</span>
-        <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">--</span><span class="p">)</span> <span class="o">++</span><span class="n">i</span><span class="p">;</span>
+        <span class="n">assert</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="o">-</span><span class="p">)</span> <span class="o">+</span><span class="o">+</span><span class="n">i</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="c1">//for bidirectional iterator
 </span><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">BidirecIter</span><span class="p">,</span><span class="k">typename</span> <span class="n">Distance</span><span class="o">&gt;</span>
     <span class="kr">inline</span> <span class="kt">void</span> <span class="n">_advance</span><span class="p">(</span><span class="n">BidirecIter</span> <span class="n">i</span><span class="p">,</span><span class="n">Distance</span> <span class="n">n</span><span class="p">,</span><span class="n">bidirectional_iterator_tag</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
-            <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">--</span><span class="p">)</span>
-                <span class="o">++</span><span class="n">i</span><span class="p">;</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="o">-</span><span class="p">)</span>
+                <span class="o">+</span><span class="o">+</span><span class="n">i</span><span class="p">;</span>
         <span class="k">else</span>
-            <span class="nf">while</span><span class="p">(</span><span class="n">n</span><span class="o">++</span><span class="p">)</span>
-                <span class="o">--</span><span class="n">i</span><span class="p">;</span>
+            <span class="nf">while</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
+                <span class="o">-</span><span class="o">-</span><span class="n">i</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="c1">//For random access iterator
 </span><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">RandomIter</span><span class="p">,</span><span class="k">typename</span> <span class="n">Distance</span><span class="o">&gt;</span>
     <span class="kr">inline</span> <span class="kt">void</span> <span class="n">_advance</span><span class="p">(</span><span class="n">RandomIter</span> <span class="n">i</span><span class="p">,</span><span class="n">Distance</span> <span class="n">n</span><span class="p">,</span><span class="n">random_iterator_tag</span><span class="p">)</span>
-    <span class="p">{</span>    <span class="n">i</span><span class="o">+=</span><span class="n">n</span><span class="p">;</span>   <span class="p">}</span>
+    <span class="p">{</span>    <span class="n">i</span><span class="o">+</span><span class="o">=</span><span class="n">n</span><span class="p">;</span>   <span class="p">}</span>
     <span class="c1">//Interface to client
 </span><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">InputIter</span><span class="p">,</span><span class="k">typename</span> <span class="n">Distance</span><span class="o">&gt;</span>
     <span class="kr">inline</span> <span class="kt">void</span> <span class="n">advance</span><span class="p">(</span><span class="n">InputIter</span> <span class="n">i</span><span class="p">,</span><span class="n">Distance</span> <span class="n">n</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="n">_advance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">_iterator_category</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+        <span class="n">_advance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">_iterator_category</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
     <span class="p">}</span>    
 <span class="p">}</span><span class="c1">//end of numb
-</span><span class="c1"></span><span class="cp">#endif
+</span><span class="c1"></span><span class="cp">#</span><span class="cp">endif</span><span class="cp">
 </span></code></pre></td></tr></table>
 </div>
-</div>
-<p>文件stl_iterator.h</p>
+</div><p>文件stl_iterator.h</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1087,98 +1069,98 @@
 </span><span class="cm"> *  front_insert_iterator, insert_iterator, , and their
 </span><span class="cm"> *  supporting functions and overloaded operators.
 </span><span class="cm"> */</span>
- <span class="cp">#ifndef _mstl_iterator_h
-</span><span class="cp"></span> <span class="cp">#define _mstl_iterator_h
-</span><span class="cp"></span> <span class="cp">#include</span> <span class="cpf">&#34;iterator_base.h&#34;</span><span class="cp">
+ <span class="cp">#</span><span class="cp">ifndef _mstl_iterator_h</span><span class="cp">
+</span><span class="cp"></span> <span class="cp">#</span><span class="cp">define _mstl_iterator_h</span><span class="cp">
+</span><span class="cp"></span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&#34;iterator_base.h&#34;</span><span class="cp">
 </span><span class="cp"></span> <span class="k">namespace</span> <span class="n">numb</span>
  <span class="p">{</span>
     <span class="c1">//This iterator adapter is a normal iterator
-</span><span class="c1"></span>    <span class="k">using</span> <span class="n">numb</span><span class="o">::</span><span class="n">iterator</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">numb</span><span class="o">::</span><span class="n">iterator_traits</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="k">using</span> <span class="n">numb</span><span class="o">:</span><span class="o">:</span><span class="n">iterator</span><span class="p">;</span>
+    <span class="k">using</span> <span class="n">numb</span><span class="o">:</span><span class="o">:</span><span class="n">iterator_traits</span><span class="p">;</span>
     <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Iterator</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Container</span><span class="o">&gt;</span>
-    <span class="k">class</span><span class="err"> </span><span class="nc">_normal_iterator</span>
+    <span class="k">class</span> <span class="nc">_normal_iterator</span>
     <span class="p">{</span>
         <span class="k">protected</span><span class="o">:</span>
             <span class="n">Iterator</span> <span class="n">M_current</span><span class="p">;</span>
             <span class="k">typedef</span> <span class="n">iterator_traits</span><span class="o">&lt;</span><span class="n">Iterator</span><span class="o">&gt;</span>  <span class="n">traits_type</span><span class="p">;</span>
         <span class="k">public</span><span class="o">:</span>
             <span class="k">typedef</span> <span class="n">Iterator</span>                              <span class="n">iterator_type</span><span class="p">;</span>
-            <span class="k">typedef</span> <span class="k">typename</span> <span class="n">traits_type</span><span class="o">::</span><span class="n">iterator_category</span>  <span class="n">iterator_category</span><span class="p">;</span>
-            <span class="k">typedef</span> <span class="k">typename</span> <span class="n">traits_type</span><span class="o">::</span><span class="n">value_type</span>         <span class="n">value_type</span><span class="p">;</span>
-            <span class="k">typedef</span> <span class="k">typename</span> <span class="n">traits_type</span><span class="o">::</span><span class="n">difference_type</span>    <span class="n">difference_type</span><span class="p">;</span>
-            <span class="k">typedef</span> <span class="k">typename</span> <span class="n">traits_type</span><span class="o">::</span><span class="n">reference</span>      <span class="n">reference</span><span class="p">;</span>
-            <span class="k">typedef</span> <span class="k">typename</span> <span class="n">traits_type</span><span class="o">::</span><span class="n">pointer</span>        <span class="n">pointer</span><span class="p">;</span>
+            <span class="k">typedef</span> <span class="k">typename</span> <span class="n">traits_type</span><span class="o">:</span><span class="o">:</span><span class="n">iterator_category</span>  <span class="n">iterator_category</span><span class="p">;</span>
+            <span class="k">typedef</span> <span class="k">typename</span> <span class="n">traits_type</span><span class="o">:</span><span class="o">:</span><span class="n">value_type</span>         <span class="n">value_type</span><span class="p">;</span>
+            <span class="k">typedef</span> <span class="k">typename</span> <span class="n">traits_type</span><span class="o">:</span><span class="o">:</span><span class="n">difference_type</span>    <span class="n">difference_type</span><span class="p">;</span>
+            <span class="k">typedef</span> <span class="k">typename</span> <span class="n">traits_type</span><span class="o">:</span><span class="o">:</span><span class="n">reference</span>      <span class="n">reference</span><span class="p">;</span>
+            <span class="k">typedef</span> <span class="k">typename</span> <span class="n">traits_type</span><span class="o">:</span><span class="o">:</span><span class="n">pointer</span>        <span class="n">pointer</span><span class="p">;</span>
             <span class="c1">//default ctor
-</span><span class="c1"></span>            <span class="n">_normal_iterator</span><span class="p">()</span><span class="o">:</span><span class="n">M_current</span><span class="p">(</span><span class="n">Iterator</span><span class="p">()){}</span>
+</span><span class="c1"></span>            <span class="n">_normal_iterator</span><span class="p">(</span><span class="p">)</span><span class="o">:</span><span class="n">M_current</span><span class="p">(</span><span class="n">Iterator</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">{</span><span class="p">}</span>
             <span class="c1">//copy ctor
-</span><span class="c1"></span>            <span class="k">explicit</span> <span class="n">_normal_iterator</span><span class="p">(</span><span class="k">const</span> <span class="n">Iterator</span><span class="o">&amp;</span> <span class="n">i</span><span class="p">)</span><span class="o">:</span><span class="n">M_current</span><span class="p">(</span><span class="n">i</span><span class="p">){}</span>
+</span><span class="c1"></span>            <span class="k">explicit</span> <span class="nf">_normal_iterator</span><span class="p">(</span><span class="k">const</span> <span class="n">Iterator</span><span class="o">&amp;</span> <span class="n">i</span><span class="p">)</span><span class="o">:</span><span class="n">M_current</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">{</span><span class="p">}</span>
             
             <span class="c1">//To-do: Allow iterator to const_iterator conversion
 </span><span class="c1"></span>            
             <span class="c1">//for forward iterator 
-</span><span class="c1"></span>            <span class="n">reference</span> <span class="k">operator</span><span class="o">*</span><span class="p">()</span><span class="k">const</span>
-            <span class="p">{</span>    <span class="k">return</span> <span class="o">*</span><span class="n">M_current</span><span class="p">;}</span>
-            <span class="n">pointer</span> <span class="k">operator</span><span class="o">-&gt;</span><span class="p">()</span><span class="k">const</span>
-            <span class="p">{</span>    <span class="k">return</span> <span class="n">M_current</span><span class="p">;}</span>
+</span><span class="c1"></span>            <span class="n">reference</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="p">)</span><span class="k">const</span>
+            <span class="p">{</span>    <span class="k">return</span> <span class="o">*</span><span class="n">M_current</span><span class="p">;</span><span class="p">}</span>
+            <span class="n">pointer</span> <span class="k">operator</span><span class="o">-</span><span class="o">&gt;</span><span class="p">(</span><span class="p">)</span><span class="k">const</span>
+            <span class="p">{</span>    <span class="k">return</span> <span class="n">M_current</span><span class="p">;</span><span class="p">}</span>
             <span class="c1">//++i
 </span><span class="c1"></span>            <span class="n">_normal_iterator</span><span class="o">&amp;</span> 
-            <span class="k">operator</span> <span class="o">++</span><span class="p">()</span>
+            <span class="k">operator</span> <span class="o">+</span><span class="o">+</span><span class="p">(</span><span class="p">)</span>
             <span class="p">{</span>
-                <span class="o">++</span><span class="n">M_current</span><span class="p">;</span>
+                <span class="o">+</span><span class="o">+</span><span class="n">M_current</span><span class="p">;</span>
                 <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
             <span class="p">}</span>
             <span class="c1">//i++
 </span><span class="c1"></span>            <span class="n">_normal_iterator</span> 
-            <span class="k">operator</span> <span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+            <span class="k">operator</span> <span class="o">+</span><span class="o">+</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
             <span class="p">{</span>
-                <span class="k">return</span> <span class="n">_normal_iterator</span><span class="p">(</span><span class="n">M_current</span><span class="o">++</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nf">_normal_iterator</span><span class="p">(</span><span class="n">M_current</span><span class="o">+</span><span class="o">+</span><span class="p">)</span><span class="p">;</span>
             <span class="p">}</span>
             <span class="c1">//for bidirectional iterator
 </span><span class="c1"></span>            <span class="c1">//--i
 </span><span class="c1"></span>            <span class="n">_normal_iterator</span><span class="o">&amp;</span> 
-            <span class="k">operator</span> <span class="o">--</span><span class="p">()</span>
+            <span class="k">operator</span> <span class="o">-</span><span class="o">-</span><span class="p">(</span><span class="p">)</span>
             <span class="p">{</span>
-                <span class="o">--</span><span class="n">M_current</span><span class="p">;</span>
+                <span class="o">-</span><span class="o">-</span><span class="n">M_current</span><span class="p">;</span>
                 <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
             <span class="p">}</span>
             <span class="c1">//i--
 </span><span class="c1"></span>            <span class="n">_normal_iterator</span> 
-            <span class="k">operator</span> <span class="o">--</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
-            <span class="p">{</span><span class="k">return</span> <span class="n">_normal_iterator</span><span class="p">(</span><span class="n">M_current</span><span class="o">--</span><span class="p">);}</span>
+            <span class="k">operator</span> <span class="o">-</span><span class="o">-</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+            <span class="p">{</span><span class="k">return</span> <span class="nf">_normal_iterator</span><span class="p">(</span><span class="n">M_current</span><span class="o">-</span><span class="o">-</span><span class="p">)</span><span class="p">;</span><span class="p">}</span>
             
             <span class="c1">//for random access iterator,[],+=,-=,+,-
 </span><span class="c1"></span>            <span class="n">reference</span> 
-            <span class="k">operator</span><span class="p">[](</span><span class="k">const</span> <span class="n">difference_type</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span><span class="k">const</span>
-            <span class="p">{</span>    <span class="k">return</span> <span class="n">M_current</span><span class="p">[</span><span class="n">n</span><span class="p">];}</span>
+            <span class="k">operator</span><span class="p">[</span><span class="p">]</span><span class="p">(</span><span class="k">const</span> <span class="n">difference_type</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span><span class="k">const</span>
+            <span class="p">{</span>    <span class="k">return</span> <span class="n">M_current</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="p">;</span><span class="p">}</span>
             
             <span class="n">_normal_iterator</span><span class="o">&amp;</span> 
-            <span class="k">operator</span> <span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">difference_type</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span>
+            <span class="k">operator</span> <span class="o">+</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">difference_type</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span>
             <span class="p">{</span>
-                <span class="n">M_current</span><span class="o">+=</span><span class="n">n</span><span class="p">;</span>
+                <span class="n">M_current</span><span class="o">+</span><span class="o">=</span><span class="n">n</span><span class="p">;</span>
                 <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
             <span class="p">}</span>
             <span class="n">_normal_iterator</span><span class="o">&amp;</span>
-            <span class="k">operator</span> <span class="o">-=</span><span class="p">(</span><span class="k">const</span> <span class="n">difference_type</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span>
+            <span class="k">operator</span> <span class="o">-</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">difference_type</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span>
             <span class="p">{</span>
-                <span class="n">M_current</span><span class="o">-=</span><span class="n">n</span><span class="p">;</span>
+                <span class="n">M_current</span><span class="o">-</span><span class="o">=</span><span class="n">n</span><span class="p">;</span>
                 <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
             <span class="p">}</span>
             <span class="n">_normal_iterator</span>
             <span class="k">operator</span> <span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">difference_type</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span><span class="k">const</span>
             <span class="p">{</span>
-                <span class="k">return</span> <span class="n">_normal_iterator</span><span class="p">(</span><span class="n">M_current</span><span class="o">+</span><span class="n">n</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nf">_normal_iterator</span><span class="p">(</span><span class="n">M_current</span><span class="o">+</span><span class="n">n</span><span class="p">)</span><span class="p">;</span>
             <span class="p">}</span>
             <span class="n">_normal_iterator</span>
             <span class="k">operator</span> <span class="o">-</span><span class="p">(</span><span class="k">const</span> <span class="n">difference_type</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span><span class="k">const</span>
             <span class="p">{</span>
-                <span class="k">return</span> <span class="n">_normal_iterator</span><span class="p">(</span><span class="n">M_current</span><span class="o">-</span><span class="n">n</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nf">_normal_iterator</span><span class="p">(</span><span class="n">M_current</span><span class="o">-</span><span class="n">n</span><span class="p">)</span><span class="p">;</span>
             <span class="p">}</span>
             <span class="k">const</span> <span class="n">Iterator</span><span class="o">&amp;</span>
-            <span class="n">base</span><span class="p">()</span> <span class="k">const</span>
+            <span class="n">base</span><span class="p">(</span><span class="p">)</span> <span class="k">const</span>
             <span class="p">{</span> <span class="k">return</span> <span class="n">M_current</span><span class="p">;</span> <span class="p">}</span>            
-    <span class="p">};</span><span class="c1">//end of _normal_iterator
+    <span class="p">}</span><span class="p">;</span><span class="c1">//end of _normal_iterator
 </span><span class="c1"></span> <span class="p">}</span><span class="c1">//end of namespace numb
-</span><span class="c1"></span> <span class="cp">#endif
+</span><span class="c1"></span> <span class="cp">#</span><span class="cp">endif</span><span class="cp">
 </span></code></pre></td></tr></table>
 </div>
 </div>
@@ -1232,7 +1214,7 @@
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  
+
   
 
   

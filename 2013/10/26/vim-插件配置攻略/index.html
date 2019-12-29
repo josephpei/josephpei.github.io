@@ -27,7 +27,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/10/26/vim-%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%94%BB%E7%95%A5/" />
@@ -45,46 +45,33 @@
 <meta property="og:title" content="vim 插件配置攻略" />
 <meta property="og:description" content="网友 k-vim 的配置 https://github.com/wklken
 
-
 给人一条Vim 命令，他能折腾一晚上；告诉他怎么自定义Vim 命令，他能捣腾一辈子
-
 生命不息,折腾不止 (╯‵□′)╯︵┻━┻)
-
 编辑器之神 = 生产力(效率为王) &#43; 性感(界面快捷键) &#43; 装x神器
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://josephpei.github.io/2013/10/26/vim-%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%94%BB%E7%95%A5/" />
-<meta property="article:published_time" content="2013-10-26T15:54:56&#43;08:00"/>
-<meta property="article:modified_time" content="2013-10-26T15:54:56&#43;08:00"/>
-
+<meta property="article:published_time" content="2013-10-26T15:54:56+08:00" />
+<meta property="article:modified_time" content="2013-10-26T15:54:56+08:00" />
 <meta itemprop="name" content="vim 插件配置攻略">
 <meta itemprop="description" content="网友 k-vim 的配置 https://github.com/wklken
 
-
 给人一条Vim 命令，他能折腾一晚上；告诉他怎么自定义Vim 命令，他能捣腾一辈子
-
 生命不息,折腾不止 (╯‵□′)╯︵┻━┻)
-
 编辑器之神 = 生产力(效率为王) &#43; 性感(界面快捷键) &#43; 装x神器
 ">
-
-
 <meta itemprop="datePublished" content="2013-10-26T15:54:56&#43;08:00" />
 <meta itemprop="dateModified" content="2013-10-26T15:54:56&#43;08:00" />
-<meta itemprop="wordCount" content="313">
+<meta itemprop="wordCount" content="310">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="vim 插件配置攻略"/>
 <meta name="twitter:description" content="网友 k-vim 的配置 https://github.com/wklken
 
-
 给人一条Vim 命令，他能折腾一晚上；告诉他怎么自定义Vim 命令，他能捣腾一辈子
-
 生命不息,折腾不止 (╯‵□′)╯︵┻━┻)
-
 编辑器之神 = 生产力(效率为王) &#43; 性感(界面快捷键) &#43; 装x神器
 "/>
 
@@ -162,49 +149,32 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#vim基本用法">vim基本用法</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#vim">vim基本用法</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>网友 k-vim 的配置 <a href="https://github.com/wklken">https://github.com/wklken</a></p>
-
 <blockquote>
 <p>给人一条Vim 命令，他能折腾一晚上；告诉他怎么自定义Vim 命令，他能捣腾一辈子</p>
-
 <p>生命不息,折腾不止 (╯‵□′)╯︵┻━┻)</p>
-
 <p>编辑器之神 = 生产力(效率为王) + 性感(界面快捷键) + 装x神器</p>
 </blockquote>
-
-<h3 id="vim基本用法">vim基本用法</h3>
-
+<h3 id="vim">vim基本用法</h3>
 <p>初学者: <a href="http://blog.csdn.net/wklken/article/details/7533272">vim训练稿</a>
 几年前的三月份,第一次正儿八经开始使用vim,后来整理了一份,对着敲几遍,训练稿</p>
-
 <p>推荐: 耗子叔的 <a href="http://coolshell.cn/articles/5426.html">简明vim练级攻略</a></p>
-
 <p>或者,玩游戏 <a href="http://vim-adventures.com/">vim大冒险</a></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">      二八定律,关注可以最大提升自身生产力的那20%插件,具体要亲自实践
+<pre><code>      二八定律,关注可以最大提升自身生产力的那20%插件,具体要亲自实践
       有什么问题,先看插件文档说明-&gt;代码选项-&gt;github上的issues-&gt;google it
-      你遇到的问题,一定别人也遇到了,大部分可解决,少部分无解….</pre></td></tr></table>
-</div>
-</div>
+      你遇到的问题,一定别人也遇到了,大部分可解决,少部分无解….
+</code></pre>
 <p>文章: <a href="http://www.kunli.info/2013/08/13/vim/">不要复杂化vim</a></p>
     </div>
 
@@ -254,7 +224,7 @@
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  
+
   
 
   

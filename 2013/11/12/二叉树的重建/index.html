@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/11/12/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%87%8D%E5%BB%BA/" />
@@ -43,21 +43,17 @@
 <meta property="og:description" content="对于二叉树，中序加其它任何一个序列（前序、后序、层序）即可重建二叉树，其它序列组合则不能重建。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://josephpei.github.io/2013/11/12/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%87%8D%E5%BB%BA/" />
-<meta property="article:published_time" content="2013-11-12T11:24:42&#43;08:00"/>
-<meta property="article:modified_time" content="2013-11-12T11:24:42&#43;08:00"/>
-
+<meta property="article:published_time" content="2013-11-12T11:24:42+08:00" />
+<meta property="article:modified_time" content="2013-11-12T11:24:42+08:00" />
 <meta itemprop="name" content="二叉树的重建">
 <meta itemprop="description" content="对于二叉树，中序加其它任何一个序列（前序、后序、层序）即可重建二叉树，其它序列组合则不能重建。">
-
-
 <meta itemprop="datePublished" content="2013-11-12T11:24:42&#43;08:00" />
 <meta itemprop="dateModified" content="2013-11-12T11:24:42&#43;08:00" />
-<meta itemprop="wordCount" content="444">
+<meta itemprop="wordCount" content="443">
 
 
 
-<meta itemprop="keywords" content="algorithm," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="algorithm," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="二叉树的重建"/>
 <meta name="twitter:description" content="对于二叉树，中序加其它任何一个序列（前序、后序、层序）即可重建二叉树，其它序列组合则不能重建。"/>
 
@@ -134,26 +130,20 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    
+    <nav id="TableOfContents"></nav>
   </div>
 </div>
     <div class="post-content">
       <p>对于二叉树，中序加其它任何一个序列（前序、后序、层序）即可重建二叉树，其它序列组合则不能重建。</p>
-
 <p>下面以中序和后序为例</p>
-
 <p>输入</p>
-
 <p>第一行为一个整数n。</p>
-
 <p>第二、三行，即已知的中序、后序遍历序列。</p>
-
 <p>输出</p>
-
 <p>若所给的中序、后序遍历序列的确对应于某棵二叉树，则输出其先序遍历序列。否则，输出-1。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -240,27 +230,27 @@
 </span><span class="lnt">85
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
 
 <span class="kt">bool</span> <span class="n">flag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 <span class="kt">int</span> <span class="o">*</span><span class="n">inmap</span><span class="p">;</span>
 
-<span class="k">struct</span> <span class="n">Node</span> <span class="p">{</span>
+<span class="k">struct</span> <span class="nc">Node</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">data</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="n">Node</span> <span class="o">*</span><span class="n">left</span><span class="p">,</span> <span class="o">*</span><span class="n">right</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="nc">Node</span> <span class="o">*</span><span class="n">left</span><span class="p">,</span> <span class="o">*</span><span class="n">right</span><span class="p">;</span>
 
-    <span class="n">Node</span><span class="p">(</span><span class="kt">int</span> <span class="n">elem</span><span class="p">)</span><span class="o">:</span> <span class="n">data</span><span class="p">(</span><span class="n">elem</span><span class="p">),</span> <span class="n">left</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span> <span class="n">right</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
-<span class="p">};</span>
+    <span class="n">Node</span><span class="p">(</span><span class="kt">int</span> <span class="n">elem</span><span class="p">)</span><span class="o">:</span> <span class="n">data</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span><span class="p">,</span> <span class="n">left</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span><span class="p">,</span> <span class="n">right</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
 
-<span class="kt">void</span> <span class="nf">rebuildInPost</span><span class="p">(</span><span class="n">Node</span> <span class="o">**</span><span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">in</span><span class="p">,</span> <span class="kt">int</span> <span class="n">beginI</span><span class="p">,</span> <span class="kt">int</span> <span class="n">endI</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">post</span><span class="p">,</span> <span class="kt">int</span> <span class="n">beginP</span><span class="p">,</span> <span class="kt">int</span> <span class="n">endP</span><span class="p">)</span>
+<span class="kt">void</span> <span class="nf">rebuildInPost</span><span class="p">(</span><span class="n">Node</span> <span class="o">*</span><span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">in</span><span class="p">,</span> <span class="kt">int</span> <span class="n">beginI</span><span class="p">,</span> <span class="kt">int</span> <span class="n">endI</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">post</span><span class="p">,</span> <span class="kt">int</span> <span class="n">beginP</span><span class="p">,</span> <span class="kt">int</span> <span class="n">endP</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">flag</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">beginI</span> <span class="o">&gt;</span> <span class="n">endI</span> <span class="o">||</span> <span class="n">beginP</span> <span class="o">&gt;</span> <span class="n">endP</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">beginI</span> <span class="o">&gt;</span> <span class="n">endI</span> <span class="o">|</span><span class="o">|</span> <span class="n">beginP</span> <span class="o">&gt;</span> <span class="n">endP</span><span class="p">)</span>
             <span class="k">return</span><span class="p">;</span>
 
-        <span class="kt">int</span> <span class="n">elem</span> <span class="o">=</span> <span class="n">post</span><span class="p">[</span><span class="n">endP</span><span class="p">];</span>
+        <span class="kt">int</span> <span class="n">elem</span> <span class="o">=</span> <span class="n">post</span><span class="p">[</span><span class="n">endP</span><span class="p">]</span><span class="p">;</span>
         <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
         <span class="n">i</span> <span class="o">=</span> <span class="n">inmap</span><span class="p">[</span><span class="n">elem</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">endI</span><span class="p">)</span> <span class="p">{</span>
@@ -268,62 +258,62 @@
             <span class="k">return</span><span class="p">;</span>
         <span class="p">}</span>
         <span class="kt">int</span> <span class="n">leftNum</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">beginI</span><span class="p">;</span>
-        <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">elem</span><span class="p">);</span>
-        <span class="n">rebuildInPost</span><span class="p">(</span><span class="o">&amp;</span><span class="p">((</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">),</span> <span class="n">in</span><span class="p">,</span> <span class="n">beginI</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">post</span><span class="p">,</span> <span class="n">beginP</span><span class="p">,</span> <span class="n">beginP</span><span class="o">+</span><span class="n">leftNum</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-        <span class="n">rebuildInPost</span><span class="p">(</span><span class="o">&amp;</span><span class="p">((</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">),</span> <span class="n">in</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">endI</span><span class="p">,</span> <span class="n">post</span><span class="p">,</span> <span class="n">beginP</span><span class="o">+</span><span class="n">leftNum</span><span class="p">,</span> <span class="n">endP</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+        <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">rebuildInPost</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-</span><span class="o">&gt;</span><span class="n">left</span><span class="p">)</span><span class="p">,</span> <span class="n">in</span><span class="p">,</span> <span class="n">beginI</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">post</span><span class="p">,</span> <span class="n">beginP</span><span class="p">,</span> <span class="n">beginP</span><span class="o">+</span><span class="n">leftNum</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">rebuildInPost</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-</span><span class="o">&gt;</span><span class="n">right</span><span class="p">)</span><span class="p">,</span> <span class="n">in</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">endI</span><span class="p">,</span> <span class="n">post</span><span class="p">,</span> <span class="n">beginP</span><span class="o">+</span><span class="n">leftNum</span><span class="p">,</span> <span class="n">endP</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 
 <span class="kt">void</span> <span class="nf">preOrder</span><span class="p">(</span><span class="n">Node</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
-        <span class="n">preOrder</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
-        <span class="n">preOrder</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">!</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">root</span><span class="o">-</span><span class="o">&gt;</span><span class="n">data</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> </span><span class="s">&#34;</span><span class="p">;</span>
+        <span class="n">preOrder</span><span class="p">(</span><span class="n">root</span><span class="o">-</span><span class="o">&gt;</span><span class="n">left</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">preOrder</span><span class="p">(</span><span class="n">root</span><span class="o">-</span><span class="o">&gt;</span><span class="n">right</span><span class="p">)</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 
 <span class="kt">void</span> <span class="nf">freeTree</span><span class="p">(</span><span class="n">Node</span> <span class="o">*</span><span class="n">root</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">=</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span>
         <span class="k">return</span><span class="p">;</span>
 
-    <span class="n">freeTree</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
-    <span class="n">freeTree</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+    <span class="n">freeTree</span><span class="p">(</span><span class="n">root</span><span class="o">-</span><span class="o">&gt;</span><span class="n">left</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">freeTree</span><span class="p">(</span><span class="n">root</span><span class="o">-</span><span class="o">&gt;</span><span class="n">right</span><span class="p">)</span><span class="p">;</span>
 
     <span class="k">delete</span> <span class="n">root</span><span class="p">;</span>
 <span class="p">}</span>
 
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
-    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">num</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="o">*</span><span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">num</span><span class="p">];</span>
-    <span class="kt">int</span> <span class="o">*</span><span class="n">post</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">num</span><span class="p">];</span>
-    <span class="n">inmap</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="n">cin</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="n">num</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">num</span><span class="p">]</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">post</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">num</span><span class="p">]</span><span class="p">;</span>
+    <span class="n">inmap</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="p">;</span>
 
     <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">in</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">post</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-        <span class="n">inmap</span><span class="p">[</span><span class="n">in</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
+        <span class="n">cin</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="n">in</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
+        <span class="n">cin</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="n">post</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
+        <span class="n">inmap</span><span class="p">[</span><span class="n">in</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
 
     <span class="n">Node</span> <span class="o">*</span><span class="n">root</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-    <span class="n">rebuildInPost</span><span class="p">(</span><span class="o">&amp;</span><span class="n">root</span><span class="p">,</span> <span class="n">in</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">post</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">rebuildInPost</span><span class="p">(</span><span class="o">&amp;</span><span class="n">root</span><span class="p">,</span> <span class="n">in</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">post</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
-        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;-1&#34;</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">-1</span><span class="s">&#34;</span><span class="p">;</span>
     <span class="k">else</span>
-        <span class="n">preOrder</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+        <span class="n">preOrder</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="p">;</span>
 
-    <span class="n">freeTree</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
-    <span class="k">delete</span> <span class="p">[]</span><span class="n">in</span><span class="p">;</span>
-    <span class="k">delete</span> <span class="p">[]</span><span class="n">post</span><span class="p">;</span>
-    <span class="k">delete</span> <span class="p">[]</span><span class="n">inmap</span><span class="p">;</span>
+    <span class="n">freeTree</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">delete</span> <span class="p">[</span><span class="p">]</span><span class="n">in</span><span class="p">;</span>
+    <span class="k">delete</span> <span class="p">[</span><span class="p">]</span><span class="n">post</span><span class="p">;</span>
+    <span class="k">delete</span> <span class="p">[</span><span class="p">]</span><span class="n">inmap</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
@@ -378,7 +368,7 @@
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  
+
   
 
   

@@ -26,7 +26,7 @@ Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提�
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2016/08/18/pycharm-%E4%BD%BF%E7%94%A8-windows-10-wsl-ubuntu-%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84-python/" />
@@ -43,42 +43,29 @@ Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提�
 
 <meta property="og:title" content="PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python" />
 <meta property="og:description" content="首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 https://support.microsoft.com/en-us/help/12387/windows-10-update-history 手动升级。
-
 Step 0: 安装 WSL Ubuntu
-
 在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。
-
 Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://josephpei.github.io/2016/08/18/pycharm-%E4%BD%BF%E7%94%A8-windows-10-wsl-ubuntu-%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84-python/" />
-<meta property="article:published_time" content="2016-08-18T09:30:18&#43;08:00"/>
-<meta property="article:modified_time" content="2016-08-18T09:30:18&#43;08:00"/>
-
+<meta property="article:published_time" content="2016-08-18T09:30:18+08:00" />
+<meta property="article:modified_time" content="2016-08-18T09:30:18+08:00" />
 <meta itemprop="name" content="PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python">
 <meta itemprop="description" content="首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 https://support.microsoft.com/en-us/help/12387/windows-10-update-history 手动升级。
-
 Step 0: 安装 WSL Ubuntu
-
 在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。
-
 Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。">
-
-
 <meta itemprop="datePublished" content="2016-08-18T09:30:18&#43;08:00" />
 <meta itemprop="dateModified" content="2016-08-18T09:30:18&#43;08:00" />
 <meta itemprop="wordCount" content="314">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python"/>
 <meta name="twitter:description" content="首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 https://support.microsoft.com/en-us/help/12387/windows-10-update-history 手动升级。
-
 Step 0: 安装 WSL Ubuntu
-
 在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。
-
 Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。"/>
 
 <!--[if lte IE 9]>
@@ -155,81 +142,60 @@ Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提�
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#step-0-安装-wsl-ubuntu">Step 0: 安装 WSL Ubuntu</a></li>
-<li><a href="#step-1-修改-etc-ssh-sshd-config">Step 1: 修改 <code>/etc/ssh/sshd_config</code></a></li>
-<li><a href="#step-2-生成密钥">Step 2: 生成密钥</a></li>
-<li><a href="#step-3-sshd-无密码运行">Step 3: sshd 无密码运行</a></li>
-<li><a href="#step-4-开启-ssh">Step 4: 开启 ssh</a></li>
-<li><a href="#step-5-配置-pycharm">Step 5: 配置 PyCharm</a></li>
-<li><a href="#step-x-完善">Step X: 完善</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#step-0--wsl-ubuntu">Step 0: 安装 WSL Ubuntu</a></li>
+    <li><a href="#step-1--etcsshsshd-config">Step 1: 修改 /etc/ssh/sshd_config</a></li>
+    <li><a href="#step-2-">Step 2: 生成密钥</a></li>
+    <li><a href="#step-3-sshd-">Step 3: sshd 无密码运行</a></li>
+    <li><a href="#step-4--ssh">Step 4: 开启 ssh</a></li>
+    <li><a href="#step-5--pycharm">Step 5: 配置 PyCharm</a></li>
+    <li><a href="#step-x-">Step X: 完善</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 <a href="https://support.microsoft.com/en-us/help/12387/windows-10-update-history">https://support.microsoft.com/en-us/help/12387/windows-10-update-history</a> 手动升级。</p>
-
-<h2 id="step-0-安装-wsl-ubuntu">Step 0: 安装 WSL Ubuntu</h2>
-
+<h2 id="step-0--wsl-ubuntu">Step 0: 安装 WSL Ubuntu</h2>
 <p>在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。</p>
-
 <p>Win + X 打开 CMD 管理员，输入 <code>bash</code> 或者 <code>lxrun /install</code>,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。</p>
-
-<h2 id="step-1-修改-etc-ssh-sshd-config">Step 1: 修改 <code>/etc/ssh/sshd_config</code></h2>
+<h2 id="step-1--etcsshsshd-config">Step 1: 修改 <code>/etc/ssh/sshd_config</code></h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">PasswordAuthentication yes
-UsePrivilegeSeparation no</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">PasswordAuthentication yes
+UsePrivilegeSeparation no
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="step-2-生成密钥">Step 2: 生成密钥</h2>
-
+</div><h2 id="step-2-">Step 2: 生成密钥</h2>
 <p>执行 <code>sudo dpkg-reconfigure openssh-server</code></p>
-
-<h2 id="step-3-sshd-无密码运行">Step 3: sshd 无密码运行</h2>
-
+<h2 id="step-3-sshd-">Step 3: sshd 无密码运行</h2>
 <p>执行 <code>sudo visudo</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"># $USER 是你 Step0 中设置的用户名
-$USER ALL = (root) NOPASSWD: /usr/sbin/sshd</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># $USER 是你 Step0 中设置的用户名
+$USER ALL = (root) NOPASSWD: /usr/sbin/sshd
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="step-4-开启-ssh">Step 4: 开启 ssh</h2>
-
+</div><h2 id="step-4--ssh">Step 4: 开启 ssh</h2>
 <p>执行 <code>sudo /usr/sbin/sshd -d</code>，确认无误后 <code>sudo /usr/sbin/sshd</code></p>
-
 <p>可以写成一个脚本 wsl_ssh.bat <code>bash.exe -c &quot;sudo service ssh start &amp;&amp;&amp; sleep 999d&quot;</code></p>
-
-<h2 id="step-5-配置-pycharm">Step 5: 配置 PyCharm</h2>
-
+<h2 id="step-5--pycharm">Step 5: 配置 PyCharm</h2>
 <p><a href="https://www.jetbrains.com/help/pycharm/2016.1/configuring-remote-interpreters-via-ssh.html">https://www.jetbrains.com/help/pycharm/2016.1/configuring-remote-interpreters-via-ssh.html</a></p>
-
-<h2 id="step-x-完善">Step X: 完善</h2>
-
+<h2 id="step-x-">Step X: 完善</h2>
 <p>cmd 替代品 <a href="http://conemu.github.io/">ConEmu</a>，最新版内置支持 wsl bash。</p>
-
 <p>也可以用 XShell ssh 上去。</p>
-
 <p>apt 源替换为 aliyun, <code>sudo sed -i 's/archive.ubuntu/mirrors.aliyun/g' /etc/apt/sources.list</code></p>
-
 <p>安装新版 git, <code>sudo add-apt-repository ppa:git-core/ppa</code></p>
-
 <p>安装新版 pip， <code>curl &quot;https://bootstrap.pypa.io/get-pip.py&quot; -o &quot;get-pip.py&quot;</code>, <code>sudo python get-pip.py</code></p>
-
-<p><img src="/img/pycharm02.png" alt="pycharm" /></p>
+<p><img src="/img/pycharm02.png" alt="pycharm"></p>
     </div>
 
     <div class="post-copyright">
@@ -278,7 +244,7 @@ $USER ALL = (root) NOPASSWD: /usr/sbin/sshd</pre></td></tr></table>
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  
+
   
 
   

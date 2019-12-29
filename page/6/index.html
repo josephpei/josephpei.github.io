@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/" />
@@ -44,13 +44,9 @@
 <meta property="og:description" content="常无事，痛饮酒，熟读离骚" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://josephpei.github.io/" />
-
-<meta property="og:updated_time" content="2019-03-11T21:16:49&#43;08:00"/>
-
+<meta property="og:updated_time" content="2019-12-29T22:22:59+08:00" />
 <meta itemprop="name" content="有翅膀的天狼">
-<meta itemprop="description" content="常无事，痛饮酒，熟读离骚">
-
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content="常无事，痛饮酒，熟读离骚"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="有翅膀的天狼"/>
 <meta name="twitter:description" content="常无事，痛饮酒，熟读离骚"/>
 
@@ -115,6 +111,25 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2014/02/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8Fjava%E5%AE%9E%E7%8E%B0/">设计模式之工厂模式(Java实现)</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2014-02-21 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>GoF 经典定义：Define an interface for creating an object, but let subclasses decide which class to initiate. Factory Method lets a class defer instantiation to subclasses.(定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法使一个类的实例化延迟到子类。)</p>
+    </div>
+    <div class="read-more">
+      <a href="/2014/02/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8Fjava%E5%AE%9E%E7%8E%B0/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2014/02/16/tomcat-%E7%BC%96%E7%A0%81%E8%AE%BE%E5%AE%9A/">Tomcat 编码设定</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2014-02-16 </span>
@@ -124,28 +139,14 @@
   
   <div class="post-content">
     <div class="post-summary">
-      <p>大部分网上文章都是Connector标签里面添加 URIEncoding=&ldquo;utf-8&rdquo;，这种方法过于暴力。</p>
-
-<p>正确的做法是添加 useBodyEncodingForURI=&ldquo;true&rdquo;，这句的话告诉tomcat用页面的编码去处理post，推荐使用。</p>
-
+      <p>大部分网上文章都是Connector标签里面添加 URIEncoding=&quot;utf-8&rdquo;，这种方法过于暴力。</p>
+<p>正确的做法是添加 useBodyEncodingForURI=&quot;true&rdquo;，这句的话告诉tomcat用页面的编码去处理post，推荐使用。</p>
 <p>JSP页面头</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">&lt;%@ page language=&#34;java&#34;  pageEncoding=&#34;UTF-8&#34;%&gt;</pre></td></tr></table>
-</div>
-</div>
+<pre><code>&lt;%@ page language=&quot;java&quot;  pageEncoding=&quot;UTF-8&quot;%&gt;
+</code></pre>
 <p>html标签的head标签里加上</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">&lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;&gt;</pre></td></tr></table>
-</div>
-</div>
+<pre><code>&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+</code></pre>
     </div>
     <div class="read-more">
       <a href="/2014/02/16/tomcat-%E7%BC%96%E7%A0%81%E8%AE%BE%E5%AE%9A/" class="read-more-link">阅读更多</a>
@@ -164,14 +165,10 @@
   
   <div class="post-content">
     <div class="post-summary">
-      <h2 id="建立web应用">建立web应用</h2>
-
+      <h2 id="web">建立web应用</h2>
 <p>使用eclipse建立maven的web工程</p>
-
-<h2 id="配置web工程">配置web工程</h2>
-
+<h2 id="web-1">配置web工程</h2>
 <p>完善目录</p>
-
 <p>让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。</p>
     </div>
     <div class="read-more">
@@ -192,7 +189,6 @@
   <div class="post-content">
     <div class="post-summary">
       <p>Maven是构建Java应用的优秀管理工具，是Apache软件基金会的顶级项目。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。</p>
-
 <p>官网地址  <a href="http://maven.apache.org/">http://maven.apache.org/</a></p>
     </div>
     <div class="read-more">
@@ -213,47 +209,21 @@
   <div class="post-content">
     <div class="post-summary">
       <p>来源：<a href="http://www.iteye.com/topic/106747">http://www.iteye.com/topic/106747</a></p>
-
 <p>在 <a href="http://www.iteye.com/topic/101055">函数式编程语言曲高和寡？</a> 一文中，我们看到 Haskell 能用两行代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">sort [] = []
-sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] ++ [x] ++ sort [y | y &lt;- xs, y &gt;= x]</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">sort [] = []
+sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] ++ [x] ++ sort [y | y &lt;- xs, y &gt;= x]
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。</p>
+</div><p>搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。</p>
     </div>
     <div class="read-more">
       <a href="/2014/01/09/%E7%94%A8python%E7%A7%92%E6%8E%89%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2014/01/01/string-hash-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%A3%E5%88%97/">String Hash 字符串散列</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2014-01-01 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>参考</p>
-
-<p><a href="http://www.partow.net/programming/hashfunctions/index.html">http://www.partow.net/programming/hashfunctions/index.html</a></p>
-
-<p>有人翻译了一下</p>
-
-<p><a href="http://blog.csdn.net/eaglex/article/details/6310727">http://blog.csdn.net/eaglex/article/details/6310727</a></p>
-    </div>
-    <div class="read-more">
-      <a href="/2014/01/01/string-hash-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%A3%E5%88%97/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

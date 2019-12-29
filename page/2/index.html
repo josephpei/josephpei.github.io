@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/" />
@@ -44,13 +44,9 @@
 <meta property="og:description" content="常无事，痛饮酒，熟读离骚" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://josephpei.github.io/" />
-
-<meta property="og:updated_time" content="2019-03-11T21:16:49&#43;08:00"/>
-
+<meta property="og:updated_time" content="2019-12-29T22:22:59+08:00" />
 <meta itemprop="name" content="有翅膀的天狼">
-<meta itemprop="description" content="常无事，痛饮酒，熟读离骚">
-
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content="常无事，痛饮酒，熟读离骚"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="有翅膀的天狼"/>
 <meta name="twitter:description" content="常无事，痛饮酒，熟读离骚"/>
 
@@ -115,6 +111,27 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2018/04/28/ubuntu-awesome-terminal/">ubuntu awesome terminal</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-04-28 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <h2 id="gnome-terminal-theme">gnome-terminal theme</h2>
+<p><a href="https://github.com/aaron-williamson/base16-gnome-terminal">base16 gnome terminal</a></p>
+<p>选择一个，运行相应的 <code>.sh</code></p>
+    </div>
+    <div class="read-more">
+      <a href="/2018/04/28/ubuntu-awesome-terminal/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2016/08/18/pycharm-%E4%BD%BF%E7%94%A8-windows-10-wsl-ubuntu-%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84-python/">PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2016-08-18 </span>
@@ -125,11 +142,8 @@
   <div class="post-content">
     <div class="post-summary">
       <p>首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 <a href="https://support.microsoft.com/en-us/help/12387/windows-10-update-history">https://support.microsoft.com/en-us/help/12387/windows-10-update-history</a> 手动升级。</p>
-
-<h2 id="step-0-安装-wsl-ubuntu">Step 0: 安装 WSL Ubuntu</h2>
-
+<h2 id="step-0--wsl-ubuntu">Step 0: 安装 WSL Ubuntu</h2>
 <p>在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。</p>
-
 <p>Win + X 打开 CMD 管理员，输入 <code>bash</code> 或者 <code>lxrun /install</code>,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。</p>
     </div>
     <div class="read-more">
@@ -171,7 +185,7 @@
       <p>完整的 Hello World 内核模块 hello.c</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -190,23 +204,24 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;linux/init.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;linux/module.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">&#34;Dual BSD/GPL&#34;</span><span class="p">);</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;linux/init.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;linux/module.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Dual BSD/GPL</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
 
 <span class="k">static</span> <span class="kt">int</span> <span class="nf">hello_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Hello, world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Hello, world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="k">static</span> <span class="kt">void</span> <span class="nf">hello_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Goodbye, cruel world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Goodbye, cruel world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="n">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">);</span>
-<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_exit</span><span class="p">);</span></code></pre></td></tr></table>
+<span class="n">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">)</span><span class="p">;</span>
+<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_exit</span><span class="p">)</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -228,108 +243,23 @@
   <div class="post-content">
     <div class="post-summary">
       <p>create ap hotspot for ubuntu linux</p>
-
 <p>准备</p>
-
 <p><a href="https://w1.fi/hostapd/">https://w1.fi/hostapd/</a></p>
-
 <p><a href="https://github.com/oblique/create_ap">https://github.com/oblique/create_ap</a></p>
-
 <p>编译 hostapd</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">sudo apt-get install libnl-3-dev libnl-gen-3-dev
-make &amp;&amp; sudo make install</pre></td></tr></table>
-</div>
-</div>
+<pre><code>sudo apt-get install libnl-3-dev libnl-gen-3-dev
+make &amp;&amp; sudo make install
+</code></pre>
 <p>安装 create_ap</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">git clone https://github.com/oblique/create_ap.git
-cd create_ap &amp;&amp; make install</pre></td></tr></table>
-</div>
-</div>
+<pre><code>git clone https://github.com/oblique/create_ap.git
+cd create_ap &amp;&amp; make install
+</code></pre>
 <p>创建无线热点</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">sudo create_ap wlan0 ppp0 hotspot password</pre></td></tr></table>
-</div>
-</div>
+<pre><code>sudo create_ap wlan0 ppp0 hotspot password
+</code></pre>
     </div>
     <div class="read-more">
       <a href="/2015/06/24/linux-ubuntu-%E4%B8%8B%E4%B8%BA-android-%E5%88%9B%E5%BB%BA%E6%97%A0%E7%BA%BF%E5%88%86%E4%BA%AB%E7%83%AD%E7%82%B9/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2014/09/04/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B010-ajax-%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/">Spring MVC 学习笔记10 AJAX 图片上传</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2014-09-04 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>Spring MVC AJAX 方式图片上传，采用 base64 编码图片。</p>
-
-<p>pom.xml</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.fasterxml.jackson.core<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>jackson-databind<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>2.4.2<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-
-<span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>commons-codec<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>commons-codec<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>1.9<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-
-<span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>commons-fileupload<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>commons-fileupload<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>1.3.1<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span></code></pre></td></tr></table>
-</div>
-</div>
-    </div>
-    <div class="read-more">
-      <a href="/2014/09/04/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B010-ajax-%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/09/15/zsh%E4%B8%8Eoh-my-zsh/" />
@@ -43,21 +43,17 @@
 <meta property="og:description" content="zsh 介绍  http://foocoder.com/blog/wo-zai-yong-de-macruan-jian-2.html/" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://josephpei.github.io/2013/09/15/zsh%E4%B8%8Eoh-my-zsh/" />
-<meta property="article:published_time" content="2013-09-15T21:09:49&#43;08:00"/>
-<meta property="article:modified_time" content="2013-09-15T21:09:49&#43;08:00"/>
-
+<meta property="article:published_time" content="2013-09-15T21:09:49+08:00" />
+<meta property="article:modified_time" content="2013-09-15T21:09:49+08:00" />
 <meta itemprop="name" content="zsh与oh-my-zsh">
 <meta itemprop="description" content="zsh 介绍  http://foocoder.com/blog/wo-zai-yong-de-macruan-jian-2.html/">
-
-
 <meta itemprop="datePublished" content="2013-09-15T21:09:49&#43;08:00" />
 <meta itemprop="dateModified" content="2013-09-15T21:09:49&#43;08:00" />
-<meta itemprop="wordCount" content="317">
+<meta itemprop="wordCount" content="312">
 
 
 
-<meta itemprop="keywords" content="shell," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="shell," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="zsh与oh-my-zsh"/>
 <meta name="twitter:description" content="zsh 介绍  http://foocoder.com/blog/wo-zai-yong-de-macruan-jian-2.html/"/>
 
@@ -135,70 +131,36 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#安装-zsh-与-oh-my-zsh">安装 zsh 与 oh-my-zsh</a></li>
-<li><a href="#配置-iterm2-的主题与字体">配置 iTerm2 的主题与字体</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#-zsh--oh-my-zsh">安装 zsh 与 oh-my-zsh</a></li>
+    <li><a href="#-iterm2-">配置 iTerm2 的主题与字体</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>zsh 介绍  <a href="http://foocoder.com/blog/wo-zai-yong-de-macruan-jian-2.html/">http://foocoder.com/blog/wo-zai-yong-de-macruan-jian-2.html/</a></p>
-
-<h2 id="安装-zsh-与-oh-my-zsh">安装 zsh 与 oh-my-zsh</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">brew install zsh
-curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh</pre></td></tr></table>
-</div>
-</div>
+<h2 id="-zsh--oh-my-zsh">安装 zsh 与 oh-my-zsh</h2>
+<pre><code>brew install zsh
+curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+</code></pre>
 <p>修改/etc/shells，添加/usr/local/bin/zsh</p>
-
 <p>更改默认 shell 为 zsh</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">chsh -s /usr/local/bin/zsh</pre></td></tr></table>
-</div>
-</div>
-<h2 id="配置-iterm2-的主题与字体">配置 iTerm2 的主题与字体</h2>
-
+<pre><code>chsh -s /usr/local/bin/zsh
+</code></pre>
+<h2 id="-iterm2-">配置 iTerm2 的主题与字体</h2>
 <p>iTerm2 主页<a href="http://www.iterm2.com/">http://www.iterm2.com/</a></p>
-
 <p>iTerm2 Solarized主题<a href="https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized">https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized</a></p>
-
 <p>在此我们使用 Solarized Dark主题，OMZ 里有一个与之配合的主题agnoster，修改~/.zshrc</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">export ZSH_THEME=&#34;agnoster&#34;
-DEFAULT_USER=&#34;xilaideng&#34;</pre></td></tr></table>
-</div>
-</div>
+<pre><code>export ZSH_THEME=&quot;agnoster&quot;
+DEFAULT_USER=&quot;xilaideng&quot;
+</code></pre>
 <p>zsh powerline 主题</p>
-
 <p><a href="https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme">https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme</a></p>
-
 <p><a href="https://github.com/milkbikis/powerline-shell">https://github.com/milkbikis/powerline-shell</a></p>
-
 <p>zsh主题列表<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes">https://github.com/robbyrussell/oh-my-zsh/wiki/themes</a></p>
-
 <p>下载 zsh agnoster theme 所需要的字体</p>
-
 <p><a href="https://gist.github.com/qrush/1595572/raw/417a3fa36e35ca91d6d23ac961071094c26e5fad/Menlo-Powerline.otf">https://gist.github.com/qrush/1595572/raw/417a3fa36e35ca91d6d23ac961071094c26e5fad/Menlo-Powerline.otf</a></p>
-
 <p><a href="https://github.com/Lokaltog/powerline-fonts">https://github.com/Lokaltog/powerline-fonts</a></p>
     </div>
 
@@ -246,7 +208,7 @@ DEFAULT_USER=&#34;xilaideng&#34;</pre></td></tr></table>
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  
+
   
 
   

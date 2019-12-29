@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>python on 有翅膀的天狼</title>
@@ -27,19 +27,18 @@
       
       <guid>http://josephpei.github.io/2014/01/09/%E7%94%A8python%E7%A7%92%E6%8E%89%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/</guid>
       <description>&lt;p&gt;来源：&lt;a href=&#34;http://www.iteye.com/topic/106747&#34;&gt;http://www.iteye.com/topic/106747&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;在 &lt;a href=&#34;http://www.iteye.com/topic/101055&#34;&gt;函数式编程语言曲高和寡？&lt;/a&gt; 一文中，我们看到 Haskell 能用两行代码&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;sort [] = []
-sort (x:xs) = sort [y | y &amp;lt;- xs, y &amp;lt; x] ++ [x] ++ sort [y | y &amp;lt;- xs, y &amp;gt;= x]&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;sort [] = []
+sort (x:xs) = sort [y | y &amp;lt;- xs, y &amp;lt; x] ++ [x] ++ sort [y | y &amp;lt;- xs, y &amp;gt;= x]
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。&lt;/p&gt;</description>
+&lt;/div&gt;&lt;p&gt;搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -49,7 +48,6 @@ sort (x:xs) = sort [y | y &amp;lt;- xs, y &amp;lt; x] ++ [x] ++ sort [y | y &amp
       
       <guid>http://josephpei.github.io/2013/09/16/python-%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8decorator/</guid>
       <description>&lt;p&gt;decorator可作用于函数和类，功能有两个：&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;Call proxy&lt;/li&gt;
 &lt;li&gt;Interface proxy&lt;/li&gt;

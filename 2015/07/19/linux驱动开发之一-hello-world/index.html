@@ -17,14 +17,14 @@
 
 
 <meta name="author" content="josephpei" /><meta name="description" content="完整的 Hello World 内核模块 hello.c
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  #include &amp;lt;linux/init.h&amp;gt;#include &amp;lt;linux/module.h&amp;gt;MODULE_LICENSE(&amp;#34;Dual BSD/GPL&amp;#34;); static int hello_init(void) { printk(KERN_ALERT &amp;#34;Hello, world\n&amp;#34;); return 0; } static void hello_exit(void) { printk(KERN_ALERT &amp;#34;Goodbye, cruel world\n&amp;#34;); } module_init(hello_init); module_exit(hello_exit);  " /><meta name="keywords" content="life, linux, program" />
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  #include &amp;lt;linux/init.h&amp;gt;#include &amp;lt;linux/module.h&amp;gt;MODULE_LICENSE(&amp;#34;Dual BSD/GPL&amp;#34;); static int hello_init(void) { printk(KERN_ALERT &amp;#34;Hello, world\n&amp;#34;); return 0; } static void hello_exit(void) { printk(KERN_ALERT &amp;#34;Goodbye, cruel world\n&amp;#34;); } module_init(hello_init); module_exit(hello_exit);   " /><meta name="keywords" content="life, linux, program" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2015/07/19/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%80-hello-world/" />
@@ -80,12 +80,12 @@ static void hello_exit(void)
 module_init(hello_init);
 module_exit(hello_exit);
 
+
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://josephpei.github.io/2015/07/19/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%80-hello-world/" />
-<meta property="article:published_time" content="2015-07-19T10:21:47&#43;08:00"/>
-<meta property="article:modified_time" content="2015-07-19T10:21:47&#43;08:00"/>
-
+<meta property="article:published_time" content="2015-07-19T10:21:47+08:00" />
+<meta property="article:modified_time" content="2015-07-19T10:21:47+08:00" />
 <meta itemprop="name" content="Linux驱动开发之一 Hello World">
 <meta itemprop="description" content="完整的 Hello World 内核模块 hello.c
 
@@ -127,17 +127,15 @@ static void hello_exit(void)
 module_init(hello_init);
 module_exit(hello_exit);
 
+
 ">
-
-
 <meta itemprop="datePublished" content="2015-07-19T10:21:47&#43;08:00" />
 <meta itemprop="dateModified" content="2015-07-19T10:21:47&#43;08:00" />
 <meta itemprop="wordCount" content="103">
 
 
 
-<meta itemprop="keywords" content="LinuxDriver," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="LinuxDriver," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux驱动开发之一 Hello World"/>
 <meta name="twitter:description" content="完整的 Hello World 内核模块 hello.c
 
@@ -178,6 +176,7 @@ static void hello_exit(void)
 
 module_init(hello_init);
 module_exit(hello_exit);
+
 
 "/>
 
@@ -254,14 +253,14 @@ module_exit(hello_exit);
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    
+    <nav id="TableOfContents"></nav>
   </div>
 </div>
     <div class="post-content">
       <p>完整的 Hello World 内核模块 hello.c</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -280,29 +279,29 @@ module_exit(hello_exit);
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;linux/init.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;linux/module.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">&#34;Dual BSD/GPL&#34;</span><span class="p">);</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;linux/init.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;linux/module.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Dual BSD/GPL</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
 
 <span class="k">static</span> <span class="kt">int</span> <span class="nf">hello_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Hello, world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Hello, world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="k">static</span> <span class="kt">void</span> <span class="nf">hello_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Goodbye, cruel world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Goodbye, cruel world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="n">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">);</span>
-<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_exit</span><span class="p">);</span></code></pre></td></tr></table>
+<span class="n">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">)</span><span class="p">;</span>
+<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_exit</span><span class="p">)</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Makefile</p>
+</div><p>Makefile</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -324,11 +323,10 @@ module_exit(hello_exit);
 	rm -rf *.o *.ko *.mod.* *.symvers *.order
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>To run the code</p>
+</div><p>To run the code</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -339,7 +337,8 @@ module_exit(hello_exit);
 <span class="nv">$dmesg</span>
 u will get the output
 <span class="nv">$sudo</span> rmmod hello.ko
-<span class="nv">$dmesg</span></code></pre></td></tr></table>
+<span class="nv">$dmesg</span>
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -392,7 +391,7 @@ u will get the output
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  
+
   
 
   

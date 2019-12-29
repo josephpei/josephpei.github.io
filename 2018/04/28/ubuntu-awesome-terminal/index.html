@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2018/04/28/ubuntu-awesome-terminal/" />
@@ -42,36 +42,26 @@
 
 <meta property="og:title" content="ubuntu awesome terminal" />
 <meta property="og:description" content="gnome-terminal theme
-
 base16 gnome terminal
-
 选择一个，运行相应的 .sh" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://josephpei.github.io/2018/04/28/ubuntu-awesome-terminal/" />
-<meta property="article:published_time" content="2018-04-28T10:53:07&#43;08:00"/>
-<meta property="article:modified_time" content="2018-04-28T10:53:07&#43;08:00"/>
-
+<meta property="article:published_time" content="2018-04-28T10:53:07+08:00" />
+<meta property="article:modified_time" content="2018-04-28T10:53:07+08:00" />
 <meta itemprop="name" content="ubuntu awesome terminal">
 <meta itemprop="description" content="gnome-terminal theme
-
 base16 gnome terminal
-
 选择一个，运行相应的 .sh">
-
-
 <meta itemprop="datePublished" content="2018-04-28T10:53:07&#43;08:00" />
 <meta itemprop="dateModified" content="2018-04-28T10:53:07&#43;08:00" />
-<meta itemprop="wordCount" content="426">
+<meta itemprop="wordCount" content="427">
 
 
 
-<meta itemprop="keywords" content="ubuntu," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="ubuntu," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ubuntu awesome terminal"/>
 <meta name="twitter:description" content="gnome-terminal theme
-
 base16 gnome terminal
-
 选择一个，运行相应的 .sh"/>
 
 <!--[if lte IE 9]>
@@ -148,45 +138,38 @@ base16 gnome terminal
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#gnome-terminal-theme">gnome-terminal theme</a></li>
-<li><a href="#zsh">zsh</a></li>
-<li><a href="#oh-my-zsh">oh-my-zsh</a></li>
-<li><a href="#omz-powerlevel9k-theme">omz powerlevel9k theme</a></li>
-<li><a href="#powerline-与-awesome-字体">powerline 与 awesome 字体</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#gnome-terminal-theme">gnome-terminal theme</a></li>
+    <li><a href="#zsh">zsh</a></li>
+    <li><a href="#oh-my-zsh">oh-my-zsh</a></li>
+    <li><a href="#omz-powerlevel9k-theme">omz powerlevel9k theme</a></li>
+    <li><a href="#powerline--awesome-">powerline 与 awesome 字体</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <h2 id="gnome-terminal-theme">gnome-terminal theme</h2>
-
 <p><a href="https://github.com/aaron-williamson/base16-gnome-terminal">base16 gnome terminal</a></p>
-
 <p>选择一个，运行相应的 <code>.sh</code></p>
-
 <p>下面是 Old Way，不再推荐</p>
-
 <p><a href="https://github.com/Anthony25/gnome-terminal-colors-solarized">Solarized Colorscheme for Gnome Terminal</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
 <span class="nb">cd</span> gnome-terminal-colors-solarized
-./install.sh</code></pre></td></tr></table>
+./install.sh
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>按提示选择 <code>dark</code> 或 <code>light</code> 主题。为了使 <code>ls</code> 命令显示色彩与之相配，中间会提示是否下载 <code>dircolors</code>（由于伟大的墙的问题，有可能下载不成功），手动安装方式如下：</p>
+</div><p>按提示选择 <code>dark</code> 或 <code>light</code> 主题。为了使 <code>ls</code> 命令显示色彩与之相配，中间会提示是否下载 <code>dircolors</code>（由于伟大的墙的问题，有可能下载不成功），手动安装方式如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -203,44 +186,43 @@ mv dircolors.ansi-dark .dircolors
 <span class="c1"># or light</span>
 wget --no-check-certificate https://raw.github.com/seebi/dircolors-solarized/master/dircolors.ansi-light
 mv dircolors.ansi-light .dircolors
-<span class="nb">eval</span> <span class="sb">`</span>dircolors ~/.dircolors<span class="sb">`</span></code></pre></td></tr></table>
+<span class="nb">eval</span> <span class="sb">`</span>dircolors ~/.dircolors<span class="sb">`</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="zsh">zsh</h2>
+</div><h2 id="zsh">zsh</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install zsh
-chsh -s /usr/bin/zsh</code></pre></td></tr></table>
+chsh -s /usr/bin/zsh
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="oh-my-zsh">oh-my-zsh</h2>
+</div><h2 id="oh-my-zsh">oh-my-zsh</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sh -c <span class="s2">&#34;</span><span class="k">$(</span>wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -<span class="k">)</span><span class="s2">&#34;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-bash" data-lang="bash">sh -c <span class="s2">&#34;</span><span class="k">$(</span>wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -<span class="k">)</span><span class="s2">&#34;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="omz-powerlevel9k-theme">omz powerlevel9k theme</h2>
-
+</div><h2 id="omz-powerlevel9k-theme">omz powerlevel9k theme</h2>
 <p>安装</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>配置 ~/.zshrc</p>
+</div><p>配置 ~/.zshrc</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -261,8 +243,8 @@ chsh -s /usr/bin/zsh</code></pre></td></tr></table>
 
 <span class="nv">POWERLEVEL9K_MODE</span><span class="o">=</span><span class="s1">&#39;awesome-fontconfig&#39;</span>
 <span class="nv">POWERLEVEL9K_SHORTEN_DIR_LENGTH</span><span class="o">=</span><span class="m">2</span>
-<span class="nv">POWERLEVEL9K_LEFT_PROMPT_ELEMENTS</span><span class="o">=(</span>os_icon dir vcs<span class="o">)</span>
-<span class="nv">POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS</span><span class="o">=()</span>
+<span class="nv">POWERLEVEL9K_LEFT_PROMPT_ELEMENTS</span><span class="o">=</span><span class="o">(</span>os_icon dir vcs<span class="o">)</span>
+<span class="nv">POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS</span><span class="o">=</span><span class="o">(</span><span class="o">)</span>
 
 <span class="nv">POWERLEVEL9K_VIRTUALENV_BACKGROUND</span><span class="o">=</span><span class="m">107</span>
 <span class="nv">POWERLEVEL9K_VIRTUALENV_FOREGROUND</span><span class="o">=</span><span class="s1">&#39;white&#39;</span>
@@ -271,43 +253,39 @@ chsh -s /usr/bin/zsh</code></pre></td></tr></table>
 <span class="nv">POWERLEVEL9K_OS_ICON_BACKGROUND</span><span class="o">=</span><span class="s1">&#39;white&#39;</span>
 <span class="nv">POWERLEVEL9K_OS_ICON_FOREGROUND</span><span class="o">=</span><span class="s1">&#39;black&#39;</span>
 <span class="nv">POWERLEVEL9K_TIME_BACKGROUND</span><span class="o">=</span><span class="s1">&#39;white&#39;</span>
-<span class="nv">POWERLEVEL9K_TIME_FOREGROUND</span><span class="o">=</span><span class="s1">&#39;black&#39;</span></code></pre></td></tr></table>
+<span class="nv">POWERLEVEL9K_TIME_FOREGROUND</span><span class="o">=</span><span class="s1">&#39;black&#39;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="powerline-与-awesome-字体">powerline 与 awesome 字体</h2>
-
+</div><h2 id="powerline--awesome-">powerline 与 awesome 字体</h2>
 <p>显示 git 分支等一些特殊 awesome glyph 字符</p>
-
 <p>直接使用 <a href="https://nerdfonts.com/">nerdfonts</a>，在 <code>gnome-terminal -&gt; Edit -&gt; Preferences</code> 里选 <code>Custom font</code>，设置想要的字体</p>
-
 <p>下面是 Old Way，不再推荐</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install fonts-powerline</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install fonts-powerline
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>如果有问题的话，手动安装打好补丁的字体 <a href="https://github.com/powerline/fonts">powerline font</a></p>
+</div><p>如果有问题的话，手动安装打好补丁的字体 <a href="https://github.com/powerline/fonts">powerline font</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/powerline/fonts.git --depth<span class="o">=</span><span class="m">1</span>
 <span class="nb">cd</span> fonts
-./install.sh</code></pre></td></tr></table>
+./install.sh
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>然后在 <code>gnome-terminal -&gt; Edit -&gt; Preferences</code> 里选 <code>Custom font</code>，设置想要的字体，我这里选择 <code>Source Code Pro for Powerline Medium</code></p>
-
+</div><p>然后在 <code>gnome-terminal -&gt; Edit -&gt; Preferences</code> 里选 <code>Custom font</code>，设置想要的字体，我这里选择 <code>Source Code Pro for Powerline Medium</code></p>
 <p>为了配合上面的 powerlevel9k 显示出一些更 awesome 的字符，需要 <a href="https://github.com/gabrielelana/awesome-terminal-fonts">awesome-terminal-fonts</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -318,15 +296,14 @@ chsh -s /usr/bin/zsh</code></pre></td></tr></table>
 <span class="nb">cd</span> awesome-terminal-fonts
 cp build/* ~/.local/share/fonts/
 fc-cache -fv
-cp config/10-symbols.conf ~/.config/fontconfig/conf.d/</code></pre></td></tr></table>
+cp config/10-symbols.conf ~/.config/fontconfig/conf.d/
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>修改 <code>.zshrc</code> 添加一行 <code>source $HOME/.local/share/fonts/*.sh</code></p>
-
+</div><p>修改 <code>.zshrc</code> 添加一行 <code>source $HOME/.local/share/fonts/*.sh</code></p>
 <p>修改 <code>~/.config/fontconfig/conf.d/10-symbols.conf</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -337,24 +314,25 @@ cp config/10-symbols.conf ~/.config/fontconfig/conf.d/</code></pre></td></tr></t
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
+</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;fontconfig&gt;</span>
-  <span class="nt">&lt;alias&gt;</span>
-    <span class="nt">&lt;family&gt;</span>Source Code Pro for Powerline<span class="nt">&lt;/family&gt;</span>
-    <span class="nt">&lt;prefer&gt;</span>
-      <span class="nt">&lt;family&gt;</span>Pomodoro<span class="nt">&lt;/family&gt;</span>
-      <span class="nt">&lt;family&gt;</span>FontAwesome<span class="nt">&lt;/family&gt;</span>
-      <span class="nt">&lt;family&gt;</span>Octicons<span class="nt">&lt;/family&gt;</span>
-      <span class="nt">&lt;family&gt;</span>Icomoon<span class="nt">&lt;/family&gt;</span>
+<pre class="chroma"><code class="language-xml" data-lang="xml">
+<span class="nt">&lt;fontconfig</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;alias</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;family</span><span class="nt">&gt;</span>Source Code Pro for Powerline<span class="nt">&lt;/family&gt;</span>
+    <span class="nt">&lt;prefer</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;family</span><span class="nt">&gt;</span>Pomodoro<span class="nt">&lt;/family&gt;</span>
+      <span class="nt">&lt;family</span><span class="nt">&gt;</span>FontAwesome<span class="nt">&lt;/family&gt;</span>
+      <span class="nt">&lt;family</span><span class="nt">&gt;</span>Octicons<span class="nt">&lt;/family&gt;</span>
+      <span class="nt">&lt;family</span><span class="nt">&gt;</span>Icomoon<span class="nt">&lt;/family&gt;</span>
     <span class="nt">&lt;/prefer&gt;</span>
   <span class="nt">&lt;/alias&gt;</span>
-<span class="nt">&lt;/fontconfig&gt;</span></code></pre></td></tr></table>
+<span class="nt">&lt;/fontconfig&gt;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>最终效果</p>
-
-<p><img src="/img/awesome-terminal.png" alt="awesome-terminal" /></p>
+</div><p>最终效果</p>
+<p><img src="/img/awesome-terminal.png" alt="awesome-terminal"></p>
     </div>
 
     <div class="post-copyright">
@@ -405,7 +383,7 @@ cp config/10-symbols.conf ~/.config/fontconfig/conf.d/</code></pre></td></tr></t
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  
+
   
 
   

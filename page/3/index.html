@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/" />
@@ -44,13 +44,9 @@
 <meta property="og:description" content="常无事，痛饮酒，熟读离骚" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://josephpei.github.io/" />
-
-<meta property="og:updated_time" content="2019-03-11T21:16:49&#43;08:00"/>
-
+<meta property="og:updated_time" content="2019-12-29T22:22:59+08:00" />
 <meta itemprop="name" content="有翅膀的天狼">
-<meta itemprop="description" content="常无事，痛饮酒，熟读离骚">
-
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content="常无事，痛饮酒，熟读离骚"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="有翅膀的天狼"/>
 <meta name="twitter:description" content="常无事，痛饮酒，熟读离骚"/>
 
@@ -115,6 +111,67 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2014/09/04/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B010-ajax-%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/">Spring MVC 学习笔记10 AJAX 图片上传</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2014-09-04 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>Spring MVC AJAX 方式图片上传，采用 base64 编码图片。</p>
+<p>pom.xml</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.fasterxml.jackson.core<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>jackson-databind<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>2.4.2<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>commons-codec<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>commons-codec<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.9<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>commons-fileupload<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>commons-fileupload<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.3.1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+    <div class="read-more">
+      <a href="/2014/09/04/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B010-ajax-%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2014/09/01/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-jquery-%E9%AA%8C%E8%AF%81/">Spring MVC 学习笔记9 JQuery 验证</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2014-09-01 </span>
@@ -125,7 +182,6 @@
   <div class="post-content">
     <div class="post-summary">
       <p>前面我们已经学习过了在服务器端进行验证，这次学习 JQuery Validator 客户端验证。客户端验证虽然可以被用户绕过，但是可以作为辅助手段，对于一般用户可以减少一定的服务器通讯。</p>
-
 <p>以注册页面为例，实现一般化的验证，并且加上二次输入密码、用户名字段唯一性验证。</p>
     </div>
     <div class="read-more">
@@ -184,36 +240,11 @@
   <div class="post-content">
     <div class="post-summary">
       <p>Simple Logging Facade for Java(SL4J)</p>
-
 <p>SLF4J 提供了一组抽象接口，在部署应用时后端可以选择不同的日志框架，而无需更改已有代码。</p>
-
 <p>Logback 是项目 Log4j 的后继。它由三个模块组成：logback-core, logback-classic, logback-access。其中 logback-core 是基础模块。logback-classic 是 log4j 的改良版，是 slf4j api 的原生实现，可以方便地更换成其它日志框架。logback-access 模块与 Servlet 容器集成提供Http-access 日志的功能。</p>
     </div>
     <div class="read-more">
       <a href="/2014/08/25/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B06-slf4j-logback-%E6%97%A5%E5%BF%97/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2014/08/24/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05-rest%E4%B8%8Eajax/">Spring MVC 学习笔记5 REST与AJAX</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2014-08-24 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>近来，以信息为中心的表述性状态转移(Representational State Transfer, REST)已成为替换传统 SOAP Web 服务的流行方案，Spring MVC 封装了对 REST 的良好支持。</p>
-
-<p>当谈论REST时，有一种常见的错误就是将其视为“基于 URL 的 Web 服务”，将 REST 作为另一种类型的远程过程调用(RPC)机制。恰好相反，REST 与 RPC 几乎没有任何关系，RPC 是面向服务的，并关注于行为和动作，而 REST 是面向资源的，强调描述应用程序的事物和名词。REST 就是将资源的状态以最合适的形式从服务器端转移到客户端（或者反之）。</p>
-
-<p>本节应用 @ResponseBody 注解实现简单的 RESTless URL，并与 JQuery AJAX 结合。</p>
-    </div>
-    <div class="read-more">
-      <a href="/2014/08/24/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05-rest%E4%B8%8Eajax/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

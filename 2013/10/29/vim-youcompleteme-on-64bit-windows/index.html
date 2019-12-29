@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.61.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/10/29/vim-youcompleteme-on-64bit-windows/" />
@@ -43,21 +43,17 @@
 <meta property="og:description" content="摘要：64bit vim, YCM, 64bit clang VS 2012, 64bit Widnows" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://josephpei.github.io/2013/10/29/vim-youcompleteme-on-64bit-windows/" />
-<meta property="article:published_time" content="2013-10-29T15:13:42&#43;08:00"/>
-<meta property="article:modified_time" content="2013-10-29T15:13:42&#43;08:00"/>
-
+<meta property="article:published_time" content="2013-10-29T15:13:42+08:00" />
+<meta property="article:modified_time" content="2013-10-29T15:13:42+08:00" />
 <meta itemprop="name" content="vim Youcompleteme on 64bit Windows">
 <meta itemprop="description" content="摘要：64bit vim, YCM, 64bit clang VS 2012, 64bit Widnows">
-
-
 <meta itemprop="datePublished" content="2013-10-29T15:13:42&#43;08:00" />
 <meta itemprop="dateModified" content="2013-10-29T15:13:42&#43;08:00" />
-<meta itemprop="wordCount" content="461">
+<meta itemprop="wordCount" content="450">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="vim Youcompleteme on 64bit Windows"/>
 <meta name="twitter:description" content="摘要：64bit vim, YCM, 64bit clang VS 2012, 64bit Widnows"/>
 
@@ -135,112 +131,62 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#vim-x64-for-windows">vim x64 for windows</a></li>
-<li><a href="#mingw-环境">MinGW 环境</a></li>
-<li><a href="#vs2012-环境">VS2012 环境</a>
-<ul>
-<li><a href="#llvm-clang-x64-for-windows">LLVM/CLANG x64 for windows</a></li>
-<li><a href="#编译-ycm">编译 YCM</a></li>
-</ul></li>
-<li><a href="#与supertab-ultisnips配合">与SuperTab、UltiSnips配合</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#vim-x64-for-windows">vim x64 for windows</a></li>
+    <li><a href="#mingw-">MinGW 环境</a></li>
+    <li><a href="#vs2012-">VS2012 环境</a>
+      <ul>
+        <li><a href="#llvmclang-x64-for-windows">LLVM/CLANG x64 for windows</a></li>
+        <li><a href="#-ycm">编译 YCM</a></li>
+      </ul>
+    </li>
+    <li><a href="#supertabultisnips">与SuperTab、UltiSnips配合</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>摘要：64bit vim, YCM, 64bit clang VS 2012, 64bit Widnows</p>
-
 <h2 id="vim-x64-for-windows">vim x64 for windows</h2>
-
 <p><a href="https://bitbucket.org/Haroogan/vim-for-windows">https://bitbucket.org/Haroogan/vim-for-windows</a></p>
-
 <p>或 <a href="https://bintray.com/veegee/generic/vim_x64">https://bintray.com/veegee/generic/vim_x64</a></p>
-
 <p>vim 插件管理 Vundle 或NeoBundle</p>
-
 <p><a href="https://github.com/Shougo/neobundle.vim">https://github.com/Shougo/neobundle.vim</a></p>
-
-<h2 id="mingw-环境">MinGW 环境</h2>
-
+<h2 id="mingw-">MinGW 环境</h2>
 <p><a href="https://bitbucket.org/Haroogan/vim-youcompleteme-for-windows/src">https://bitbucket.org/Haroogan/vim-youcompleteme-for-windows/src</a></p>
-
 <p>查找头文件目录，添加到.ycm_extra_conf.py</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">g++ -E -x c++ - -v &lt; /dev/null
-clang++ -E -x c++ - -v &lt; /dev/null</pre></td></tr></table>
-</div>
-</div>
+<pre><code>g++ -E -x c++ - -v &lt; /dev/null
+clang++ -E -x c++ - -v &lt; /dev/null
+</code></pre>
 <p>Or in Windows Command Prompt:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">g++ -E -x c++ - -v &lt; nul
-clang++ -E -x c++ - -v &lt; nul</pre></td></tr></table>
-</div>
-</div>
-<h2 id="vs2012-环境">VS2012 环境</h2>
-
-<h3 id="llvm-clang-x64-for-windows">LLVM/CLANG x64 for windows</h3>
-
+<pre><code>g++ -E -x c++ - -v &lt; nul
+clang++ -E -x c++ - -v &lt; nul
+</code></pre>
+<h2 id="vs2012-">VS2012 环境</h2>
+<h3 id="llvmclang-x64-for-windows">LLVM/CLANG x64 for windows</h3>
 <p><a href="http://my.oschina.net/GIIoOS/blog/165542">http://my.oschina.net/GIIoOS/blog/165542</a></p>
-
 <p><a href="https://sourceforge.net/projects/clangonwin/">https://sourceforge.net/projects/clangonwin/</a></p>
-
 <p>需要 VS 2012</p>
-
 <p>cmake</p>
-
 <p>git for windows <a href="http://msysgit.github.io/">http://msysgit.github.io/</a></p>
-
-<h3 id="编译-ycm">编译 YCM</h3>
-
+<h3 id="-ycm">编译 YCM</h3>
 <p>下面主角登场了</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">cmake -G &#34;Visual Studio 11 Win64&#34; -DPATH_TO_LLVM_ROOT=d:\library\LLVM34 -DUSE_CLANG_COMPLETER=1 -DEXTERNAL_LIBCLANG_PATH=d:\library\LLVM34\lib\libclang.lib -DPYTHON_LIBRARY=D:\library\Python27\libs\python27.lib -DPYTHON_INCLUDE_DIR=D:\library\Python27\include . &lt;USERFOLDER&gt;\.vim\bundle\YouCompleteme\cpp</pre></td></tr></table>
-</div>
-</div>
+<pre><code>cmake -G &quot;Visual Studio 11 Win64&quot; -DPATH_TO_LLVM_ROOT=d:\library\LLVM34 -DUSE_CLANG_COMPLETER=1 -DEXTERNAL_LIBCLANG_PATH=d:\library\LLVM34\lib\libclang.lib -DPYTHON_LIBRARY=D:\library\Python27\libs\python27.lib -DPYTHON_INCLUDE_DIR=D:\library\Python27\include . &lt;USERFOLDER&gt;\.vim\bundle\YouCompleteme\cpp
+</code></pre>
 <p>_vimrc配置</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">let g:ycm_key_list_select_completion = [&#39;&lt;C-TAB&gt;&#39;, &#39;&lt;Down&gt;&#39;]
-let g:ycm_key_list_previous_completion = [&#39;&lt;C-S-TAB&gt;&#39;, &#39;&lt;Up&gt;&#39;]
-let g:SuperTabDefaultCompletionType = &#39;&lt;C-Tab&gt;&#39;
-let g:ycm_global_ycm_extra_conf = &#39;PATHTO\.vim\dot.ycm_extra_conf.py&#39;</pre></td></tr></table>
-</div>
-</div>
+<pre><code>let g:ycm_key_list_select_completion = ['&lt;C-TAB&gt;', '&lt;Down&gt;']
+let g:ycm_key_list_previous_completion = ['&lt;C-S-TAB&gt;', '&lt;Up&gt;']
+let g:SuperTabDefaultCompletionType = '&lt;C-Tab&gt;'
+let g:ycm_global_ycm_extra_conf = 'PATHTO\.vim\dot.ycm_extra_conf.py'
+</code></pre>
 <p>dot.ycm_extra_conf.py 配置添加</p>
-
-<p>&rsquo;-I&rsquo;,
+<p>&lsquo;-I&rsquo;,
 &lsquo;C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include&rsquo;</p>
-
-<p>我们一般把“-I”用作自己的代码，&rdquo;-isystem&rdquo;用作第三代码。这样编译代码的时候，第三方代码编译时的warning，就不会显示出来，只需要专注在自己写的代码。</p>
-
-<h2 id="与supertab-ultisnips配合">与SuperTab、UltiSnips配合</h2>
+<p>我们一般把“-I”用作自己的代码，&quot;-isystem&quot;用作第三代码。这样编译代码的时候，第三方代码编译时的warning，就不会显示出来，只需要专注在自己写的代码。</p>
+<h2 id="supertabultisnips">与SuperTab、UltiSnips配合</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -257,9 +203,9 @@ let g:ycm_global_ycm_extra_conf = &#39;PATHTO\.vim\dot.ycm_extra_conf.py&#39;</p
 </span><span class="lnt">15
 </span><span class="lnt">16
 </span><span class="lnt">17
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">&#34;supertab插件
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&#34;supertab插件
 let g:SuperTabDefaultCompletionType = &#34;context&#34; &#34;自动检测需要补全什么内容
 let g:SuperTabCompletionContexts = [&#39;s:ContextText&#39;, &#39;s:ContextDiscover&#39;]
 let g:SuperTabContextDiscoverDiscovery = [&#34;&amp;completefunc:&lt;c-x&gt;&lt;c-u&gt;&#34;, &#34;&amp;omnifunc:&lt;c-x&gt;&lt;c-o&gt;&#34;]
@@ -275,7 +221,8 @@ nnoremap &lt;leader&gt;jd :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;
 
 &#34;let g:UltiSnipsExpandTrigger=&#34;&lt;c-j&gt;&#34;
 &#34;let g:UltiSnipsJumpForwardTrigger=&#34;&lt;c-j&gt;&#34;
-&#34;let g:UltiSnipsJumpBackwardTrigger=&#34;&lt;c-k&gt;&#34;</pre></td></tr></table>
+&#34;let g:UltiSnipsJumpBackwardTrigger=&#34;&lt;c-k&gt;&#34;
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -326,7 +273,7 @@ nnoremap &lt;leader&gt;jd :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  
+
   
 
   
