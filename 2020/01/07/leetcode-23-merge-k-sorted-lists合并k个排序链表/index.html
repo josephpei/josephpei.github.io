@@ -92,7 +92,7 @@
 输出: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6">
 <meta itemprop="datePublished" content="2020-01-07T10:53:20&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-07T10:53:20&#43;08:00" />
-<meta itemprop="wordCount" content="605">
+<meta itemprop="wordCount" content="584">
 
 
 
@@ -260,24 +260,19 @@
 </span><span class="lnt">28
 </span><span class="lnt">29
 </span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-fallback" data-lang="fallback">class Solution {
 public:
     int findMin(vector&lt;ListNode*&gt; &amp;lists) {
-        int min = 0xffff;
+        int min = INT_MAX;
         int pos = -1;
         for (int i = 0; i &lt; lists.size(); i++) {
             if (lists[i] &amp;&amp; lists[i]-&gt;val &lt; min) {
-                cout &lt;&lt; lists[i]-&gt;val &lt;&lt; &#34; &#34;;
                 min = lists[i]-&gt;val;
                 pos = i;
             }
         }
-        cout &lt;&lt; endl;
         return pos;
     }
 
@@ -287,7 +282,6 @@ public:
 
         while(true) {
             int pos = findMin(lists);
-            cout &lt;&lt; &#34;Current pos: &#34; &lt;&lt; pos &lt;&lt; endl;
             if (pos == -1)
                 break;
             curr-&gt;next = lists[pos];
