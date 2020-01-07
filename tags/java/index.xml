@@ -42,9 +42,9 @@
       <pubDate>Sat, 08 Feb 2014 11:33:22 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/</guid>
-      <description>&lt;h2 id=&#34;web&#34;&gt;建立web应用&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;建立web应用&#34;&gt;建立web应用&lt;/h2&gt;
 &lt;p&gt;使用eclipse建立maven的web工程&lt;/p&gt;
-&lt;h2 id=&#34;web-1&#34;&gt;配置web工程&lt;/h2&gt;
+&lt;h2 id=&#34;配置web工程&#34;&gt;配置web工程&lt;/h2&gt;
 &lt;p&gt;完善目录&lt;/p&gt;
 &lt;p&gt;让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。&lt;/p&gt;</description>
     </item>
@@ -65,7 +65,7 @@
       <pubDate>Sat, 28 Sep 2013 13:37:52 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2013/09/28/mac-osx-%E4%B8%8B-java-%E7%8E%AF%E5%A2%83/</guid>
-      <description>&lt;h2 id=&#34;javacjavamac-osx&#34;&gt;解决javac和java命令在Mac OSX终端里的乱码问题&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;解决javac和java命令在mac-osx终端里的乱码问题&#34;&gt;解决javac和java命令在Mac OSX终端里的乱码问题&lt;/h2&gt;
 &lt;p&gt;解决方法有3个：&lt;/p&gt;</description>
     </item>
     

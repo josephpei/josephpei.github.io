@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/10/29/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E8%BD%AC%E6%8D%A2%E4%B8%BA%E9%9D%9E%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/" />
@@ -136,8 +136,8 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#heading">直接转换法</a></li>
-    <li><a href="#heading-1">基于栈结构的间接转换</a></li>
+    <li><a href="#直接转换法">直接转换法</a></li>
+    <li><a href="#基于栈结构的间接转换">基于栈结构的间接转换</a></li>
   </ul>
 </nav>
   </div>
@@ -145,7 +145,7 @@
     <div class="post-content">
       <p>递归算法实际上是一种分而治之的方法，它把复杂问题分解为简单问题来求解。对于某些复杂问题(例如hanio塔问题)，递归算法是一种自然且合乎逻辑的解决问题的方式，但是递归算法的执行效率通常比较差。因此，在求解某些问题时，常采用递归算法来分析问题，用非递归算法来求解问题；另外，有些程序设计语言不支持递归，这就需要把递归算法转换为非递归算法。</p>
 <p>将递归算法转换为非递归算法有两种方法，一种是直接求值，不需要回溯；另一种是不能直接求值，需要回溯。前者使用一些变量保存中间结果，称为直接转换法；后者使用栈保存中间结果，称为间接转换法，下面分别讨论这两种方法。</p>
-<h2 id="heading">直接转换法</h2>
+<h2 id="直接转换法">直接转换法</h2>
 <p>直接转换法通常用来消除尾递归和单向递归，将递归结构用循环结构来替代。</p>
 <p>尾递归是指在递归算法中，递归调用语句只有一个，而且是处在算法的最后。对于尾递归形式的递归算法，可以利用循环结构来替代。</p>
 <p>单向递归是指递归算法中虽然有多处递归调用语句，但各递归调用语句的参数之间没有关系，并且这些递归调用语句都处在递归算法的最后。显然，尾递归是单向递归的特例。对于单向递归，可以设置一些变量保存中间结构，将递归结构用循环结构来替代。</p>
@@ -205,7 +205,7 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="heading-1">基于栈结构的间接转换</h2>
+</div><h2 id="基于栈结构的间接转换">基于栈结构的间接转换</h2>
 <p>通用的变换规则如下：假设template P(p1, p2, &hellip;,pm)是一个递归过程或函数（省略参数类型说明），其中p1, … , pm为参数，并设过程中有n个局部变量q1, …, qn和t个递归调用本过程P的语句。</p>
 <p>(1) 在P中增设工作栈S，以存放当前层工作记录。每个工作记录包含m+n+2个数据项，其说明如下。</p>
 <div class="highlight"><div class="chroma">
@@ -538,7 +538,7 @@ LINES;（其中LINESw为第k个递归调用语句）
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

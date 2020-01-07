@@ -6,10 +6,39 @@
     <description>Recent content on 有翅膀的天狼</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 29 Dec 2019 22:22:59 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 07 Jan 2020 10:53:20 +0800</lastBuildDate>
     
 	<atom:link href="http://josephpei.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Leetcode 23 Merge K Sorted Lists 合并K个排序链表</title>
+      <link>http://josephpei.github.io/2020/01/07/leetcode-23-merge-k-sorted-lists%E5%90%88%E5%B9%B6k%E4%B8%AA%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/</link>
+      <pubDate>Tue, 07 Jan 2020 10:53:20 +0800</pubDate>
+      
+      <guid>http://josephpei.github.io/2020/01/07/leetcode-23-merge-k-sorted-lists%E5%90%88%E5%B9%B6k%E4%B8%AA%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/</guid>
+      <description>&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+&lt;p&gt;合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。&lt;/p&gt;
+&lt;p&gt;示例:&lt;/p&gt;
+&lt;p&gt;输入:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;[
+  1-&amp;gt;4-&amp;gt;5,
+  1-&amp;gt;3-&amp;gt;4,
+  2-&amp;gt;6
+]
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;输出: &lt;code&gt;1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;4-&amp;gt;5-&amp;gt;6&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Leetcode 49 Group Anagrams 字母异位词分组</title>
@@ -17,7 +46,7 @@
       <pubDate>Sun, 29 Dec 2019 22:22:59 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2019/12/29/leetcode-49-group-anagrams-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/</guid>
-      <description>&lt;h2 id=&#34;heading&#34;&gt;题目&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
 &lt;p&gt;给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。&lt;/p&gt;
 &lt;p&gt;示例:&lt;/p&gt;
 &lt;p&gt;输入:&lt;/p&gt;
@@ -281,7 +310,7 @@ $ sudo systemctl restart smbd.service
       
       <guid>http://josephpei.github.io/2016/08/18/pycharm-%E4%BD%BF%E7%94%A8-windows-10-wsl-ubuntu-%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84-python/</guid>
       <description>&lt;p&gt;首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 &lt;a href=&#34;https://support.microsoft.com/en-us/help/12387/windows-10-update-history&#34;&gt;https://support.microsoft.com/en-us/help/12387/windows-10-update-history&lt;/a&gt; 手动升级。&lt;/p&gt;
-&lt;h2 id=&#34;step-0--wsl-ubuntu&#34;&gt;Step 0: 安装 WSL Ubuntu&lt;/h2&gt;
+&lt;h2 id=&#34;step-0-安装-wsl-ubuntu&#34;&gt;Step 0: 安装 WSL Ubuntu&lt;/h2&gt;
 &lt;p&gt;在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。&lt;/p&gt;
 &lt;p&gt;Win + X 打开 CMD 管理员，输入 &lt;code&gt;bash&lt;/code&gt; 或者 &lt;code&gt;lxrun /install&lt;/code&gt;,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。&lt;/p&gt;</description>
     </item>
@@ -621,9 +650,9 @@ C[n]：第n个物品的价值。&lt;/p&gt;</description>
       <pubDate>Sat, 08 Feb 2014 11:33:22 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/</guid>
-      <description>&lt;h2 id=&#34;web&#34;&gt;建立web应用&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;建立web应用&#34;&gt;建立web应用&lt;/h2&gt;
 &lt;p&gt;使用eclipse建立maven的web工程&lt;/p&gt;
-&lt;h2 id=&#34;web-1&#34;&gt;配置web工程&lt;/h2&gt;
+&lt;h2 id=&#34;配置web工程&#34;&gt;配置web工程&lt;/h2&gt;
 &lt;p&gt;完善目录&lt;/p&gt;
 &lt;p&gt;让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。&lt;/p&gt;</description>
     </item>
@@ -767,9 +796,9 @@ sort (x:xs) = sort [y | y &amp;lt;- xs, y &amp;lt; x] ++ [x] ++ sort [y | y &amp
       <pubDate>Wed, 13 Nov 2013 10:40:15 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2013/11/13/%E7%AE%97%E6%B3%95%E5%B7%A5%E4%BD%9C%E5%88%86%E9%85%8D/</guid>
-      <description>&lt;h2 id=&#34;heading&#34;&gt;问题描述&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
 &lt;p&gt;设有n件工作分配给n个人。工人i完成工作j所需的费用为c[i][j] 。试设计一个算法，计算最佳工作分配方案，为每一个人都分配1 件不同的工作，并使总费用达到最小。&lt;/p&gt;
-&lt;h2 id=&#34;heading-1&#34;&gt;方法一：回溯法&lt;/h2&gt;
+&lt;h2 id=&#34;方法一回溯法&#34;&gt;方法一：回溯法&lt;/h2&gt;
 &lt;p&gt;n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排列数，如果遍历的路径已经比当前最小的话费则舍弃对当前路径的遍历，返回上层节点，寻找合适的路径，即回溯，如果最后可行解比当前的最小费用小，那么就更新最佳的作业安排顺序，同时更新最小的耗费时间。&lt;/p&gt;</description>
     </item>
     
@@ -882,7 +911,7 @@ sort (x:xs) = sort [y | y &amp;lt;- xs, y &amp;lt; x] ++ [x] ++ sort [y | y &amp
       <pubDate>Sat, 28 Sep 2013 13:37:52 +0800</pubDate>
       
       <guid>http://josephpei.github.io/2013/09/28/mac-osx-%E4%B8%8B-java-%E7%8E%AF%E5%A2%83/</guid>
-      <description>&lt;h2 id=&#34;javacjavamac-osx&#34;&gt;解决javac和java命令在Mac OSX终端里的乱码问题&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;解决javac和java命令在mac-osx终端里的乱码问题&#34;&gt;解决javac和java命令在Mac OSX终端里的乱码问题&lt;/h2&gt;
 &lt;p&gt;解决方法有3个：&lt;/p&gt;</description>
     </item>
     
@@ -937,7 +966,7 @@ sort (x:xs) = sort [y | y &amp;lt;- xs, y &amp;lt; x] ++ [x] ++ sort [y | y &amp
       
       <guid>http://josephpei.github.io/2013/09/25/poj-1001-%E6%B1%82%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%B9%82/</guid>
       <description>&lt;p&gt;问题：对一个实数R( 0.0 &amp;lt; R &amp;lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &amp;lt; n &amp;lt;= 25。&lt;/p&gt;
-&lt;h2 id=&#34;heading&#34;&gt;计算结果位数的确定&lt;/h2&gt;
+&lt;h2 id=&#34;计算结果位数的确定&#34;&gt;计算结果位数的确定&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;两数之和的最大为较大的数的位数加1&lt;/li&gt;
 &lt;li&gt;乘积的位数最大为两个因子的位数之和&lt;/li&gt;

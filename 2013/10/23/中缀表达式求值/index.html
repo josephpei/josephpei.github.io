@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/10/23/%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC/" />
@@ -136,8 +136,8 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#heading">直接计算中缀表达式</a></li>
-    <li><a href="#heading-1">中缀转后缀</a></li>
+    <li><a href="#直接计算中缀表达式">直接计算中缀表达式</a></li>
+    <li><a href="#中缀转后缀">中缀转后缀</a></li>
   </ul>
 </nav>
   </div>
@@ -145,7 +145,7 @@
     <div class="post-content">
       <p>给定一个中缀表达式，求出该表达式的值。</p>
 <p>要求支持“加减乘除 + - * /、取余 %、幂运算 ^、一元正负号 + -、括号 ()、数的科学表示法符号 E e”，其中含有一元操作符'+ -'，也含有从右向左结合性的操作符'^&rsquo;，注意操作数的位数可以为多位。</p>
-<h2 id="heading">直接计算中缀表达式</h2>
+<h2 id="直接计算中缀表达式">直接计算中缀表达式</h2>
 <p>延迟缓冲：自左向右扫描表达式，用栈记录已扫描的部分（含已执行运算的结果）。在每一字符处，while（栈的顶部存在可优先计算的子表达式），该子表达式退栈；计算其数值计算结果进栈。当前字符进栈，转入下一字符。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -371,7 +371,7 @@
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="heading-1">中缀转后缀</h2>
+</div><h2 id="中缀转后缀">中缀转后缀</h2>
 <p>首先介绍一个人工转换的方法，假设有一个中缀表达式a+b*c-(d+e)</p>
 <ol>
 <li>
@@ -493,7 +493,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

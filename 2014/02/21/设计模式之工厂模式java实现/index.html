@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/02/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8Fjava%E5%AE%9E%E7%8E%B0/" />
@@ -132,10 +132,10 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#heading">简单工厂模式</a></li>
-    <li><a href="#heading-1">参数化工厂</a></li>
-    <li><a href="#heading-2">延迟初始化</a></li>
-    <li><a href="#heading-3">抽象工厂方法</a></li>
+    <li><a href="#简单工厂模式">简单工厂模式</a></li>
+    <li><a href="#参数化工厂">参数化工厂</a></li>
+    <li><a href="#延迟初始化">延迟初始化</a></li>
+    <li><a href="#抽象工厂方法">抽象工厂方法</a></li>
   </ul>
 </nav>
   </div>
@@ -144,7 +144,7 @@
       <p>GoF 经典定义：Define an interface for creating an object, but let subclasses decide which class to initiate. Factory Method lets a class defer instantiation to subclasses.(定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法使一个类的实例化延迟到子类。)</p>
 <p>通用UML图</p>
 <p><img src="/img/Factory01.svg" alt="Factory UML"></p>
-<h2 id="heading">简单工厂模式</h2>
+<h2 id="简单工厂模式">简单工厂模式</h2>
 <p>产品类</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -255,7 +255,7 @@
 invoke ConcreteProduct2 method!
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="heading-1">参数化工厂</h2>
+</div><h2 id="参数化工厂">参数化工厂</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -346,7 +346,7 @@ invoke ConcreteProduct2 method!
 </code></pre></td></tr></table>
 </div>
 </div><p>可以更简单一点，取消工厂接口(基类)，将工厂方法定义为静态方法，这种模式适合小模块使用。如果具体产品类构造函数复杂，还是采用第一种模式为佳。</p>
-<h2 id="heading-2">延迟初始化</h2>
+<h2 id="延迟初始化">延迟初始化</h2>
 <p>延迟初始化(Lazy Initialization)是工厂模式的一个扩展应用，一个对象被消费完毕后，并不立刻释放，工厂类保持其初始状态，等待再次被使用。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -398,7 +398,7 @@ invoke ConcreteProduct2 method!
 <span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="heading-3">抽象工厂方法</h2>
+</div><h2 id="抽象工厂方法">抽象工厂方法</h2>
 <p>上述的简单扩展</p>
     </div>
 
@@ -482,7 +482,7 @@ invoke ConcreteProduct2 method!
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

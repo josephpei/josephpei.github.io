@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/10/29/vim-youcompleteme-on-64bit-windows/" />
@@ -133,14 +133,14 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#vim-x64-for-windows">vim x64 for windows</a></li>
-    <li><a href="#mingw-">MinGW 环境</a></li>
-    <li><a href="#vs2012-">VS2012 环境</a>
+    <li><a href="#mingw-环境">MinGW 环境</a></li>
+    <li><a href="#vs2012-环境">VS2012 环境</a>
       <ul>
         <li><a href="#llvmclang-x64-for-windows">LLVM/CLANG x64 for windows</a></li>
-        <li><a href="#-ycm">编译 YCM</a></li>
+        <li><a href="#编译-ycm">编译 YCM</a></li>
       </ul>
     </li>
-    <li><a href="#supertabultisnips">与SuperTab、UltiSnips配合</a></li>
+    <li><a href="#与supertabultisnips配合">与SuperTab、UltiSnips配合</a></li>
   </ul>
 </nav>
   </div>
@@ -152,7 +152,7 @@
 <p>或 <a href="https://bintray.com/veegee/generic/vim_x64">https://bintray.com/veegee/generic/vim_x64</a></p>
 <p>vim 插件管理 Vundle 或NeoBundle</p>
 <p><a href="https://github.com/Shougo/neobundle.vim">https://github.com/Shougo/neobundle.vim</a></p>
-<h2 id="mingw-">MinGW 环境</h2>
+<h2 id="mingw-环境">MinGW 环境</h2>
 <p><a href="https://bitbucket.org/Haroogan/vim-youcompleteme-for-windows/src">https://bitbucket.org/Haroogan/vim-youcompleteme-for-windows/src</a></p>
 <p>查找头文件目录，添加到.ycm_extra_conf.py</p>
 <pre><code>g++ -E -x c++ - -v &lt; /dev/null
@@ -162,14 +162,14 @@ clang++ -E -x c++ - -v &lt; /dev/null
 <pre><code>g++ -E -x c++ - -v &lt; nul
 clang++ -E -x c++ - -v &lt; nul
 </code></pre>
-<h2 id="vs2012-">VS2012 环境</h2>
+<h2 id="vs2012-环境">VS2012 环境</h2>
 <h3 id="llvmclang-x64-for-windows">LLVM/CLANG x64 for windows</h3>
 <p><a href="http://my.oschina.net/GIIoOS/blog/165542">http://my.oschina.net/GIIoOS/blog/165542</a></p>
 <p><a href="https://sourceforge.net/projects/clangonwin/">https://sourceforge.net/projects/clangonwin/</a></p>
 <p>需要 VS 2012</p>
 <p>cmake</p>
 <p>git for windows <a href="http://msysgit.github.io/">http://msysgit.github.io/</a></p>
-<h3 id="-ycm">编译 YCM</h3>
+<h3 id="编译-ycm">编译 YCM</h3>
 <p>下面主角登场了</p>
 <pre><code>cmake -G &quot;Visual Studio 11 Win64&quot; -DPATH_TO_LLVM_ROOT=d:\library\LLVM34 -DUSE_CLANG_COMPLETER=1 -DEXTERNAL_LIBCLANG_PATH=d:\library\LLVM34\lib\libclang.lib -DPYTHON_LIBRARY=D:\library\Python27\libs\python27.lib -DPYTHON_INCLUDE_DIR=D:\library\Python27\include . &lt;USERFOLDER&gt;\.vim\bundle\YouCompleteme\cpp
 </code></pre>
@@ -183,7 +183,7 @@ let g:ycm_global_ycm_extra_conf = 'PATHTO\.vim\dot.ycm_extra_conf.py'
 <p>&lsquo;-I&rsquo;,
 &lsquo;C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include&rsquo;</p>
 <p>我们一般把“-I”用作自己的代码，&quot;-isystem&quot;用作第三代码。这样编译代码的时候，第三方代码编译时的warning，就不会显示出来，只需要专注在自己写的代码。</p>
-<h2 id="supertabultisnips">与SuperTab、UltiSnips配合</h2>
+<h2 id="与supertabultisnips配合">与SuperTab、UltiSnips配合</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -304,7 +304,7 @@ nnoremap &lt;leader&gt;jd :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

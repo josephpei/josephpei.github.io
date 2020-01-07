@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/01/09/%E7%94%A8python%E7%A7%92%E6%8E%89%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" />
@@ -170,8 +170,8 @@ sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y 
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#heading">预备知识</a></li>
-    <li><a href="#heading-1">算法描述</a></li>
+    <li><a href="#预备知识">预备知识</a></li>
+    <li><a href="#算法描述">算法描述</a></li>
   </ul>
 </nav>
   </div>
@@ -190,7 +190,7 @@ sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] ++ [x] ++ sort [y | y &lt;- xs, y 
 </code></pre></td></tr></table>
 </div>
 </div><p>搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。</p>
-<h2 id="heading">预备知识</h2>
+<h2 id="预备知识">预备知识</h2>
 <p>这一部分对于那些 Python 老手和已经知道八皇后问题定义的程序员来说是多余的。</p>
 <p>八皇后问题（摘自 SICP ed2 中文版 P84 练习2.42）
 　　
@@ -238,7 +238,7 @@ sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] ++ [x] ++ sort [y | y &lt;- xs, y 
 　　<span class="c1"># 别忘了 python-2.5 的新特性条件分支表达式哦！可惜太长，不得不强制换行。</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="heading-1">算法描述</h2>
+</div><h2 id="算法描述">算法描述</h2>
 <p>首先我们要认识到一点，算法所对应的函数的输入和输出分别是什么。我们需要的是一个函数 queens()，它接受两个参数，自然数 row 和 col，分别表示行数和列数；坐标是 (col, row) 形式的序对，下标 从 0 开始计数。
 　　　　
 我们把输出的结果表示为棋盘格局描述组成的列表。那棋盘格局呢？难道表示为所有棋子的坐标，像 [(5,0), (2,1), (0,2),(6,3), (4,4), (7,5), (1,6), (3,7)] ？不需要吧，看也能看出来，完全可以使得下标 col、row 中有一个是有序排列的。在这里，我们认为 row 是有序的，对于上面的例子，只须表示为 [5, 2, 0, 6, 4, 7, 1, 3] 即可，row 是一个解的下标。</p>
@@ -582,7 +582,7 @@ f (n) = 1 + f (n - 1)
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

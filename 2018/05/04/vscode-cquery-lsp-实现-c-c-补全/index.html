@@ -27,7 +27,7 @@ cquery 就是 C/C&#43;&#43;/Objective-C 的 language server，VSCode, Vim, Emacs
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2018/05/04/vscode-cquery-lsp-%E5%AE%9E%E7%8E%B0-c-c-%E8%A1%A5%E5%85%A8/" />
@@ -145,8 +145,8 @@ cquery 就是 C/C&#43;&#43;/Objective-C 的 language server，VSCode, Vim, Emacs
     <nav id="TableOfContents">
   <ul>
     <li><a href="#build-cquery">build cquery</a></li>
-    <li><a href="#vscode-">VSCode 配置</a></li>
-    <li><a href="#heading">项目编译选项配置</a></li>
+    <li><a href="#vscode-配置">VSCode 配置</a></li>
+    <li><a href="#项目编译选项配置">项目编译选项配置</a></li>
   </ul>
 </nav>
   </div>
@@ -169,7 +169,7 @@ cquery 就是 C/C&#43;&#43;/Objective-C 的 language server，VSCode, Vim, Emacs
 git submodule update --init <span class="o">&amp;&amp;</span> ./waf configure build
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="vscode-">VSCode 配置</h2>
+</div><h2 id="vscode-配置">VSCode 配置</h2>
 <p>首先在插件商店安装 cquery 插件，用户配置中加入以下配置：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -187,7 +187,7 @@ git submodule update --init <span class="o">&amp;&amp;</span> ./waf configure bu
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="heading">项目编译选项配置</h2>
+</div><h2 id="项目编译选项配置">项目编译选项配置</h2>
 <p>推荐 <a href="https://github.com/cquery-project/cquery/wiki/compile_commands.json">compile_commands.json</a></p>
 <p>例如，如果使用 CMake，用以下命令生成 <code>compile_commands.json</code> 文件。</p>
 <div class="highlight"><div class="chroma">
@@ -314,7 +314,7 @@ ln -s build/compile_commands.json
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

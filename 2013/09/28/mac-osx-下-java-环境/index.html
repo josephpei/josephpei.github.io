@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/09/28/mac-osx-%E4%B8%8B-java-%E7%8E%AF%E5%A2%83/" />
@@ -135,14 +135,14 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#javacjavamac-osx">解决javac和java命令在Mac OSX终端里的乱码问题</a></li>
-    <li><a href="#sublime-text--java">Sublime Text 编译运行 Java</a></li>
+    <li><a href="#解决javac和java命令在mac-osx终端里的乱码问题">解决javac和java命令在Mac OSX终端里的乱码问题</a></li>
+    <li><a href="#sublime-text-编译运行-java">Sublime Text 编译运行 Java</a></li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <h2 id="javacjavamac-osx">解决javac和java命令在Mac OSX终端里的乱码问题</h2>
+      <h2 id="解决javac和java命令在mac-osx终端里的乱码问题">解决javac和java命令在Mac OSX终端里的乱码问题</h2>
 <p>解决方法有3个：</p>
 <p>1）指定输出的编码为UTF-8</p>
 <pre><code>javac -J-Dfile.encoding=UTF-8
@@ -156,7 +156,7 @@
 <p>3）通过iconv转码</p>
 <pre><code>javac something|iconv -f GBK -t UTF-8
 </code></pre>
-<h2 id="sublime-text--java">Sublime Text 编译运行 Java</h2>
+<h2 id="sublime-text-编译运行-java">Sublime Text 编译运行 Java</h2>
 <pre><code>{
   &quot;cmd&quot;: [&quot;javac \&quot;$file_name\&quot; &amp;&amp; java \&quot;$file_base_name\&quot;&quot;],
   &quot;shell&quot;: true,
@@ -245,7 +245,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

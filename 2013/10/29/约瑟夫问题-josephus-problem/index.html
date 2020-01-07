@@ -27,7 +27,7 @@ UVA 133 305 402 10015
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/10/29/%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98-josephus-problem/" />
@@ -144,8 +144,8 @@ UVA 133 305 402 10015"/>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#heading">方法一、直接模拟求解</a></li>
-    <li><a href="#heading-1">方法二、动态规划</a></li>
+    <li><a href="#方法一直接模拟求解">方法一、直接模拟求解</a></li>
+    <li><a href="#方法二动态规划">方法二、动态规划</a></li>
   </ul>
 </nav>
   </div>
@@ -155,7 +155,7 @@ UVA 133 305 402 10015"/>
 <p>据说着名犹太历史学家 Josephus有过以下的故事：在罗马人占领乔塔帕特后，39 个犹太人与Josephus及他的朋友躲到一个洞中，39个犹太人决定宁愿死也不要被敌人抓到，于是决定了一个自杀方式，41个人排成一个圆圈，由第1个人 开始报数，每报数到第3人该人就必须自杀，然后再由下一个重新报数，直到所有人都自杀身亡为止。</p>
 <p>然而Josephus 和他的朋友并不想遵从，Josephus要他的朋友先假装遵从，他将朋友与自己安排在第16个与第31个位置，于是逃过了这场死亡游戏。</p>
 <p>UVA <a href="http://uva.onlinejudge.org/external/1/133.html">133</a> <a href="http://uva.onlinejudge.org/external/3/305.html">305</a> <a href="http://uva.onlinejudge.org/external/4/402.html">402</a> <a href="http://uva.onlinejudge.org/external/100/10015.html">10015</a></p>
-<h2 id="heading">方法一、直接模拟求解</h2>
+<h2 id="方法一直接模拟求解">方法一、直接模拟求解</h2>
 <p>只要画两个圆圈就可以让自己与朋友免于死亡游戏，这两个圆圈内圈是排列顺序，而外圈是自杀顺序，如下图所示：</p>
 <p><img src="/img/josephus.jpg" alt="josephus"></p>
 <p>使用程式来求解的话，只要将阵列当作环状来处理就可以了，在阵列中由计数1开始，每找到三个无资料区就填入一个计数，直而计数达41为止，然后将阵列由索引1开始列出，就可以得知每个位置的自杀顺序，这就是约瑟夫排列，41个人而报数3的约琴夫排列如下所示：</p>
@@ -253,7 +253,7 @@ UVA 133 305 402 10015"/>
 </div>
 </div><p>也可以用队列模拟，首先把每个人依序进队，pop (m - 1)个人，push 到队尾，第 m 人直接出队。</p>
 <p>时间复杂度分析：推广到n个人，间隔m个人杀一个，时间复杂度为O(mn)</p>
-<h2 id="heading-1">方法二、动态规划</h2>
+<h2 id="方法二动态规划">方法二、动态规划</h2>
 <p><a href="http://en.wikipedia.org/wiki/Josephus_problem">http://en.wikipedia.org/wiki/Josephus_problem</a></p>
 <p><img src="/img/Josephus2.png" alt="josephusDY"></p>
 <p>除去一人后，剩下来的人重新编号，就变成了子问题了。观察原编号和新编号的关系，可得到递推公式</p>
@@ -364,7 +364,7 @@ f(1, m) = 0
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/" />
@@ -44,7 +44,7 @@
 <meta property="og:description" content="常无事，痛饮酒，熟读离骚" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://josephpei.github.io/" />
-<meta property="og:updated_time" content="2019-12-29T22:22:59+08:00" />
+<meta property="og:updated_time" content="2020-01-07T10:53:20+08:00" />
 <meta itemprop="name" content="有翅膀的天狼">
 <meta itemprop="description" content="常无事，痛饮酒，熟读离骚"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="有翅膀的天狼"/>
@@ -109,6 +109,27 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2014/08/25/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B06-slf4j-logback-%E6%97%A5%E5%BF%97/">Spring MVC 学习笔记6 SLF4J Logback 日志</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2014-08-25 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>Simple Logging Facade for Java(SL4J)</p>
+<p>SLF4J 提供了一组抽象接口，在部署应用时后端可以选择不同的日志框架，而无需更改已有代码。</p>
+<p>Logback 是项目 Log4j 的后继。它由三个模块组成：logback-core, logback-classic, logback-access。其中 logback-core 是基础模块。logback-classic 是 log4j 的改良版，是 slf4j api 的原生实现，可以方便地更换成其它日志框架。logback-access 模块与 Servlet 容器集成提供Http-access 日志的功能。</p>
+    </div>
+    <div class="read-more">
+      <a href="/2014/08/25/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B06-slf4j-logback-%E6%97%A5%E5%BF%97/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2014/08/24/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05-rest%E4%B8%8Eajax/">Spring MVC 学习笔记5 REST与AJAX</a></h1>
@@ -206,26 +227,6 @@
   </div>
 </article>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2014/08/16/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%85%A5%E9%97%A8/">Spring MVC 学习笔记1 入门</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2014-08-16 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>Spring Web MVC是一种基于Java的实现了Web MVC设计模式的请求驱动类型的轻量级Web框架，前端控制器是DispatcherServlet；应用控制器其实拆为处理器映射器(Handler Mapping)进行处理器管理和视图解析器(View Resolver)进行视图管理；页面控制器/动作/处理器为Controller接口（仅包含ModelAndView handleRequest(request, response) 方法）的实现（也可以是任何的POJO类）；支持本地化（Locale）解析、主题（Theme）解析及文件上传等；提供了非常灵活的数据验证、格式化和数据绑定机制；提供了强大的约定大于配置（惯例优先原则）的契约式编程支持。</p>
-<p>这里我们实现一个简单的登录模块，登录后地址转为 <a href="http://domain.com/USER_NAME">http://domain.com/USER_NAME</a></p>
-    </div>
-    <div class="read-more">
-      <a href="/2014/08/16/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%85%A5%E9%97%A8/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
     </section>
   
   <nav class="pagination">
@@ -267,7 +268,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

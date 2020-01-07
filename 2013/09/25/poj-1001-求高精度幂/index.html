@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/09/25/poj-1001-%E6%B1%82%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%B9%82/" />
@@ -153,25 +153,25 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#heading">计算结果位数的确定</a></li>
-    <li><a href="#heading-1">高精度加法</a></li>
-    <li><a href="#heading-2">高精度减法</a></li>
-    <li><a href="#heading-3">高精度乘法</a></li>
-    <li><a href="#heading-4">代码</a></li>
+    <li><a href="#计算结果位数的确定">计算结果位数的确定</a></li>
+    <li><a href="#高精度加法">高精度加法</a></li>
+    <li><a href="#高精度减法">高精度减法</a></li>
+    <li><a href="#高精度乘法">高精度乘法</a></li>
+    <li><a href="#代码">代码</a></li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>问题：对一个实数R( 0.0 &lt; R &lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &lt; n &lt;= 25。</p>
-<h2 id="heading">计算结果位数的确定</h2>
+<h2 id="计算结果位数的确定">计算结果位数的确定</h2>
 <ul>
 <li>两数之和的最大为较大的数的位数加1</li>
 <li>乘积的位数最大为两个因子的位数之和</li>
 <li>阶乘：lgn! = lgn + lg(n-1) + &hellip; + lg1 = lnn/ln10 + ln(n-1)/ln10 + &hellip; + ln1/ln10 = trunc(1/ln10 * (lnn + ln(n-1) + &hellip; + ln1))</li>
 <li>乘方：lg(a^b) = trunc(lg(a^b)) + 1 = trunc(b * lga) + 1 = trunc(b * lna/ln10) + 1</li>
 </ul>
-<h2 id="heading-1">高精度加法</h2>
+<h2 id="高精度加法">高精度加法</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -194,7 +194,7 @@
 <span class="c1">//当最后 ncarry &gt; 0 时，len会变化
 </span></code></pre></td></tr></table>
 </div>
-</div><h2 id="heading-2">高精度减法</h2>
+</div><h2 id="高精度减法">高精度减法</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -219,7 +219,7 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="heading-3">高精度乘法</h2>
+</div><h2 id="高精度乘法">高精度乘法</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -242,7 +242,7 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="heading-4">代码</h2>
+</div><h2 id="代码">代码</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">  1
@@ -581,7 +581,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

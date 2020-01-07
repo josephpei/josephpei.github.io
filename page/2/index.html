@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/" />
@@ -44,7 +44,7 @@
 <meta property="og:description" content="常无事，痛饮酒，熟读离骚" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://josephpei.github.io/" />
-<meta property="og:updated_time" content="2019-12-29T22:22:59+08:00" />
+<meta property="og:updated_time" content="2020-01-07T10:53:20+08:00" />
 <meta itemprop="name" content="有翅膀的天狼">
 <meta itemprop="description" content="常无事，痛饮酒，熟读离骚"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="有翅膀的天狼"/>
@@ -111,6 +111,28 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2018/05/04/vscode-cquery-lsp-%E5%AE%9E%E7%8E%B0-c-c-%E8%A1%A5%E5%85%A8/">VSCode cquery(lsp) 实现 C/C&#43;&#43; 补全</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-05-04 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p><a href="https://microsoft.github.io/language-server-protocol/">LSP</a>（Language-Server-Protocol）开源的语言服务器协定，微软出品，语言服务端提供索引代码的服务，编辑器直接调用。套用官话就是，可以让不同的程序编辑器与集成开发环境（IDE）方便嵌入各种程序语言，允许开发人员在最喜爱的工具中使用各种语言来撰写程序。</p>
+<p>目前语言与编辑器支持情况见 <a href="https://langserver.org/">https://langserver.org/</a></p>
+<p><a href="https://github.com/cquery-project/cquery">cquery</a> 就是 C/C++/Objective-C 的 language server，VSCode, Vim, Emacs 等只要安装了 lsp 插件，就可调用它来实现 C/C++/Objective-C 语法补全等功能。</p>
+<p>下面以 Visual Studio Code 为例来实现 C/C++ 补全。</p>
+    </div>
+    <div class="read-more">
+      <a href="/2018/05/04/vscode-cquery-lsp-%E5%AE%9E%E7%8E%B0-c-c-%E8%A1%A5%E5%85%A8/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2018/04/28/ubuntu-awesome-terminal/">ubuntu awesome terminal</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2018-04-28 </span>
@@ -142,7 +164,7 @@
   <div class="post-content">
     <div class="post-summary">
       <p>首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 <a href="https://support.microsoft.com/en-us/help/12387/windows-10-update-history">https://support.microsoft.com/en-us/help/12387/windows-10-update-history</a> 手动升级。</p>
-<h2 id="step-0--wsl-ubuntu">Step 0: 安装 WSL Ubuntu</h2>
+<h2 id="step-0-安装-wsl-ubuntu">Step 0: 安装 WSL Ubuntu</h2>
 <p>在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。</p>
 <p>Win + X 打开 CMD 管理员，输入 <code>bash</code> 或者 <code>lxrun /install</code>,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。</p>
     </div>
@@ -231,39 +253,6 @@
   </div>
 </article>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2015/06/24/linux-ubuntu-%E4%B8%8B%E4%B8%BA-android-%E5%88%9B%E5%BB%BA%E6%97%A0%E7%BA%BF%E5%88%86%E4%BA%AB%E7%83%AD%E7%82%B9/">Linux/Ubuntu 下为 Android 创建无线分享热点</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2015-06-24 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>create ap hotspot for ubuntu linux</p>
-<p>准备</p>
-<p><a href="https://w1.fi/hostapd/">https://w1.fi/hostapd/</a></p>
-<p><a href="https://github.com/oblique/create_ap">https://github.com/oblique/create_ap</a></p>
-<p>编译 hostapd</p>
-<pre><code>sudo apt-get install libnl-3-dev libnl-gen-3-dev
-make &amp;&amp; sudo make install
-</code></pre>
-<p>安装 create_ap</p>
-<pre><code>git clone https://github.com/oblique/create_ap.git
-cd create_ap &amp;&amp; make install
-</code></pre>
-<p>创建无线热点</p>
-<pre><code>sudo create_ap wlan0 ppp0 hotspot password
-</code></pre>
-    </div>
-    <div class="read-more">
-      <a href="/2015/06/24/linux-ubuntu-%E4%B8%8B%E4%B8%BA-android-%E5%88%9B%E5%BB%BA%E6%97%A0%E7%BA%BF%E5%88%86%E4%BA%AB%E7%83%AD%E7%82%B9/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
     </section>
   
   <nav class="pagination">
@@ -305,7 +294,7 @@ cd create_ap &amp;&amp; make install
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

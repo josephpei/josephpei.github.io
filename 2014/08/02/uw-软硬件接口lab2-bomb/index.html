@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/08/02/uw-%E8%BD%AF%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3lab2-bomb/" />
@@ -132,33 +132,33 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#heading">第一关</a></li>
-    <li><a href="#heading-1">第二关</a></li>
-    <li><a href="#heading-2">第三关</a></li>
-    <li><a href="#heading-3">第四关</a></li>
-    <li><a href="#heading-4">第五关</a></li>
-    <li><a href="#heading-5">第六关</a></li>
+    <li><a href="#第一关">第一关</a></li>
+    <li><a href="#第二关">第二关</a></li>
+    <li><a href="#第三关">第三关</a></li>
+    <li><a href="#第四关">第四关</a></li>
+    <li><a href="#第五关">第五关</a></li>
+    <li><a href="#第六关">第六关</a></li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>本实验是解除二进制炸弹。给你一个二进制可执行文件，运行该文件，你需要在没有任何提示的情况下输入6个password，如果都输入正确，则炸弹被解除（完成了实验）；如果输入错误，则炸弹爆炸（当然不是真爆炸了，需要重做）。</p>
-<h2 id="heading">第一关</h2>
+<h2 id="第一关">第一关</h2>
 <p>x /s $rsi 即可看到比较函数的字符串参数</p>
-<h2 id="heading-1">第二关</h2>
+<h2 id="第二关">第二关</h2>
 <p>输入6个数字，仔细阅读汇编代码，即可发现是比较后三个和前三个是否相等</p>
-<h2 id="heading-2">第三关</h2>
+<h2 id="第三关">第三关</h2>
 <p>查看sscanf参数 x /s $rsi &ldquo;%d %d&rdquo;，输入两个整数</p>
 <p>观察cmpl $0x7 0xc(%rsp)，并且由于sscanf的参数是从后向前压栈，输入两个整数存在 0x8(%rsp), 0xc(%rsp) 两个位置，并且第一个数要不大于7</p>
 <p>下面就是根据第一个输入 switch</p>
 <p>一共8组，输入任何一组都可以</p>
 <p>(0, 535), (1, 926), (2, 214), (3, 339), (4, 119), (5, 352), (6, 919), (7, 412)</p>
-<h2 id="heading-3">第四关</h2>
+<h2 id="第四关">第四关</h2>
 <p>查看sscanf参数 x /s $rsi &ldquo;%d&rdquo;，输入一个整数，要大于 0 ，接着调用 func4，返回结果必须是 0x37</p>
 <p>下面就是分析func4，这是一个递归函数，就是著名的 Fibnacci 数列</p>
 <p>Fib(n) = Fib(n-1) + Fib(n-2)</p>
-<h2 id="heading-4">第五关</h2>
+<h2 id="第五关">第五关</h2>
 <p>输入两个整数 x, y</p>
 <p>第一个数 %eax = x AND 0xF != 0xF，即第一个数二进制低4位不能全为 1</p>
 <p>mov 0x401ba0(,%rax,4),%eax</p>
@@ -207,7 +207,7 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="heading-5">第六关</h2>
+</div><h2 id="第六关">第六关</h2>
 <p>链表</p>
     </div>
 
@@ -290,7 +290,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

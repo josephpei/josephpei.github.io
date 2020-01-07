@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/02/08/maven-%E5%85%A5%E9%97%A8/" />
@@ -136,20 +136,20 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#heading">环境配置</a></li>
-    <li><a href="#heading-1">创建应用</a>
+    <li><a href="#环境配置">环境配置</a></li>
+    <li><a href="#创建应用">创建应用</a>
       <ul>
-        <li><a href="#heading-2">使用命令行</a></li>
-        <li><a href="#-eclipse">使用 eclipse</a></li>
+        <li><a href="#使用命令行">使用命令行</a></li>
+        <li><a href="#使用-eclipse">使用 eclipse</a></li>
       </ul>
     </li>
-    <li><a href="#maven">Maven基础概念</a>
+    <li><a href="#maven基础概念">Maven基础概念</a>
       <ul>
         <li><a href="#pom-project-object-model">POM (Project Object Model)</a></li>
-        <li><a href="#maven-">Maven 插件</a></li>
-        <li><a href="#maven--1">Maven 生命周期</a></li>
-        <li><a href="#maven--2">Maven 依赖管理</a></li>
-        <li><a href="#maven--3">Maven 库</a></li>
+        <li><a href="#maven-插件">Maven 插件</a></li>
+        <li><a href="#maven-生命周期">Maven 生命周期</a></li>
+        <li><a href="#maven-依赖管理">Maven 依赖管理</a></li>
+        <li><a href="#maven-库">Maven 库</a></li>
       </ul>
     </li>
   </ul>
@@ -159,14 +159,14 @@
     <div class="post-content">
       <p>Maven是构建Java应用的优秀管理工具，是Apache软件基金会的顶级项目。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。</p>
 <p>官网地址  <a href="http://maven.apache.org/">http://maven.apache.org/</a></p>
-<h2 id="heading">环境配置</h2>
+<h2 id="环境配置">环境配置</h2>
 <p>Windows 添加环境变量 M2_HOME -&gt; D:\JavaApp\apache-maven-3.0.5（改成自己的哦）</p>
 <p>在Path中加入 ;%M2_HOME%\bin</p>
 <p>修改依赖包下载保存位置</p>
 <p>默认是 ~/.m2/repository，修改M2_HOME/conf/settings.xml</p>
 <p><!-- raw HTML omitted -->/path/to/local/repo<!-- raw HTML omitted --></p>
-<h2 id="heading-1">创建应用</h2>
-<h3 id="heading-2">使用命令行</h3>
+<h2 id="创建应用">创建应用</h2>
+<h3 id="使用命令行">使用命令行</h3>
 <p>没有定制之前，所有的项目都有如下的结构</p>
 <table>
 <thead>
@@ -244,11 +244,11 @@ mvn package
 <p>为了验证我们的程序能运行，执行下面的命令</p>
 <pre><code>java -cp target/helloworld-1.0-SNAPSHOT.jar com.mycompany.helloworld.App
 </code></pre>
-<h3 id="-eclipse">使用 eclipse</h3>
+<h3 id="使用-eclipse">使用 eclipse</h3>
 <p>Maven天生就对Eclipse做了集成，我们使用mvn eclipse:eclipse就得到了一个Eclipse的项目结构，在Eclipse中使用import功能就能直接导入到IDE中了。</p>
 <p>安装eclipse插件 Maven Integration for Eclipse，新版eclispe可以从eclipse market中直接安装，旧版的源地址为</p>
 <p><a href="http://download.eclipse.org/technology/m2e/releases">http://download.eclipse.org/technology/m2e/releases</a></p>
-<h2 id="maven">Maven基础概念</h2>
+<h2 id="maven基础概念">Maven基础概念</h2>
 <h3 id="pom-project-object-model">POM (Project Object Model)</h3>
 <p>一个项目所有的配置都放置在 POM 文件中：定义项目的类型、名字，管理依赖关系，定制插件的行为等等。比如说，你可以配置 compiler 插件让它使用 java 1.5 来编译。</p>
 <p>在 POM 中，groupId, artifactId, packaging, version 叫作 maven 坐标，它能唯一的确定一个项目。有了 maven 坐标，我们就可以用它来指定我们的项目所依赖的其他项目，插件，或者父项目。一般 maven 坐标写成如下的格式：</p>
@@ -257,10 +257,10 @@ mvn package
 <p>大项目一般会分成几个子项目。在这种情况下，每个子项目就会有自己的 POM 文件，然后它们会有一个共同的父项目。这样只要构建父项目就能够构建所有的子项目了。子项目的 POM 会继承父项目的 POM。另外，所有的 POM都继承了一个 Super-POM。Super-POM 设置了一些默认值。果你想看到运行时候的 POM 的全部内容的话，可以运行下面的命令</p>
 <pre><code>mvn help:effective-pom
 </code></pre>
-<h3 id="maven-">Maven 插件</h3>
+<h3 id="maven-插件">Maven 插件</h3>
 <p>在上文中，我们用了 mvn archetype:generate 命令来生成一个项目。那么这里的 archetype:generate 是什么意思呢？archetype 是一个插件的名字，generate是目标(goal)的名字。这个命令的意思是告诉 maven 执行 archetype 插件的 generate 目标。插件目标通常会写成 pluginId:goalId</p>
 <p>一个目标是一个工作单元，而插件则是一个或者多个目标的集合。比如说Jar插件，Compiler插件，Surefire插件等。从看名字就能知道，Jar 插件包含建立Jar文件的目标， Compiler 插件包含编译源代码和单元测试代码的目标。Surefire 插件的话，则是运行单元测试。</p>
-<h3 id="maven--1">Maven 生命周期</h3>
+<h3 id="maven-生命周期">Maven 生命周期</h3>
 <p>我们用的第二个命令是：mvn package。这里的 package 是一个maven的生命周期阶段 (lifecycle phase )。生命周期指项目的构建过程，它包含了一系列的有序的阶段 (phase)，而一个阶段就是构建过程中的一个步骤。</p>
 <p>那么生命周期阶段和上面说的插件目标之间是什么关系呢？插件目标可以绑定到生命周期阶段上。一个生命周期阶段可以绑定多个插件目标。当 maven 在构建过程中逐步的通过每个阶段时，会执行该阶段所有的插件目标。</p>
 <p>maven 能支持不同的生命周期，但是最常用的是默认的Maven生命周期 (default Maven lifecycle )。如果你没有对它进行任何的插件配置或者定制的话，那么上面的命令 mvn package 会依次执行默认生命周期中直到包括 package 阶段前的所有阶段的插件目标：</p>
@@ -273,12 +273,12 @@ test 阶段：surefire:test
 prepare-package 阶段：(默认无目标)
 package 阶段：jar:jar
 </code></pre>
-<h3 id="maven--2">Maven 依赖管理</h3>
+<h3 id="maven-依赖管理">Maven 依赖管理</h3>
 <p>maven 坐标能够确定一个项目。换句话说，我们可以用它来解决依赖关系。在 POM 中，依赖关系是在 dependencies 部分中定义的。</p>
 <p>在 POM 的 dependencies 部分中，scope 决定了依赖关系的适用范围。我们的例子中 junit 的 scope 是 test，那么它只会在执行 compiler:testCompile and surefire:test 目标的时候才会被加到 classpath 中，在执行 compiler:compile 目标时是拿不到 junit 的。</p>
 <p>我们还可以指定 scope 为 provided，意思是 JDK 或者容器会提供所需的jar文件。比如说在做web应用开发的时候，我们在编译的时候需要 servlet API jar 文件，但是在打包的时候不需要把这个 jar 文件打在 WAR 中，因为servlet容器或者应用服务器会提供的。</p>
 <p>scope 的默认值是 compile，即任何时候都会被包含在 classpath 中，在打包的时候也会被包括进去。</p>
-<h3 id="maven--3">Maven 库</h3>
+<h3 id="maven-库">Maven 库</h3>
 <p>当 maven 查找需要的 jar 文件时，它会先在本地库中寻找，只有在找不到的情况下，才会去远程库中找。</p>
 <p>运行下面的命令能把我们的 helloworld 项目安装到本地库</p>
 <pre><code>mvn install
@@ -382,7 +382,7 @@ package 阶段：jar:jar
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/" />
@@ -146,24 +146,24 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#web">建立web应用</a></li>
-    <li><a href="#web-1">配置web工程</a></li>
-    <li><a href="#tomcat-maven">配置tomcat maven</a></li>
-    <li><a href="#-eclipse-">配置 Eclipse 项目</a></li>
+    <li><a href="#建立web应用">建立web应用</a></li>
+    <li><a href="#配置web工程">配置web工程</a></li>
+    <li><a href="#配置tomcat-maven">配置tomcat maven</a></li>
+    <li><a href="#配置-eclipse-项目">配置 Eclipse 项目</a></li>
     <li><a href="#servlet">Servlet</a></li>
-    <li><a href="#-tomcat-">直接在 Tomcat 下部署并调试</a></li>
+    <li><a href="#直接在-tomcat-下部署并调试">直接在 Tomcat 下部署并调试</a></li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <h2 id="web">建立web应用</h2>
+      <h2 id="建立web应用">建立web应用</h2>
 <p>使用eclipse建立maven的web工程</p>
-<h2 id="web-1">配置web工程</h2>
+<h2 id="配置web工程">配置web工程</h2>
 <p>完善目录</p>
 <p>让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。</p>
 <p>参考 <a href="http://blog.rockcms.com/archives/159">http://blog.rockcms.com/archives/159</a></p>
-<h2 id="tomcat-maven">配置tomcat maven</h2>
+<h2 id="配置tomcat-maven">配置tomcat maven</h2>
 <p>tomcat 添加用户</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -194,7 +194,7 @@
 <span class="nt">&lt;/server&gt;</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="-eclipse-">配置 Eclipse 项目</h2>
+</div><h2 id="配置-eclipse-项目">配置 Eclipse 项目</h2>
 <p>Preferences -&gt; Maven -&gt; Installations</p>
 <p>不使用内置maven，使用我们自己安装的maven</p>
 <p>项目 pom.xml</p>
@@ -373,7 +373,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>浏览器访问 <a href="http://127.0.0.1:8080/simpledb/test">http://127.0.0.1:8080/simpledb/test</a></p>
-<h2 id="-tomcat-">直接在 Tomcat 下部署并调试</h2>
+<h2 id="直接在-tomcat-下部署并调试">直接在 Tomcat 下部署并调试</h2>
 <p>进入 conf\Catalina\localhost 目录，添加simpledb.xml文件</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -471,7 +471,7 @@ Step 4 : Edit Jre &gt; Set JRE Home = JDK_HOME
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
