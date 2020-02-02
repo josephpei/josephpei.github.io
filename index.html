@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.62.2 with theme even" />
+<meta name="generator" content="Hugo 0.63.1 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/" />
@@ -44,7 +44,7 @@
 <meta property="og:description" content="常无事，痛饮酒，熟读离骚" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://josephpei.github.io/" />
-<meta property="og:updated_time" content="2020-01-07T10:53:20+08:00" />
+<meta property="og:updated_time" content="2020-02-01T14:53:46+08:00" />
 <meta itemprop="name" content="有翅膀的天狼">
 <meta itemprop="description" content="常无事，痛饮酒，熟读离骚"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="有翅膀的天狼"/>
@@ -109,6 +109,27 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2020/02/01/vim-%E8%B0%83%E8%AF%95%E6%8F%92%E4%BB%B6-vimspector-%E5%9F%BA%E4%BA%8E-dap-debug-adapter-protocol/">Vim 调试插件 Vimspector 基于 Dap (Debug Adapter Protocol)</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-02-01 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p><a href="https://github.com/puremourning/vimspecotr">vimspector</a></p>
+<p>require：vim 8.1.1264, neovim 0.4.3</p>
+<p>OS: Linux / MacOS</p>
+    </div>
+    <div class="read-more">
+      <a href="/2020/02/01/vim-%E8%B0%83%E8%AF%95%E6%8F%92%E4%BB%B6-vimspector-%E5%9F%BA%E4%BA%8E-dap-debug-adapter-protocol/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2020/01/07/leetcode-23-merge-k-sorted-lists%E5%90%88%E5%B9%B6k%E4%B8%AA%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/">Leetcode 23 Merge K Sorted Lists 合并K个排序链表</a></h1>
@@ -237,193 +258,6 @@ $ sudo systemctl restart smbd.service
     </div>
     <div class="read-more">
       <a href="/2018/11/08/ubuntu-18-04-%E4%BF%AE%E5%A4%8D%E4%B8%8E-windows-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%8F%8A%E6%89%93%E5%8D%B0%E6%9C%BA/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/05/11/cpp-template-meta-programming-mergesort/">Cpp Template Meta Programming MergeSort</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-05-11 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>C++ 模板元编程之编译时归并排序，源自水木社区 ilovecpp</p>
-<p>Cpp Template Meta Programming MergeSort</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
-</span><span class="lnt">72
-</span><span class="lnt">73
-</span><span class="lnt">74
-</span><span class="lnt">75
-</span><span class="lnt">76
-</span><span class="lnt">77
-</span><span class="lnt">78
-</span><span class="lnt">79
-</span><span class="lnt">80
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/vector.hpp&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/vector_c.hpp&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/eval_if.hpp&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/identity.hpp&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/empty.hpp&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/less.hpp&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/front.hpp&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/pop_front.hpp&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/push_front.hpp&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/size.hpp&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/iterator_range.hpp&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/int.hpp&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;boost/mpl/for_each.hpp&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">:</span><span class="o">:</span><span class="n">mpl</span><span class="p">;</span>
-
-<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">V1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">V2</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">Merge</span> <span class="p">{</span>
-    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T2</span><span class="o">&gt;</span>
-    <span class="k">struct</span> <span class="nc">F</span> <span class="p">{</span>
-        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">push_front</span><span class="o">&lt;</span>
-            <span class="k">typename</span> <span class="n">Merge</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">pop_front</span><span class="o">&lt;</span><span class="n">T1</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span><span class="p">,</span> <span class="n">T2</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span><span class="p">,</span>
-            <span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">T1</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span>
-            <span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
-    <span class="p">}</span><span class="p">;</span>
-        
-    <span class="k">typedef</span> <span class="k">typename</span> <span class="n">eval_if</span><span class="o">&lt;</span>
-        <span class="n">empty</span><span class="o">&lt;</span><span class="n">V1</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="n">identity</span><span class="o">&lt;</span><span class="n">V2</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="n">eval_if</span><span class="o">&lt;</span>
-            <span class="n">empty</span><span class="o">&lt;</span><span class="n">V2</span><span class="o">&gt;</span><span class="p">,</span>
-            <span class="n">identity</span><span class="o">&lt;</span><span class="n">V1</span><span class="o">&gt;</span><span class="p">,</span>
-            <span class="n">eval_if</span><span class="o">&lt;</span>
-                <span class="n">less</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">V1</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span><span class="p">,</span> <span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">V2</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span><span class="o">&gt;</span><span class="p">,</span>
-                <span class="n">F</span><span class="o">&lt;</span><span class="n">V1</span><span class="p">,</span> <span class="n">V2</span><span class="o">&gt;</span><span class="p">,</span>
-                <span class="n">F</span><span class="o">&lt;</span><span class="n">V2</span><span class="p">,</span> <span class="n">V1</span><span class="o">&gt;</span>
-                <span class="o">&gt;</span>
-            <span class="o">&gt;</span>
-        <span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
-
-<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">V</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">MergeSort</span> <span class="p">{</span>
-    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-    <span class="k">struct</span> <span class="nc">F</span> <span class="p">{</span>
-        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">begin</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">t0</span><span class="p">;</span>
-        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">advance</span><span class="o">&lt;</span><span class="n">t0</span><span class="p">,</span> <span class="n">int_</span><span class="o">&lt;</span><span class="n">size</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">value</span><span class="o">/</span><span class="mi">2</span><span class="o">&gt;</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">t1</span><span class="p">;</span>
-        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">end</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">t2</span><span class="p">;</span>
-        <span class="k">typedef</span> <span class="k">typename</span> <span class="n">Merge</span><span class="o">&lt;</span>
-            <span class="k">typename</span> <span class="n">MergeSort</span><span class="o">&lt;</span><span class="n">iterator_range</span><span class="o">&lt;</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="o">&gt;</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span><span class="p">,</span>
-            <span class="k">typename</span> <span class="n">MergeSort</span><span class="o">&lt;</span><span class="n">iterator_range</span><span class="o">&lt;</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="o">&gt;</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span>
-            <span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
-    <span class="p">}</span><span class="p">;</span>
-    
-    <span class="k">typedef</span> <span class="k">typename</span> <span class="n">eval_if</span><span class="o">&lt;</span>
-        <span class="n">empty</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="n">identity</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="o">&gt;</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="n">eval_if</span><span class="o">&lt;</span>
-            <span class="n">less</span><span class="o">&lt;</span><span class="n">size</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">int_</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="o">&gt;</span><span class="p">,</span>
-            <span class="n">identity</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">front</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span><span class="o">&gt;</span><span class="o">&gt;</span><span class="p">,</span>
-            <span class="n">F</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span>
-            <span class="o">&gt;</span>
-        <span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">type</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
-
-<span class="k">typedef</span> <span class="n">vector_c</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="o">&gt;</span> <span class="n">t1</span><span class="p">;</span>
-<span class="k">typedef</span> <span class="n">MergeSort</span><span class="o">&lt;</span><span class="n">t1</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span> <span class="n">t10</span><span class="p">;</span>
-
-<span class="k">struct</span> <span class="nc">print</span> <span class="p">{</span>
-    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-    <span class="kt">void</span> <span class="k">operator</span><span class="p">(</span><span class="p">)</span><span class="p">(</span> <span class="n">T</span> <span class="n">t</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
-       <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">T</span><span class="o">:</span><span class="o">:</span><span class="n">value</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> </span><span class="s">&#34;</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">for_each</span><span class="o">&lt;</span><span class="n">t10</span><span class="o">&gt;</span><span class="p">(</span><span class="n">print</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div>
-    </div>
-    <div class="read-more">
-      <a href="/2018/05/11/cpp-template-meta-programming-mergesort/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
