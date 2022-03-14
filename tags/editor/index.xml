@@ -6,11 +6,7 @@
     <description>Recent content in editor on 有翅膀的天狼</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 04 May 2018 14:03:02 +0800</lastBuildDate>
-    
-	<atom:link href="http://josephpei.github.io/tags/editor/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 04 May 2018 14:03:02 +0800</lastBuildDate><atom:link href="http://josephpei.github.io/tags/editor/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>VSCode cquery(lsp) 实现 C/C&#43;&#43; 补全</title>
       <link>http://josephpei.github.io/2018/05/04/vscode-cquery-lsp-%E5%AE%9E%E7%8E%B0-c-c-%E8%A1%A5%E5%85%A8/</link>

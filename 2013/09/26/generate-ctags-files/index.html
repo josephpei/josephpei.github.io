@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.92.1 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/09/26/generate-ctags-files/" />
@@ -34,7 +34,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -49,9 +50,10 @@ $ ctags -R --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q .
 
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2013/09/26/generate-ctags-files/" />
+<meta property="og:url" content="http://josephpei.github.io/2013/09/26/generate-ctags-files/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2013-09-26T12:52:15+08:00" />
 <meta property="article:modified_time" content="2013-09-26T12:52:15+08:00" />
+
 <meta itemprop="name" content="Generate Ctags Files">
 <meta itemprop="description" content="
 
@@ -61,13 +63,9 @@ $ ctags -R --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q .
 $ ctags -R --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q .
 
 
-">
-<meta itemprop="datePublished" content="2013-09-26T12:52:15&#43;08:00" />
-<meta itemprop="dateModified" content="2013-09-26T12:52:15&#43;08:00" />
+"><meta itemprop="datePublished" content="2013-09-26T12:52:15+08:00" />
+<meta itemprop="dateModified" content="2013-09-26T12:52:15+08:00" />
 <meta itemprop="wordCount" content="109">
-
-
-
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Generate Ctags Files"/>
 <meta name="twitter:description" content="
@@ -113,12 +111,21 @@ $ ctags -R --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q .
         <li class="mobile-menu-item">Categories</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Wolfsky</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -133,6 +140,7 @@ $ ctags -R --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q .
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -159,23 +167,23 @@ $ ctags -R --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q .
     <div class="post-content">
       <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ ctags -R --c++-kinds<span class="o">=</span>+p --fields<span class="o">=</span>+iaS --extra<span class="o">=</span>+q .
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ctags -R --c++-kinds<span class="o">=</span>+p --fields<span class="o">=</span>+iaS --extra<span class="o">=</span>+q .
 </code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ ctags -I __THROW -I __attribute_pure__ -I __nonnull -I __attribute__ --file-scope<span class="o">=</span>yes --langmap<span class="o">=</span>c:+.h --languages<span class="o">=</span>c,c++ --links<span class="o">=</span>yes --c-kinds<span class="o">=</span>+p --c++-kinds<span class="o">=</span>+p --fields<span class="o">=</span>+iaS --extra<span class="o">=</span>+q  -f ~/.vim/systags /usr/include/* /usr/include/sys/* /usr/include/bits/*  /usr/include/netinet/* /usr/include/arpa/* /usr/include/mysql/*
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ctags -I __THROW -I __attribute_pure__ -I __nonnull -I __attribute__ --file-scope<span class="o">=</span>yes --langmap<span class="o">=</span>c:+.h --languages<span class="o">=</span>c,c++ --links<span class="o">=</span>yes --c-kinds<span class="o">=</span>+p --c++-kinds<span class="o">=</span>+p --fields<span class="o">=</span>+iaS --extra<span class="o">=</span>+q  -f ~/.vim/systags /usr/include/* /usr/include/sys/* /usr/include/bits/*  /usr/include/netinet/* /usr/include/arpa/* /usr/include/mysql/*
 </code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -184,7 +192,7 @@ $ ctags -R --c&#43;&#43;-kinds=&#43;p --fields=&#43;iaS --extra=&#43;q .
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/sh
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/sh
 </span><span class="cp"></span>
 <span class="c1"># ./ctags_with_dep.sh file1.c file2.c ... to generate a tags file for these files.</span>
 
@@ -195,12 +203,12 @@ gcc -M <span class="nv">$*</span> <span class="p">|</span> sed -e <span class="s
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">gcc -M -I ~/include <span class="nv">$*</span> <span class="p">|</span> sed -e <span class="s1">&#39;s/[\\ ]/\n/g&#39;</span> <span class="p">|</span> <span class="se">\
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gcc -M -I ~/include <span class="nv">$*</span> <span class="p">|</span> sed -e <span class="s1">&#39;s/[\\ ]/\n/g&#39;</span> <span class="p">|</span> <span class="se">\
 </span><span class="se"></span>sed -e <span class="s1">&#39;/^$/d&#39;</span> -e <span class="s1">&#39;/\.o:[ \t]*$/d&#39;</span> <span class="p">|</span> <span class="se">\
 </span><span class="se"></span>ctags -L - --c++-kinds<span class="o">=</span>+p --fields<span class="o">=</span>+iaS --extra<span class="o">=</span>+q
 </code></pre></td></tr></table>
@@ -285,13 +293,10 @@ gcc -M <span class="nv">$*</span> <span class="p">|</span> sed -e <span class="s
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">josephpei</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -302,7 +307,10 @@ gcc -M <span class="nv">$*</span> <span class="p">|</span> sed -e <span class="s
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

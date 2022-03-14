@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.92.1 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/" />
@@ -37,7 +37,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -48,21 +49,18 @@
 完善目录
 让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/" />
+<meta property="og:url" content="http://josephpei.github.io/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2014-02-08T11:33:22+08:00" />
 <meta property="article:modified_time" content="2014-02-08T11:33:22+08:00" />
+
 <meta itemprop="name" content="Eclipse中使用Maven Tomcat构建Web应用">
 <meta itemprop="description" content="建立web应用
 使用eclipse建立maven的web工程
 配置web工程
 完善目录
-让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。">
-<meta itemprop="datePublished" content="2014-02-08T11:33:22&#43;08:00" />
-<meta itemprop="dateModified" content="2014-02-08T11:33:22&#43;08:00" />
+让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。"><meta itemprop="datePublished" content="2014-02-08T11:33:22+08:00" />
+<meta itemprop="dateModified" content="2014-02-08T11:33:22+08:00" />
 <meta itemprop="wordCount" content="548">
-
-
-
 <meta itemprop="keywords" content="java," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Eclipse中使用Maven Tomcat构建Web应用"/>
 <meta name="twitter:description" content="建立web应用
@@ -104,12 +102,21 @@
         <li class="mobile-menu-item">Categories</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Wolfsky</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -124,6 +131,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -167,12 +175,12 @@
 <p>tomcat 添加用户</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;manager-gui&#34;</span><span class="nt">/&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;manager-gui&#34;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;admin-gui&#34;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;user</span> <span class="na">password=</span><span class="s">&#34;admin&#34;</span> <span class="na">roles=</span><span class="s">&#34;manager-gui,manager-script,admin-gui&#34;</span> <span class="na">username=</span><span class="s">&#34;admin&#34;</span><span class="nt">/&gt;</span>
 </code></pre></td></tr></table>
@@ -180,17 +188,17 @@
 </div><p>maven settings.xml添加</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;server</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;id</span><span class="nt">&gt;</span>tomcat7<span class="nt">&lt;/id&gt;</span>
-    <span class="nt">&lt;username</span><span class="nt">&gt;</span>admin<span class="nt">&lt;/username&gt;</span>
-    <span class="nt">&lt;password</span><span class="nt">&gt;</span>admin<span class="nt">&lt;/password&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;server&gt;</span>
+    <span class="nt">&lt;id&gt;</span>tomcat7<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;username&gt;</span>admin<span class="nt">&lt;/username&gt;</span>
+    <span class="nt">&lt;password&gt;</span>admin<span class="nt">&lt;/password&gt;</span>
 <span class="nt">&lt;/server&gt;</span>
 </code></pre></td></tr></table>
 </div>
@@ -201,7 +209,7 @@
 <p><a href="http://tomcat.apache.org/maven-plugin.html">http://tomcat.apache.org/maven-plugin.html</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -220,19 +228,19 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;build</span><span class="nt">&gt;</span>
-<span class="nt">&lt;finalName</span><span class="nt">&gt;</span>SimpleDB<span class="nt">&lt;/finalName&gt;</span>
-<span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.tomcat.maven<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>tomcat7-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>2.2<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;url</span><span class="nt">&gt;</span>http://localhost:8080/manager/text<span class="nt">&lt;/url&gt;</span>
-      <span class="nt">&lt;server</span><span class="nt">&gt;</span>tomcat7<span class="nt">&lt;/server&gt;</span>
-      <span class="nt">&lt;port</span><span class="nt">&gt;</span>8080<span class="nt">&lt;/port&gt;</span>
-      <span class="nt">&lt;path</span><span class="nt">&gt;</span>/simpledb<span class="nt">&lt;/path&gt;</span>
-      <span class="nt">&lt;charset</span><span class="nt">&gt;</span>utf-8<span class="nt">&lt;/charset&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;build&gt;</span>
+<span class="nt">&lt;finalName&gt;</span>SimpleDB<span class="nt">&lt;/finalName&gt;</span>
+<span class="nt">&lt;plugins&gt;</span>
+  <span class="nt">&lt;plugin&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.apache.tomcat.maven<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>tomcat7-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.2<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;configuration&gt;</span>
+      <span class="nt">&lt;url&gt;</span>http://localhost:8080/manager/text<span class="nt">&lt;/url&gt;</span>
+      <span class="nt">&lt;server&gt;</span>tomcat7<span class="nt">&lt;/server&gt;</span>
+      <span class="nt">&lt;port&gt;</span>8080<span class="nt">&lt;/port&gt;</span>
+      <span class="nt">&lt;path&gt;</span>/simpledb<span class="nt">&lt;/path&gt;</span>
+      <span class="nt">&lt;charset&gt;</span>utf-8<span class="nt">&lt;/charset&gt;</span>
   <span class="nt">&lt;/configuration&gt;</span>
   <span class="nt">&lt;/plugin&gt;</span>
 	<span class="nt">&lt;/plugins&gt;</span>
@@ -246,7 +254,7 @@
 <p>pom.xml</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -260,24 +268,24 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-	<span class="nt">&lt;groupId</span><span class="nt">&gt;</span>javax.servlet<span class="nt">&lt;/groupId&gt;</span>
-	<span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>servlet-api<span class="nt">&lt;/artifactId&gt;</span>
-	<span class="nt">&lt;version</span><span class="nt">&gt;</span>2.4<span class="nt">&lt;/version&gt;</span>
-	<span class="nt">&lt;scope</span><span class="nt">&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>javax.servlet<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>servlet-api<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>2.4<span class="nt">&lt;/version&gt;</span>
+	<span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
-<span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-	<span class="nt">&lt;groupId</span><span class="nt">&gt;</span>javax.servlet.jsp<span class="nt">&lt;/groupId&gt;</span>
-	<span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>jsp-api<span class="nt">&lt;/artifactId&gt;</span>
-	<span class="nt">&lt;version</span><span class="nt">&gt;</span>2.0<span class="nt">&lt;/version&gt;</span>
-	<span class="nt">&lt;scope</span><span class="nt">&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>javax.servlet.jsp<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>jsp-api<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>2.0<span class="nt">&lt;/version&gt;</span>
+	<span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>src/main/java 下载创建名为 TestServlet 的jave类</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -304,7 +312,7 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.example.simpledb</span><span class="o">;</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.example.simpledb</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">javax.servlet.ServletException</span><span class="o">;</span>
@@ -319,14 +327,14 @@
                  <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span>
   <span class="o">{</span>
     <span class="n">String</span> <span class="n">hello</span><span class="o">=</span><span class="s">&#34;Test : Hello April!&#34;</span><span class="o">;</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">hello</span><span class="o">)</span><span class="o">;</span>
-    <span class="n">res</span><span class="o">.</span><span class="na">getWriter</span><span class="o">(</span><span class="o">)</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">hello</span><span class="o">)</span><span class="o">;</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">hello</span><span class="o">);</span>
+    <span class="n">res</span><span class="o">.</span><span class="na">getWriter</span><span class="o">().</span><span class="na">write</span><span class="o">(</span><span class="n">hello</span><span class="o">);</span>
   <span class="o">}</span>
  
   <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span><span class="n">HttpServletResponse</span> <span class="n">res</span><span class="o">)</span>
                  <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span>
   <span class="o">{</span>
-    <span class="n">doPost</span><span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="n">res</span><span class="o">)</span><span class="o">;</span>
+    <span class="n">doPost</span><span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="n">res</span><span class="o">);</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></td></tr></table>
@@ -334,7 +342,7 @@
 </div><p>src/main/webapp/WEB-INF/web.xml</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -353,7 +361,7 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;web-app&gt;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;web-app&gt;
   &lt;display-name&gt;simpledb&lt;/display-name&gt;
   &lt;servlet&gt;
     &lt;servlet-name&gt;test&lt;/servlet-name&gt;
@@ -377,10 +385,10 @@
 <p>进入 conf\Catalina\localhost 目录，添加simpledb.xml文件</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;Context</span>  <span class="na">path=</span><span class="s">&#34;/simpledb&#34;</span> <span class="na">docBase=</span><span class="s">&#34;D:\code\java\simpledb\src\main\webapp&#34;</span> <span class="na">debug=</span><span class="s">&#34;0&#34;</span> <span class="na">reloadable=</span><span class="s">&#34;true&#34;</span> <span class="na">privileged=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;Context</span>  <span class="na">path=</span><span class="s">&#34;/simpledb&#34;</span> <span class="na">docBase=</span><span class="s">&#34;D:\code\java\simpledb\src\main\webapp&#34;</span> <span class="na">debug=</span><span class="s">&#34;0&#34;</span> <span class="na">reloadable=</span><span class="s">&#34;true&#34;</span> <span class="na">privileged=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>现在可以点击<img src="/img/em02.png" alt="tomcat maven">来运行和调试maven的web工程了</p>
@@ -471,13 +479,10 @@ Step 4 : Edit Jre &gt; Set JRE Home = JDK_HOME
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">josephpei</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -488,7 +493,10 @@ Step 4 : Edit Jre &gt; Set JRE Home = JDK_HOME
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

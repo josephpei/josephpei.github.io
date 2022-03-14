@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.92.1 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/11/13/%E7%AE%97%E6%B3%95%E5%B7%A5%E4%BD%9C%E5%88%86%E9%85%8D/" />
@@ -36,7 +36,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -46,20 +47,17 @@
 方法一：回溯法
 n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排列数，如果遍历的路径已经比当前最小的话费则舍弃对当前路径的遍历，返回上层节点，寻找合适的路径，即回溯，如果最后可行解比当前的最小费用小，那么就更新最佳的作业安排顺序，同时更新最小的耗费时间。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2013/11/13/%E7%AE%97%E6%B3%95%E5%B7%A5%E4%BD%9C%E5%88%86%E9%85%8D/" />
+<meta property="og:url" content="http://josephpei.github.io/2013/11/13/%E7%AE%97%E6%B3%95%E5%B7%A5%E4%BD%9C%E5%88%86%E9%85%8D/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2013-11-13T10:40:15+08:00" />
 <meta property="article:modified_time" content="2013-11-13T10:40:15+08:00" />
+
 <meta itemprop="name" content="算法：工作分配">
 <meta itemprop="description" content="问题描述
 设有n件工作分配给n个人。工人i完成工作j所需的费用为c[i][j] 。试设计一个算法，计算最佳工作分配方案，为每一个人都分配1 件不同的工作，并使总费用达到最小。
 方法一：回溯法
-n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排列数，如果遍历的路径已经比当前最小的话费则舍弃对当前路径的遍历，返回上层节点，寻找合适的路径，即回溯，如果最后可行解比当前的最小费用小，那么就更新最佳的作业安排顺序，同时更新最小的耗费时间。">
-<meta itemprop="datePublished" content="2013-11-13T10:40:15&#43;08:00" />
-<meta itemprop="dateModified" content="2013-11-13T10:40:15&#43;08:00" />
+n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排列数，如果遍历的路径已经比当前最小的话费则舍弃对当前路径的遍历，返回上层节点，寻找合适的路径，即回溯，如果最后可行解比当前的最小费用小，那么就更新最佳的作业安排顺序，同时更新最小的耗费时间。"><meta itemprop="datePublished" content="2013-11-13T10:40:15+08:00" />
+<meta itemprop="dateModified" content="2013-11-13T10:40:15+08:00" />
 <meta itemprop="wordCount" content="2002">
-
-
-
 <meta itemprop="keywords" content="algorithm," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="算法：工作分配"/>
 <meta name="twitter:description" content="问题描述
@@ -100,12 +98,21 @@ n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排�
         <li class="mobile-menu-item">Categories</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Wolfsky</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -120,6 +127,7 @@ n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排�
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -158,7 +166,7 @@ n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排�
 <p><strong>递归版</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -225,19 +233,19 @@ n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排�
 </span><span class="lnt">65
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stddef.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stddef.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">int</span> <span class="n">N</span><span class="p">;</span>          <span class="cm">/*表示任务数和工人数*/</span>
 
 <span class="c1">//c[i][j] 工人i完成工作j所需的费用
-</span><span class="c1"></span><span class="c1">//task[i] 值为0表示任务i未分配，值为1表示任务已分配
-</span><span class="c1"></span><span class="c1">//work[k] 值为0表示工人k未分配任务，值为j表示工人k已分配任务j
-</span><span class="c1"></span><span class="c1">//mincost 最小总费用
-</span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="o">*</span><span class="n">c</span><span class="p">;</span>
+</span><span class="c1">//task[i] 值为0表示任务i未分配，值为1表示任务已分配
+</span><span class="c1">//work[k] 值为0表示工人k未分配任务，值为j表示工人k已分配任务j
+</span><span class="c1">//mincost 最小总费用
+</span><span class="c1"></span><span class="kt">int</span> <span class="o">**</span><span class="n">c</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">mincost</span> <span class="o">=</span> <span class="n">INT32_MAX</span><span class="p">;</span>
 <span class="kt">int</span> <span class="o">*</span><span class="n">task</span><span class="p">,</span> <span class="o">*</span><span class="n">temp</span><span class="p">,</span> <span class="o">*</span><span class="n">worker</span><span class="p">;</span>
 
@@ -245,49 +253,49 @@ n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排�
 <span class="kt">void</span> <span class="nf">Plan</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cost</span><span class="p">)</span>
 <span class="p">{</span>
 	<span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
-	<span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">N</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="n">cost</span> <span class="o">&lt;</span> <span class="n">mincost</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">&gt;=</span> <span class="n">N</span> <span class="o">&amp;&amp;</span> <span class="n">cost</span> <span class="o">&lt;</span> <span class="n">mincost</span><span class="p">)</span> <span class="p">{</span>
 		<span class="n">mincost</span> <span class="o">=</span> <span class="n">cost</span><span class="p">;</span>
-		<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
-			<span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">task</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>  <span class="c1">//记录工作分配，如只要输出最小费用，无需输出分配情况，可删除此循环及work, temp数组
+		<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+			<span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">task</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>  <span class="c1">//记录工作分配，如只要输出最小费用，无需输出分配情况，可删除此循环及work, temp数组
 </span><span class="c1"></span>	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-		<span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
-			<span class="k">if</span> <span class="p">(</span><span class="n">task</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">mincost</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">task</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">mincost</span><span class="p">)</span> <span class="p">{</span>
 				<span class="n">worker</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span> <span class="n">task</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">//分配
-</span><span class="c1"></span>				<span class="n">Plan</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>				<span class="n">Plan</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
 				<span class="n">worker</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="n">task</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">//回溯
 </span><span class="c1"></span>			<span class="p">}</span>
 	<span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[</span><span class="p">]</span><span class="p">)</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
 	<span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
-	<span class="n">scanf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">);</span>
 
-	<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">)</span><span class="p">;</span>
-	<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
-		<span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">task</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">worker</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">**</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">);</span>
+	<span class="n">task</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">);</span>
+	<span class="n">worker</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">);</span>
+	<span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">);</span>
 
-	<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 		<span class="n">worker</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">task</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-		<span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
-			<span class="n">scanf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+			<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
 		<span class="c1">//mincost += c[i][i];
 </span><span class="c1"></span>	<span class="p">}</span>
-	<span class="n">Plan</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">Plan</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 
-	<span class="n">free</span><span class="p">(</span><span class="n">task</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">free</span><span class="p">(</span><span class="n">worker</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">free</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span><span class="p">;</span>
-	<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
-		<span class="n">free</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">free</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="se">\n</span><span class="s"> Mincost = %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">mincost</span><span class="p">)</span><span class="p">;</span>
-	<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
-		<span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Worker %d is assigned task %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">free</span><span class="p">(</span><span class="n">task</span><span class="p">);</span>
+	<span class="n">free</span><span class="p">(</span><span class="n">worker</span><span class="p">);</span>
+	<span class="n">free</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">free</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+	<span class="n">free</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s"> Mincost = %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">mincost</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Worker %d is assigned task %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
@@ -295,7 +303,7 @@ n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排�
 </div><p><strong>高效版</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -367,11 +375,11 @@ n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排�
 </span><span class="lnt">70
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;malloc.h&gt;</span><span class="cp">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;malloc.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">int</span> <span class="o">*</span><span class="o">*</span><span class="n">aray</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">**</span><span class="n">aray</span><span class="p">;</span>
 <span class="kt">int</span> <span class="o">*</span><span class="n">list</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">number</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">final_cost</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -388,53 +396,53 @@ n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排�
 <span class="kt">void</span> <span class="nf">search</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="p">)</span>
 <span class="p">{</span>
 	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-	<span class="k">if</span><span class="p">(</span><span class="n">k</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">number</span><span class="p">)</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">k</span> <span class="o">&gt;=</span> <span class="n">number</span><span class="p">)</span>
 	<span class="p">{</span>
 		<span class="n">final_cost</span><span class="o">=</span><span class="n">current_cost</span><span class="p">;</span>
 	<span class="p">}</span>
 	<span class="k">else</span>
 	<span class="p">{</span>
-		<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
+		<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
 		<span class="p">{</span>
-			<span class="n">current_cost</span> <span class="o">+</span><span class="o">=</span> <span class="n">aray</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="p">[</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">]</span><span class="p">;</span>
+			<span class="n">current_cost</span> <span class="o">+=</span> <span class="n">aray</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
 			<span class="k">if</span><span class="p">(</span><span class="n">current_cost</span> <span class="o">&lt;</span> <span class="n">final_cost</span><span class="p">)</span>
 			<span class="p">{</span>
-				<span class="n">swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
-				<span class="n">search</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
-				<span class="n">swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
+				<span class="n">swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">list</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+				<span class="n">search</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+				<span class="n">swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">list</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 			<span class="p">}</span>
-			<span class="n">current_cost</span> <span class="o">-</span><span class="o">=</span> <span class="n">aray</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="p">[</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">]</span><span class="p">;</span>
+			<span class="n">current_cost</span> <span class="o">-=</span> <span class="n">aray</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
 	<span class="kt">int</span> <span class="n">m</span><span class="p">;</span>
 	<span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">;</span>
-	<span class="n">scanf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">number</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">number</span><span class="p">);</span>
 
-	<span class="n">aray</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="o">*</span><span class="n">number</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">list</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="n">number</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">aray</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">**</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="o">*</span><span class="n">number</span><span class="p">);</span>
+	<span class="n">list</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="n">number</span><span class="p">);</span>
 
-	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
 		<span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
-	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
-		<span class="n">aray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="n">number</span><span class="p">)</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">aray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="n">number</span><span class="p">);</span>
 
-	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
 	<span class="p">{</span>
-		<span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">;</span> <span class="n">j</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
+		<span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
 		<span class="p">{</span>
-			<span class="n">scanf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">aray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
+			<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">aray</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
 		<span class="p">}</span>
-		<span class="n">final_cost</span> <span class="o">+</span><span class="o">=</span> <span class="n">aray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
+		<span class="n">final_cost</span> <span class="o">+=</span> <span class="n">aray</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
 	<span class="p">}</span>
-	<span class="n">search</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">final_cost</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">search</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">final_cost</span><span class="p">);</span>
 
-	<span class="n">free</span><span class="p">(</span><span class="n">list</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">free</span><span class="p">(</span><span class="n">aray</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">free</span><span class="p">(</span><span class="n">list</span><span class="p">);</span>
+	<span class="n">free</span><span class="p">(</span><span class="n">aray</span><span class="p">);</span>
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
@@ -445,7 +453,7 @@ n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排�
 <p>其基本的理论基础是针对cost矩阵，将cost矩阵的一行或一列数据加上或减去一个数，其最优任务分配求解问题不变。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -597,50 +605,50 @@ n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排�
 </span><span class="lnt">150
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#</span><span class="cp">define N 55             </span><span class="c1">//max number of vertices in one part
-</span><span class="c1"></span><span class="cp">#</span><span class="cp">define INF 100000000    </span><span class="c1">//just infinity
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define N 55             </span><span class="c1">//max number of vertices in one part
+</span><span class="c1"></span><span class="cp">#define INF 100000000    </span><span class="c1">//just infinity
 </span><span class="c1"></span>
-<span class="kt">int</span> <span class="n">cost</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="p">;</span>          <span class="c1">//cost matrix
+<span class="kt">int</span> <span class="n">cost</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">N</span><span class="p">];</span>          <span class="c1">//cost matrix
 </span><span class="c1"></span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">max_match</span><span class="p">;</span>        <span class="c1">//n workers and n jobs
-</span><span class="c1"></span><span class="kt">int</span> <span class="n">lx</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="p">,</span> <span class="n">ly</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="p">;</span>        <span class="c1">//labels of X and Y parts
-</span><span class="c1"></span><span class="kt">int</span> <span class="n">xy</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="p">;</span>               <span class="c1">//xy[x] - vertex that is matched with x,
-</span><span class="c1"></span><span class="kt">int</span> <span class="n">yx</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="p">;</span>               <span class="c1">//yx[y] - vertex that is matched with y
-</span><span class="c1"></span><span class="kt">bool</span> <span class="n">S</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="p">,</span> <span class="n">T</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="p">;</span>         <span class="c1">//sets S and T in algorithm
-</span><span class="c1"></span><span class="kt">int</span> <span class="n">slack</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="p">;</span>            <span class="c1">//as in the algorithm description
-</span><span class="c1"></span><span class="kt">int</span> <span class="n">slackx</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="p">;</span>           <span class="c1">//slackx[y] such a vertex, that
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">lx</span><span class="p">[</span><span class="n">N</span><span class="p">],</span> <span class="n">ly</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>        <span class="c1">//labels of X and Y parts
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">xy</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>               <span class="c1">//xy[x] - vertex that is matched with x,
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">yx</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>               <span class="c1">//yx[y] - vertex that is matched with y
+</span><span class="c1"></span><span class="kt">bool</span> <span class="n">S</span><span class="p">[</span><span class="n">N</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>         <span class="c1">//sets S and T in algorithm
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">slack</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>            <span class="c1">//as in the algorithm description
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">slackx</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>           <span class="c1">//slackx[y] such a vertex, that
 </span><span class="c1"></span>                         <span class="c1">// l(slackx[y]) + l(y) - w(slackx[y],y) = slack[y]
-</span><span class="c1"></span><span class="kt">int</span> <span class="n">prev</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="p">;</span>             <span class="c1">//array for memorizing alternating paths
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">prev</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>             <span class="c1">//array for memorizing alternating paths
 </span><span class="c1"></span>
-<span class="kt">void</span> <span class="nf">init_labels</span><span class="p">(</span><span class="p">)</span>
+<span class="kt">void</span> <span class="nf">init_labels</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="n">memset</span><span class="p">(</span><span class="n">lx</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">lx</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">memset</span><span class="p">(</span><span class="n">ly</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">ly</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">x</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
-            <span class="n">lx</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">lx</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="p">,</span> <span class="n">cost</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">lx</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">lx</span><span class="p">));</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">ly</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">ly</span><span class="p">));</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">lx</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">lx</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">cost</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]);</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">augment</span><span class="p">(</span><span class="p">)</span>                         <span class="c1">//main function of the algorithm
+<span class="kt">void</span> <span class="nf">augment</span><span class="p">()</span>                         <span class="c1">//main function of the algorithm
 </span><span class="c1"></span><span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">max_match</span> <span class="o">=</span><span class="o">=</span> <span class="n">n</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>        <span class="c1">//check wether matching is already perfect
+    <span class="k">if</span> <span class="p">(</span><span class="n">max_match</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>        <span class="c1">//check wether matching is already perfect
 </span><span class="c1"></span>    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">root</span><span class="p">;</span>                    <span class="c1">//just counters and root vertex
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">q</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="p">,</span> <span class="n">wr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">rd</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>          <span class="c1">//q - queue for bfs, wr,rd - write and read
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">q</span><span class="p">[</span><span class="n">N</span><span class="p">],</span> <span class="n">wr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">rd</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>          <span class="c1">//q - queue for bfs, wr,rd - write and read
 </span><span class="c1"></span>                                       <span class="c1">//pos in queue
-</span><span class="c1"></span>    <span class="n">memset</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">S</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>       <span class="c1">//init set S
-</span><span class="c1"></span>    <span class="n">memset</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>       <span class="c1">//init set T
-</span><span class="c1"></span>    <span class="n">memset</span><span class="p">(</span><span class="n">prev</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">prev</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>    <span class="c1">//init set prev - for the alternating tree
-</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">x</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>            <span class="c1">//finding root of the tree
-</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class="c1"></span>    <span class="n">memset</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">S</span><span class="p">));</span>       <span class="c1">//init set S
+</span><span class="c1"></span>    <span class="n">memset</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">));</span>       <span class="c1">//init set T
+</span><span class="c1"></span>    <span class="n">memset</span><span class="p">(</span><span class="n">prev</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">prev</span><span class="p">));</span>    <span class="c1">//init set prev - for the alternating tree
+</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span>            <span class="c1">//finding root of the tree
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">q</span><span class="p">[</span><span class="n">wr</span><span class="o">+</span><span class="o">+</span><span class="p">]</span> <span class="o">=</span> <span class="n">root</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+            <span class="n">q</span><span class="p">[</span><span class="n">wr</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">root</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
             <span class="n">prev</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">;</span>
             <span class="n">S</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
             <span class="k">break</span><span class="p">;</span>
         <span class="p">}</span>
 
-    <span class="k">for</span> <span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>            <span class="c1">//initializing slack array
+    <span class="k">for</span> <span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span>            <span class="c1">//initializing slack array
 </span><span class="c1"></span>    <span class="p">{</span>
-        <span class="n">slack</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">lx</span><span class="p">[</span><span class="n">root</span><span class="p">]</span> <span class="o">+</span> <span class="n">ly</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">-</span> <span class="n">cost</span><span class="p">[</span><span class="n">root</span><span class="p">]</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">;</span>
+        <span class="n">slack</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">lx</span><span class="p">[</span><span class="n">root</span><span class="p">]</span> <span class="o">+</span> <span class="n">ly</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">-</span> <span class="n">cost</span><span class="p">[</span><span class="n">root</span><span class="p">][</span><span class="n">y</span><span class="p">];</span>
         <span class="n">slackx</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">root</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="c1">//second part of augment() function
@@ -648,43 +656,43 @@ n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排�
 </span><span class="c1"></span>    <span class="p">{</span>
         <span class="k">while</span> <span class="p">(</span><span class="n">rd</span> <span class="o">&lt;</span> <span class="n">wr</span><span class="p">)</span>                                                 <span class="c1">//building tree with bfs cycle
 </span><span class="c1"></span>        <span class="p">{</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">rd</span><span class="o">+</span><span class="o">+</span><span class="p">]</span><span class="p">;</span>                                                <span class="c1">//current vertex from X part
-</span><span class="c1"></span>            <span class="k">for</span> <span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>                                     <span class="c1">//iterate through all edges in equality graph
-</span><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="n">cost</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="n">lx</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">ly</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">&amp;</span><span class="o">&amp;</span>  <span class="o">!</span><span class="n">T</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">)</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">rd</span><span class="o">++</span><span class="p">];</span>                                                <span class="c1">//current vertex from X part
+</span><span class="c1"></span>            <span class="k">for</span> <span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span>                                     <span class="c1">//iterate through all edges in equality graph
+</span><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="n">cost</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="n">lx</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">ly</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">&amp;&amp;</span>  <span class="o">!</span><span class="n">T</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
                 <span class="p">{</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">yx</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>                             <span class="c1">//an exposed vertex in Y found, so
+                    <span class="k">if</span> <span class="p">(</span><span class="n">yx</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>                             <span class="c1">//an exposed vertex in Y found, so
 </span><span class="c1"></span>                                                                        <span class="c1">//augmenting path exists!
 </span><span class="c1"></span>                    <span class="n">T</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>                                        <span class="c1">//else just add y to T,
-</span><span class="c1"></span>                    <span class="n">q</span><span class="p">[</span><span class="n">wr</span><span class="o">+</span><span class="o">+</span><span class="p">]</span> <span class="o">=</span> <span class="n">yx</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">;</span>                                    <span class="c1">//add vertex yx[y], which is matched
+</span><span class="c1"></span>                    <span class="n">q</span><span class="p">[</span><span class="n">wr</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">yx</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>                                    <span class="c1">//add vertex yx[y], which is matched
 </span><span class="c1"></span>                                                                        <span class="c1">//with y, to the queue
-</span><span class="c1"></span>                    <span class="n">add_to_tree</span><span class="p">(</span><span class="n">yx</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="p">;</span>                              <span class="c1">//add edges (x,y) and (y,yx[y]) to the tree
+</span><span class="c1"></span>                    <span class="n">add_to_tree</span><span class="p">(</span><span class="n">yx</span><span class="p">[</span><span class="n">y</span><span class="p">],</span> <span class="n">x</span><span class="p">);</span>                              <span class="c1">//add edges (x,y) and (y,yx[y]) to the tree
 </span><span class="c1"></span>                <span class="p">}</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>                                           <span class="c1">//augmenting path found!
 </span><span class="c1"></span>        <span class="p">}</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>                                               <span class="c1">//augmenting path found!
 </span><span class="c1"></span>
-        <span class="n">update_labels</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>                                                <span class="c1">//augmenting path not found, so improve labeling
+        <span class="n">update_labels</span><span class="p">();</span>                                                <span class="c1">//augmenting path not found, so improve labeling
 </span><span class="c1"></span>        <span class="n">wr</span> <span class="o">=</span> <span class="n">rd</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>                
-        <span class="k">for</span> <span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>        
+        <span class="k">for</span> <span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span>        
         <span class="c1">//in this cycle we add edges that were added to the equality graph as a
 </span><span class="c1"></span>        <span class="c1">//result of improving the labeling, we add edge (slackx[y], y) to the tree if
 </span><span class="c1"></span>        <span class="c1">//and only if !T[y] &amp;&amp;  slack[y] == 0, also with this edge we add another one
 </span><span class="c1"></span>        <span class="c1">//(y, yx[y]) or augment the matching, if y was exposed
-</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">T</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">&amp;</span><span class="o">&amp;</span>  <span class="n">slack</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">T</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">&amp;&amp;</span>  <span class="n">slack</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
             <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">yx</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>                                        <span class="c1">//exposed vertex in Y found - augmenting path exists!
+                <span class="k">if</span> <span class="p">(</span><span class="n">yx</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>                                        <span class="c1">//exposed vertex in Y found - augmenting path exists!
 </span><span class="c1"></span>                <span class="p">{</span>
-                    <span class="n">x</span> <span class="o">=</span> <span class="n">slackx</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">;</span>
+                    <span class="n">x</span> <span class="o">=</span> <span class="n">slackx</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>
                     <span class="k">break</span><span class="p">;</span>
                 <span class="p">}</span>
                 <span class="k">else</span>
                 <span class="p">{</span>
                     <span class="n">T</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>                                        <span class="c1">//else just add y to T,
-</span><span class="c1"></span>                    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">S</span><span class="p">[</span><span class="n">yx</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
+</span><span class="c1"></span>                    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">S</span><span class="p">[</span><span class="n">yx</span><span class="p">[</span><span class="n">y</span><span class="p">]])</span>
                     <span class="p">{</span>
-                        <span class="n">q</span><span class="p">[</span><span class="n">wr</span><span class="o">+</span><span class="o">+</span><span class="p">]</span> <span class="o">=</span> <span class="n">yx</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">;</span>                                <span class="c1">//add vertex yx[y], which is matched with
+                        <span class="n">q</span><span class="p">[</span><span class="n">wr</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">yx</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>                                <span class="c1">//add vertex yx[y], which is matched with
 </span><span class="c1"></span>                                                                        <span class="c1">//y, to the queue
-</span><span class="c1"></span>                        <span class="n">add_to_tree</span><span class="p">(</span><span class="n">yx</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">,</span> <span class="n">slackx</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>                  <span class="c1">//and add edges (x,y) and (y,
+</span><span class="c1"></span>                        <span class="n">add_to_tree</span><span class="p">(</span><span class="n">yx</span><span class="p">[</span><span class="n">y</span><span class="p">],</span> <span class="n">slackx</span><span class="p">[</span><span class="n">y</span><span class="p">]);</span>                  <span class="c1">//and add edges (x,y) and (y,
 </span><span class="c1"></span>                                                                        <span class="c1">//yx[y]) to the tree
 </span><span class="c1"></span>                    <span class="p">}</span>
                 <span class="p">}</span>
@@ -694,57 +702,57 @@ n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排�
 
     <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span>                                                          <span class="c1">//we found augmenting path!
 </span><span class="c1"></span>    <span class="p">{</span>
-        <span class="n">max_match</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>                                                    <span class="c1">//increment matching
+        <span class="n">max_match</span><span class="o">++</span><span class="p">;</span>                                                    <span class="c1">//increment matching
 </span><span class="c1"></span>        <span class="c1">//in this cycle we inverse edges along augmenting path
-</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">cx</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">cy</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">ty</span><span class="p">;</span> <span class="n">cx</span> <span class="o">!</span><span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">;</span> <span class="n">cx</span> <span class="o">=</span> <span class="n">prev</span><span class="p">[</span><span class="n">cx</span><span class="p">]</span><span class="p">,</span> <span class="n">cy</span> <span class="o">=</span> <span class="n">ty</span><span class="p">)</span>
+</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">cx</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">cy</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">ty</span><span class="p">;</span> <span class="n">cx</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">2</span><span class="p">;</span> <span class="n">cx</span> <span class="o">=</span> <span class="n">prev</span><span class="p">[</span><span class="n">cx</span><span class="p">],</span> <span class="n">cy</span> <span class="o">=</span> <span class="n">ty</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">ty</span> <span class="o">=</span> <span class="n">xy</span><span class="p">[</span><span class="n">cx</span><span class="p">]</span><span class="p">;</span>
+            <span class="n">ty</span> <span class="o">=</span> <span class="n">xy</span><span class="p">[</span><span class="n">cx</span><span class="p">];</span>
             <span class="n">yx</span><span class="p">[</span><span class="n">cy</span><span class="p">]</span> <span class="o">=</span> <span class="n">cx</span><span class="p">;</span>
             <span class="n">xy</span><span class="p">[</span><span class="n">cx</span><span class="p">]</span> <span class="o">=</span> <span class="n">cy</span><span class="p">;</span>
         <span class="p">}</span>
-        <span class="n">augment</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>                                                      <span class="c1">//recall function, go to step 1 of the algorithm
+        <span class="n">augment</span><span class="p">();</span>                                                      <span class="c1">//recall function, go to step 1 of the algorithm
 </span><span class="c1"></span>    <span class="p">}</span>
 <span class="p">}</span><span class="c1">//end of augment() function
 </span><span class="c1"></span>
-<span class="kt">void</span> <span class="nf">update_labels</span><span class="p">(</span><span class="p">)</span>
+<span class="kt">void</span> <span class="nf">update_labels</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">delta</span> <span class="o">=</span> <span class="n">INF</span><span class="p">;</span>             <span class="c1">//init delta as infinity
-</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>            <span class="c1">//calculate delta using slack
-</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">T</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">)</span>
-            <span class="n">delta</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">slack</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">x</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>            <span class="c1">//update X labels
-</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="p">)</span> <span class="n">lx</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">-</span><span class="o">=</span> <span class="n">delta</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>            <span class="c1">//update Y labels
-</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">)</span> <span class="n">ly</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="n">delta</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>            <span class="c1">//update slack array
-</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">T</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">)</span>
-            <span class="n">slack</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">-</span><span class="o">=</span> <span class="n">delta</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span>            <span class="c1">//calculate delta using slack
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">T</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">slack</span><span class="p">[</span><span class="n">y</span><span class="p">]);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span>            <span class="c1">//update X labels
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="n">lx</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">-=</span> <span class="n">delta</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span>            <span class="c1">//update Y labels
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">y</span><span class="p">])</span> <span class="n">ly</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">+=</span> <span class="n">delta</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span>            <span class="c1">//update slack array
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">T</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+            <span class="n">slack</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">-=</span> <span class="n">delta</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">add_to_tree</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">prevx</span><span class="p">)</span> 
 <span class="c1">//x - current vertex,prevx - vertex from X before x in the alternating path,
-</span><span class="c1"></span><span class="c1">//so we add edges (prevx, xy[x]), (xy[x], x)
+</span><span class="c1">//so we add edges (prevx, xy[x]), (xy[x], x)
 </span><span class="c1"></span><span class="p">{</span>
     <span class="n">S</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>                    <span class="c1">//add x to S
 </span><span class="c1"></span>    <span class="n">prev</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">prevx</span><span class="p">;</span>                <span class="c1">//we need this when augmenting
-</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>    <span class="c1">//update slacks, because we add new vertex to S
-</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">lx</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">ly</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">-</span> <span class="n">cost</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">slack</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">)</span>
+</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span>    <span class="c1">//update slacks, because we add new vertex to S
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">lx</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">ly</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">-</span> <span class="n">cost</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">slack</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
         <span class="p">{</span>
-            <span class="n">slack</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">lx</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">ly</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">-</span> <span class="n">cost</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="p">;</span>
+            <span class="n">slack</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">lx</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">ly</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">-</span> <span class="n">cost</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">];</span>
             <span class="n">slackx</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
         <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="nf">hungarian</span><span class="p">(</span><span class="p">)</span>
+<span class="kt">int</span> <span class="nf">hungarian</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>                      <span class="c1">//weight of the optimal matching
 </span><span class="c1"></span>    <span class="n">max_match</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>                    <span class="c1">//number of vertices in current matching
-</span><span class="c1"></span>    <span class="n">memset</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">memset</span><span class="p">(</span><span class="n">yx</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">yx</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">init_labels</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>                    <span class="c1">//step 0
-</span><span class="c1"></span>    <span class="n">augment</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>                        <span class="c1">//steps 1-3
-</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">x</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>       <span class="c1">//forming answer there
-</span><span class="c1"></span>        <span class="n">ret</span> <span class="o">+</span><span class="o">=</span> <span class="n">cost</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="p">[</span><span class="n">xy</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="p">]</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="n">memset</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">xy</span><span class="p">));</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">yx</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">yx</span><span class="p">));</span>
+    <span class="n">init_labels</span><span class="p">();</span>                    <span class="c1">//step 0
+</span><span class="c1"></span>    <span class="n">augment</span><span class="p">();</span>                        <span class="c1">//steps 1-3
+</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span>       <span class="c1">//forming answer there
+</span><span class="c1"></span>        <span class="n">ret</span> <span class="o">+=</span> <span class="n">cost</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">xy</span><span class="p">[</span><span class="n">x</span><span class="p">]];</span>
     <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
@@ -831,13 +839,10 @@ n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排�
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">josephpei</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -848,7 +853,10 @@ n分作业分配给n个人，共有n!中排列方式，深度优先遍历其排�
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 

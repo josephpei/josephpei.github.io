@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.92.1 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/" />
@@ -36,7 +36,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -44,7 +45,7 @@
 <meta property="og:description" content="常无事，痛饮酒，熟读离骚" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://josephpei.github.io/" />
-<meta property="og:updated_time" content="2020-02-01T14:53:46+08:00" />
+
 <meta itemprop="name" content="有翅膀的天狼">
 <meta itemprop="description" content="常无事，痛饮酒，熟读离骚"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="有翅膀的天狼"/>
@@ -83,12 +84,21 @@
         <li class="mobile-menu-item">Categories</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Wolfsky</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -103,12 +113,32 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2016/08/05/django%E4%B9%8B%E8%B7%AF-python-decouple/">Django之路: Python Decouple</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2016-08-05 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>Django settings 中存有很多私密信息，如 database url, password, secret key, allowed hosts 等，我们还可能有 Debug / Deploy 两套不同的运行环境，<a href="https://pypi.python.org/pypi/python-decouple">python-decouple</a> 可以让这些环境变量与代码分离。</p>
+    </div>
+    <div class="read-more">
+      <a href="/2016/08/05/django%E4%B9%8B%E8%B7%AF-python-decouple/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2015/07/19/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%80-hello-world/">Linux驱动开发之一 Hello World</a></h1>
@@ -123,7 +153,7 @@
       <p>完整的 Hello World 内核模块 hello.c</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -142,23 +172,23 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;linux/init.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;linux/module.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Dual BSD/GPL</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;linux/init.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;linux/module.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">&#34;Dual BSD/GPL&#34;</span><span class="p">);</span>
 
 <span class="k">static</span> <span class="kt">int</span> <span class="nf">hello_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Hello, world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Hello, world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="k">static</span> <span class="kt">void</span> <span class="nf">hello_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Goodbye, cruel world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Goodbye, cruel world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="n">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">)</span><span class="p">;</span>
-<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_exit</span><span class="p">)</span><span class="p">;</span>
+<span class="n">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">);</span>
+<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_exit</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
 </div>
@@ -217,7 +247,7 @@ cd create_ap &amp;&amp; make install
 <p>pom.xml</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -236,22 +266,22 @@ cd create_ap &amp;&amp; make install
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.fasterxml.jackson.core<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>jackson-databind<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>2.4.2<span class="nt">&lt;/version&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.fasterxml.jackson.core<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>jackson-databind<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.4.2<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 
-<span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>commons-codec<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>commons-codec<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.9<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>commons-codec<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>commons-codec<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.9<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 
-<span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>commons-fileupload<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>commons-fileupload<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.3.1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>commons-fileupload<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>commons-fileupload<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.3.1<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></td></tr></table>
 </div>
@@ -279,25 +309,6 @@ cd create_ap &amp;&amp; make install
     </div>
     <div class="read-more">
       <a href="/2014/09/01/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-jquery-%E9%AA%8C%E8%AF%81/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2014/08/31/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-spring-security/">Spring MVC 学习笔记8 Spring Security</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2014-08-31 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>Spring Security 是为基于 Spring 的应用程序提供声明式安全保护的安全性框架，基于 Spring AOP 和 Servlet 过滤器实现，能够在 Web 请求级别和方法调用级别处理身份验证和授权。它使用 Servlet 过滤器保护 Web 请求和限制 URL 级别的访问，也可以使用 Spring AOP 保护方法调用——借助于对象代理和使用通知，能够确保只有具备适当权限的用户才能访问安全保护的方法。</p>
-    </div>
-    <div class="read-more">
-      <a href="/2014/08/31/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-spring-security/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
@@ -343,13 +354,10 @@ cd create_ap &amp;&amp; make install
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">josephpei</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -360,7 +368,10 @@ cd create_ap &amp;&amp; make install
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
 
 
 
