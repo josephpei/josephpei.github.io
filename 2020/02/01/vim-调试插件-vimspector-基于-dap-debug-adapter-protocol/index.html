@@ -26,7 +26,7 @@ OS: Linux / MacOS
 
 
 
-<meta name="generator" content="Hugo 0.92.1 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2020/02/01/vim-%E8%B0%83%E8%AF%95%E6%8F%92%E4%BB%B6-vimspector-%E5%9F%BA%E4%BA%8E-dap-debug-adapter-protocol/" />
@@ -166,8 +166,8 @@ OS: Linux / MacOS"/>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Plug &#39;puremourning/vimspector&#39;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Plug &#39;puremourning/vimspector&#39;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>安装对应语言调试工具</p>
 <div class="highlight"><div class="chroma">
@@ -181,14 +181,14 @@ OS: Linux / MacOS"/>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">cd ~/.vim/plugged/vimspector
-# c, c++
-./install_gadget.py --enable-c
-# python
-./install_gadget.py --enable-python
-# go
-./install_gadget.py --enable-go
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd ~/.vim/plugged/vimspector
+</span></span><span class="line"><span class="cl"># c, c++
+</span></span><span class="line"><span class="cl">./install_gadget.py --enable-c
+</span></span><span class="line"><span class="cl"># python
+</span></span><span class="line"><span class="cl">./install_gadget.py --enable-python
+</span></span><span class="line"><span class="cl"># go
+</span></span><span class="line"><span class="cl">./install_gadget.py --enable-go
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="快捷键">快捷键</h2>
 <p>预置两套快捷键<code>Visual Studio</code>, <code>VSCode</code>,也可以自行定制自己的快捷键</p>
@@ -197,8 +197,8 @@ OS: Linux / MacOS"/>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">let g:vimspector_enable_mappings = &#39;VISUAL_STUDIO&#39;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">let g:vimspector_enable_mappings = &#39;VISUAL_STUDIO&#39;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="使用">使用</h2>
 <p>创建配置文件 <code>.vimspector.json</code>，在一个配置文件中可以有多个调试配置，启动调试时进行选取。这里有一个小问题，配置是字典形式，不是数组，所以在选取时的顺序未必是你所书写的顺序。</p>
@@ -235,35 +235,35 @@ OS: Linux / MacOS"/>
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;configurations&#34;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&#34;Cpp: Launch&#34;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&#34;adapter&#34;</span><span class="p">:</span> <span class="s2">&#34;vscode-cpptools&#34;</span><span class="p">,</span>
-      <span class="nt">&#34;configuration&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Cpp: Launch&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;cppdbg&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="s2">&#34;launch&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;program&#34;</span><span class="p">:</span> <span class="s2">&#34;${workspaceRoot}/a.out&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">[],</span>
-        <span class="nt">&#34;cwd&#34;</span><span class="p">:</span> <span class="s2">&#34;${workspaceRoot}&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;environment&#34;</span><span class="p">:</span> <span class="p">[],</span>
-        <span class="nt">&#34;externalConsole&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="nt">&#34;MIMode&#34;</span><span class="p">:</span> <span class="s2">&#34;gdb&#34;</span>
-      <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="nt">&#34;Cpp: Attach&#34;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&#34;adapter&#34;</span><span class="p">:</span> <span class="s2">&#34;vscode-cpptools&#34;</span><span class="p">,</span>
-      <span class="nt">&#34;configuration&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Cpp: Attach&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;cppdbg&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="s2">&#34;attach&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;program&#34;</span><span class="p">:</span> <span class="s2">&#34;${workspaceRoot}/a.out&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;MIMode&#34;</span><span class="p">:</span> <span class="s2">&#34;gdb&#34;</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;configurations&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Cpp: Launch&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;adapter&#34;</span><span class="p">:</span> <span class="s2">&#34;vscode-cpptools&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;configuration&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Cpp: Launch&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;cppdbg&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="s2">&#34;launch&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;program&#34;</span><span class="p">:</span> <span class="s2">&#34;${workspaceRoot}/a.out&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;cwd&#34;</span><span class="p">:</span> <span class="s2">&#34;${workspaceRoot}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;environment&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;externalConsole&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;MIMode&#34;</span><span class="p">:</span> <span class="s2">&#34;gdb&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Cpp: Attach&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;adapter&#34;</span><span class="p">:</span> <span class="s2">&#34;vscode-cpptools&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;configuration&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Cpp: Attach&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;cppdbg&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="s2">&#34;attach&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;program&#34;</span><span class="p">:</span> <span class="s2">&#34;${workspaceRoot}/a.out&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;MIMode&#34;</span><span class="p">:</span> <span class="s2">&#34;gdb&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>退出调试：点击<code>WinBar</code>按钮<code>Reset</code>，或者使用命令<code>:VimspectorReset</code></p>
 <p><img src="/img/vimspector.png" alt="vimspector"></p>
@@ -363,7 +363,7 @@ OS: Linux / MacOS"/>
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

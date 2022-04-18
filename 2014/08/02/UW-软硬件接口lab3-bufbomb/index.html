@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.1 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/08/02/uw-%E8%BD%AF%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3lab3-bufbomb/" />
@@ -171,13 +171,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">(gdb)p $rbp
-$1 = (void *) 0x7fffffffb730
-(gdb)p $rsp
-$2 = (void *) 0x7fffffffb700
-(gdb)p &amp;buf
-$3 = (char (*)[36]) 0x7fffffffb700
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(gdb)p $rbp
+</span></span><span class="line"><span class="cl">$1 = (void *) 0x7fffffffb730
+</span></span><span class="line"><span class="cl">(gdb)p $rsp
+</span></span><span class="line"><span class="cl">$2 = (void *) 0x7fffffffb700
+</span></span><span class="line"><span class="cl">(gdb)p &amp;buf
+</span></span><span class="line"><span class="cl">$3 = (char (*)[36]) 0x7fffffffb700
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>&amp;buf 到 %rbp 距离 48(0x30) Byte，加上 old %rbp 和 return address，一共 64 Byte</p>
 <p>smoke.txt 内容应该是</p>
@@ -188,10 +188,10 @@ $3 = (char (*)[36]) 0x7fffffffb700
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">48 Byte 无意义内容
-8 Byte old %rbp
-8 Byte smoke 函数地址  (intel 是 little endian)
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">48 Byte 无意义内容
+</span></span><span class="line"><span class="cl">8 Byte old %rbp
+</span></span><span class="line"><span class="cl">8 Byte smoke 函数地址  (intel 是 little endian)
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="第二关">第二关</h2>
 <p>fizz 函数一共有7个参数，前6个进 register，最后一个参数 val 进栈</p>
@@ -205,12 +205,12 @@ $3 = (char (*)[36]) 0x7fffffffb700
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">48 Byte 无意义内容
-8 Byte old %rbp
-8 Byte fizz 函数地址
-8 Byte fizz 函数返回地址(这个可以是任意值)
-8 Byte val 参数值 (makecookie得到的值)
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">48 Byte 无意义内容
+</span></span><span class="line"><span class="cl">8 Byte old %rbp
+</span></span><span class="line"><span class="cl">8 Byte fizz 函数地址
+</span></span><span class="line"><span class="cl">8 Byte fizz 函数返回地址(这个可以是任意值)
+</span></span><span class="line"><span class="cl">8 Byte val 参数值 (makecookie得到的值)
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="第三关">第三关</h2>
 <p>修改全局变量 global_value 等于 cookie，并跳转到指定函数 bang</p>
@@ -223,11 +223,11 @@ $3 = (char (*)[36]) 0x7fffffffb700
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">指令代码
-填充够 48 Byte 无意义内容
-8 Byte old %rbp
-8 Byte buff 首地址
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">指令代码
+</span></span><span class="line"><span class="cl">填充够 48 Byte 无意义内容
+</span></span><span class="line"><span class="cl">8 Byte old %rbp
+</span></span><span class="line"><span class="cl">8 Byte buff 首地址
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>bang.s</p>
 <div class="highlight"><div class="chroma">
@@ -238,11 +238,11 @@ $3 = (char (*)[36]) 0x7fffffffb700
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">movq</span> <span class="mi">0x602320</span><span class="p">,</span> <span class="nv">%r9</span>
-<span class="nf">movq</span> <span class="nv">%r9</span><span class="p">,</span> <span class="mi">0x602308</span>
-<span class="nf">pushq</span> <span class="no">$0x401020</span>
-<span class="nf">retq</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">movq</span> <span class="mi">0x602320</span><span class="p">,</span> <span class="nv">%r9</span>
+</span></span><span class="line"><span class="cl"><span class="nf">movq</span> <span class="nv">%r9</span><span class="p">,</span> <span class="mi">0x602308</span>
+</span></span><span class="line"><span class="cl"><span class="nf">pushq</span> <span class="no">$0x401020</span>
+</span></span><span class="line"><span class="cl"><span class="nf">retq</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -343,7 +343,7 @@ $3 = (char (*)[36]) 0x7fffffffb700
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

@@ -27,7 +27,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.1 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2020/01/07/leetcode-23-merge-k-sorted-lists%E5%90%88%E5%B9%B6k%E4%B8%AA%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/" />
@@ -225,12 +225,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[
-  1-&gt;4-&gt;5,
-  1-&gt;3-&gt;4,
-  2-&gt;6
-]
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[
+</span></span><span class="line"><span class="cl">  1-&gt;4-&gt;5,
+</span></span><span class="line"><span class="cl">  1-&gt;3-&gt;4,
+</span></span><span class="line"><span class="cl">  2-&gt;6
+</span></span><span class="line"><span class="cl">]
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>输出: <code>1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6</code></p>
 <h2 id="暴力循环">暴力循环</h2>
@@ -270,37 +270,37 @@
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">class Solution {
-public:
-    int findMin(vector&lt;ListNode*&gt; &amp;lists) {
-        int min = INT_MAX;
-        int pos = -1;
-        for (int i = 0; i &lt; lists.size(); i++) {
-            if (lists[i] &amp;&amp; lists[i]-&gt;val &lt; min) {
-                min = lists[i]-&gt;val;
-                pos = i;
-            }
-        }
-        return pos;
-    }
-
-    ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) {
-        ListNode dummy(0);
-        ListNode *curr = &amp;dummy;
-
-        while(true) {
-            int pos = findMin(lists);
-            if (pos == -1)
-                break;
-            curr-&gt;next = lists[pos];
-            curr = lists[pos];
-            lists[pos] = lists[pos]-&gt;next;
-        }
-
-        return dummy.next;
-    }
-};
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">class Solution {
+</span></span><span class="line"><span class="cl">public:
+</span></span><span class="line"><span class="cl">    int findMin(vector&lt;ListNode*&gt; &amp;lists) {
+</span></span><span class="line"><span class="cl">        int min = INT_MAX;
+</span></span><span class="line"><span class="cl">        int pos = -1;
+</span></span><span class="line"><span class="cl">        for (int i = 0; i &lt; lists.size(); i++) {
+</span></span><span class="line"><span class="cl">            if (lists[i] &amp;&amp; lists[i]-&gt;val &lt; min) {
+</span></span><span class="line"><span class="cl">                min = lists[i]-&gt;val;
+</span></span><span class="line"><span class="cl">                pos = i;
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        return pos;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) {
+</span></span><span class="line"><span class="cl">        ListNode dummy(0);
+</span></span><span class="line"><span class="cl">        ListNode *curr = &amp;dummy;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        while(true) {
+</span></span><span class="line"><span class="cl">            int pos = findMin(lists);
+</span></span><span class="line"><span class="cl">            if (pos == -1)
+</span></span><span class="line"><span class="cl">                break;
+</span></span><span class="line"><span class="cl">            curr-&gt;next = lists[pos];
+</span></span><span class="line"><span class="cl">            curr = lists[pos];
+</span></span><span class="line"><span class="cl">            lists[pos] = lists[pos]-&gt;next;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        return dummy.next;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">};
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="改进1-递归合并">改进1: 递归合并</h2>
 <p>类似 MergeSort，两两递归合并。时间复杂度<code>Nlog(k)</code>。</p>
@@ -346,45 +346,45 @@ public:
 </span><span class="lnt">38
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">class Solution {
-public:
-    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
-        ListNode dummy(0);
-        ListNode *curr = &amp;dummy;
-        while (l1 &amp;&amp; l2) {
-            if (l1-&gt;val &lt; l2-&gt;val) {
-                curr-&gt;next = l1;
-                curr = l1;
-                l1 = l1-&gt;next;
-            } else {
-                curr-&gt;next = l2;
-                curr = l2;
-                l2 = l2-&gt;next;
-            }
-        }
-        if (l1)
-            curr-&gt;next = l1;
-        if (l2)
-            curr-&gt;next = l2;
-
-        return dummy.next;
-    }
-    
-    ListNode *merge(vector&lt;ListNode*&gt;&amp; lists, int start, int end) {
-        if (start &gt; end) return nullptr;
-        if (start == end) return lists[start];
-        
-        int mid = (start + end) / 2;
-        ListNode *left = merge(lists, start, mid);
-        ListNode *right = merge(lists, mid+1, end);        
-        return mergeTwoLists(left, right);
-    }
-
-    ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) {
-        return merge(lists, 0, lists.size()-1);
-    }
-};
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">class Solution {
+</span></span><span class="line"><span class="cl">public:
+</span></span><span class="line"><span class="cl">    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
+</span></span><span class="line"><span class="cl">        ListNode dummy(0);
+</span></span><span class="line"><span class="cl">        ListNode *curr = &amp;dummy;
+</span></span><span class="line"><span class="cl">        while (l1 &amp;&amp; l2) {
+</span></span><span class="line"><span class="cl">            if (l1-&gt;val &lt; l2-&gt;val) {
+</span></span><span class="line"><span class="cl">                curr-&gt;next = l1;
+</span></span><span class="line"><span class="cl">                curr = l1;
+</span></span><span class="line"><span class="cl">                l1 = l1-&gt;next;
+</span></span><span class="line"><span class="cl">            } else {
+</span></span><span class="line"><span class="cl">                curr-&gt;next = l2;
+</span></span><span class="line"><span class="cl">                curr = l2;
+</span></span><span class="line"><span class="cl">                l2 = l2-&gt;next;
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        if (l1)
+</span></span><span class="line"><span class="cl">            curr-&gt;next = l1;
+</span></span><span class="line"><span class="cl">        if (l2)
+</span></span><span class="line"><span class="cl">            curr-&gt;next = l2;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        return dummy.next;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    ListNode *merge(vector&lt;ListNode*&gt;&amp; lists, int start, int end) {
+</span></span><span class="line"><span class="cl">        if (start &gt; end) return nullptr;
+</span></span><span class="line"><span class="cl">        if (start == end) return lists[start];
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        int mid = (start + end) / 2;
+</span></span><span class="line"><span class="cl">        ListNode *left = merge(lists, start, mid);
+</span></span><span class="line"><span class="cl">        ListNode *right = merge(lists, mid+1, end);        
+</span></span><span class="line"><span class="cl">        return mergeTwoLists(left, right);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) {
+</span></span><span class="line"><span class="cl">        return merge(lists, 0, lists.size()-1);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">};
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="改进2优先级队列">改进2：优先级队列</h2>
 <p>构造一个规模为 k 的优先级队列（最小堆），初始将各链表头元素入队，每次出队一个元
@@ -423,37 +423,37 @@ public:
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">class Solution{
-public:
-    struct compareFunc {
-        bool operator()(ListNode* node1, ListNode* node2) {
-            return node1-&gt;val &gt; node2-&gt;val;
-        }
-    };
-
-    ListNode* mergeKLists2(vector&lt;ListNode*&gt;&amp; lists) {
-        priority_queue&lt;ListNode*, vector&lt;ListNode*&gt;, compareFunc&gt; pq;
-
-        for (ListNode* node : lists) {
-            if (node != nullptr)
-                pq.push(node);
-        }
-
-        ListNode dummy = ListNode(0);
-        ListNode *current = &amp;dummy;
-
-        while (!pq.empty()) {
-            current-&gt;next = pq.top();
-            pq.pop();
-            current = current-&gt;next;
-            if (current-&gt;next != nullptr)
-                pq.push(current-&gt;next);
-        }
-
-        return dummy.next;
-    }
-};
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">class Solution{
+</span></span><span class="line"><span class="cl">public:
+</span></span><span class="line"><span class="cl">    struct compareFunc {
+</span></span><span class="line"><span class="cl">        bool operator()(ListNode* node1, ListNode* node2) {
+</span></span><span class="line"><span class="cl">            return node1-&gt;val &gt; node2-&gt;val;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    };
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ListNode* mergeKLists2(vector&lt;ListNode*&gt;&amp; lists) {
+</span></span><span class="line"><span class="cl">        priority_queue&lt;ListNode*, vector&lt;ListNode*&gt;, compareFunc&gt; pq;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        for (ListNode* node : lists) {
+</span></span><span class="line"><span class="cl">            if (node != nullptr)
+</span></span><span class="line"><span class="cl">                pq.push(node);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        ListNode dummy = ListNode(0);
+</span></span><span class="line"><span class="cl">        ListNode *current = &amp;dummy;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        while (!pq.empty()) {
+</span></span><span class="line"><span class="cl">            current-&gt;next = pq.top();
+</span></span><span class="line"><span class="cl">            pq.pop();
+</span></span><span class="line"><span class="cl">            current = current-&gt;next;
+</span></span><span class="line"><span class="cl">            if (current-&gt;next != nullptr)
+</span></span><span class="line"><span class="cl">                pq.push(current-&gt;next);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        return dummy.next;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">};
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -555,7 +555,7 @@ public:
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

@@ -26,7 +26,7 @@ Logback 是项目 Log4j 的后继。它由三个模块组成：logback-core, log
 
 
 
-<meta name="generator" content="Hugo 0.92.1 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/08/25/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B06-slf4j-logback-%E6%97%A5%E5%BF%97/" />
@@ -182,30 +182,30 @@ Logback 是项目 Log4j 的后继。它由三个模块组成：logback-core, log
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>spring-core<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;exclusions&gt;</span>
-        <span class="nt">&lt;exclusion&gt;</span>
-            <span class="nt">&lt;groupId&gt;</span>commons-logging<span class="nt">&lt;/groupId&gt;</span>
-            <span class="nt">&lt;artifactId&gt;</span>commons-logging<span class="nt">&lt;/artifactId&gt;</span>
-        <span class="nt">&lt;/exclusion&gt;</span>
-    <span class="nt">&lt;/exclusions&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-
-<span class="nt">&lt;dependency&gt;</span>
-	<span class="nt">&lt;groupId&gt;</span>ch.qos.logback<span class="nt">&lt;/groupId&gt;</span>
-	<span class="nt">&lt;artifactId&gt;</span>logback-classic<span class="nt">&lt;/artifactId&gt;</span>
-	<span class="nt">&lt;version&gt;</span>${logback.version}<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-
-<span class="nt">&lt;dependency&gt;</span>
-	<span class="nt">&lt;groupId&gt;</span>org.slf4j<span class="nt">&lt;/groupId&gt;</span>
-	<span class="nt">&lt;artifactId&gt;</span>jcl-over-slf4j<span class="nt">&lt;/artifactId&gt;</span>
-	<span class="nt">&lt;version&gt;</span>1${jcloverslf4j.version}<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>spring-core<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;exclusions&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;exclusion&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;groupId&gt;</span>commons-logging<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;artifactId&gt;</span>commons-logging<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/exclusion&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/exclusions&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;groupId&gt;</span>ch.qos.logback<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;artifactId&gt;</span>logback-classic<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;version&gt;</span>${logback.version}<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;groupId&gt;</span>org.slf4j<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;artifactId&gt;</span>jcl-over-slf4j<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;version&gt;</span>1${jcloverslf4j.version}<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>基本参考配置</p>
 <div class="highlight"><div class="chroma">
@@ -272,67 +272,67 @@ Logback 是项目 Log4j 的后继。它由三个模块组成：logback-core, log
 </span><span class="lnt">60
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
-<span class="nt">&lt;configuration&gt;</span>
-    <span class="nt">&lt;appender</span> <span class="na">name=</span><span class="s">&#34;consoleAppender&#34;</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.core.ConsoleAppender&#34;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;encoder&gt;</span>
-            <span class="nt">&lt;Pattern&gt;</span>.%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n
-            <span class="nt">&lt;/Pattern&gt;</span>
-        <span class="nt">&lt;/encoder&gt;</span>
-        <span class="nt">&lt;filter</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.classic.filter.ThresholdFilter&#34;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;level&gt;</span>TRACE<span class="nt">&lt;/level&gt;</span>
-        <span class="nt">&lt;/filter&gt;</span>
-    <span class="nt">&lt;/appender&gt;</span>
-
-    <span class="nt">&lt;appender</span> <span class="na">name=</span><span class="s">&#34;dailyRollingFileAppender&#34;</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.core.rolling.RollingFileAppender&#34;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;File&gt;</span>/tmp/spring-demo.log<span class="nt">&lt;/File&gt;</span>
-        <span class="nt">&lt;rollingPolicy</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&#34;</span><span class="nt">&gt;</span>
-            <span class="c">&lt;!-- daily rollover --&gt;</span>
-            <span class="nt">&lt;FileNamePattern&gt;</span>spring-demo.%d{yyyy-MM-dd}.log<span class="nt">&lt;/FileNamePattern&gt;</span>
-
-            <span class="c">&lt;!-- keep 30 days&#39; worth of history --&gt;</span>
-            <span class="nt">&lt;maxHistory&gt;</span>30<span class="nt">&lt;/maxHistory&gt;</span>
-        <span class="nt">&lt;/rollingPolicy&gt;</span>
-
-        <span class="nt">&lt;encoder&gt;</span>
-            <span class="nt">&lt;Pattern&gt;</span>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n<span class="nt">&lt;/Pattern&gt;</span>
-        <span class="nt">&lt;/encoder&gt;</span>
-    <span class="nt">&lt;/appender&gt;</span>
-
-    <span class="nt">&lt;appender</span> <span class="na">name=</span><span class="s">&#34;errorFileAppender&#34;</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.core.rolling.RollingFileAppender&#34;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;filter</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.classic.filter.LevelFilter&#34;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;level&gt;</span>ERROR<span class="nt">&lt;/level&gt;</span>
-            <span class="nt">&lt;OnMismatch&gt;</span>DENY<span class="nt">&lt;/OnMismatch&gt;</span>
-            <span class="nt">&lt;OnMatch&gt;</span>ACCEPT<span class="nt">&lt;/OnMatch&gt;</span>
-        <span class="nt">&lt;/filter&gt;</span>
-
-        <span class="nt">&lt;File&gt;</span>/tmp/spring-err.log<span class="nt">&lt;/File&gt;</span>
-        <span class="nt">&lt;rollingPolicy</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.core.rolling.FixedWindowRollingPolicy&#34;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;FileNamePattern&gt;</span>spring-err.log.%i.bak<span class="nt">&lt;/FileNamePattern&gt;</span>
-            <span class="nt">&lt;MinIndex&gt;</span>1<span class="nt">&lt;/MinIndex&gt;</span>
-            <span class="nt">&lt;MaxIndex&gt;</span>3<span class="nt">&lt;/MaxIndex&gt;</span>
-        <span class="nt">&lt;/rollingPolicy&gt;</span>
-        <span class="nt">&lt;triggeringPolicy</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy&#34;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;MaxFileSize&gt;</span>100MB<span class="nt">&lt;/MaxFileSize&gt;</span>
-        <span class="nt">&lt;/triggeringPolicy&gt;</span>
-        <span class="nt">&lt;layout</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.classic.PatternLayout&#34;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;Pattern&gt;</span>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n<span class="nt">&lt;/Pattern&gt;</span>
-        <span class="nt">&lt;/layout&gt;</span>
-    <span class="nt">&lt;/appender&gt;</span>
-
-    <span class="nt">&lt;logger</span> <span class="na">name=</span><span class="s">&#34;com.EXAMPLE&#34;</span> <span class="na">additivity=</span><span class="s">&#34;false&#34;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;level</span> <span class="na">value=</span><span class="s">&#34;DEBUG&#34;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;appender-ref</span> <span class="na">ref=</span><span class="s">&#34;dailyRollingFileAppender&#34;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;appender-ref</span> <span class="na">ref=</span><span class="s">&#34;errorFileAppender&#34;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;appender-ref</span> <span class="na">ref=</span><span class="s">&#34;consoleAppender&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;/logger&gt;</span>
-
-    <span class="nt">&lt;root&gt;</span>
-        <span class="nt">&lt;level</span> <span class="na">value=</span><span class="s">&#34;INFO&#34;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;appender-ref</span> <span class="na">ref=</span><span class="s">&#34;consoleAppender&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;/root&gt;</span>
-<span class="nt">&lt;/configuration&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;configuration&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;appender</span> <span class="na">name=</span><span class="s">&#34;consoleAppender&#34;</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.core.ConsoleAppender&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;encoder&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;Pattern&gt;</span>.%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/Pattern&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/encoder&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;filter</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.classic.filter.ThresholdFilter&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;level&gt;</span>TRACE<span class="nt">&lt;/level&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/filter&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/appender&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;appender</span> <span class="na">name=</span><span class="s">&#34;dailyRollingFileAppender&#34;</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.core.rolling.RollingFileAppender&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;File&gt;</span>/tmp/spring-demo.log<span class="nt">&lt;/File&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;rollingPolicy</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="c">&lt;!-- daily rollover --&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;FileNamePattern&gt;</span>spring-demo.%d{yyyy-MM-dd}.log<span class="nt">&lt;/FileNamePattern&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c">&lt;!-- keep 30 days&#39; worth of history --&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;maxHistory&gt;</span>30<span class="nt">&lt;/maxHistory&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/rollingPolicy&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;encoder&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;Pattern&gt;</span>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n<span class="nt">&lt;/Pattern&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/encoder&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/appender&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;appender</span> <span class="na">name=</span><span class="s">&#34;errorFileAppender&#34;</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.core.rolling.RollingFileAppender&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;filter</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.classic.filter.LevelFilter&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;level&gt;</span>ERROR<span class="nt">&lt;/level&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;OnMismatch&gt;</span>DENY<span class="nt">&lt;/OnMismatch&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;OnMatch&gt;</span>ACCEPT<span class="nt">&lt;/OnMatch&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/filter&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;File&gt;</span>/tmp/spring-err.log<span class="nt">&lt;/File&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;rollingPolicy</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.core.rolling.FixedWindowRollingPolicy&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;FileNamePattern&gt;</span>spring-err.log.%i.bak<span class="nt">&lt;/FileNamePattern&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;MinIndex&gt;</span>1<span class="nt">&lt;/MinIndex&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;MaxIndex&gt;</span>3<span class="nt">&lt;/MaxIndex&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/rollingPolicy&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;triggeringPolicy</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;MaxFileSize&gt;</span>100MB<span class="nt">&lt;/MaxFileSize&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/triggeringPolicy&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;layout</span> <span class="na">class=</span><span class="s">&#34;ch.qos.logback.classic.PatternLayout&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;Pattern&gt;</span>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n<span class="nt">&lt;/Pattern&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/layout&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/appender&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;logger</span> <span class="na">name=</span><span class="s">&#34;com.EXAMPLE&#34;</span> <span class="na">additivity=</span><span class="s">&#34;false&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;level</span> <span class="na">value=</span><span class="s">&#34;DEBUG&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;appender-ref</span> <span class="na">ref=</span><span class="s">&#34;dailyRollingFileAppender&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;appender-ref</span> <span class="na">ref=</span><span class="s">&#34;errorFileAppender&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;appender-ref</span> <span class="na">ref=</span><span class="s">&#34;consoleAppender&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/logger&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;root&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;level</span> <span class="na">value=</span><span class="s">&#34;INFO&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;appender-ref</span> <span class="na">ref=</span><span class="s">&#34;consoleAppender&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/root&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/configuration&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>logback 将记录日志任务委托给 appender，有几种不同的日志级别 TRACE, DEBUG, INFO, WARN, ERROR 。</p>
 <p>static final Logger logger = LoggerFactory.getLogger(MyClassName.class);</p>
@@ -437,7 +437,7 @@ Logback 是项目 Log4j 的后继。它由三个模块组成：logback-core, log
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

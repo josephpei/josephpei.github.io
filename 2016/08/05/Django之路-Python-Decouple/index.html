@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.1 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2016/08/05/django%E4%B9%8B%E8%B7%AF-python-decouple/" />
@@ -169,22 +169,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span>
-
-<span class="n">BASE_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
-<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;3izb^ryglj(bvrjb2_y1fZvcnbky#358_l6-nn#i8fkug4mmz!&#39;</span>
-<span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.postgresql_psycopg2&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;HELLO_DJANGO&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="s1">&#39;U_HELLO&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="s1">&#39;hA8(scA@!fg3*sc&amp;xaGh&amp;6%-l&lt;._&amp;xCf&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">BASE_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;3izb^ryglj(bvrjb2_y1fZvcnbky#358_l6-nn#i8fkug4mmz!&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl"><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.postgresql_psycopg2&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;HELLO_DJANGO&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="s1">&#39;U_HELLO&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="s1">&#39;hA8(scA@!fg3*sc&amp;xaGh&amp;6%-l&lt;._&amp;xCf&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在项目根目录下创建一个 <code>.env</code> 文件，内容如下</p>
 <div class="highlight"><div class="chroma">
@@ -197,13 +197,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="na">SECRET_KEY</span><span class="o">=</span><span class="s">3izb^ryglj(bvrjb2_y1fZvcnbky#358_l6-nn#i8fkug4mmz!</span>
-<span class="na">DEBUG</span><span class="o">=</span><span class="s">True</span>
-<span class="na">DB_NAME</span><span class="o">=</span><span class="s">HELLO_DJANGO</span>
-<span class="na">DB_USER</span><span class="o">=</span><span class="s">U_HELLO</span>
-<span class="na">DB_PASSWORD</span><span class="o">=</span><span class="s">hA8(scA@!fg3*sc&amp;xaGh&amp;6%-l&lt;._&amp;xCf</span>
-<span class="na">DB_HOST</span><span class="o">=</span><span class="s">127.0.0.1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">SECRET_KEY</span><span class="o">=</span><span class="s">3izb^ryglj(bvrjb2_y1fZvcnbky#358_l6-nn#i8fkug4mmz!</span>
+</span></span><span class="line"><span class="cl"><span class="na">DEBUG</span><span class="o">=</span><span class="s">True</span>
+</span></span><span class="line"><span class="cl"><span class="na">DB_NAME</span><span class="o">=</span><span class="s">HELLO_DJANGO</span>
+</span></span><span class="line"><span class="cl"><span class="na">DB_USER</span><span class="o">=</span><span class="s">U_HELLO</span>
+</span></span><span class="line"><span class="cl"><span class="na">DB_PASSWORD</span><span class="o">=</span><span class="s">hA8(scA@!fg3*sc&amp;xaGh&amp;6%-l&lt;._&amp;xCf</span>
+</span></span><span class="line"><span class="cl"><span class="na">DB_HOST</span><span class="o">=</span><span class="s">127.0.0.1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>将 <code>.env</code> 加入到 <code>.gitignore</code>，修改 <code>settings.py</code></p>
 <div class="highlight"><div class="chroma">
@@ -226,23 +226,23 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">decouple</span> <span class="kn">import</span> <span class="n">config</span>
-
-<span class="n">BASE_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
-<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="p">)</span>
-<span class="n">DEBUG</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
-<span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.postgresql_psycopg2&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DB_NAME&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DB_USER&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DB_PASSWORD&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DB_HOST&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">decouple</span> <span class="kn">import</span> <span class="n">config</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">BASE_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">DEBUG</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.postgresql_psycopg2&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DB_NAME&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DB_USER&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DB_PASSWORD&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DB_HOST&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="类型转换">类型转换</h2>
 <p><code>.env</code> 内容</p>
@@ -253,10 +253,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="na">DEBUG</span><span class="o">=</span><span class="s">True</span>
-<span class="na">EMAIL_PORT</span><span class="o">=</span><span class="s">25</span>
-<span class="na">ALLOWED_HOSTS</span><span class="o">=</span><span class="s">.localhost, .herokuapp.com</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">DEBUG</span><span class="o">=</span><span class="s">True</span>
+</span></span><span class="line"><span class="cl"><span class="na">EMAIL_PORT</span><span class="o">=</span><span class="s">25</span>
+</span></span><span class="line"><span class="cl"><span class="na">ALLOWED_HOSTS</span><span class="o">=</span><span class="s">.localhost, .herokuapp.com</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>settings.py</code> 内容</p>
 <div class="highlight"><div class="chroma">
@@ -268,12 +268,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">decouple</span> <span class="kn">import</span> <span class="n">config</span><span class="p">,</span> <span class="n">Csv</span>
-
-<span class="n">DEBUG</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
-<span class="n">EMAIL_PORT</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;EMAIL_PORT&#39;</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;ALLOWED_HOSTS&#39;</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="n">Csv</span><span class="p">())</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">decouple</span> <span class="kn">import</span> <span class="n">config</span><span class="p">,</span> <span class="n">Csv</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">DEBUG</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">EMAIL_PORT</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;EMAIL_PORT&#39;</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="n">config</span><span class="p">(</span><span class="s1">&#39;ALLOWED_HOSTS&#39;</span><span class="p">,</span> <span class="n">cast</span><span class="o">=</span><span class="n">Csv</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>也可用外部环境变量</p>
 <div class="highlight"><div class="chroma">
@@ -281,8 +281,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">DEBUG</span><span class="o">=</span>False python manage.py
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">DEBUG</span><span class="o">=</span>False python manage.py
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -384,7 +384,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

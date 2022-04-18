@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.1 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/09/01/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B09-jquery-%E9%AA%8C%E8%AF%81/" />
@@ -264,117 +264,117 @@
 </span><span class="lnt">110
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="err">&lt;</span>%@ page contentType=&#34;text/html;charset=UTF-8&#34; language=&#34;java&#34; %&gt;
-<span class="err">&lt;</span>%@taglib prefix=&#34;sf&#34; uri=&#34;http://www.springframework.org/tags/form&#34;%&gt;
-<span class="err">&lt;</span>%@taglib uri=&#34;http://java.sun.com/jsp/jstl/core&#34; prefix=&#34;c&#34;%&gt;
-<span class="err">&lt;</span>%@ taglib uri=&#34;http://www.springframework.org/tags&#34; prefix=&#34;spring&#34;%&gt;
-
-<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Register<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Register<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">sf:form</span> <span class="na">commandName</span><span class="o">=</span><span class="s">&#34;user&#34;</span> <span class="na">cssClass</span><span class="o">=</span><span class="s">&#34;form-horizontal registrationForm&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">c:if</span> <span class="na">test</span><span class="o">=</span><span class="s">&#34;${param.success eq true }&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-success&#34;</span><span class="p">&gt;</span>Registration successful!<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">c:if</span><span class="p">&gt;</span>
-
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-group&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;userName&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-2 control-label&#34;</span><span class="p">&gt;</span>Name:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-10&#34;</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">sf:input</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;userName&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;userName&#34;</span> <span class="na">cssClass</span><span class="o">=</span><span class="s">&#34;form-control&#34;</span><span class="p">/&gt;</span>
-            <span class="p">&lt;</span><span class="nt">sf:errors</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;userName&#34;</span> <span class="p">/&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-group&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;fullname&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-2 control-label&#34;</span><span class="p">&gt;</span>Nickname:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-10&#34;</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">sf:input</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;fullname&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;fullname&#34;</span> <span class="na">cssClass</span><span class="o">=</span><span class="s">&#34;form-control&#34;</span><span class="p">/&gt;</span>
-            <span class="p">&lt;</span><span class="nt">sf:errors</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;fullname&#34;</span> <span class="p">/&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-group&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;email&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-2 control-label&#34;</span><span class="p">&gt;</span>Email:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-10&#34;</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">sf:input</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;email&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;email&#34;</span> <span class="na">cssClass</span><span class="o">=</span><span class="s">&#34;form-control&#34;</span><span class="p">/&gt;</span>
-            <span class="p">&lt;</span><span class="nt">sf:errors</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;email&#34;</span> <span class="p">/&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-group&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-2 control-label&#34;</span><span class="p">&gt;</span>Password:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-10&#34;</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">sf:input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">cssClass</span><span class="o">=</span><span class="s">&#34;form-control&#34;</span><span class="p">/&gt;</span>
-            <span class="p">&lt;</span><span class="nt">sf:errors</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="p">/&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-group&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-2 control-label&#34;</span><span class="p">&gt;</span>Password again:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-10&#34;</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;password_again&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;password_again&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-control&#34;</span><span class="p">/&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-group&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-2&#34;</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;Submit&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-lg btn-primay&#34;</span> <span class="p">/&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">sf:form</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;ul.navbar-nav li&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s2">&#34;active&#34;</span><span class="p">);</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;ul.navbar-nav li:nth-child(4)&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">&#34;active&#34;</span><span class="p">);</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;.registrationForm&#34;</span><span class="p">).</span><span class="nx">validate</span><span class="p">(</span>
-            <span class="p">{</span>
-                <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
-                    <span class="nx">userName</span><span class="o">:</span> <span class="p">{</span>
-                        <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                        <span class="nx">minlength</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
-                        <span class="nx">remote</span> <span class="o">:</span> <span class="p">{</span>
-                            <span class="nx">url</span><span class="o">:</span> <span class="s2">&#34;&lt;spring:url value=&#39;/register/available&#39; /&gt;&#34;</span><span class="p">,</span>
-                            <span class="nx">type</span><span class="o">:</span> <span class="s2">&#34;get&#34;</span><span class="p">,</span>
-                            <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
-                                <span class="nx">username</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-                                    <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#userName&#34;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
-                                <span class="p">}</span>
-                            <span class="p">}</span>
-                        <span class="p">}</span>
-                    <span class="p">},</span>
-                    <span class="nx">email</span><span class="o">:</span> <span class="p">{</span>
-                        <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                        <span class="nx">email</span> <span class="o">:</span> <span class="nx">email</span>
-                    <span class="p">},</span>
-                    <span class="nx">password</span><span class="o">:</span> <span class="p">{</span>
-                        <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                        <span class="nx">minlength</span> <span class="o">:</span> <span class="mi">5</span>
-                    <span class="p">},</span>
-                    <span class="nx">password_again</span><span class="o">:</span> <span class="p">{</span>
-                        <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                        <span class="nx">minlength</span> <span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
-                        <span class="nx">equalTo</span><span class="o">:</span> <span class="s1">&#39;#password&#39;</span>
-                    <span class="p">}</span>
-                <span class="p">},</span>
-                <span class="nx">highlight</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">$</span><span class="p">(</span><span class="nx">element</span><span class="p">).</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;.form-group&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;has-success&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;has-error&#39;</span><span class="p">);</span>
-                <span class="p">},</span>
-                <span class="nx">unhighlight</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">$</span><span class="p">(</span><span class="nx">element</span><span class="p">).</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;.form-group&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;has-error&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;has-success&#39;</span><span class="p">);</span>
-                <span class="p">},</span>
-                <span class="nx">messages</span><span class="o">:</span> <span class="p">{</span>
-                    <span class="nx">userName</span><span class="o">:</span> <span class="p">{</span>
-                        <span class="nx">remote</span><span class="o">:</span> <span class="s2">&#34;Such username already exists!&#34;</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">);</span>
-    <span class="p">});</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="err">&lt;</span>%@ page contentType=&#34;text/html;charset=UTF-8&#34; language=&#34;java&#34; %&gt;
+</span></span><span class="line"><span class="cl"><span class="err">&lt;</span>%@taglib prefix=&#34;sf&#34; uri=&#34;http://www.springframework.org/tags/form&#34;%&gt;
+</span></span><span class="line"><span class="cl"><span class="err">&lt;</span>%@taglib uri=&#34;http://java.sun.com/jsp/jstl/core&#34; prefix=&#34;c&#34;%&gt;
+</span></span><span class="line"><span class="cl"><span class="err">&lt;</span>%@ taglib uri=&#34;http://www.springframework.org/tags&#34; prefix=&#34;spring&#34;%&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Register<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Register<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">sf:form</span> <span class="na">commandName</span><span class="o">=</span><span class="s">&#34;user&#34;</span> <span class="na">cssClass</span><span class="o">=</span><span class="s">&#34;form-horizontal registrationForm&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">c:if</span> <span class="na">test</span><span class="o">=</span><span class="s">&#34;${param.success eq true }&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-success&#34;</span><span class="p">&gt;</span>Registration successful!<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">c:if</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-group&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;userName&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-2 control-label&#34;</span><span class="p">&gt;</span>Name:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-10&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">sf:input</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;userName&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;userName&#34;</span> <span class="na">cssClass</span><span class="o">=</span><span class="s">&#34;form-control&#34;</span><span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">sf:errors</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;userName&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-group&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;fullname&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-2 control-label&#34;</span><span class="p">&gt;</span>Nickname:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-10&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">sf:input</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;fullname&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;fullname&#34;</span> <span class="na">cssClass</span><span class="o">=</span><span class="s">&#34;form-control&#34;</span><span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">sf:errors</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;fullname&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-group&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;email&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-2 control-label&#34;</span><span class="p">&gt;</span>Email:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-10&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">sf:input</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;email&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;email&#34;</span> <span class="na">cssClass</span><span class="o">=</span><span class="s">&#34;form-control&#34;</span><span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">sf:errors</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;email&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-group&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-2 control-label&#34;</span><span class="p">&gt;</span>Password:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-10&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">sf:input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">cssClass</span><span class="o">=</span><span class="s">&#34;form-control&#34;</span><span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">sf:errors</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-group&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-2 control-label&#34;</span><span class="p">&gt;</span>Password again:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-10&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;password_again&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;password_again&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-control&#34;</span><span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-group&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-sm-2&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;Submit&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-lg btn-primay&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">sf:form</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;ul.navbar-nav li&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s2">&#34;active&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;ul.navbar-nav li:nth-child(4)&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">&#34;active&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;.registrationForm&#34;</span><span class="p">).</span><span class="nx">validate</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">userName</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nx">minlength</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nx">remote</span> <span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="nx">url</span><span class="o">:</span> <span class="s2">&#34;&lt;spring:url value=&#39;/register/available&#39; /&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="nx">type</span><span class="o">:</span> <span class="s2">&#34;get&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                <span class="nx">username</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                    <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#userName&#34;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">email</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nx">email</span> <span class="o">:</span> <span class="nx">email</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">password</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nx">minlength</span> <span class="o">:</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">password_again</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nx">required</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nx">minlength</span> <span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nx">equalTo</span><span class="o">:</span> <span class="s1">&#39;#password&#39;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">highlight</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">$</span><span class="p">(</span><span class="nx">element</span><span class="p">).</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;.form-group&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;has-success&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;has-error&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">unhighlight</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">$</span><span class="p">(</span><span class="nx">element</span><span class="p">).</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;.form-group&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;has-error&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;has-success&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">messages</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">userName</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nx">remote</span><span class="o">:</span> <span class="s2">&#34;Such username already exists!&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>重点在 remote</p>
 <p>UniqueUsername 注解类</p>
@@ -410,35 +410,35 @@
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Target</span><span class="o">({</span> <span class="n">FIELD</span><span class="o">})</span>
-<span class="nd">@Retention</span><span class="o">(</span><span class="n">RUNTIME</span><span class="o">)</span>
-<span class="nd">@Constraint</span><span class="o">(</span><span class="n">validatedBy</span> <span class="o">=</span> <span class="o">{</span><span class="n">UniqueUsernameValidator</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
-<span class="kd">public</span> <span class="nd">@interface</span> <span class="n">UniqueUsername</span> <span class="o">{</span>
-    <span class="n">String</span> <span class="nf">message</span><span class="o">();</span>
-
-    <span class="n">Class</span><span class="o">&lt;?&gt;[]</span> <span class="n">groups</span><span class="o">()</span> <span class="k">default</span> <span class="o">{</span> <span class="o">};</span>
-
-    <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Payload</span><span class="o">&gt;[]</span> <span class="nf">payload</span><span class="o">()</span> <span class="k">default</span> <span class="o">{</span> <span class="o">};</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UniqueUsernameValidator</span> <span class="kd">implements</span> <span class="n">ConstraintValidator</span><span class="o">&lt;</span><span class="n">UniqueUsername</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
-
-    <span class="nd">@Autowired</span>
-    <span class="kd">private</span> <span class="n">HibUserService</span> <span class="n">hibUserService</span><span class="o">;</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">(</span><span class="n">UniqueUsername</span> <span class="n">constraintAnnotation</span><span class="o">)</span> <span class="o">{</span>
-
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isValid</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">,</span> <span class="n">ConstraintValidatorContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">hibUserService</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
-            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="k">return</span> <span class="n">hibUserService</span><span class="o">.</span><span class="na">findUserByName</span><span class="o">(</span><span class="n">username</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Target</span><span class="o">({</span> <span class="n">FIELD</span><span class="o">})</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RUNTIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Constraint</span><span class="o">(</span><span class="n">validatedBy</span> <span class="o">=</span> <span class="o">{</span><span class="n">UniqueUsernameValidator</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">UniqueUsername</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="nf">message</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?&gt;[]</span> <span class="n">groups</span><span class="o">()</span> <span class="k">default</span> <span class="o">{</span> <span class="o">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Payload</span><span class="o">&gt;[]</span> <span class="nf">payload</span><span class="o">()</span> <span class="k">default</span> <span class="o">{</span> <span class="o">};</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UniqueUsernameValidator</span> <span class="kd">implements</span> <span class="n">ConstraintValidator</span><span class="o">&lt;</span><span class="n">UniqueUsername</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">HibUserService</span> <span class="n">hibUserService</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">(</span><span class="n">UniqueUsername</span> <span class="n">constraintAnnotation</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isValid</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">,</span> <span class="n">ConstraintValidatorContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">hibUserService</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">hibUserService</span><span class="o">.</span><span class="na">findUserByName</span><span class="o">(</span><span class="n">username</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>User 类 userName 字段加上注解。</p>
 <p>RegisterController.java</p>
@@ -485,46 +485,46 @@
 </span><span class="lnt">39
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Controller</span>
-<span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;register&#34;</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RegisterController</span> <span class="o">{</span>
-    <span class="nd">@Autowired</span>
-    <span class="kd">private</span> <span class="n">HibUserService</span> <span class="n">hibUserService</span><span class="o">;</span>
-
-    <span class="nd">@ModelAttribute</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="n">User</span> <span class="nf">constructUser</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">User</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">showRegister</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="s">&#34;register&#34;</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">method</span><span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">register</span><span class="o">(</span><span class="nd">@ModelAttribute</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">)</span> <span class="nd">@Valid</span> <span class="n">User</span> <span class="n">user</span><span class="o">,</span>
-                           <span class="n">BindingResult</span> <span class="n">result</span><span class="o">,</span>
-                           <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
-
-        <span class="k">if</span> <span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">hasErrors</span><span class="o">())</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="s">&#34;register&#34;</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="n">user</span><span class="o">.</span><span class="na">setLastIp</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getRemoteAddr</span><span class="o">());</span>
-        <span class="n">user</span><span class="o">.</span><span class="na">setLastVisit</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
-        <span class="n">hibUserService</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
-
-        <span class="k">return</span> <span class="s">&#34;redirect:register?success=true&#34;</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/available&#34;</span><span class="o">)</span>
-    <span class="nd">@ResponseBody</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">available</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">username</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">Boolean</span> <span class="n">available</span> <span class="o">=</span> <span class="o">(</span><span class="n">hibUserService</span><span class="o">.</span><span class="na">findUserByName</span><span class="o">(</span><span class="n">username</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">);</span>
-        <span class="k">return</span> <span class="n">available</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Controller</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;register&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RegisterController</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">HibUserService</span> <span class="n">hibUserService</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@ModelAttribute</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">User</span> <span class="nf">constructUser</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">User</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">showRegister</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;register&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">method</span><span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">register</span><span class="o">(</span><span class="nd">@ModelAttribute</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">)</span> <span class="nd">@Valid</span> <span class="n">User</span> <span class="n">user</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">BindingResult</span> <span class="n">result</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">hasErrors</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s">&#34;register&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">user</span><span class="o">.</span><span class="na">setLastIp</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getRemoteAddr</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">user</span><span class="o">.</span><span class="na">setLastVisit</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hibUserService</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;redirect:register?success=true&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/available&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ResponseBody</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">available</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">username</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Boolean</span> <span class="n">available</span> <span class="o">=</span> <span class="o">(</span><span class="n">hibUserService</span><span class="o">.</span><span class="na">findUserByName</span><span class="o">(</span><span class="n">username</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">available</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -625,7 +625,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

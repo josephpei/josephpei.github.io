@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.1 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/02/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8Fjava%E5%AE%9E%E7%8E%B0/" />
@@ -173,22 +173,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Product</span> <span class="o">{</span>
-	<span class="kt">void</span> <span class="nf">method</span><span class="o">();</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConcreteProduct1</span> <span class="kd">extends</span> <span class="n">Product</span> <span class="o">{</span>
-	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">()</span> <span class="o">{</span>
-		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;invoke ConcreteProduct1 method!&#34;</span><span class="o">);</span>
-	<span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConcreteProduct2</span> <span class="kd">extends</span> <span class="n">Product</span> <span class="o">{</span>
-	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">()</span> <span class="o">{</span>
-		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;invoke ConcreteProduct2 method!&#34;</span><span class="o">);</span>
-	<span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Product</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">method</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConcreteProduct1</span> <span class="kd">extends</span> <span class="n">Product</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;invoke ConcreteProduct1 method!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConcreteProduct2</span> <span class="kd">extends</span> <span class="n">Product</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;invoke ConcreteProduct2 method!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>产品工厂</p>
 <div class="highlight"><div class="chroma">
@@ -210,22 +210,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Factory</span> <span class="o">{</span>
-	<span class="n">Product</span> <span class="nf">createProduct</span><span class="o">();</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Product1Factory</span> <span class="kd">implements</span> <span class="n">Factory</span> <span class="o">{</span>
-	<span class="kd">public</span> <span class="n">Product</span> <span class="nf">createProduct</span><span class="o">()</span> <span class="o">{</span>
-		<span class="k">return</span> <span class="k">new</span> <span class="n">ConcreteProduct1</span><span class="o">();</span>
-	<span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Product2Factory</span> <span class="kd">implements</span> <span class="n">Factory</span> <span class="o">{</span>
-	<span class="kd">public</span> <span class="n">Product</span> <span class="nf">createProduct</span><span class="o">()</span> <span class="o">{</span>
-		<span class="k">return</span> <span class="k">new</span> <span class="n">ConcreteProduct2</span><span class="o">();</span>
-	<span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Factory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Product</span> <span class="nf">createProduct</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Product1Factory</span> <span class="kd">implements</span> <span class="n">Factory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">Product</span> <span class="nf">createProduct</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="k">new</span> <span class="n">ConcreteProduct1</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Product2Factory</span> <span class="kd">implements</span> <span class="n">Factory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">Product</span> <span class="nf">createProduct</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="k">new</span> <span class="n">ConcreteProduct2</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>客户</p>
 <div class="highlight"><div class="chroma">
@@ -241,16 +241,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Client</span> <span class="o">{</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-		<span class="n">Product</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product1Factory</span><span class="o">().</span><span class="na">createProduct</span><span class="o">();</span>
-		<span class="n">Product</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product2Factory</span><span class="o">().</span><span class="na">createProduct</span><span class="o">();</span>
-
-		<span class="n">p1</span><span class="o">.</span><span class="na">method</span><span class="o">();</span>
-		<span class="n">p2</span><span class="o">.</span><span class="na">method</span><span class="o">();</span>
-	<span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Client</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product1Factory</span><span class="o">().</span><span class="na">createProduct</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product2Factory</span><span class="o">().</span><span class="na">createProduct</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="n">p1</span><span class="o">.</span><span class="na">method</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">p2</span><span class="o">.</span><span class="na">method</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>输出</p>
 <div class="highlight"><div class="chroma">
@@ -259,9 +259,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">invoke ConcreteProduct1 method!
-invoke ConcreteProduct2 method!
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">invoke ConcreteProduct1 method!
+</span></span><span class="line"><span class="cl">invoke ConcreteProduct2 method!
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="参数化工厂">参数化工厂</h2>
 <div class="highlight"><div class="chroma">
@@ -278,17 +278,17 @@ invoke ConcreteProduct2 method!
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ParamFactory</span> <span class="o">{</span>
-	<span class="kd">public</span> <span class="n">Product</span> <span class="nf">createProduct</span><span class="o">(</span><span class="n">String</span> <span class="n">cName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">NotImplementProduct</span> <span class="o">{</span>
-		<span class="k">if</span> <span class="o">(</span><span class="n">cName</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="s">&#34;ConcreteProduct1&#34;</span><span class="o">)</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span>
-			<span class="k">return</span> <span class="k">new</span> <span class="n">ConcreteProduct1</span><span class="o">();</span>
-		<span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">cName</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="s">&#34;ConcreteProduct2&#34;</span><span class="o">)</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span>
-			<span class="k">return</span> <span class="k">new</span> <span class="n">ConcreteProduct2</span><span class="o">();</span>
-		<span class="k">else</span>
-			<span class="k">throw</span> <span class="k">new</span> <span class="n">NotImplementProduct</span><span class="o">(</span><span class="n">cName</span><span class="o">);</span>
-	<span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ParamFactory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">Product</span> <span class="nf">createProduct</span><span class="o">(</span><span class="n">String</span> <span class="n">cName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">NotImplementProduct</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="o">(</span><span class="n">cName</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="s">&#34;ConcreteProduct1&#34;</span><span class="o">)</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="k">new</span> <span class="n">ConcreteProduct1</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">cName</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="s">&#34;ConcreteProduct2&#34;</span><span class="o">)</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="k">new</span> <span class="n">ConcreteProduct2</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span>
+</span></span><span class="line"><span class="cl">			<span class="k">throw</span> <span class="k">new</span> <span class="n">NotImplementProduct</span><span class="o">(</span><span class="n">cName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>上述方法需要添加新具体类时需要修改工厂代码，如果充分实现OO，可以使用泛型，代码如下。</p>
 <div class="highlight"><div class="chroma">
@@ -323,35 +323,35 @@ invoke ConcreteProduct2 method!
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Creator</span> <span class="o">{</span>
-	<span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Product</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">createProduct</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">c</span><span class="o">);</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProductCreator</span> <span class="kd">implements</span> <span class="n">Creator</span> <span class="o">{</span>
-	<span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Product</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">createProduct</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
-		<span class="n">Product</span> <span class="n">product</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-		<span class="k">try</span> <span class="o">{</span>
-			<span class="n">product</span> <span class="o">=</span> <span class="o">(</span><span class="n">Product</span><span class="o">)</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="n">c</span><span class="o">.</span><span class="na">getName</span><span class="o">()).</span><span class="na">newInstance</span><span class="o">();</span>
-		<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-
-		<span class="o">}</span>
-
-		<span class="k">return</span> <span class="o">(</span><span class="n">T</span><span class="o">)</span><span class="n">product</span><span class="o">;</span>
-	<span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Client</span> <span class="o">{</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-		<span class="n">Creator</span> <span class="n">creator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ProductCreator</span><span class="o">();</span>
-		<span class="n">Product</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">creator</span><span class="o">.</span><span class="na">createProduct</span><span class="o">(</span><span class="n">ConcreteProduct1</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-		<span class="n">Product</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">creator</span><span class="o">.</span><span class="na">createProduct</span><span class="o">(</span><span class="n">ConcreteProduct2</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-
-
-		<span class="n">p1</span><span class="o">.</span><span class="na">method</span><span class="o">();</span>
-		<span class="n">p2</span><span class="o">.</span><span class="na">method</span><span class="o">();</span>
-	<span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Creator</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Product</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">createProduct</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">c</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProductCreator</span> <span class="kd">implements</span> <span class="n">Creator</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Product</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">createProduct</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="n">product</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">product</span> <span class="o">=</span> <span class="o">(</span><span class="n">Product</span><span class="o">)</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="n">c</span><span class="o">.</span><span class="na">getName</span><span class="o">()).</span><span class="na">newInstance</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="o">(</span><span class="n">T</span><span class="o">)</span><span class="n">product</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Client</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Creator</span> <span class="n">creator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ProductCreator</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">creator</span><span class="o">.</span><span class="na">createProduct</span><span class="o">(</span><span class="n">ConcreteProduct1</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">creator</span><span class="o">.</span><span class="na">createProduct</span><span class="o">(</span><span class="n">ConcreteProduct2</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="n">p1</span><span class="o">.</span><span class="na">method</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">p2</span><span class="o">.</span><span class="na">method</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以更简单一点，取消工厂接口(基类)，将工厂方法定义为静态方法，这种模式适合小模块使用。如果具体产品类构造函数复杂，还是采用第一种模式为佳。</p>
 <h2 id="延迟初始化">延迟初始化</h2>
@@ -382,29 +382,29 @@ invoke ConcreteProduct2 method!
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LazyFactory</span> <span class="o">{</span>
-	<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Product</span><span class="o">&gt;</span> <span class="n">pMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">synchronized</span> <span class="n">Product</span>
-	<span class="nf">createProduct</span><span class="o">(</span><span class="n">String</span> <span class="n">type</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-		<span class="n">Product</span> <span class="n">product</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-
-		<span class="k">if</span> <span class="o">(</span><span class="n">pMap</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">type</span><span class="o">))</span> <span class="o">{</span>
-			<span class="n">product</span> <span class="o">=</span> <span class="n">pMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">type</span><span class="o">);</span>
-		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-			<span class="k">if</span> <span class="o">(</span><span class="n">type</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;ConcreteProduct1&#34;</span><span class="o">))</span> <span class="o">{</span>
-				<span class="n">product</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteProduct1</span><span class="o">();</span>
-			<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">type</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;ConcreteProduct2&#34;</span><span class="o">))</span> <span class="o">{</span>
-				<span class="n">product</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteProduct2</span><span class="o">();</span>
-			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-				<span class="k">throw</span> <span class="k">new</span> <span class="n">NotImplementProduct</span><span class="o">(</span><span class="n">type</span><span class="o">);</span>
-			<span class="o">}</span>
-			<span class="n">pMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">type</span><span class="o">,</span> <span class="n">product</span><span class="o">);</span>
-		<span class="o">}</span>
-
-		<span class="k">return</span> <span class="n">product</span><span class="o">;</span>
-	<span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LazyFactory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Product</span><span class="o">&gt;</span> <span class="n">pMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">synchronized</span> <span class="n">Product</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">createProduct</span><span class="o">(</span><span class="n">String</span> <span class="n">type</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="n">product</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="o">(</span><span class="n">pMap</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">type</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">product</span> <span class="o">=</span> <span class="n">pMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">type</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="o">(</span><span class="n">type</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;ConcreteProduct1&#34;</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">product</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteProduct1</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">			<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">type</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;ConcreteProduct2&#34;</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">product</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteProduct2</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">throw</span> <span class="k">new</span> <span class="n">NotImplementProduct</span><span class="o">(</span><span class="n">type</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">			<span class="o">}</span>
+</span></span><span class="line"><span class="cl">			<span class="n">pMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">type</span><span class="o">,</span> <span class="n">product</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">		<span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">product</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="抽象工厂方法">抽象工厂方法</h2>
 <p>上述的简单扩展</p>
@@ -431,7 +431,7 @@ invoke ConcreteProduct2 method!
           <a href="/tags/design-pattern/">design pattern</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/2014/05/04/leetcode-two-sum/">
+        <a class="prev" href="/2014/05/04/leetcode---two-sum/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">leetcode - two-sum</span>
             <span class="prev-text nav-mobile">上一篇</span>
@@ -507,7 +507,7 @@ invoke ConcreteProduct2 method!
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

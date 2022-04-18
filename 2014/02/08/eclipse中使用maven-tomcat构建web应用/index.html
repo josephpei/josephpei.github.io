@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.1 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/" />
@@ -180,10 +180,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;manager-gui&#34;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;admin-gui&#34;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;user</span> <span class="na">password=</span><span class="s">&#34;admin&#34;</span> <span class="na">roles=</span><span class="s">&#34;manager-gui,manager-script,admin-gui&#34;</span> <span class="na">username=</span><span class="s">&#34;admin&#34;</span><span class="nt">/&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;manager-gui&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;admin-gui&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;user</span> <span class="na">password=</span><span class="s">&#34;admin&#34;</span> <span class="na">roles=</span><span class="s">&#34;manager-gui,manager-script,admin-gui&#34;</span> <span class="na">username=</span><span class="s">&#34;admin&#34;</span><span class="nt">/&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>maven settings.xml添加</p>
 <div class="highlight"><div class="chroma">
@@ -195,12 +195,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;server&gt;</span>
-    <span class="nt">&lt;id&gt;</span>tomcat7<span class="nt">&lt;/id&gt;</span>
-    <span class="nt">&lt;username&gt;</span>admin<span class="nt">&lt;/username&gt;</span>
-    <span class="nt">&lt;password&gt;</span>admin<span class="nt">&lt;/password&gt;</span>
-<span class="nt">&lt;/server&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;server&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;id&gt;</span>tomcat7<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;username&gt;</span>admin<span class="nt">&lt;/username&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;password&gt;</span>admin<span class="nt">&lt;/password&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/server&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="配置-eclipse-项目">配置 Eclipse 项目</h2>
 <p>Preferences -&gt; Maven -&gt; Installations</p>
@@ -228,24 +228,24 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;build&gt;</span>
-<span class="nt">&lt;finalName&gt;</span>SimpleDB<span class="nt">&lt;/finalName&gt;</span>
-<span class="nt">&lt;plugins&gt;</span>
-  <span class="nt">&lt;plugin&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>org.apache.tomcat.maven<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>tomcat7-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>2.2<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;configuration&gt;</span>
-      <span class="nt">&lt;url&gt;</span>http://localhost:8080/manager/text<span class="nt">&lt;/url&gt;</span>
-      <span class="nt">&lt;server&gt;</span>tomcat7<span class="nt">&lt;/server&gt;</span>
-      <span class="nt">&lt;port&gt;</span>8080<span class="nt">&lt;/port&gt;</span>
-      <span class="nt">&lt;path&gt;</span>/simpledb<span class="nt">&lt;/path&gt;</span>
-      <span class="nt">&lt;charset&gt;</span>utf-8<span class="nt">&lt;/charset&gt;</span>
-  <span class="nt">&lt;/configuration&gt;</span>
-  <span class="nt">&lt;/plugin&gt;</span>
-	<span class="nt">&lt;/plugins&gt;</span>
-<span class="nt">&lt;/build&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;build&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;finalName&gt;</span>SimpleDB<span class="nt">&lt;/finalName&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;plugins&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;plugin&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;groupId&gt;</span>org.apache.tomcat.maven<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;artifactId&gt;</span>tomcat7-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;version&gt;</span>2.2<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;configuration&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;url&gt;</span>http://localhost:8080/manager/text<span class="nt">&lt;/url&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;server&gt;</span>tomcat7<span class="nt">&lt;/server&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;port&gt;</span>8080<span class="nt">&lt;/port&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;path&gt;</span>/simpledb<span class="nt">&lt;/path&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;charset&gt;</span>utf-8<span class="nt">&lt;/charset&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/configuration&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/plugin&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/plugins&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/build&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>eclipse Debug Configuration</p>
 <p><img src="/img/em01.jpg" alt="eclipse maven"></p>
@@ -268,19 +268,19 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
-	<span class="nt">&lt;groupId&gt;</span>javax.servlet<span class="nt">&lt;/groupId&gt;</span>
-	<span class="nt">&lt;artifactId&gt;</span>servlet-api<span class="nt">&lt;/artifactId&gt;</span>
-	<span class="nt">&lt;version&gt;</span>2.4<span class="nt">&lt;/version&gt;</span>
-	<span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-	<span class="nt">&lt;groupId&gt;</span>javax.servlet.jsp<span class="nt">&lt;/groupId&gt;</span>
-	<span class="nt">&lt;artifactId&gt;</span>jsp-api<span class="nt">&lt;/artifactId&gt;</span>
-	<span class="nt">&lt;version&gt;</span>2.0<span class="nt">&lt;/version&gt;</span>
-	<span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;groupId&gt;</span>javax.servlet<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;artifactId&gt;</span>servlet-api<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;version&gt;</span>2.4<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;groupId&gt;</span>javax.servlet.jsp<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;artifactId&gt;</span>jsp-api<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;version&gt;</span>2.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>src/main/java 下载创建名为 TestServlet 的jave类</p>
 <div class="highlight"><div class="chroma">
@@ -312,32 +312,32 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.example.simpledb</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.servlet.ServletException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServlet</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletRequest</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletResponse</span><span class="o">;</span>
- 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestServlet</span>  <span class="kd">extends</span> <span class="n">HttpServlet</span>
-<span class="o">{</span>
-  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="n">1L</span><span class="o">;</span>
-  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span><span class="n">HttpServletResponse</span> <span class="n">res</span><span class="o">)</span>
-                 <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span>
-  <span class="o">{</span>
-    <span class="n">String</span> <span class="n">hello</span><span class="o">=</span><span class="s">&#34;Test : Hello April!&#34;</span><span class="o">;</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">hello</span><span class="o">);</span>
-    <span class="n">res</span><span class="o">.</span><span class="na">getWriter</span><span class="o">().</span><span class="na">write</span><span class="o">(</span><span class="n">hello</span><span class="o">);</span>
-  <span class="o">}</span>
- 
-  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span><span class="n">HttpServletResponse</span> <span class="n">res</span><span class="o">)</span>
-                 <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span>
-  <span class="o">{</span>
-    <span class="n">doPost</span><span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="n">res</span><span class="o">);</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.example.simpledb</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javax.servlet.ServletException</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServlet</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletRequest</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletResponse</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestServlet</span>  <span class="kd">extends</span> <span class="n">HttpServlet</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="n">1L</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span><span class="n">HttpServletResponse</span> <span class="n">res</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                 <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span>
+</span></span><span class="line"><span class="cl">  <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">hello</span><span class="o">=</span><span class="s">&#34;Test : Hello April!&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">hello</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span><span class="o">.</span><span class="na">getWriter</span><span class="o">().</span><span class="na">write</span><span class="o">(</span><span class="n">hello</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span><span class="n">HttpServletResponse</span> <span class="n">res</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                 <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span>
+</span></span><span class="line"><span class="cl">  <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">doPost</span><span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="n">res</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>src/main/webapp/WEB-INF/web.xml</p>
 <div class="highlight"><div class="chroma">
@@ -361,24 +361,24 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&lt;web-app&gt;
-  &lt;display-name&gt;simpledb&lt;/display-name&gt;
-  &lt;servlet&gt;
-    &lt;servlet-name&gt;test&lt;/servlet-name&gt;
-    &lt;servlet-class&gt;com.example.TestServlet&lt;/servlet-class&gt;
-  &lt;/servlet&gt;
-  &lt;servlet-mapping&gt;
-    &lt;servlet-name&gt;test&lt;/servlet-name&gt;
-    &lt;url-pattern&gt;/test&lt;/url-pattern&gt;
-  &lt;/servlet-mapping&gt;
-  &lt;welcome-file-list&gt;
-    &lt;welcome-file&gt;index.html&lt;/welcome-file&gt;
-    &lt;welcome-file&gt;index.htm&lt;/welcome-file&gt;
-    &lt;welcome-file&gt;index.shtml&lt;/welcome-file&gt;
-    &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
-  &lt;/welcome-file-list&gt;
-&lt;/web-app&gt;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;web-app&gt;
+</span></span><span class="line"><span class="cl">  &lt;display-name&gt;simpledb&lt;/display-name&gt;
+</span></span><span class="line"><span class="cl">  &lt;servlet&gt;
+</span></span><span class="line"><span class="cl">    &lt;servlet-name&gt;test&lt;/servlet-name&gt;
+</span></span><span class="line"><span class="cl">    &lt;servlet-class&gt;com.example.TestServlet&lt;/servlet-class&gt;
+</span></span><span class="line"><span class="cl">  &lt;/servlet&gt;
+</span></span><span class="line"><span class="cl">  &lt;servlet-mapping&gt;
+</span></span><span class="line"><span class="cl">    &lt;servlet-name&gt;test&lt;/servlet-name&gt;
+</span></span><span class="line"><span class="cl">    &lt;url-pattern&gt;/test&lt;/url-pattern&gt;
+</span></span><span class="line"><span class="cl">  &lt;/servlet-mapping&gt;
+</span></span><span class="line"><span class="cl">  &lt;welcome-file-list&gt;
+</span></span><span class="line"><span class="cl">    &lt;welcome-file&gt;index.html&lt;/welcome-file&gt;
+</span></span><span class="line"><span class="cl">    &lt;welcome-file&gt;index.htm&lt;/welcome-file&gt;
+</span></span><span class="line"><span class="cl">    &lt;welcome-file&gt;index.shtml&lt;/welcome-file&gt;
+</span></span><span class="line"><span class="cl">    &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+</span></span><span class="line"><span class="cl">  &lt;/welcome-file-list&gt;
+</span></span><span class="line"><span class="cl">&lt;/web-app&gt;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>浏览器访问 <a href="http://127.0.0.1:8080/simpledb/test">http://127.0.0.1:8080/simpledb/test</a></p>
 <h2 id="直接在-tomcat-下部署并调试">直接在 Tomcat 下部署并调试</h2>
@@ -388,8 +388,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;Context</span>  <span class="na">path=</span><span class="s">&#34;/simpledb&#34;</span> <span class="na">docBase=</span><span class="s">&#34;D:\code\java\simpledb\src\main\webapp&#34;</span> <span class="na">debug=</span><span class="s">&#34;0&#34;</span> <span class="na">reloadable=</span><span class="s">&#34;true&#34;</span> <span class="na">privileged=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;Context</span>  <span class="na">path=</span><span class="s">&#34;/simpledb&#34;</span> <span class="na">docBase=</span><span class="s">&#34;D:\code\java\simpledb\src\main\webapp&#34;</span> <span class="na">debug=</span><span class="s">&#34;0&#34;</span> <span class="na">reloadable=</span><span class="s">&#34;true&#34;</span> <span class="na">privileged=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>现在可以点击<img src="/img/em02.png" alt="tomcat maven">来运行和调试maven的web工程了</p>
 <p>注：如果遇到 Fatal error compiling: tools.jar not found: C:\Program Files\Java\jre7..\lib\tools.jar 错误，注意 JAVA_HOME 要设置为 JDK_HOME，或者在eclipse里</p>
@@ -496,7 +496,7 @@ Step 4 : Edit Jre &gt; Set JRE Home = JDK_HOME
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

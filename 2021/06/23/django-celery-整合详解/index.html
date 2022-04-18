@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.92.1 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2021/06/23/django-celery-%E6%95%B4%E5%90%88%E8%AF%A6%E8%A7%A3/" />
@@ -210,12 +210,12 @@ django-celery-results 2.0.1
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Django                3.2
-celery                4.4.7
-djangorestframework   3.12.4
-django-celery-beat    2.2.0
-django-celery-results 2.0.1
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Django                3.2
+</span></span><span class="line"><span class="cl">celery                4.4.7
+</span></span><span class="line"><span class="cl">djangorestframework   3.12.4
+</span></span><span class="line"><span class="cl">django-celery-beat    2.2.0
+</span></span><span class="line"><span class="cl">django-celery-results 2.0.1
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="django-celery-实现异步任务">django celery 实现异步任务</h1>
 <p>Step 0: 新建 django 项目</p>
@@ -228,12 +228,12 @@ django-celery-results 2.0.1
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">django-admin startproject tutorial
-<span class="nb">cd</span> tutorial
-django-admin startapp feedback
-<span class="c1"># 安装 rabbitmq，默认用户名密码 guest/guest</span>
-<span class="c1"># 或者使用 redis</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">django-admin startproject tutorial
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> tutorial
+</span></span><span class="line"><span class="cl">django-admin startapp feedback
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装 rabbitmq，默认用户名密码 guest/guest</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者使用 redis</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="celery-配置">celery 配置</h2>
 <p>Step 1: 在<code>settings.py </code>同级目录新建文件<code>celery.py</code></p>
@@ -258,24 +258,24 @@ django-admin startapp feedback
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">celery</span> <span class="kn">import</span> <span class="n">Celery</span>
-<span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
-
-<span class="c1"># set the default Django settings module for the &#39;celery&#39; program.</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">,</span> <span class="s1">&#39;tutorial.settings&#39;</span><span class="p">)</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Celery</span><span class="p">(</span><span class="s1">&#39;tutorial&#39;</span><span class="p">)</span>
-
-<span class="c1"># Using a string here means the worker will not have to</span>
-<span class="c1"># pickle the object when using Windows.</span>
-<span class="n">app</span><span class="o">.</span><span class="n">config_from_object</span><span class="p">(</span><span class="s1">&#39;django.conf:settings&#39;</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s1">&#39;CELERY&#39;</span><span class="p">)</span>
-<span class="n">app</span><span class="o">.</span><span class="n">autodiscover_tasks</span><span class="p">()</span>
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">debug_task</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Request: </span><span class="si">{0!r}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">celery</span> <span class="kn">import</span> <span class="n">Celery</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># set the default Django settings module for the &#39;celery&#39; program.</span>
+</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">,</span> <span class="s1">&#39;tutorial.settings&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span> <span class="o">=</span> <span class="n">Celery</span><span class="p">(</span><span class="s1">&#39;tutorial&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Using a string here means the worker will not have to</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pickle the object when using Windows.</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="o">.</span><span class="n">config_from_object</span><span class="p">(</span><span class="s1">&#39;django.conf:settings&#39;</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s1">&#39;CELERY&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">app</span><span class="o">.</span><span class="n">autodiscover_tasks</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@app</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">debug_task</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Request: </span><span class="si">{0!r}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中的 <code>namespace</code> 指定了<code>setttings.py</code>配置项前缀。</p>
 <p>修改<code>__init__.py</code></p>
@@ -287,11 +287,11 @@ django-admin startapp feedback
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">.celery</span> <span class="kn">import</span> <span class="n">app</span> <span class="k">as</span> <span class="n">celery_app</span>
-
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;celery_app&#39;</span><span class="p">,)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">.celery</span> <span class="kn">import</span> <span class="n">app</span> <span class="k">as</span> <span class="n">celery_app</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;celery_app&#39;</span><span class="p">,)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Step 2: 修改<code>settings.py</code></p>
 <div class="highlight"><div class="chroma">
@@ -309,18 +309,18 @@ django-admin startapp feedback
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Celery settings</span>
-<span class="n">CELERY_BROKER_URL</span> <span class="o">=</span> <span class="s1">&#39;amqp://guest:guest@localhost&#39;</span>
-<span class="n">CELERY_RESULT_BACKEND</span> <span class="o">=</span> <span class="s1">&#39;rpc://&#39;</span>
-<span class="c1">#CELERY_RESULT_BACKEND = &#39;django-db&#39;</span>
-<span class="c1">#CELERY_BROKER_URL = &#39;redis://localhost:6379/1&#39;</span>
-<span class="c1">#CELERY_RESULT_BACKEND = &#39;redis://localhost:6379/2&#39;</span>
-
-<span class="n">CELERY_ACCEPT_CONTENT</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">]</span>
-<span class="n">CELERY_TASK_SERIALIZER</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span>
-<span class="n">CELERY_RESULT_SERIALIZER</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span>
-<span class="n">CELERY_TIMEZONE</span> <span class="o">=</span> <span class="s2">&#34;Asia/Shanghai&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Celery settings</span>
+</span></span><span class="line"><span class="cl"><span class="n">CELERY_BROKER_URL</span> <span class="o">=</span> <span class="s1">&#39;amqp://guest:guest@localhost&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">CELERY_RESULT_BACKEND</span> <span class="o">=</span> <span class="s1">&#39;rpc://&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#CELERY_RESULT_BACKEND = &#39;django-db&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#CELERY_BROKER_URL = &#39;redis://localhost:6379/1&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#CELERY_RESULT_BACKEND = &#39;redis://localhost:6379/2&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CELERY_ACCEPT_CONTENT</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">CELERY_TASK_SERIALIZER</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">CELERY_RESULT_SERIALIZER</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">CELERY_TIMEZONE</span> <span class="o">=</span> <span class="s2">&#34;Asia/Shanghai&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="简单异步任务">简单异步任务</h2>
 <p>修改<code>settings.py</code></p>
@@ -333,12 +333,12 @@ django-admin startapp feedback
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;django_celery_results&#39;</span><span class="p">,</span>
-
-    <span class="s1">&#39;feedback.apps.FeedbackConfig&#39;</span><span class="p">,</span>
-<span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;django_celery_results&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;feedback.apps.FeedbackConfig&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在 app <code>feedback</code>中新建<code>tasks.py</code></p>
 <div class="highlight"><div class="chroma">
@@ -352,14 +352,14 @@ django-admin startapp feedback
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">celery</span> <span class="kn">import</span> <span class="n">shared_task</span>
-
-<span class="nd">@shared_task</span>
-<span class="k">def</span> <span class="nf">create_task</span><span class="p">(</span><span class="n">task_type</span><span class="p">):</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">task_type</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
-    <span class="k">return</span> <span class="kc">True</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">celery</span> <span class="kn">import</span> <span class="n">shared_task</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@shared_task</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">create_task</span><span class="p">(</span><span class="n">task_type</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">task_type</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">True</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>修改<code>views.py</code></p>
 <div class="highlight"><div class="chroma">
@@ -375,16 +375,16 @@ django-admin startapp feedback
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">django.views.decorators.csrf</span> <span class="kn">import</span> <span class="n">csrf_exempt</span>
-<span class="kn">from</span> <span class="nn">.tasks</span> <span class="kn">import</span> <span class="n">create_task</span>
-
-<span class="nd">@csrf_exempt</span>
-<span class="k">def</span> <span class="nf">run_task</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">:</span>
-        <span class="n">task_type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;type&#34;</span><span class="p">)</span>
-        <span class="n">task</span> <span class="o">=</span> <span class="n">create_task</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">task_type</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span><span class="s2">&#34;task_id&#34;</span><span class="p">:</span> <span class="n">task</span><span class="o">.</span><span class="n">id</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="mi">202</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">django.views.decorators.csrf</span> <span class="kn">import</span> <span class="n">csrf_exempt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">.tasks</span> <span class="kn">import</span> <span class="n">create_task</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@csrf_exempt</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">run_task</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;type&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task</span> <span class="o">=</span> <span class="n">create_task</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">task_type</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span><span class="s2">&#34;task_id&#34;</span><span class="p">:</span> <span class="n">task</span><span class="o">.</span><span class="n">id</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="mi">202</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>修改<code>urls.py</code></p>
 <div class="highlight"><div class="chroma">
@@ -397,13 +397,13 @@ django-admin startapp feedback
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">feedback.views</span> <span class="k">as</span> <span class="nn">feedback_views</span>
-
-<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
-    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;async_add/&#39;</span><span class="p">,</span> <span class="n">feedback_views</span><span class="o">.</span><span class="n">async_add_task</span><span class="p">),</span>
-<span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">feedback.views</span> <span class="k">as</span> <span class="nn">feedback_views</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;async_add/&#39;</span><span class="p">,</span> <span class="n">feedback_views</span><span class="o">.</span><span class="n">async_add_task</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>测试</p>
 <div class="highlight"><div class="chroma">
@@ -415,12 +415,12 @@ django-admin startapp feedback
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 启动 celery</span>
-celery -A tutorial worker -l info
-<span class="c1"># 测试</span>
-curl -F <span class="nv">type</span><span class="o">=</span><span class="m">1</span> http://localhost:8000/tasks/
-<span class="c1"># 输出类似：{&#34;task_id&#34;: &#34;bbb1a471-db36-442f-a751-4ddff9533149&#34;}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 启动 celery</span>
+</span></span><span class="line"><span class="cl">celery -A tutorial worker -l info
+</span></span><span class="line"><span class="cl"><span class="c1"># 测试</span>
+</span></span><span class="line"><span class="cl">curl -F <span class="nv">type</span><span class="o">=</span><span class="m">1</span> http://localhost:8000/tasks/
+</span></span><span class="line"><span class="cl"><span class="c1"># 输出类似：{&#34;task_id&#34;: &#34;bbb1a471-db36-442f-a751-4ddff9533149&#34;}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="异步任务队列">异步任务队列</h2>
 <p>多个异步任务，每个任务分配在不同的<code>queue</code>中。</p>
@@ -442,19 +442,19 @@ curl -F <span class="nv">type</span><span class="o">=</span><span class="m">1</s
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">kombu</span> <span class="kn">import</span> <span class="n">Queue</span><span class="p">,</span> <span class="n">Exchange</span>
-<span class="n">CELERY_TASK_QUEUES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">Queue</span><span class="p">(</span><span class="s2">&#34;celery&#34;</span><span class="p">,</span> <span class="n">Exchange</span><span class="p">(</span><span class="s2">&#34;celery&#34;</span><span class="p">),</span> <span class="n">routing_key</span><span class="o">=</span><span class="s2">&#34;celery&#34;</span><span class="p">),</span>
-    <span class="n">Queue</span><span class="p">(</span><span class="s2">&#34;add_queue&#34;</span><span class="p">,</span> <span class="n">Exchange</span><span class="p">(</span><span class="s2">&#34;compute_node&#34;</span><span class="p">),</span> <span class="n">routing_key</span><span class="o">=</span><span class="s2">&#34;add_task&#34;</span><span class="p">),</span>
-<span class="p">}</span>
-<span class="n">CELERY_TASK_ROUTES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="c1"># 名称可用 feedback.task.*，多个匹配规则为最长匹配</span>
-    <span class="s1">&#39;feedback.tasks.add&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;queue&#39;</span><span class="p">:</span> <span class="s1">&#39;add_queue&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;routing_key&#39;</span><span class="p">:</span> <span class="s1">&#39;add_task&#39;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">kombu</span> <span class="kn">import</span> <span class="n">Queue</span><span class="p">,</span> <span class="n">Exchange</span>
+</span></span><span class="line"><span class="cl"><span class="n">CELERY_TASK_QUEUES</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Queue</span><span class="p">(</span><span class="s2">&#34;celery&#34;</span><span class="p">,</span> <span class="n">Exchange</span><span class="p">(</span><span class="s2">&#34;celery&#34;</span><span class="p">),</span> <span class="n">routing_key</span><span class="o">=</span><span class="s2">&#34;celery&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Queue</span><span class="p">(</span><span class="s2">&#34;add_queue&#34;</span><span class="p">,</span> <span class="n">Exchange</span><span class="p">(</span><span class="s2">&#34;compute_node&#34;</span><span class="p">),</span> <span class="n">routing_key</span><span class="o">=</span><span class="s2">&#34;add_task&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">CELERY_TASK_ROUTES</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 名称可用 feedback.task.*，多个匹配规则为最长匹配</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;feedback.tasks.add&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;queue&#39;</span><span class="p">:</span> <span class="s1">&#39;add_queue&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;routing_key&#39;</span><span class="p">:</span> <span class="s1">&#39;add_task&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>tasks.py</code></p>
 <div class="highlight"><div class="chroma">
@@ -464,10 +464,10 @@ curl -F <span class="nv">type</span><span class="o">=</span><span class="m">1</s
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nd">@shared_task</span>
-<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@shared_task</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>views.py</code></p>
 <div class="highlight"><div class="chroma">
@@ -497,30 +497,30 @@ curl -F <span class="nv">type</span><span class="o">=</span><span class="m">1</s
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">async_add_task</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="n">arg1</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">arg2</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">add</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span>
-        <span class="n">args</span><span class="o">=</span><span class="p">(</span>
-            <span class="n">arg1</span><span class="p">,</span>
-            <span class="n">arg2</span><span class="p">,</span>
-        <span class="p">),</span>
-        <span class="c1"># 除配置文件中配置外，代码中可自己指定</span>
-        <span class="c1"># queue=&#34;add_queue&#34;,</span>
-        <span class="c1"># routing_key=&#34;add_task&#34;,</span>
-        <span class="c1"># priority=0,</span>
-        <span class="c1"># exchange=&#34;compute_node&#34;,</span>
-    <span class="p">)</span>
-    <span class="n">task_status</span> <span class="o">=</span> <span class="n">AsyncResult</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">task_id</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">(</span>
-        <span class="p">{</span>
-            <span class="s2">&#34;input_args&#34;</span><span class="p">:</span> <span class="p">[</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">],</span>
-            <span class="s2">&#34;task_id&#34;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">task_id</span><span class="p">,</span>
-            <span class="s2">&#34;result&#34;</span><span class="p">:</span> <span class="n">task_status</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
-        <span class="p">},</span>
-        <span class="n">status</span><span class="o">=</span><span class="mi">200</span>
-    <span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">async_add_task</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">arg1</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">arg2</span> <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="n">result</span> <span class="o">=</span> <span class="n">add</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">args</span><span class="o">=</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">arg1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">arg2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 除配置文件中配置外，代码中可自己指定</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># queue=&#34;add_queue&#34;,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># routing_key=&#34;add_task&#34;,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># priority=0,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># exchange=&#34;compute_node&#34;,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">task_status</span> <span class="o">=</span> <span class="n">AsyncResult</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">task_id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;input_args&#34;</span><span class="p">:</span> <span class="p">[</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;task_id&#34;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">task_id</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;result&#34;</span><span class="p">:</span> <span class="n">task_status</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">status</span><span class="o">=</span><span class="mi">200</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>urls.py</code>修改略。</p>
 <div class="highlight"><div class="chroma">
@@ -529,9 +529,9 @@ curl -F <span class="nv">type</span><span class="o">=</span><span class="m">1</s
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 每个 worker 执行不同的任务</span>
-celery -A celery_app worker -l info -Q add_task 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 每个 worker 执行不同的任务</span>
+</span></span><span class="line"><span class="cl">celery -A celery_app worker -l info -Q add_task 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="定时任务">定时任务</h2>
 <p>修改<code>settings.py</code></p>
@@ -559,27 +559,27 @@ celery -A celery_app worker -l info -Q add_task
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">]</span>
-
-<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;restframework&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;django_celery_beat&#39;</span><span class="p">,</span>
-<span class="p">]</span>
-
-<span class="n">REST_FRAMEWORK</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;DEFAULT_PAGINATION_CLASS&#39;</span><span class="p">:</span> <span class="s1">&#39;rest_framework.pagination.PageNumberPagination&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;PAGE_SIZE&#39;</span><span class="p">:</span> <span class="mi">10</span>
-<span class="p">}</span>
-
-<span class="kn">from</span> <span class="nn">celery.schedules</span> <span class="kn">import</span> <span class="n">crontab</span>
-<span class="n">CELERY_BEAT_SCHEDULER</span> <span class="o">=</span> <span class="s1">&#39;django_celery_beat.schedulers:DatabaseScheduler&#39;</span>
-<span class="n">CELERY_BEAT_SCHEDULE</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;crawl_currency&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;task&#39;</span><span class="p">:</span> <span class="s1">&#39;feedback.tasks.crawl_currency&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;schedule&#39;</span><span class="p">:</span> <span class="n">crontab</span><span class="p">(</span><span class="s1">&#39;*/1&#39;</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;restframework&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;django_celery_beat&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">REST_FRAMEWORK</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;DEFAULT_PAGINATION_CLASS&#39;</span><span class="p">:</span> <span class="s1">&#39;rest_framework.pagination.PageNumberPagination&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;PAGE_SIZE&#39;</span><span class="p">:</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">celery.schedules</span> <span class="kn">import</span> <span class="n">crontab</span>
+</span></span><span class="line"><span class="cl"><span class="n">CELERY_BEAT_SCHEDULER</span> <span class="o">=</span> <span class="s1">&#39;django_celery_beat.schedulers:DatabaseScheduler&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">CELERY_BEAT_SCHEDULE</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;crawl_currency&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;task&#39;</span><span class="p">:</span> <span class="s1">&#39;feedback.tasks.crawl_currency&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;schedule&#39;</span><span class="p">:</span> <span class="n">crontab</span><span class="p">(</span><span class="s1">&#39;*/1&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在基中我们定义一个定时任务<code>feedback.tasks.crawl_currency</code>，每分钟执行一次，从<a href="https://coinranking.com">https://coinranking.com</a>中获取加密货币信息（需要使用代理）。</p>
 <p>在<code>tasks.py</code>中添加</p>
@@ -642,62 +642,62 @@ celery -A celery_app worker -l info -Q add_task
 </span><span class="lnt">55
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">celery</span> <span class="kn">import</span> <span class="n">shared_task</span>
-<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
-
-<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Cryptocurrency</span>
-
-<span class="nd">@shared_task</span>
-<span class="c1"># do some heavy stuff</span>
-<span class="k">def</span> <span class="nf">crawl_currency</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Crawling data and creating objects in database ..&#34;</span><span class="p">)</span>
-    <span class="n">proxy</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;http&#34;</span><span class="p">:</span> <span class="s2">&#34;http://127.0.0.1:7890&#34;</span><span class="p">,</span> <span class="s2">&#34;https&#34;</span><span class="p">:</span> <span class="s2">&#34;http://127.0.0.1:7890&#34;</span><span class="p">}</span>
-    <span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-        <span class="s2">&#34;https://coinranking.com&#34;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;Mozilla/5.0&#34;</span><span class="p">},</span> <span class="n">proxies</span><span class="o">=</span><span class="n">proxy</span>
-    <span class="p">)</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">content</span>
-    <span class="n">bs</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s2">&#34;html.parser&#34;</span><span class="p">)</span>
-    <span class="c1"># Find first 5 table rows</span>
-    <span class="n">rows</span> <span class="o">=</span> <span class="n">bs</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;tbody&#34;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&#34;table__body&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&#34;tr&#34;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&#34;table__row&#34;</span><span class="p">)[</span>
-        <span class="mi">0</span><span class="p">:</span><span class="mi">5</span>
-    <span class="p">]</span>
-    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
-        <span class="n">cryptocurrency</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">row</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;span&#34;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&#34;profile__name&#34;</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
-            <span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-            <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
-        <span class="p">)</span>
-        <span class="n">values</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&#34;valuta&#34;</span><span class="p">)</span>
-        <span class="n">price</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
-        <span class="n">market_cap</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
-        <span class="n">change</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">row</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&#34;change&#34;</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;span&#34;</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
-            <span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-            <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
-        <span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span>
-            <span class="p">{</span>
-                <span class="s2">&#34;cryptocurrency&#34;</span><span class="p">:</span> <span class="n">cryptocurrency</span><span class="p">,</span>
-                <span class="s2">&#34;price&#34;</span><span class="p">:</span> <span class="n">price</span><span class="p">,</span>
-                <span class="s2">&#34;market_cap&#34;</span><span class="p">:</span> <span class="n">market_cap</span><span class="p">,</span>
-                <span class="s2">&#34;change&#34;</span><span class="p">:</span> <span class="n">change</span><span class="p">,</span>
-            <span class="p">}</span>
-        <span class="p">)</span>
-        <span class="c1"># Create object in database from crawled data</span>
-        <span class="n">Cryptocurrency</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-            <span class="n">cryptocurrency</span><span class="o">=</span><span class="n">cryptocurrency</span><span class="p">,</span>
-            <span class="n">price</span><span class="o">=</span><span class="n">price</span><span class="p">,</span>
-            <span class="n">market_cap</span><span class="o">=</span><span class="n">market_cap</span><span class="p">,</span>
-            <span class="n">change</span><span class="o">=</span><span class="n">change</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="c1"># Sleep 3 seconds to avoid any errors</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">celery</span> <span class="kn">import</span> <span class="n">shared_task</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Cryptocurrency</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@shared_task</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># do some heavy stuff</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">crawl_currency</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Crawling data and creating objects in database ..&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">proxy</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;http&#34;</span><span class="p">:</span> <span class="s2">&#34;http://127.0.0.1:7890&#34;</span><span class="p">,</span> <span class="s2">&#34;https&#34;</span><span class="p">:</span> <span class="s2">&#34;http://127.0.0.1:7890&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;https://coinranking.com&#34;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;Mozilla/5.0&#34;</span><span class="p">},</span> <span class="n">proxies</span><span class="o">=</span><span class="n">proxy</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">html</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">content</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bs</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s2">&#34;html.parser&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Find first 5 table rows</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rows</span> <span class="o">=</span> <span class="n">bs</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;tbody&#34;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&#34;table__body&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&#34;tr&#34;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&#34;table__row&#34;</span><span class="p">)[</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">0</span><span class="p">:</span><span class="mi">5</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cryptocurrency</span> <span class="o">=</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">row</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;span&#34;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&#34;profile__name&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">values</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&#34;valuta&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">price</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">market_cap</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">change</span> <span class="o">=</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">row</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&#34;change&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;span&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;cryptocurrency&#34;</span><span class="p">:</span> <span class="n">cryptocurrency</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;price&#34;</span><span class="p">:</span> <span class="n">price</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;market_cap&#34;</span><span class="p">:</span> <span class="n">market_cap</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;change&#34;</span><span class="p">:</span> <span class="n">change</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Create object in database from crawled data</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Cryptocurrency</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cryptocurrency</span><span class="o">=</span><span class="n">cryptocurrency</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">price</span><span class="o">=</span><span class="n">price</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">market_cap</span><span class="o">=</span><span class="n">market_cap</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">change</span><span class="o">=</span><span class="n">change</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Sleep 3 seconds to avoid any errors</span>
+</span></span><span class="line"><span class="cl">        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>modes.py</code></p>
 <div class="highlight"><div class="chroma">
@@ -715,18 +715,18 @@ celery -A celery_app worker -l info -Q add_task
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
-
-<span class="c1"># Create your models here.</span>
-<span class="k">class</span> <span class="nc">Cryptocurrency</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> 
-    <span class="n">cryptocurrency</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-    <span class="n">price</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-    <span class="n">market_cap</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-    <span class="n">change</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cryptocurrency</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Create your models here.</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Cryptocurrency</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">cryptocurrency</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">price</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">market_cap</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">change</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cryptocurrency</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>serializers.py</code></p>
 <div class="highlight"><div class="chroma">
@@ -741,15 +741,15 @@ celery -A celery_app worker -l info -Q add_task
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">serializers</span>
-<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Cryptocurrency</span>
-
-
-<span class="k">class</span> <span class="nc">CryptocurrencySerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
-    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">Cryptocurrency</span>
-        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;cryptocurrency&#34;</span><span class="p">,</span> <span class="s2">&#34;price&#34;</span><span class="p">,</span> <span class="s2">&#34;market_cap&#34;</span><span class="p">,</span> <span class="s2">&#34;change&#34;</span><span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">serializers</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Cryptocurrency</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CryptocurrencySerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">model</span> <span class="o">=</span> <span class="n">Cryptocurrency</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;cryptocurrency&#34;</span><span class="p">,</span> <span class="s2">&#34;price&#34;</span><span class="p">,</span> <span class="s2">&#34;market_cap&#34;</span><span class="p">,</span> <span class="s2">&#34;change&#34;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>views.py</code></p>
 <div class="highlight"><div class="chroma">
@@ -768,19 +768,19 @@ celery -A celery_app worker -l info -Q add_task
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">generics</span>
-<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Cryptocurrency</span>
-<span class="kn">from</span> <span class="nn">.serializers</span> <span class="kn">import</span> <span class="n">CryptocurrencySerializer</span>
-
-
-<span class="k">class</span> <span class="nc">ListCryptocurrencyView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span><span class="p">):</span>
-    <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">    Provides a get method handler.
-</span><span class="s2">    &#34;&#34;&#34;</span>
-
-    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Cryptocurrency</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
-    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">CryptocurrencySerializer</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">generics</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Cryptocurrency</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">.serializers</span> <span class="kn">import</span> <span class="n">CryptocurrencySerializer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ListCryptocurrencyView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Provides a get method handler.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Cryptocurrency</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">CryptocurrencySerializer</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>urls.py</code></p>
 <div class="highlight"><div class="chroma">
@@ -794,14 +794,14 @@ celery -A celery_app worker -l info -Q add_task
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">feedback.views</span> <span class="k">as</span> <span class="nn">feedback_views</span>
-
-<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
-    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;async_add/&#39;</span><span class="p">,</span> <span class="n">feedback_views</span><span class="o">.</span><span class="n">async_add_task</span><span class="p">),</span>
-    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;currency/&#39;</span><span class="p">,</span> <span class="n">feedback_views</span><span class="o">.</span><span class="n">ListCryptocurrencyView</span><span class="o">.</span><span class="n">as_view</span><span class="p">()),</span>
-<span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">feedback.views</span> <span class="k">as</span> <span class="nn">feedback_views</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;async_add/&#39;</span><span class="p">,</span> <span class="n">feedback_views</span><span class="o">.</span><span class="n">async_add_task</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;currency/&#39;</span><span class="p">,</span> <span class="n">feedback_views</span><span class="o">.</span><span class="n">ListCryptocurrencyView</span><span class="o">.</span><span class="n">as_view</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>测试</p>
 <div class="highlight"><div class="chroma">
@@ -811,10 +811,10 @@ celery -A celery_app worker -l info -Q add_task
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"># celery -A tutorial beat -l info
-# celery worker 和 django runserver 都要启动
-# 浏览器访问 http://localhost:8000/currency/
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># celery -A tutorial beat -l info
+</span></span><span class="line"><span class="cl"># celery worker 和 django runserver 都要启动
+</span></span><span class="line"><span class="cl"># 浏览器访问 http://localhost:8000/currency/
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>参考：</p>
 <ul>
@@ -843,7 +843,11 @@ celery -A celery_app worker -l info -Q add_task
           <a href="/tags/python/">python</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/2022/04/18/kitty-terminal-%E7%BB%88%E7%AB%AF/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Kitty Terminal 终端</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/2020/02/01/vim-%E8%B0%83%E8%AF%95%E6%8F%92%E4%BB%B6-vimspector-%E5%9F%BA%E4%BA%8E-dap-debug-adapter-protocol/">
             <span class="next-text nav-default">Vim 调试插件 Vimspector 基于 Dap (Debug Adapter Protocol)</span>
             <span class="next-text nav-mobile">下一篇</span>
@@ -915,7 +919,7 @@ celery -A celery_app worker -l info -Q add_task
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

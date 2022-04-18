@@ -25,7 +25,7 @@ pom.xml
 
 
 
-<meta name="generator" content="Hugo 0.92.1 with theme even" />
+<meta name="generator" content="Hugo 0.95.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/08/20/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8B%E6%95%B4%E5%90%88hibernate/" />
@@ -208,12 +208,12 @@ pom.xml
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.hibernate<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>hibernate-core<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>${hibernate.version}<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.hibernate<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>hibernate-core<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>${hibernate.version}<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>servlet.xml</p>
 <div class="highlight"><div class="chroma">
@@ -260,47 +260,47 @@ pom.xml
 </span><span class="lnt">40
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;dataSource&#34;</span> <span class="na">class=</span><span class="s">&#34;org.apache.commons.dbcp.BasicDataSource&#34;</span> <span class="na">destroy-method=</span><span class="s">&#34;close&#34;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;driverClassName&#34;</span> <span class="na">value=</span><span class="s">&#34;${jdbc.driverClassName}&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;url&#34;</span> <span class="na">value=</span><span class="s">&#34;${jdbc.url}&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;username&#34;</span> <span class="na">value=</span><span class="s">&#34;${jdbc.username}&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;password&#34;</span> <span class="na">value=</span><span class="s">&#34;${jdbc.password}&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;initialSize&#34;</span> <span class="na">value=</span><span class="s">&#34;5&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;maxActive&#34;</span> <span class="na">value=</span><span class="s">&#34;10&#34;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/bean&gt;</span>
-
-<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;sessionFactory&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.orm.hibernate4.LocalSessionFactoryBean&#34;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;dataSource&#34;</span> <span class="na">ref=</span><span class="s">&#34;dataSource&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;packagesToScan&#34;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;list&gt;</span>
-            <span class="nt">&lt;value&gt;</span>io.github.josephpei.domain<span class="nt">&lt;/value&gt;</span>
-        <span class="nt">&lt;/list&gt;</span>
-    <span class="nt">&lt;/property&gt;</span>
-    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;hibernateProperties&#34;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;props&gt;</span>
-            <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&#34;hibernate.dialect&#34;</span><span class="nt">&gt;</span>org.hibernate.dialect.PostgreSQL82Dialect<span class="nt">&lt;/prop&gt;</span>
-            <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&#34;hibernate.show_sql&#34;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/prop&gt;</span>
-            <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&#34;hibernate.format_sql&#34;</span><span class="nt">&gt;</span>false<span class="nt">&lt;/prop&gt;</span>
-            <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&#34;hibernate.use_sql_comments&#34;</span><span class="nt">&gt;</span>false<span class="nt">&lt;/prop&gt;</span>
-            <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&#34;hibernate.cache.use_second_level_cache&#34;</span><span class="nt">&gt;</span>false<span class="nt">&lt;/prop&gt;</span>
-            <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&#34;current_session_context_class&#34;</span><span class="nt">&gt;</span>org.springframework.orm.hibernate4.SpringSessionContext<span class="nt">&lt;/prop&gt;</span>
-        <span class="nt">&lt;/props&gt;</span>
-    <span class="nt">&lt;/property&gt;</span>
-<span class="nt">&lt;/bean&gt;</span>
-
-<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;transactionManager&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.orm.hibernate4.HibernateTransactionManager&#34;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;sessionFactory&#34;</span> <span class="na">ref=</span><span class="s">&#34;sessionFactory&#34;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/bean&gt;</span>
-
-<span class="nt">&lt;tx:advice</span> <span class="na">id=</span><span class="s">&#34;transactionAdvice&#34;</span> <span class="na">transaction-manager=</span><span class="s">&#34;transactionManager&#34;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;tx:attributes&gt;</span>
-        <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">&#34;get*&#34;</span> <span class="na">read-only=</span><span class="s">&#34;true&#34;</span> <span class="na">propagation=</span><span class="s">&#34;REQUIRED&#34;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">&#34;*&#34;</span> <span class="na">propagation=</span><span class="s">&#34;REQUIRED&#34;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/tx:attributes&gt;</span>
-<span class="nt">&lt;/tx:advice&gt;</span>
-
-<span class="nt">&lt;tx:annotation-driven</span> <span class="nt">/&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;dataSource&#34;</span> <span class="na">class=</span><span class="s">&#34;org.apache.commons.dbcp.BasicDataSource&#34;</span> <span class="na">destroy-method=</span><span class="s">&#34;close&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;driverClassName&#34;</span> <span class="na">value=</span><span class="s">&#34;${jdbc.driverClassName}&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;url&#34;</span> <span class="na">value=</span><span class="s">&#34;${jdbc.url}&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;username&#34;</span> <span class="na">value=</span><span class="s">&#34;${jdbc.username}&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;password&#34;</span> <span class="na">value=</span><span class="s">&#34;${jdbc.password}&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;initialSize&#34;</span> <span class="na">value=</span><span class="s">&#34;5&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;maxActive&#34;</span> <span class="na">value=</span><span class="s">&#34;10&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/bean&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;sessionFactory&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.orm.hibernate4.LocalSessionFactoryBean&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;dataSource&#34;</span> <span class="na">ref=</span><span class="s">&#34;dataSource&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;packagesToScan&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;list&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;value&gt;</span>io.github.josephpei.domain<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/list&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;hibernateProperties&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;props&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&#34;hibernate.dialect&#34;</span><span class="nt">&gt;</span>org.hibernate.dialect.PostgreSQL82Dialect<span class="nt">&lt;/prop&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&#34;hibernate.show_sql&#34;</span><span class="nt">&gt;</span>true<span class="nt">&lt;/prop&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&#34;hibernate.format_sql&#34;</span><span class="nt">&gt;</span>false<span class="nt">&lt;/prop&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&#34;hibernate.use_sql_comments&#34;</span><span class="nt">&gt;</span>false<span class="nt">&lt;/prop&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&#34;hibernate.cache.use_second_level_cache&#34;</span><span class="nt">&gt;</span>false<span class="nt">&lt;/prop&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&#34;current_session_context_class&#34;</span><span class="nt">&gt;</span>org.springframework.orm.hibernate4.SpringSessionContext<span class="nt">&lt;/prop&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/props&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/bean&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;transactionManager&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.orm.hibernate4.HibernateTransactionManager&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;sessionFactory&#34;</span> <span class="na">ref=</span><span class="s">&#34;sessionFactory&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/bean&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;tx:advice</span> <span class="na">id=</span><span class="s">&#34;transactionAdvice&#34;</span> <span class="na">transaction-manager=</span><span class="s">&#34;transactionManager&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;tx:attributes&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">&#34;get*&#34;</span> <span class="na">read-only=</span><span class="s">&#34;true&#34;</span> <span class="na">propagation=</span><span class="s">&#34;REQUIRED&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">&#34;*&#34;</span> <span class="na">propagation=</span><span class="s">&#34;REQUIRED&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/tx:attributes&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/tx:advice&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;tx:annotation-driven</span> <span class="nt">/&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>User.java</p>
 <div class="highlight"><div class="chroma">
@@ -331,31 +331,31 @@ pom.xml
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Entity</span>
-<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_tbl&#34;</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="n">Serializable</span><span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="n">1L</span><span class="o">;</span>
-
-    <span class="nd">@Id</span>
-    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_id&#34;</span><span class="o">)</span>
-    <span class="nd">@GeneratedValue</span>
-    <span class="kd">private</span> <span class="n">Long</span> <span class="n">userId</span><span class="o">;</span>
-
-    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_name&#34;</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">userName</span><span class="o">;</span>
-
-    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">password</span><span class="o">;</span>
-
-    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;last_ip&#34;</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">lastIp</span><span class="o">;</span>
-
-    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;last_visit&#34;</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="n">Date</span> <span class="n">lastVisit</span><span class="o">;</span>
-
-    <span class="c1">// omit getter and setter
-</span><span class="c1"></span><span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Entity</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_tbl&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="n">Serializable</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="n">1L</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Id</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_id&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@GeneratedValue</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Long</span> <span class="n">userId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_name&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">userName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">password</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;last_ip&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">lastIp</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;last_visit&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Date</span> <span class="n">lastVisit</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// omit getter and setter
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>HibUserDao.java</p>
 <div class="highlight"><div class="chroma">
@@ -400,45 +400,45 @@ pom.xml
 </span><span class="lnt">38
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Repository</span>
-<span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">&#34;unchecked&#34;</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HibUserDao</span> <span class="kd">implements</span> <span class="n">UserDao</span> <span class="o">{</span>
-    <span class="nd">@Autowired</span>
-    <span class="kd">private</span> <span class="n">SessionFactory</span> <span class="n">sessionFactory</span><span class="o">;</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">Long</span> <span class="nf">getMatchCount</span><span class="o">(</span><span class="n">String</span> <span class="n">userName</span><span class="o">,</span> <span class="n">String</span> <span class="n">password</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">String</span> <span class="n">hql</span> <span class="o">=</span> <span class="s">&#34;select count(*) from User where userName=:name and password=:pass&#34;</span><span class="o">;</span>
-
-        <span class="n">Query</span> <span class="n">q</span> <span class="o">=</span> <span class="n">sessionFactory</span><span class="o">.</span><span class="na">getCurrentSession</span><span class="o">().</span><span class="na">createQuery</span><span class="o">(</span><span class="n">hql</span><span class="o">);</span>
-        <span class="n">q</span><span class="o">.</span><span class="na">setParameter</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">,</span> <span class="n">userName</span><span class="o">);</span>
-        <span class="n">q</span><span class="o">.</span><span class="na">setParameter</span><span class="o">(</span><span class="s">&#34;pass&#34;</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
-
-        <span class="n">Long</span> <span class="n">row</span> <span class="o">=</span> <span class="n">0L</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="n">Iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">iterate</span><span class="o">();</span> <span class="n">it</span><span class="o">.</span><span class="na">hasNext</span><span class="o">();</span> <span class="o">)</span>
-            <span class="n">row</span> <span class="o">=</span> <span class="o">(</span><span class="n">Long</span><span class="o">)</span> <span class="n">it</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
-        <span class="k">return</span> <span class="n">row</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">User</span> <span class="nf">findUserByName</span><span class="o">(</span><span class="n">String</span> <span class="n">userName</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">Query</span> <span class="n">q</span> <span class="o">=</span> <span class="n">sessionFactory</span><span class="o">.</span><span class="na">getCurrentSession</span><span class="o">().</span><span class="na">createQuery</span><span class="o">(</span><span class="s">&#34;from User where userName=:name&#34;</span><span class="o">);</span>
-        <span class="n">q</span><span class="o">.</span><span class="na">setParameter</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">,</span> <span class="n">userName</span><span class="o">);</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">list</span><span class="o">();</span>
-        <span class="k">return</span> <span class="o">(</span><span class="n">users</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">?</span> <span class="kc">null</span> <span class="o">:</span> <span class="n">users</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">));</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateLoginInfo</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">sessionFactory</span><span class="o">.</span><span class="na">getCurrentSession</span><span class="o">().</span><span class="na">update</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertUser</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">sessionFactory</span><span class="o">.</span><span class="na">getCurrentSession</span><span class="o">().</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Repository</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">&#34;unchecked&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HibUserDao</span> <span class="kd">implements</span> <span class="n">UserDao</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">SessionFactory</span> <span class="n">sessionFactory</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Long</span> <span class="nf">getMatchCount</span><span class="o">(</span><span class="n">String</span> <span class="n">userName</span><span class="o">,</span> <span class="n">String</span> <span class="n">password</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">hql</span> <span class="o">=</span> <span class="s">&#34;select count(*) from User where userName=:name and password=:pass&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Query</span> <span class="n">q</span> <span class="o">=</span> <span class="n">sessionFactory</span><span class="o">.</span><span class="na">getCurrentSession</span><span class="o">().</span><span class="na">createQuery</span><span class="o">(</span><span class="n">hql</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">q</span><span class="o">.</span><span class="na">setParameter</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">,</span> <span class="n">userName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">q</span><span class="o">.</span><span class="na">setParameter</span><span class="o">(</span><span class="s">&#34;pass&#34;</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Long</span> <span class="n">row</span> <span class="o">=</span> <span class="n">0L</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">Iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">iterate</span><span class="o">();</span> <span class="n">it</span><span class="o">.</span><span class="na">hasNext</span><span class="o">();</span> <span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">row</span> <span class="o">=</span> <span class="o">(</span><span class="n">Long</span><span class="o">)</span> <span class="n">it</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">row</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">User</span> <span class="nf">findUserByName</span><span class="o">(</span><span class="n">String</span> <span class="n">userName</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Query</span> <span class="n">q</span> <span class="o">=</span> <span class="n">sessionFactory</span><span class="o">.</span><span class="na">getCurrentSession</span><span class="o">().</span><span class="na">createQuery</span><span class="o">(</span><span class="s">&#34;from User where userName=:name&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">q</span><span class="o">.</span><span class="na">setParameter</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">,</span> <span class="n">userName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">list</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">(</span><span class="n">users</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">?</span> <span class="kc">null</span> <span class="o">:</span> <span class="n">users</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateLoginInfo</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sessionFactory</span><span class="o">.</span><span class="na">getCurrentSession</span><span class="o">().</span><span class="na">update</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertUser</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sessionFactory</span><span class="o">.</span><span class="na">getCurrentSession</span><span class="o">().</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>HibUserService.java</p>
 <div class="highlight"><div class="chroma">
@@ -471,33 +471,33 @@ pom.xml
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HibUserService</span> <span class="o">{</span>
-    <span class="nd">@Autowired</span>
-    <span class="kd">private</span> <span class="n">HibUserDao</span> <span class="n">hibUserDao</span><span class="o">;</span>
-
-    <span class="nd">@Transactional</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasMatchUser</span><span class="o">(</span><span class="n">String</span> <span class="n">userName</span><span class="o">,</span> <span class="n">String</span> <span class="n">password</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">Long</span> <span class="n">count</span> <span class="o">=</span> <span class="n">hibUserDao</span><span class="o">.</span><span class="na">getMatchCount</span><span class="o">(</span><span class="n">userName</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
-        <span class="k">return</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Transactional</span>
-    <span class="kd">public</span> <span class="n">User</span> <span class="nf">findUserByName</span><span class="o">(</span><span class="n">String</span> <span class="n">userName</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">hibUserDao</span><span class="o">.</span><span class="na">findUserByName</span><span class="o">(</span><span class="n">userName</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Transactional</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">loginSuccess</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">hibUserDao</span><span class="o">.</span><span class="na">updateLoginInfo</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Transactional</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertUser</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">hibUserDao</span><span class="o">.</span><span class="na">insertUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Service</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HibUserService</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">HibUserDao</span> <span class="n">hibUserDao</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Transactional</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasMatchUser</span><span class="o">(</span><span class="n">String</span> <span class="n">userName</span><span class="o">,</span> <span class="n">String</span> <span class="n">password</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Long</span> <span class="n">count</span> <span class="o">=</span> <span class="n">hibUserDao</span><span class="o">.</span><span class="na">getMatchCount</span><span class="o">(</span><span class="n">userName</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Transactional</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">User</span> <span class="nf">findUserByName</span><span class="o">(</span><span class="n">String</span> <span class="n">userName</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">hibUserDao</span><span class="o">.</span><span class="na">findUserByName</span><span class="o">(</span><span class="n">userName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Transactional</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">loginSuccess</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hibUserDao</span><span class="o">.</span><span class="na">updateLoginInfo</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Transactional</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertUser</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hibUserDao</span><span class="o">.</span><span class="na">insertUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -598,7 +598,7 @@ pom.xml
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 
