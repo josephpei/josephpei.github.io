@@ -2,21 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://josephpei.github.io/post/</loc>
-    <lastmod>2020-02-01T14:53:46+08:00</lastmod>
+    <loc>http://josephpei.github.io/2023/02/19/homebrew-deprecate-git-speed-up/</loc>
+    <lastmod>2023-02-19T17:55:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://josephpei.github.io/2020/02/01/vim-%E8%B0%83%E8%AF%95%E6%8F%92%E4%BB%B6-vimspector-%E5%9F%BA%E4%BA%8E-dap-debug-adapter-protocol/</loc>
-    <lastmod>2020-02-01T14:53:46+08:00</lastmod>
+    <loc>http://josephpei.github.io/post/</loc>
+    <lastmod>2023-02-19T17:55:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://josephpei.github.io/</loc>
+    <lastmod>2023-02-19T17:55:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://josephpei.github.io/2021/06/23/django-celery-%E6%95%B4%E5%90%88%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2021-06-23T16:36:26+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://josephpei.github.io/tags/python/</loc>
+    <lastmod>2021-06-23T16:36:26+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://josephpei.github.io/tags/</loc>
+    <lastmod>2021-06-23T16:36:26+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://josephpei.github.io/2020/02/01/vim-%E8%B0%83%E8%AF%95%E6%8F%92%E4%BB%B6-vimspector-%E5%9F%BA%E4%BA%8E-dap-debug-adapter-protocol/</loc>
     <lastmod>2020-02-01T14:53:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -38,13 +66,6 @@
   
   <url>
     <loc>http://josephpei.github.io/2020/01/07/leetcode-23-merge-k-sorted-lists%E5%90%88%E5%B9%B6k%E4%B8%AA%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/</loc>
-    <lastmod>2020-01-07T10:53:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://josephpei.github.io/tags/</loc>
     <lastmod>2020-01-07T10:53:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -136,13 +157,6 @@
   
   <url>
     <loc>http://josephpei.github.io/2016/08/05/django%E4%B9%8B%E8%B7%AF-python-decouple/</loc>
-    <lastmod>2016-08-05T18:05:03+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://josephpei.github.io/tags/python/</loc>
     <lastmod>2016-08-05T18:05:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -289,7 +303,7 @@
   </url>
   
   <url>
-    <loc>http://josephpei.github.io/2014/05/04/leetcode-two-sum/</loc>
+    <loc>http://josephpei.github.io/2014/05/04/leetcode---two-sum/</loc>
     <lastmod>2014-05-04T09:46:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

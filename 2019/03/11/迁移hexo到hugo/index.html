@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2019/03/11/%E8%BF%81%E7%A7%BBhexo%E5%88%B0hugo/" />
@@ -35,24 +35,21 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="迁移Hexo到Hugo" />
 <meta property="og:description" content="Hugo 安装与配置" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2019/03/11/%E8%BF%81%E7%A7%BBhexo%E5%88%B0hugo/" />
+<meta property="og:url" content="http://josephpei.github.io/2019/03/11/%E8%BF%81%E7%A7%BBhexo%E5%88%B0hugo/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-03-11T21:16:49+08:00" />
 <meta property="article:modified_time" content="2019-03-11T21:16:49+08:00" />
 <meta itemprop="name" content="迁移Hexo到Hugo">
-<meta itemprop="description" content="Hugo 安装与配置">
-<meta itemprop="datePublished" content="2019-03-11T21:16:49&#43;08:00" />
-<meta itemprop="dateModified" content="2019-03-11T21:16:49&#43;08:00" />
-<meta itemprop="wordCount" content="984">
-
-
-
+<meta itemprop="description" content="Hugo 安装与配置"><meta itemprop="datePublished" content="2019-03-11T21:16:49+08:00" />
+<meta itemprop="dateModified" content="2019-03-11T21:16:49+08:00" />
+<meta itemprop="wordCount" content="982">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="迁移Hexo到Hugo"/>
 <meta name="twitter:description" content="Hugo 安装与配置"/>
@@ -90,12 +87,21 @@
         <li class="mobile-menu-item">Categories</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Wolfsky</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -110,6 +116,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -147,7 +154,7 @@
 <h2 id="安装">安装</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -158,27 +165,25 @@
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
-</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">apt install hugo  <span class="c1"># choco / scoop / brew / snap</span>
-
-hugo new sit wolfsky
-<span class="nb">cd</span> wolfsky
-git init
-git submodule add https://github.com/olOwOlo/hugo-theme-even themes/even
-copy themes/even/exampleSite/config.toml .
-
-hexo new post/my-first-post.md
-
-hexo server -D
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt install hugo  <span class="c1"># choco / scoop / brew / snap</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hugo new sit wolfsky
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> wolfsky
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git submodule add https://github.com/olOwOlo/hugo-theme-even themes/even
+</span></span><span class="line"><span class="cl">copy themes/even/exampleSite/config.toml .
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hexo new post/my-first-post.md
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hexo server -D
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="url-设置">URL 设置</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -186,31 +191,31 @@ hexo server -D
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># Hexo中配置</span>
-<span class="err">/</span><span class="err">:</span><span class="nx">year</span><span class="err">/</span><span class="err">:</span><span class="nx">month</span><span class="err">/</span><span class="err">:</span><span class="nx">day</span><span class="err">/</span><span class="err">:</span><span class="nx">title</span><span class="err">/</span>
-
-<span class="c"># Hugo中配置</span>
-<span class="p">[</span><span class="nx">permalinks</span><span class="p">]</span>
-    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;/:year/:month/:day/:filename/&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># Hexo中配置</span>
+</span></span><span class="line"><span class="cl"><span class="err">/:</span><span class="nx">year</span><span class="err">/:</span><span class="nx">month</span><span class="err">/:</span><span class="nx">day</span><span class="err">/:</span><span class="nx">title</span><span class="err">/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Hugo中配置</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">permalinks</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;/:year/:month/:day/:filename/&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Hugo 默认会把 url 中的大写字符转为小写，如果不想转换，在配置文件中加入</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">disablePathToLower</span> <span class="p">=</span> <span class="kc">true</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">disablePathToLower</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Hugo 默认会把分类（categories）名称转为小写，如果不想转换，在配置中加入，</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">preserveTaxonomyNames</span> <span class="p">=</span> <span class="kc">true</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">preserveTaxonomyNames</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="文档格式">文档格式</h2>
 <p>markdown 是首要支持的格式，除了标准的 markdown 格式外，hugo 还内置了 <a href="https://github.com/mmarkdown/mmark">mmark</a> 渲染引擎，可以支持一些额外的格式。将文件名命名为 <code>*.mmark</code>，或者在文章的 front matter，加上一行设置 <code>markup: mmark</code>。</p>
@@ -223,7 +228,7 @@ hexo server -D
 <p>在 markdown 中使用代码绘图，有<code>flowchart</code>, <code>mermaid</code>, <code>plantuml</code>, <code>graphviz</code> 等，我使用的主题 <code>even</code> 内置了 <code>flowchart</code> 的支持，我添加了 <code>mermaid</code> 的支持，参考 <a href="https://github.com/vjeantet/hugo-theme-docdock/blob/master/layouts/shortcodes/mermaid.html">hugo-theme-docdock</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -236,18 +241,18 @@ hexo server -D
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">sequenceDiagram
-    participant Alice
-    participant Bob
-    Alice-&gt;&gt;John: Hello John, how are you?
-    loop Healthcheck
-        John-&gt;John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts &lt;br/&gt;prevail...
-    John--&gt;Alice: Great!
-    John-&gt;Bob: How about you?
-    Bob--&gt;John: Jolly good!
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sequenceDiagram
+</span></span><span class="line"><span class="cl">    participant Alice
+</span></span><span class="line"><span class="cl">    participant Bob
+</span></span><span class="line"><span class="cl">    Alice-&gt;&gt;John: Hello John, how are you?
+</span></span><span class="line"><span class="cl">    loop Healthcheck
+</span></span><span class="line"><span class="cl">        John-&gt;John: Fight against hypochondria
+</span></span><span class="line"><span class="cl">    end
+</span></span><span class="line"><span class="cl">    Note right of John: Rational thoughts &lt;br/&gt;prevail...
+</span></span><span class="line"><span class="cl">    John--&gt;Alice: Great!
+</span></span><span class="line"><span class="cl">    John-&gt;Bob: How about you?
+</span></span><span class="line"><span class="cl">    Bob--&gt;John: Jolly good!
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
 <script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.0.0/dist/mermaid.min.js">mermaid.initialize({startOnLoad:true});</script>
@@ -267,7 +272,7 @@ sequenceDiagram
 <p>另一种方案是使用 <a href="http://www.gravizo.com/">gravizo</a> 提供的服务，参考 <a href="https://it.knightnet.org.uk/kb/hugo/embed-diagram/">https://it.knightnet.org.uk/kb/hugo/embed-diagram/</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -284,22 +289,22 @@ sequenceDiagram
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">digraph G {
-    aize =&#34;4,4&#34;;
-    main [shape=box];
-    main -&gt; parse [weight=8];
-    parse -&gt; execute;
-    main -&gt; init [style=dotted];
-    main -&gt; cleanup;
-    execute -&gt; { make_string; printf}
-    init -&gt; make_string;
-    edge [color=red];
-    main -&gt; printf [style=bold,label=&#34;100 times&#34;];
-    make_string [label=&#34;make a string&#34;];
-    node [shape=box,style=filled,color=&#34;.7 .3 1.0&#34;];
-    execute -&gt; compare;
-  }
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">digraph G {
+</span></span><span class="line"><span class="cl">    aize =&#34;4,4&#34;;
+</span></span><span class="line"><span class="cl">    main [shape=box];
+</span></span><span class="line"><span class="cl">    main -&gt; parse [weight=8];
+</span></span><span class="line"><span class="cl">    parse -&gt; execute;
+</span></span><span class="line"><span class="cl">    main -&gt; init [style=dotted];
+</span></span><span class="line"><span class="cl">    main -&gt; cleanup;
+</span></span><span class="line"><span class="cl">    execute -&gt; { make_string; printf}
+</span></span><span class="line"><span class="cl">    init -&gt; make_string;
+</span></span><span class="line"><span class="cl">    edge [color=red];
+</span></span><span class="line"><span class="cl">    main -&gt; printf [style=bold,label=&#34;100 times&#34;];
+</span></span><span class="line"><span class="cl">    make_string [label=&#34;make a string&#34;];
+</span></span><span class="line"><span class="cl">    node [shape=box,style=filled,color=&#34;.7 .3 1.0&#34;];
+</span></span><span class="line"><span class="cl">    execute -&gt; compare;
+</span></span><span class="line"><span class="cl">  }
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
 
@@ -319,35 +324,35 @@ sequenceDiagram
 <p>如果之前已经建立了 github.io 的仓库，并且使用 Hexo 往里面部署过，但是不想要之前的东西了，采用下面的方式。在博客的根目录下，运行下面的命令：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">mkdir public
-cd public
-git init
-git remote add upstream https://github.com/josephpei/josephpei.github.io.git
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mkdir public
+</span></span><span class="line"><span class="cl">cd public
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git remote add upstream https://github.com/josephpei/josephpei.github.io.git
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>执行 <code>hugo -t even</code>，hugo 会生成 blog 内容，放到 public 目录。然后，我们把 public 下面的内容 push 到 github 即可。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">git add .
-git commit -m  &#34;switch to hugo&#34;
-git push -f upstream master # 第一次 push 必须使用 -f，因为此时远程仓库非空，和本地有冲突
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m  &#34;switch to hugo&#34;
+</span></span><span class="line"><span class="cl">git push -f upstream master # 第一次 push 必须使用 -f，因为此时远程仓库非空，和本地有冲突
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>*nix deploy.sh</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -375,38 +380,38 @@ git push -f upstream master # 第一次 push 必须使用 -f，因为此时远�
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
-</span><span class="cp"></span>
-<span class="nb">echo</span> -e <span class="s2">&#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;</span>
-
-<span class="c1"># build the project</span>
-hugo -t even
-
-<span class="nb">cd</span> public
-
-git add .
-
-<span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;rebuilding site `date`&#34;</span>
-
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">1</span> <span class="o">]</span>
-  <span class="k">then</span> <span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span>
-<span class="k">fi</span>
-
-git commit -m <span class="s2">&#34;</span><span class="nv">$msg</span><span class="s2">&#34;</span>
-
-<span class="c1"># push source to github</span>
-
-git push upstream master
-
-<span class="c1"># come back to blog root</span>
-
-<span class="nb">cd</span> ..
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s2">&#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># build the project</span>
+</span></span><span class="line"><span class="cl">hugo -t even
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> public
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;rebuilding site `date`&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">1</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl">  <span class="k">then</span> <span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;</span><span class="nv">$msg</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># push source to github</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git push upstream master
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># come back to blog root</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ..
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>windows powershell deploy.ps1</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -428,27 +433,27 @@ git push upstream master
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ps1" data-lang="ps1"><span class="c">#build site</span>
-<span class="n">hugo</span> <span class="n">-t</span> <span class="n">even</span>
-
-<span class="c"># add files to git</span>
-<span class="nb">cd </span><span class="n">public</span>
-<span class="n">git</span> <span class="n">add</span> <span class="n">-A</span>
-
-<span class="c">#set up commit message</span>
-<span class="nv">$msg</span><span class="p">=</span><span class="s2">&#34;</span><span class="s2">rebuilding site </span><span class="s2">&#34;</span> <span class="p">+</span> <span class="p">(</span><span class="nb">Get-Date</span><span class="p">)</span>
-<span class="k">If</span> <span class="p">(</span><span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">]</span><span class="p">)</span> <span class="p">{</span><span class="nv">$msg</span> <span class="p">=</span> <span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">]</span><span class="p">}</span>
-
-<span class="c">#commit and push public repo</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="nv">$msg</span>
-<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
-
-<span class="c">#and back out and commit and push source repo</span>
-<span class="nb">cd </span><span class="p">.</span><span class="p">.</span>
-<span class="n">git</span> <span class="n">add</span> <span class="n">-A</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="nv">$msg</span>
-<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ps1" data-lang="ps1"><span class="line"><span class="cl"><span class="c">#build site</span>
+</span></span><span class="line"><span class="cl"><span class="n">hugo</span> <span class="n">-t</span> <span class="n">even</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># add files to git</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd </span><span class="n">public</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">add</span> <span class="n">-A</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#set up commit message</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$msg</span><span class="p">=</span><span class="s2">&#34;rebuilding site &#34;</span> <span class="p">+</span> <span class="p">(</span><span class="nb">Get-Date</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">If</span> <span class="p">(</span><span class="nv">$args</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span> <span class="p">{</span><span class="nv">$msg</span> <span class="p">=</span> <span class="nv">$args</span><span class="p">[</span><span class="mf">0</span><span class="p">]}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#commit and push public repo</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="nv">$msg</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#and back out and commit and push source repo</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd </span><span class="p">..</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">add</span> <span class="n">-A</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="nv">$msg</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="参考">参考</h2>
 <ul>
@@ -534,13 +539,10 @@ git push upstream master
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">josephpei</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -551,15 +553,18 @@ git push upstream master
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
   <script type="text/javascript">
     window.MathJax = {
-      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-      showProcessingMessages: false,
-      messageStyle: 'none'
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
     };
   </script>
-  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
 
 
 

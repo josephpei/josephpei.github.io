@@ -17,14 +17,14 @@
 
 
 <meta name="author" content="josephpei" /><meta name="description" content="完整的 Hello World 内核模块 hello.c
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  #include &amp;lt;linux/init.h&amp;gt;#include &amp;lt;linux/module.h&amp;gt;MODULE_LICENSE(&amp;#34;Dual BSD/GPL&amp;#34;); static int hello_init(void) { printk(KERN_ALERT &amp;#34;Hello, world\n&amp;#34;); return 0; } static void hello_exit(void) { printk(KERN_ALERT &amp;#34;Goodbye, cruel world\n&amp;#34;); } module_init(hello_init); module_exit(hello_exit);   " /><meta name="keywords" content="life, linux, program" />
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include &amp;lt;linux/init.h&amp;gt; #include &amp;lt;linux/module.h&amp;gt; MODULE_LICENSE(&amp;#34;Dual BSD/GPL&amp;#34;); static int hello_init(void) { printk(KERN_ALERT &amp;#34;Hello, world\n&amp;#34;); return 0; } static void hello_exit(void) { printk(KERN_ALERT &amp;#34;Goodbye, cruel world\n&amp;#34;); } module_init(hello_init); module_exit(hello_exit); " /><meta name="keywords" content="life, linux, program" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2015/07/19/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%80-hello-world/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -83,7 +84,7 @@ module_exit(hello_exit);
 
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2015/07/19/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%80-hello-world/" />
+<meta property="og:url" content="http://josephpei.github.io/2015/07/19/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%80-hello-world/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2015-07-19T10:21:47+08:00" />
 <meta property="article:modified_time" content="2015-07-19T10:21:47+08:00" />
 <meta itemprop="name" content="Linux驱动开发之一 Hello World">
@@ -128,13 +129,9 @@ module_init(hello_init);
 module_exit(hello_exit);
 
 
-">
-<meta itemprop="datePublished" content="2015-07-19T10:21:47&#43;08:00" />
-<meta itemprop="dateModified" content="2015-07-19T10:21:47&#43;08:00" />
-<meta itemprop="wordCount" content="103">
-
-
-
+"><meta itemprop="datePublished" content="2015-07-19T10:21:47+08:00" />
+<meta itemprop="dateModified" content="2015-07-19T10:21:47+08:00" />
+<meta itemprop="wordCount" content="105">
 <meta itemprop="keywords" content="LinuxDriver," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux驱动开发之一 Hello World"/>
 <meta name="twitter:description" content="完整的 Hello World 内核模块 hello.c
@@ -213,12 +210,21 @@ module_exit(hello_exit);
         <li class="mobile-menu-item">Categories</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Wolfsky</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -233,6 +239,7 @@ module_exit(hello_exit);
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -260,7 +267,7 @@ module_exit(hello_exit);
       <p>完整的 Hello World 内核模块 hello.c</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -279,29 +286,29 @@ module_exit(hello_exit);
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;linux/init.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;linux/module.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Dual BSD/GPL</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-
-<span class="k">static</span> <span class="kt">int</span> <span class="nf">hello_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Hello, world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">static</span> <span class="kt">void</span> <span class="nf">hello_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Goodbye, cruel world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="n">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">)</span><span class="p">;</span>
-<span class="n">module_exit</span><span class="p">(</span><span class="n">hello_exit</span><span class="p">)</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/init.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/module.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nf">MODULE_LICENSE</span><span class="p">(</span><span class="s">&#34;Dual BSD/GPL&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">int</span> <span class="nf">hello_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Hello, world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">void</span> <span class="nf">hello_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Goodbye, cruel world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">module_exit</span><span class="p">(</span><span class="n">hello_exit</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Makefile</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -312,33 +319,33 @@ module_exit(hello_exit);
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="nv">obj-m</span> <span class="o">+=</span>hello.o
-
-<span class="nv">KDIR</span> <span class="o">=</span> /usr/src/linux-headers-3.19.0-21-generic
-
-<span class="nf">all</span><span class="o">:</span>
-	<span class="k">$(</span>MAKE<span class="k">)</span> -C <span class="k">$(</span>KDIR<span class="k">)</span> <span class="nv">SUBDIRS</span><span class="o">=</span><span class="k">$(</span>PWD<span class="k">)</span> modules
-
-<span class="nf">clean</span><span class="o">:</span>
-	rm -rf *.o *.ko *.mod.* *.symvers *.order
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="line"><span class="cl"><span class="nv">obj-m</span> <span class="o">+=</span>hello.o
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">KDIR</span> <span class="o">=</span> /usr/src/linux-headers-3.19.0-21-generic
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">all</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="k">$(</span>MAKE<span class="k">)</span> -C <span class="k">$(</span>KDIR<span class="k">)</span> <span class="nv">SUBDIRS</span><span class="o">=</span><span class="k">$(</span>PWD<span class="k">)</span> modules
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">clean</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	rm -rf *.o *.ko *.mod.* *.symvers *.order
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>To run the code</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> insmod hello.ko
-<span class="nv">$dmesg</span>
-u will get the output
-<span class="nv">$sudo</span> rmmod hello.ko
-<span class="nv">$dmesg</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">$sudo</span> insmod hello.ko
+</span></span><span class="line"><span class="cl"><span class="nv">$dmesg</span>
+</span></span><span class="line"><span class="cl">u will get the output
+</span></span><span class="line"><span class="cl"><span class="nv">$sudo</span> rmmod hello.ko
+</span></span><span class="line"><span class="cl"><span class="nv">$dmesg</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -422,13 +429,10 @@ u will get the output
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">josephpei</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -439,7 +443,10 @@ u will get the output
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

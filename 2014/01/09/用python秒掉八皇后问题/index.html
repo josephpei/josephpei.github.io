@@ -18,7 +18,7 @@
 
 <meta name="author" content="josephpei" /><meta name="description" content="来源：http://www.iteye.com/topic/106747
 在 函数式编程语言曲高和寡？ 一文中，我们看到 Haskell 能用两行代码
-1 2  sort [] = [] sort (x:xs) = sort [y | y &amp;lt;- xs, y &amp;lt; x] &#43;&#43; [x] &#43;&#43; sort [y | y &amp;lt;- xs, y &amp;gt;= x]   搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。
+1 2 sort [] = [] sort (x:xs) = sort [y | y &amp;lt;- xs, y &amp;lt; x] &#43;&#43; [x] &#43;&#43; sort [y | y &amp;lt;- xs, y &amp;gt;= x] 搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。
 " /><meta name="keywords" content="life, linux, program" />
 
 
@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/01/09/%E7%94%A8python%E7%A7%92%E6%8E%89%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" />
@@ -37,7 +37,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -56,7 +57,7 @@ sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y 
 
 搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2014/01/09/%E7%94%A8python%E7%A7%92%E6%8E%89%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" />
+<meta property="og:url" content="http://josephpei.github.io/2014/01/09/%E7%94%A8python%E7%A7%92%E6%8E%89%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2014-01-09T12:10:41+08:00" />
 <meta property="article:modified_time" content="2014-01-09T12:10:41+08:00" />
 <meta itemprop="name" content="用Python秒掉八皇后问题">
@@ -72,13 +73,9 @@ sort [] = []
 sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y | y &lt;- xs, y &gt;= x]
 
 
-搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。">
-<meta itemprop="datePublished" content="2014-01-09T12:10:41&#43;08:00" />
-<meta itemprop="dateModified" content="2014-01-09T12:10:41&#43;08:00" />
-<meta itemprop="wordCount" content="3515">
-
-
-
+搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。"><meta itemprop="datePublished" content="2014-01-09T12:10:41+08:00" />
+<meta itemprop="dateModified" content="2014-01-09T12:10:41+08:00" />
+<meta itemprop="wordCount" content="3514">
 <meta itemprop="keywords" content="FP,python," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="用Python秒掉八皇后问题"/>
 <meta name="twitter:description" content="来源：http://www.iteye.com/topic/106747
@@ -128,12 +125,21 @@ sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y 
         <li class="mobile-menu-item">Categories</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Wolfsky</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -148,6 +154,7 @@ sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y 
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -181,13 +188,13 @@ sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y 
 <p>在 <a href="http://www.iteye.com/topic/101055">函数式编程语言曲高和寡？</a> 一文中，我们看到 Haskell 能用两行代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">sort [] = []
-sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] ++ [x] ++ sort [y | y &lt;- xs, y &gt;= x]
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sort [] = []
+</span></span><span class="line"><span class="cl">sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] ++ [x] ++ sort [y | y &lt;- xs, y &gt;= x]
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。</p>
 <h2 id="预备知识">预备知识</h2>
@@ -201,28 +208,26 @@ sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] ++ [x] ++ sort [y | y &lt;- xs, y 
 <p>现在应该绝大多数动态语言的程序员都对这个特性很了解了，因为常见的 Python, Ruby, ErLang, Haskell 甚至是 JavaScript 都加上了这个特性。这是一种通过给出列表中每一项的形式和组成形式的元素要满足的条件自动生成列表的语法糖。下面是 Python 中的两个例子：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 得到一个 2 到 20 中的偶数组成的列表，只要写</span>
-<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
-<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
-
-<span class="c1"># 记住，只需给出一个形式，比方说想求两个列表的“笛卡尔乘积”</span>
-<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="p">[</span><span class="p">(</span><span class="n">x</span> <span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span><span class="p">]</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 得到一个 2 到 20 中的偶数组成的列表，只要写</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 记住，只需给出一个形式，比方说想求两个列表的“笛卡尔乘积”</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="p">[(</span><span class="n">x</span> <span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>很明显，仅仅使用列表领悟特性就可以表示一些算法了，比如提到过的快速排序：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -230,13 +235,13 @@ sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] ++ [x] ++ sort [y | y &lt;- xs, y 
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">sort</span> <span class="p">(</span><span class="n">ls</span><span class="p">)</span><span class="p">:</span> 
-　　<span class="k">return</span> <span class="p">[</span><span class="p">]</span> <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="p">[</span><span class="p">]</span> \
-　　　<span class="k">else</span> <span class="n">sort</span><span class="p">(</span><span class="p">[</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="p">]</span> <span class="k">if</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">]</span><span class="p">)</span> <span class="o">+</span> \
-　　　<span class="p">[</span><span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">]</span> <span class="o">+</span> \
-　　　<span class="n">sort</span><span class="p">(</span><span class="p">[</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="p">]</span> <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
-　　<span class="c1"># 别忘了 python-2.5 的新特性条件分支表达式哦！可惜太长，不得不强制换行。</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">sort</span> <span class="p">(</span><span class="n">ls</span><span class="p">):</span> 
+</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="p">[]</span> \
+</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">else</span> <span class="n">sort</span><span class="p">([</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span> <span class="o">+</span> \
+</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="p">[</span><span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> \
+</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="n">sort</span><span class="p">([</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="c1"># 别忘了 python-2.5 的新特性条件分支表达式哦！可惜太长，不得不强制换行。</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="算法描述">算法描述</h2>
 <p>首先我们要认识到一点，算法所对应的函数的输入和输出分别是什么。我们需要的是一个函数 queens()，它接受两个参数，自然数 row 和 col，分别表示行数和列数；坐标是 (col, row) 形式的序对，下标 从 0 开始计数。
@@ -257,7 +262,7 @@ f (n) = 1 + f (n - 1)
 <p>有了上面的数学定义，抄成 Python 代码，那就是用脚趾都能搞定呀。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -265,13 +270,13 @@ f (n) = 1 + f (n - 1)
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">queens</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span><span class="p">:</span>
-　　<span class="k">return</span> <span class="p">[</span><span class="p">[</span><span class="p">]</span><span class="p">]</span> <span class="k">if</span> <span class="n">col</span> <span class="o">==</span> <span class="mi">0</span> \
-　　　<span class="k">else</span> <span class="p">[</span><span class="p">[</span><span class="n">ran</span><span class="p">]</span> <span class="o">+</span> <span class="n">rst</span> \  <span class="c1"># 在 Python 中，g(x,y)=[x]+y </span>
-　　　<span class="k">for</span> <span class="n">ran</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> \
-　　　<span class="k">for</span> <span class="n">rst</span> <span class="ow">in</span> <span class="n">queens</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> \
-　　　<span class="k">if</span> <span class="n">safe</span><span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">)</span><span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">queens</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="p">[[]]</span> <span class="k">if</span> <span class="n">col</span> <span class="o">==</span> <span class="mi">0</span> \
+</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">else</span> <span class="p">[[</span><span class="n">ran</span><span class="p">]</span> <span class="o">+</span> <span class="n">rst</span> \  <span class="c1"># 在 Python 中，g(x,y)=[x]+y </span>
+</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">for</span> <span class="n">ran</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> \
+</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">for</span> <span class="n">rst</span> <span class="ow">in</span> <span class="n">queens</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> \
+</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">if</span> <span class="n">safe</span><span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">)]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>不难看出，有了列表领悟这个强大的武器，我们就可以放心大胆地利用描述一个元素形式的思路来解决这类列表输出的问题。这就是列表领悟最根本的思想：“形式化的思维方式”。</p>
 <p>现在只剩一个问题了：safe() 函数。先应用一次我们的“图形化的思考”。对一个格局（解，rst）来说，新加入的棋子的 col 值 ran 必须对这个格局中所有已存在的位置满足一个测试 check()，这个测试对于一个位置 (x,y)，要求（col 值不等已自动满足） ran ≠ x and |ran - x| ≠ y + 1。</p>
@@ -279,57 +284,57 @@ f (n) = 1 + f (n - 1)
 <p>由于这里要同时用到 rst 中点的 col 值和 row 值，这样解决：在前文的算法描述中已经指出，因为 row 值被认为是有序的，事实上是一个解的下标，我们 check 一下这个下标，在 check() 的过程中去获取 col 值不就行了？</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">　　<span class="k">def</span> <span class="nf">check</span> <span class="p">(</span><span class="n">pos</span><span class="p">)</span><span class="p">:</span>
-　　　　<span class="c1"># 表达式变个形式，少打点字</span>
-　　　　<span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="n">ran</span> <span class="o">==</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ran</span> <span class="o">-</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="p">)</span> <span class="o">==</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">　　</span><span class="k">def</span> <span class="nf">check</span> <span class="p">(</span><span class="n">pos</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　　　</span><span class="c1"># 表达式变个形式，少打点字</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　　　</span><span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="n">ran</span> <span class="o">==</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ran</span> <span class="o">-</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">])</span> <span class="o">==</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>值得注意的是，由于这里 check() 用到了逃逸变量 ran 和 rst，check 函数体就必须写在 safe() 函数体内部以使这它们在其闭包环境中出现。</p>
 <p>safe() 函数也就很明了了：先生成一个由全部 check(pos), pos ∈ [0, #rst] 结果组成的列表，然后判断一下这个列表中每一项是否都为真。假设我们已得到这样的一种测试一个列表中元素是否全为 True 的函数叫 ands()。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">safe</span> <span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">)</span><span class="p">:</span>
-　　<span class="k">def</span> <span class="nf">check</span> <span class="p">(</span><span class="n">pos</span><span class="p">)</span><span class="p">:</span>
-　　　　<span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="n">ran</span> <span class="o">==</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ran</span> <span class="o">-</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="p">)</span> <span class="o">==</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-　　<span class="k">return</span> <span class="n">ands</span><span class="p">(</span><span class="p">[</span><span class="n">check</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rst</span><span class="p">)</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">safe</span> <span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">def</span> <span class="nf">check</span> <span class="p">(</span><span class="n">pos</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　　　</span><span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="n">ran</span> <span class="o">==</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ran</span> <span class="o">-</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">])</span> <span class="o">==</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="n">ands</span><span class="p">([</span><span class="n">check</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rst</span><span class="p">))])</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>前文已经说明，ands() 函数接受一个列表为参数，如果列表中每一项都为 True 则返回 True，否则返回 False。还是直接把数学定义抄一遍</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">ands</span> <span class="p">(</span><span class="n">ls</span><span class="p">)</span><span class="p">:</span>
-　　<span class="k">return</span> <span class="bp">True</span> <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="p">[</span><span class="p">]</span> \
-　　　<span class="k">else</span> <span class="p">(</span><span class="bp">False</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> \
-　　　<span class="k">else</span> <span class="n">ands</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ands</span> <span class="p">(</span><span class="n">ls</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="p">[]</span> \
+</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">else</span> <span class="p">(</span><span class="kc">False</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> \
+</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">else</span> <span class="n">ands</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>于是，我们的程序就写完啦！试着跑一下 queens(4,4)，</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">queens</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
-<span class="p">[</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">queens</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>没问题！再跑一下 queens(8,8)！奇怪，为什么跑了 10 分钟还没出结果？</p>
 <p>问题在哪儿：</p>
@@ -339,50 +344,50 @@ f (n) = 1 + f (n - 1)
 　　关键在于处理掉这一句：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">	<span class="p">[</span><span class="p">[</span><span class="n">ran</span><span class="p">]</span> <span class="o">+</span> <span class="n">rst</span> \
-　　　<span class="k">for</span> <span class="n">ran</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> \
-　　　<span class="k">for</span> <span class="n">rst</span> <span class="ow">in</span> <span class="n">queens</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> \
-　　　<span class="k">if</span> <span class="n">safe</span><span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">)</span><span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">	<span class="p">[[</span><span class="n">ran</span><span class="p">]</span> <span class="o">+</span> <span class="n">rst</span> \
+</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">for</span> <span class="n">ran</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> \
+</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">for</span> <span class="n">rst</span> <span class="ow">in</span> <span class="n">queens</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> \
+</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">if</span> <span class="n">safe</span><span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">)]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>首先对最耗时的列表 queens(row, col - 1) 应用群体操作 flatmap(newcol, queens(row, col - 1))。这里需要注意的是，光用 map() 是不够的，因为下面会根据另一个列表 rang(row) 中的每一项产生一个新列表，导致多出一个列表层。所以我们需要用 flatmap() 函数，它在普通的 map() 操作之后会用 append() 把产生的列表联结起来（所以叫“展平”的 map），把多出的一层列表消去：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">flatmap</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="n">ls</span><span class="p">)</span><span class="p">:</span>
-　　<span class="c1"># 小技巧：累积器在连接列表时可以不用 lambda x,y: x+y，直接用 list.__add__，</span>
-　　<span class="c1"># 重点是类型出错时有报警</span>
-　　<span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="fm">__add__</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="n">ls</span><span class="p">)</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">flatmap</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="n">ls</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="c1"># 小技巧：累积器在连接列表时可以不用 lambda x,y: x+y，直接用 list.__add__，</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="c1"># 重点是类型出错时有报警</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="fm">__add__</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="n">ls</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>接下来，根据列表和列表生成列表（在通用列表操作的世界中，就是 list, list, and list），注意原来的形式 [ran] + rst 是怎么被函数封装掉的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">newcol</span> <span class="p">(</span><span class="n">rst</span><span class="p">)</span><span class="p">:</span>
-　　<span class="c1"># 顺手解决 filter 只能传递一个参数的限制，用 lambda 代掉</span>
-　　<span class="k">return</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">ls</span><span class="p">:</span> <span class="n">safe</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="n">rst</span><span class="p">)</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">rst</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">newcol</span> <span class="p">(</span><span class="n">rst</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="c1"># 顺手解决 filter 只能传递一个参数的限制，用 lambda 代掉</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">ls</span><span class="p">:</span> <span class="n">safe</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rst</span><span class="p">),</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">rst</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>其它什么内容都不用改了（当然了，如果你有心情，还可以把另一个列表领悟替换掉</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -391,14 +396,14 @@ f (n) = 1 + f (n - 1)
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">safe</span> <span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">)</span><span class="p">:</span>
-　　<span class="k">return</span> <span class="n">every</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rst</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
-<span class="c1"># every() 函数相当于打过兴奋剂的 ands</span>
-<span class="k">def</span> <span class="nf">every</span> <span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">ls</span><span class="p">)</span><span class="p">:</span>
-　　<span class="k">return</span> <span class="bp">True</span> <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="p">[</span><span class="p">]</span> \
-　　　<span class="k">else</span> <span class="p">(</span><span class="bp">False</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span> \
-　　　<span class="k">else</span> <span class="n">every</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">safe</span> <span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="n">every</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rst</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># every() 函数相当于打过兴奋剂的 ands</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">every</span> <span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">ls</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="p">[]</span> \
+</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">else</span> <span class="p">(</span><span class="kc">False</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> \
+</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">else</span> <span class="n">every</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>不过单层的列表领悟没有性能问题）。现在可以完美地输出八皇后问题的 92 个解了（这里就不列了，太长了）。</p>
 <p>反思：</p>
@@ -411,7 +416,7 @@ f (n) = 1 + f (n - 1)
 <p>最后留个小问题：我们在算法描述一节中提到了一种解的表示方法，把一个格局中所有棋子的坐标表示为序对，然后返回解的列表。请给出一个小函数，把我们现在的实现版本输出的解转换为这种形式。数据的本质是信息。信息的完全是首要的，数据的表示只是个次要问题。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -438,36 +443,36 @@ f (n) = 1 + f (n - 1)
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">BOARD_SIZE</span> <span class="o">=</span> <span class="mi">8</span>
-
-<span class="k">def</span> <span class="nf">under_attack</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">queens</span><span class="p">)</span><span class="p">:</span>
-    <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="n">col</span>
-
-    <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">queens</span><span class="p">)</span><span class="p">:</span>
-        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">left</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">right</span> <span class="o">+</span> <span class="mi">1</span>
-
-        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">True</span>
-    <span class="k">return</span> <span class="bp">False</span>
-
-<span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">[</span><span class="p">[</span><span class="p">]</span><span class="p">]</span>
-
-    <span class="n">smaller_solutions</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="p">[</span><span class="n">solution</span><span class="o">+</span><span class="p">[</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">BOARD_SIZE</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">solution</span> <span class="ow">in</span> <span class="n">smaller_solutions</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">under_attack</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">solution</span><span class="p">)</span><span class="p">]</span>
-
-<span class="k">for</span> <span class="n">answer</span> <span class="ow">in</span> <span class="n">solve</span><span class="p">(</span><span class="n">BOARD_SIZE</span><span class="p">)</span><span class="p">:</span>
-    <span class="k">print</span> <span class="n">answer</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">BOARD_SIZE</span> <span class="o">=</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">under_attack</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">queens</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="n">col</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">queens</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">left</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">right</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">[[]]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">smaller_solutions</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">solution</span><span class="o">+</span><span class="p">[(</span><span class="n">n</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">BOARD_SIZE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">solution</span> <span class="ow">in</span> <span class="n">smaller_solutions</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="ow">not</span> <span class="n">under_attack</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">solution</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">answer</span> <span class="ow">in</span> <span class="n">solve</span><span class="p">(</span><span class="n">BOARD_SIZE</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">answer</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -483,21 +488,21 @@ f (n) = 1 + f (n - 1)
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span> <span class="k">as</span> <span class="n">perm</span>
-
-<span class="n">cols</span> <span class="o">=</span> <span class="n">perm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">OK</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="p">:</span>
-    <span class="n">sl</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">c</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="p">)</span>  <span class="c1"># r for row</span>
-    <span class="n">bs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">c</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="p">)</span>  <span class="c1"># c for column</span>
-    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">sl</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">bs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">8</span>
-
-<span class="n">solutions</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cols</span> <span class="k">if</span> <span class="n">OK</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="p">]</span>
-
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">solutions</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="p">:</span>
-    <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">:</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">s</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span> <span class="k">as</span> <span class="n">perm</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">cols</span> <span class="o">=</span> <span class="n">perm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">OK</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sl</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">c</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>  <span class="c1"># r for row</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">c</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>  <span class="c1"># c for column</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">sl</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">bs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">solutions</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cols</span> <span class="k">if</span> <span class="n">OK</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">solutions</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&#34;:&#34;</span><span class="p">,</span> <span class="n">s</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -582,13 +587,10 @@ f (n) = 1 + f (n - 1)
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">josephpei</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -599,7 +601,10 @@ f (n) = 1 + f (n - 1)
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

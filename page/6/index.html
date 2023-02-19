@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/" />
@@ -36,7 +36,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -44,7 +45,6 @@
 <meta property="og:description" content="常无事，痛饮酒，熟读离骚" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://josephpei.github.io/" />
-<meta property="og:updated_time" content="2020-02-01T14:53:46+08:00" />
 <meta itemprop="name" content="有翅膀的天狼">
 <meta itemprop="description" content="常无事，痛饮酒，熟读离骚"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="有翅膀的天狼"/>
@@ -83,12 +83,21 @@
         <li class="mobile-menu-item">Categories</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Wolfsky</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -103,12 +112,57 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2014/08/05/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-dp-%E5%BA%94%E7%94%A8-hamiltonpath-%E5%8F%8A-tsp/">动态规划 DP 应用 HamiltonPath 及 TSP</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2014-08-05 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>Hamilton Path 及 TSP 都属于 NP 完全问题，目前理论上尚无多项式算法，穷举法的时间复杂度是 O(N!)，通过运用动态规划 DP，可以缩短至 O(2^N * N^2)。</p>
+<p>输入：无向图 G = (V, E)，点集 V = {0, 1, &hellip; , n-1}，起始点 0</p>
+<p>最优子结构：考虑路径上的最后一条边</p>
+<p>dp[s,j] = min ( dp[s-{j},i] + adj[i,j] )</p>
+<p>dp[s+{j},j] = min ( dp[s,i] + adj[i,j] )</p>
+    </div>
+    <div class="read-more">
+      <a href="/2014/08/05/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-dp-%E5%BA%94%E7%94%A8-hamiltonpath-%E5%8F%8A-tsp/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2014/08/02/uw-%E8%BD%AF%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3lab3-bufbomb/">UW 软硬件接口lab3 bufbomb</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2014-08-02 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>本实验即常见的缓冲区溢出攻击。（注：新的 64bit Win8/Linux 下这种简单方式无效，x86_64 cpu 的可执行标志位 exec-shield，gcc 栈保护选项开关 -fno-stack-protector）</p>
+<p>主函数为 test()，首先声明一个局部变量 volatile int local = 0xdeadbeef，volatile 是编译时不使用 register 优化，必须分配栈空间，后面的实验过程不能覆盖这个 local 变量。</p>
+<p>然后就是存在缓冲区溢出漏洞的 getbuf 函数，也就是我们要操作的对象。</p>
+    </div>
+    <div class="read-more">
+      <a href="/2014/08/02/uw-%E8%BD%AF%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3lab3-bufbomb/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2014/08/02/uw-%E8%BD%AF%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3lab2-bomb/">UW 软硬件接口lab2 bomb</a></h1>
@@ -130,7 +184,7 @@
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2014/05/04/leetcode-two-sum/">leetcode - two-sum</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2014/05/04/leetcode---two-sum/">leetcode - two-sum</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2014-05-04 </span>
       
@@ -147,7 +201,7 @@
 <p>Output: index1=1, index2=2</p>
     </div>
     <div class="read-more">
-      <a href="/2014/05/04/leetcode-two-sum/" class="read-more-link">阅读更多</a>
+      <a href="/2014/05/04/leetcode---two-sum/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
@@ -167,55 +221,6 @@
     </div>
     <div class="read-more">
       <a href="/2014/02/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8Fjava%E5%AE%9E%E7%8E%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2014/02/16/tomcat-%E7%BC%96%E7%A0%81%E8%AE%BE%E5%AE%9A/">Tomcat 编码设定</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2014-02-16 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>大部分网上文章都是Connector标签里面添加 URIEncoding=&quot;utf-8&rdquo;，这种方法过于暴力。</p>
-<p>正确的做法是添加 useBodyEncodingForURI=&quot;true&rdquo;，这句的话告诉tomcat用页面的编码去处理post，推荐使用。</p>
-<p>JSP页面头</p>
-<pre><code>&lt;%@ page language=&quot;java&quot;  pageEncoding=&quot;UTF-8&quot;%&gt;
-</code></pre>
-<p>html标签的head标签里加上</p>
-<pre><code>&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
-</code></pre>
-    </div>
-    <div class="read-more">
-      <a href="/2014/02/16/tomcat-%E7%BC%96%E7%A0%81%E8%AE%BE%E5%AE%9A/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/">Eclipse中使用Maven Tomcat构建Web应用</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2014-02-08 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <h2 id="建立web应用">建立web应用</h2>
-<p>使用eclipse建立maven的web工程</p>
-<h2 id="配置web工程">配置web工程</h2>
-<p>完善目录</p>
-<p>让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。</p>
-    </div>
-    <div class="read-more">
-      <a href="/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
@@ -261,13 +266,10 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">josephpei</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -278,7 +280,10 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

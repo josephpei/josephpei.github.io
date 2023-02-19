@@ -27,7 +27,7 @@ cquery 就是 C/C&#43;&#43;/Objective-C 的 language server，VSCode, Vim, Emacs
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2018/05/04/vscode-cquery-lsp-%E5%AE%9E%E7%8E%B0-c-c-%E8%A1%A5%E5%85%A8/" />
@@ -38,7 +38,8 @@ cquery 就是 C/C&#43;&#43;/Objective-C 的 language server，VSCode, Vim, Emacs
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -48,20 +49,16 @@ cquery 就是 C/C&#43;&#43;/Objective-C 的 language server，VSCode, Vim, Emacs
 cquery 就是 C/C&#43;&#43;/Objective-C 的 language server，VSCode, Vim, Emacs 等只要安装了 lsp 插件，就可调用它来实现 C/C&#43;&#43;/Objective-C 语法补全等功能。
 下面以 Visual Studio Code 为例来实现 C/C&#43;&#43; 补全。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2018/05/04/vscode-cquery-lsp-%E5%AE%9E%E7%8E%B0-c-c-%E8%A1%A5%E5%85%A8/" />
+<meta property="og:url" content="http://josephpei.github.io/2018/05/04/vscode-cquery-lsp-%E5%AE%9E%E7%8E%B0-c-c-%E8%A1%A5%E5%85%A8/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-05-04T14:03:02+08:00" />
 <meta property="article:modified_time" content="2018-05-04T14:03:02+08:00" />
 <meta itemprop="name" content="VSCode cquery(lsp) 实现 C/C&#43;&#43; 补全">
 <meta itemprop="description" content="LSP（Language-Server-Protocol）开源的语言服务器协定，微软出品，语言服务端提供索引代码的服务，编辑器直接调用。套用官话就是，可以让不同的程序编辑器与集成开发环境（IDE）方便嵌入各种程序语言，允许开发人员在最喜爱的工具中使用各种语言来撰写程序。
 目前语言与编辑器支持情况见 https://langserver.org/
 cquery 就是 C/C&#43;&#43;/Objective-C 的 language server，VSCode, Vim, Emacs 等只要安装了 lsp 插件，就可调用它来实现 C/C&#43;&#43;/Objective-C 语法补全等功能。
-下面以 Visual Studio Code 为例来实现 C/C&#43;&#43; 补全。">
-<meta itemprop="datePublished" content="2018-05-04T14:03:02&#43;08:00" />
-<meta itemprop="dateModified" content="2018-05-04T14:03:02&#43;08:00" />
+下面以 Visual Studio Code 为例来实现 C/C&#43;&#43; 补全。"><meta itemprop="datePublished" content="2018-05-04T14:03:02+08:00" />
+<meta itemprop="dateModified" content="2018-05-04T14:03:02+08:00" />
 <meta itemprop="wordCount" content="428">
-
-
-
 <meta itemprop="keywords" content="lsp,editor," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="VSCode cquery(lsp) 实现 C/C&#43;&#43; 补全"/>
 <meta name="twitter:description" content="LSP（Language-Server-Protocol）开源的语言服务器协定，微软出品，语言服务端提供索引代码的服务，编辑器直接调用。套用官话就是，可以让不同的程序编辑器与集成开发环境（IDE）方便嵌入各种程序语言，允许开发人员在最喜爱的工具中使用各种语言来撰写程序。
@@ -102,12 +99,21 @@ cquery 就是 C/C&#43;&#43;/Objective-C 的 language server，VSCode, Vim, Emacs
         <li class="mobile-menu-item">Categories</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Wolfsky</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -122,6 +128,7 @@ cquery 就是 C/C&#43;&#43;/Objective-C 的 language server，VSCode, Vim, Emacs
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -159,55 +166,55 @@ cquery 就是 C/C&#43;&#43;/Objective-C 的 language server，VSCode, Vim, Emacs
 <h2 id="build-cquery">build cquery</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/cquery-project/cquery --single-branch --depth<span class="o">=</span><span class="m">1</span>
-<span class="nb">cd</span> cquery
-git submodule update --init <span class="o">&amp;&amp;</span> ./waf configure build
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/cquery-project/cquery --single-branch --depth<span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> cquery
+</span></span><span class="line"><span class="cl">git submodule update --init <span class="o">&amp;&amp;</span> ./waf configure build
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="vscode-配置">VSCode 配置</h2>
 <p>首先在插件商店安装 cquery 插件，用户配置中加入以下配置：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&#34;cquery.launch.workingDirectory&#34;</span><span class="p">:</span> <span class="s2">&#34;/YOUR_PATH_TO/cquery/build&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;cquery.launch.command&#34;</span><span class="p">:</span> <span class="s2">&#34;release/bin/cquery&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;cquery.cacheDirectory&#34;</span><span class="p">:</span> <span class="s2">&#34;/tmp/vscode-cquery&#34;</span><span class="p">,</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;cquery.launch.workingDirectory&#34;</span><span class="p">:</span> <span class="s2">&#34;/YOUR_PATH_TO/cquery/build&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;cquery.launch.command&#34;</span><span class="p">:</span> <span class="s2">&#34;release/bin/cquery&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;cquery.cacheDirectory&#34;</span><span class="p">:</span> <span class="s2">&#34;/tmp/vscode-cquery&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="项目编译选项配置">项目编译选项配置</h2>
 <p>推荐 <a href="https://github.com/cquery-project/cquery/wiki/compile_commands.json">compile_commands.json</a></p>
 <p>例如，如果使用 CMake，用以下命令生成 <code>compile_commands.json</code> 文件。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">CMake
-mkdir build
-<span class="o">(</span><span class="nb">cd</span> build<span class="p">;</span> cmake -DCMAKE_EXPORT_COMPILE_COMMANDS<span class="o">=</span>YES ..<span class="o">)</span>
-ln -s build/compile_commands.json
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">CMake
+</span></span><span class="line"><span class="cl">mkdir build
+</span></span><span class="line"><span class="cl"><span class="o">(</span><span class="nb">cd</span> build<span class="p">;</span> cmake -DCMAKE_EXPORT_COMPILE_COMMANDS<span class="o">=</span>YES ..<span class="o">)</span>
+</span></span><span class="line"><span class="cl">ln -s build/compile_commands.json
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>或者新建一个 <code>.cquery</code> 文件，内容示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -218,16 +225,16 @@ ln -s build/compile_commands.json
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">%clang
-%c -std=gnu11
-%cpp -std=gnu++14
--pthread
-
-# Includes
--I/work/cquery/third_party
--I/work/cquery/another_third_party
-# -I space_is_not_allowed
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">%clang
+</span></span><span class="line"><span class="cl">%c -std=gnu11
+</span></span><span class="line"><span class="cl">%cpp -std=gnu++14
+</span></span><span class="line"><span class="cl">-pthread
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Includes
+</span></span><span class="line"><span class="cl">-I/work/cquery/third_party
+</span></span><span class="line"><span class="cl">-I/work/cquery/another_third_party
+</span></span><span class="line"><span class="cl"># -I space_is_not_allowed
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>最终效果</p>
 <p><img src="/img/vscode_cquery.png" alt="vscode-cquery"></p>
@@ -314,13 +321,10 @@ ln -s build/compile_commands.json
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">josephpei</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -331,7 +335,10 @@ ln -s build/compile_commands.json
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

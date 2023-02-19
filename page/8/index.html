@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/" />
@@ -36,7 +36,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -44,7 +45,6 @@
 <meta property="og:description" content="常无事，痛饮酒，熟读离骚" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://josephpei.github.io/" />
-<meta property="og:updated_time" content="2020-02-01T14:53:46+08:00" />
 <meta itemprop="name" content="有翅膀的天狼">
 <meta itemprop="description" content="常无事，痛饮酒，熟读离骚"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="有翅膀的天狼"/>
@@ -83,12 +83,21 @@
         <li class="mobile-menu-item">Categories</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Wolfsky</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -103,12 +112,56 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2013/12/23/minmaxheap-%E6%9C%80%E5%B0%8F%E6%9C%80%E5%A4%A7%E5%A0%86/">MinMaxHeap 最小最大堆</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2013-12-23 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>MinMaxHeap，最小最大堆，或称双端优先队列，提供操作</p>
+<ul>
+<li>插入一个数</li>
+<li>取出最小值</li>
+<li>取出最大值</li>
+</ul>
+    </div>
+    <div class="read-more">
+      <a href="/2013/12/23/minmaxheap-%E6%9C%80%E5%B0%8F%E6%9C%80%E5%A4%A7%E5%A0%86/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2013/12/20/%E7%AE%97%E6%B3%95%E7%BA%BF%E6%AE%B5%E6%A0%91/">算法：线段树</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2013-12-20 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>线段树 Interval Tree，又称区间树 Segment Tree，其中每一个非叶子节点[a,b]，它的左儿子表示的区间为[a,(a+b)/2]，右儿子表示的区间为[(a+b)/2+1,b]。因此线段树是平衡二叉树，最后的子节点数目为N，即整个线段区间的长度。，因而常用于解决数列维护问题，它基本能保证每个操作的复杂度为O(lgN)。</p>
+    </div>
+    <div class="read-more">
+      <a href="/2013/12/20/%E7%AE%97%E6%B3%95%E7%BA%BF%E6%AE%B5%E6%A0%91/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2013/12/20/poj-2388-%E5%AF%BB%E6%89%BE%E4%B8%AD%E4%BD%8D%E6%95%B0/">poj 2388 寻找中位数</a></h1>
@@ -168,46 +221,6 @@
   </div>
 </article>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2013/12/05/windows-cmd%E6%9B%BF%E4%BB%A3/">Windows CMD替代</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2013-12-05 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <h2 id="console2">Console2</h2>
-<p>官网：<a href="http://sourceforge.net/projects/console/">http://sourceforge.net/projects/console/</a></p>
-<p>中文输入支持：<a href="https://github.com/autosquid/Console2-Chinese-Input-Capable">https://github.com/autosquid/Console2-Chinese-Input-Capable</a></p>
-    </div>
-    <div class="read-more">
-      <a href="/2013/12/05/windows-cmd%E6%9B%BF%E4%BB%A3/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2013/12/02/poj-3630-phone-list/">poj 3630 phone list</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2013-12-02 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>方法一、先排序，前缀子串肯定是与父串挨着的</p>
-    </div>
-    <div class="read-more">
-      <a href="/2013/12/02/poj-3630-phone-list/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
     </section>
   
   <nav class="pagination">
@@ -249,13 +262,10 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">josephpei</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -266,7 +276,10 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

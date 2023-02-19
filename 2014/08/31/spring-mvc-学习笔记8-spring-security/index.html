@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/08/31/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-spring-security/" />
@@ -35,24 +35,21 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Spring MVC 学习笔记8 Spring Security" />
 <meta property="og:description" content="Spring Security 是为基于 Spring 的应用程序提供声明式安全保护的安全性框架，基于 Spring AOP 和 Servlet 过滤器实现，能够在 Web 请求级别和方法调用级别处理身份验证和授权。它使用 Servlet 过滤器保护 Web 请求和限制 URL 级别的访问，也可以使用 Spring AOP 保护方法调用——借助于对象代理和使用通知，能够确保只有具备适当权限的用户才能访问安全保护的方法。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2014/08/31/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-spring-security/" />
+<meta property="og:url" content="http://josephpei.github.io/2014/08/31/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-spring-security/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2014-08-31T09:23:35+08:00" />
 <meta property="article:modified_time" content="2014-08-31T09:23:35+08:00" />
 <meta itemprop="name" content="Spring MVC 学习笔记8 Spring Security">
-<meta itemprop="description" content="Spring Security 是为基于 Spring 的应用程序提供声明式安全保护的安全性框架，基于 Spring AOP 和 Servlet 过滤器实现，能够在 Web 请求级别和方法调用级别处理身份验证和授权。它使用 Servlet 过滤器保护 Web 请求和限制 URL 级别的访问，也可以使用 Spring AOP 保护方法调用——借助于对象代理和使用通知，能够确保只有具备适当权限的用户才能访问安全保护的方法。">
-<meta itemprop="datePublished" content="2014-08-31T09:23:35&#43;08:00" />
-<meta itemprop="dateModified" content="2014-08-31T09:23:35&#43;08:00" />
+<meta itemprop="description" content="Spring Security 是为基于 Spring 的应用程序提供声明式安全保护的安全性框架，基于 Spring AOP 和 Servlet 过滤器实现，能够在 Web 请求级别和方法调用级别处理身份验证和授权。它使用 Servlet 过滤器保护 Web 请求和限制 URL 级别的访问，也可以使用 Spring AOP 保护方法调用——借助于对象代理和使用通知，能够确保只有具备适当权限的用户才能访问安全保护的方法。"><meta itemprop="datePublished" content="2014-08-31T09:23:35+08:00" />
+<meta itemprop="dateModified" content="2014-08-31T09:23:35+08:00" />
 <meta itemprop="wordCount" content="655">
-
-
-
 <meta itemprop="keywords" content="SpringMVC," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Spring MVC 学习笔记8 Spring Security"/>
 <meta name="twitter:description" content="Spring Security 是为基于 Spring 的应用程序提供声明式安全保护的安全性框架，基于 Spring AOP 和 Servlet 过滤器实现，能够在 Web 请求级别和方法调用级别处理身份验证和授权。它使用 Servlet 过滤器保护 Web 请求和限制 URL 级别的访问，也可以使用 Spring AOP 保护方法调用——借助于对象代理和使用通知，能够确保只有具备适当权限的用户才能访问安全保护的方法。"/>
@@ -90,12 +87,21 @@
         <li class="mobile-menu-item">Categories</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Wolfsky</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -110,6 +116,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -138,7 +145,7 @@
 <p>web.xml</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -149,21 +156,21 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;filter</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;filter-name</span><span class="nt">&gt;</span>springSecurityFilterChain<span class="nt">&lt;/filter-name&gt;</span>
-    <span class="nt">&lt;filter-class</span><span class="nt">&gt;</span>org.springframework.web.filter.DelegatingFilterProxy<span class="nt">&lt;/filter-class&gt;</span>
-<span class="nt">&lt;/filter&gt;</span>
-
-<span class="nt">&lt;filter-mapping</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;filter-name</span><span class="nt">&gt;</span>springSecurityFilterChain<span class="nt">&lt;/filter-name&gt;</span>
-    <span class="nt">&lt;url-pattern</span><span class="nt">&gt;</span>/*<span class="nt">&lt;/url-pattern&gt;</span>
-<span class="nt">&lt;/filter-mapping&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;filter&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;filter-name&gt;</span>springSecurityFilterChain<span class="nt">&lt;/filter-name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;filter-class&gt;</span>org.springframework.web.filter.DelegatingFilterProxy<span class="nt">&lt;/filter-class&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/filter&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;filter-mapping&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;filter-name&gt;</span>springSecurityFilterChain<span class="nt">&lt;/filter-name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;url-pattern&gt;</span>/*<span class="nt">&lt;/url-pattern&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/filter-mapping&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>security.xml</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -202,49 +209,49 @@
 </span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
-<span class="nt">&lt;beans:beans</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.springframework.org/schema/security&#34;</span>
-             <span class="na">xmlns:beans=</span><span class="s">&#34;http://www.springframework.org/schema/beans&#34;</span>
-             <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
-             <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://www.springframework.org/schema/beans
-</span><span class="s">           http://www.springframework.org/schema/beans/spring-beans.xsd
-</span><span class="s">           http://www.springframework.org/schema/security
-</span><span class="s">           http://www.springframework.org/schema/security/spring-security.xsd&#34;</span><span class="nt">&gt;</span>
-
-    <span class="nt">&lt;global-method-security</span> <span class="na">pre-post-annotations=</span><span class="s">&#34;enabled&#34;</span><span class="nt">/&gt;</span>
-
-    <span class="nt">&lt;http</span> <span class="na">auto-config=</span><span class="s">&#34;false&#34;</span> <span class="na">use-expressions=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;intercept-url</span> <span class="na">pattern=</span><span class="s">&#34;/u**&#34;</span> <span class="na">access=</span><span class="s">&#34;hasRole(&#39;ROLE_USER&#39;)&#34;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;intercept-url</span> <span class="na">pattern=</span><span class="s">&#34;/u/**&#34;</span> <span class="na">access=</span><span class="s">&#34;hasRole(&#39;ROLE_USER&#39;)&#34;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;intercept-url</span> <span class="na">pattern=</span><span class="s">&#34;/admin**&#34;</span> <span class="na">access=</span><span class="s">&#34;hasRole(&#39;ROLE_ADMIN&#39;)&#34;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;form-login</span> <span class="na">login-page=</span><span class="s">&#34;/index&#34;</span> <span class="na">default-target-url=</span><span class="s">&#34;/userhome&#34;</span> <span class="na">authentication-failure-url=</span><span class="s">&#34;/index?error=true&#34;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;logout</span> <span class="na">logout-url=</span><span class="s">&#34;/logout&#34;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/http&gt;</span>
-
-    <span class="nt">&lt;authentication-manager</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;authentication-provider</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;password-encoder</span> <span class="na">hash=</span><span class="s">&#34;bcrypt&#34;</span><span class="nt">/&gt;</span>
-
-            <span class="nt">&lt;jdbc-user-service</span> <span class="na">data-source-ref=</span><span class="s">&#34;dataSource&#34;</span>
-                <span class="na">authorities-by-username-query=</span><span class="s">&#34;select user_tbl.user_name, role_tbl.name from user_tbl
-</span><span class="s">										join user_tbl_role_tbl on user_tbl.user_id=user_tbl_role_tbl.users_user_id
-</span><span class="s">										join role_tbl on user_tbl_role_tbl.roles_role_id = role_tbl.role_id
-</span><span class="s">										where user_tbl.user_name = ?&#34;</span>
-                <span class="na">users-by-username-query=</span><span class="s">&#34;select user_name, password, true from user_tbl where user_name = ?&#34;</span> <span class="nt">/&gt;</span>
-
-                <span class="c">&lt;!--</span><span class="c">&lt;user</span><span class="c">-</span><span class="c">service&gt;</span><span class="c">--&gt;</span>
-                    <span class="c">&lt;!--</span><span class="c">&lt;user name=&#34;admin&#34; password=&#34;admin&#34; authorities=&#34;ROLE_USER, ROLE_ADMIN&#34; /&gt;</span><span class="c">--&gt;</span>
-                <span class="c">&lt;!--</span><span class="c">&lt;/user</span><span class="c">-</span><span class="c">service&gt;</span><span class="c">--&gt;</span>
-        <span class="nt">&lt;/authentication-provider&gt;</span>
-    <span class="nt">&lt;/authentication-manager&gt;</span>
-
-<span class="nt">&lt;/beans:beans&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;beans:beans</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.springframework.org/schema/security&#34;</span>
+</span></span><span class="line"><span class="cl">             <span class="na">xmlns:beans=</span><span class="s">&#34;http://www.springframework.org/schema/beans&#34;</span>
+</span></span><span class="line"><span class="cl">             <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span class="line"><span class="cl">             <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://www.springframework.org/schema/beans
+</span></span></span><span class="line"><span class="cl"><span class="s">           http://www.springframework.org/schema/beans/spring-beans.xsd
+</span></span></span><span class="line"><span class="cl"><span class="s">           http://www.springframework.org/schema/security
+</span></span></span><span class="line"><span class="cl"><span class="s">           http://www.springframework.org/schema/security/spring-security.xsd&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;global-method-security</span> <span class="na">pre-post-annotations=</span><span class="s">&#34;enabled&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;http</span> <span class="na">auto-config=</span><span class="s">&#34;false&#34;</span> <span class="na">use-expressions=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;intercept-url</span> <span class="na">pattern=</span><span class="s">&#34;/u**&#34;</span> <span class="na">access=</span><span class="s">&#34;hasRole(&#39;ROLE_USER&#39;)&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;intercept-url</span> <span class="na">pattern=</span><span class="s">&#34;/u/**&#34;</span> <span class="na">access=</span><span class="s">&#34;hasRole(&#39;ROLE_USER&#39;)&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;intercept-url</span> <span class="na">pattern=</span><span class="s">&#34;/admin**&#34;</span> <span class="na">access=</span><span class="s">&#34;hasRole(&#39;ROLE_ADMIN&#39;)&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;form-login</span> <span class="na">login-page=</span><span class="s">&#34;/index&#34;</span> <span class="na">default-target-url=</span><span class="s">&#34;/userhome&#34;</span> <span class="na">authentication-failure-url=</span><span class="s">&#34;/index?error=true&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;logout</span> <span class="na">logout-url=</span><span class="s">&#34;/logout&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/http&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;authentication-manager&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;authentication-provider&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;password-encoder</span> <span class="na">hash=</span><span class="s">&#34;bcrypt&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;jdbc-user-service</span> <span class="na">data-source-ref=</span><span class="s">&#34;dataSource&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="na">authorities-by-username-query=</span><span class="s">&#34;select user_tbl.user_name, role_tbl.name from user_tbl
+</span></span></span><span class="line"><span class="cl"><span class="s">										join user_tbl_role_tbl on user_tbl.user_id=user_tbl_role_tbl.users_user_id
+</span></span></span><span class="line"><span class="cl"><span class="s">										join role_tbl on user_tbl_role_tbl.roles_role_id = role_tbl.role_id
+</span></span></span><span class="line"><span class="cl"><span class="s">										where user_tbl.user_name = ?&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="na">users-by-username-query=</span><span class="s">&#34;select user_name, password, true from user_tbl where user_name = ?&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="c">&lt;!--&lt;user-service&gt;--&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="c">&lt;!--&lt;user name=&#34;admin&#34; password=&#34;admin&#34; authorities=&#34;ROLE_USER, ROLE_ADMIN&#34; /&gt;--&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="c">&lt;!--&lt;/user-service&gt;--&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/authentication-provider&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/authentication-manager&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/beans:beans&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>User.java, Role.java</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -289,55 +296,55 @@
 </span><span class="lnt">43
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Entity</span>
-<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_tbl&#34;</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="n">Serializable</span><span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="n">1L</span><span class="o">;</span>
-
-    <span class="nd">@Id</span>
-    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_id&#34;</span><span class="o">)</span>
-    <span class="nd">@GeneratedValue</span>
-    <span class="kd">private</span> <span class="n">Long</span> <span class="n">userId</span><span class="o">;</span>
-
-    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_name&#34;</span><span class="o">)</span>
-    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="n">3</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">userName</span><span class="o">;</span>
-
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">fullname</span><span class="o">;</span>
-
-    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="n">1</span><span class="o">)</span>
-    <span class="nd">@Email</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">email</span><span class="o">;</span>
-
-    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="n">3</span><span class="o">)</span>
-    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">password</span><span class="o">;</span>
-
-    <span class="nd">@ManyToMany</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="n">FetchType</span><span class="o">.</span><span class="na">EAGER</span><span class="o">)</span>
-    <span class="nd">@JoinTable</span>
-    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Role</span><span class="o">&gt;</span> <span class="n">roles</span><span class="o">;</span>
-<span class="o">}</span>
-
-<span class="nd">@Entity</span>
-<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;role_tbl&#34;</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Role</span> <span class="o">{</span>
-
-    <span class="nd">@Id</span>
-    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;role_id&#34;</span><span class="o">)</span>
-    <span class="nd">@GeneratedValue</span>
-    <span class="kd">private</span> <span class="n">Long</span> <span class="n">userId</span><span class="o">;</span>
-
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-
-    <span class="nd">@ManyToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">&#34;roles&#34;</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Entity</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_tbl&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="n">Serializable</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Id</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_id&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@GeneratedValue</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Long</span> <span class="n">userId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_name&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="mi">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">userName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">fullname</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Email</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">email</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="mi">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">password</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@ManyToMany</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="n">FetchType</span><span class="o">.</span><span class="na">EAGER</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@JoinTable</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Role</span><span class="o">&gt;</span> <span class="n">roles</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Entity</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;role_tbl&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Role</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Id</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;role_id&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@GeneratedValue</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Long</span> <span class="n">userId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@ManyToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">&#34;roles&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>HomeController.java</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -371,45 +378,45 @@
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Controller</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HomeController</span> <span class="o">{</span>
-    <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="o">(</span><span class="n">Logger</span><span class="o">)</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">HomeController</span><span class="o">.</span><span class="na">class</span><span class="o">)</span><span class="o">;</span>
-
-    <span class="nd">@Autowired</span>
-    <span class="kd">private</span> <span class="n">HibUserService</span> <span class="n">hibUserService</span><span class="o">;</span>
-
-    <span class="nd">@Autowired</span>
-    <span class="kd">private</span> <span class="n">HibSpittleService</span> <span class="n">hibSpittleService</span><span class="o">;</span>
-
-    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;index&#34;</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">login</span><span class="o">(</span><span class="n">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">Spittle</span><span class="o">&gt;</span> <span class="n">spittleList</span> <span class="o">=</span> <span class="n">hibSpittleService</span><span class="o">.</span><span class="na">getRecentSpittles</span><span class="o">(</span><span class="n">5</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">&#34;spittleList&#34;</span><span class="o">,</span> <span class="n">spittleList</span><span class="o">)</span><span class="o">;</span>
-
-        <span class="k">return</span> <span class="s">&#34;index&#34;</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;userhome&#34;</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">loginSuccess</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">Principal</span> <span class="n">principal</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="n">principal</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">hibUserService</span><span class="o">.</span><span class="na">findUserByName</span><span class="o">(</span><span class="n">username</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">user</span><span class="o">.</span><span class="na">setLastIp</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getRemoteAddr</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">user</span><span class="o">.</span><span class="na">setLastVisit</span><span class="o">(</span><span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">Timestamp</span><span class="o">(</span><span class="o">(</span><span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Date</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">.</span><span class="na">getTime</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">hibUserService</span><span class="o">.</span><span class="na">loginSuccess</span><span class="o">(</span><span class="n">user</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">request</span><span class="o">.</span><span class="na">getSession</span><span class="o">(</span><span class="o">)</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&#34;currentUser&#34;</span><span class="o">,</span> <span class="n">user</span><span class="o">)</span><span class="o">;</span>
-
-        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;User id: &#34;</span> <span class="o">+</span> <span class="n">user</span><span class="o">.</span><span class="na">getUserId</span><span class="o">(</span><span class="o">)</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
-
-        <span class="k">return</span> <span class="s">&#34;redirect:u/&#34;</span> <span class="o">+</span> <span class="n">username</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Controller</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HomeController</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="o">(</span><span class="n">Logger</span><span class="o">)</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">HomeController</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">HibUserService</span> <span class="n">hibUserService</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">HibSpittleService</span> <span class="n">hibSpittleService</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;index&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">login</span><span class="o">(</span><span class="n">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">Spittle</span><span class="o">&gt;</span> <span class="n">spittleList</span> <span class="o">=</span> <span class="n">hibSpittleService</span><span class="o">.</span><span class="na">getRecentSpittles</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">&#34;spittleList&#34;</span><span class="o">,</span> <span class="n">spittleList</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;index&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;userhome&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">loginSuccess</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">Principal</span> <span class="n">principal</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="n">principal</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">hibUserService</span><span class="o">.</span><span class="na">findUserByName</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">user</span><span class="o">.</span><span class="na">setLastIp</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getRemoteAddr</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">user</span><span class="o">.</span><span class="na">setLastVisit</span><span class="o">(</span><span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">Timestamp</span><span class="o">((</span><span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Date</span><span class="o">()).</span><span class="na">getTime</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hibUserService</span><span class="o">.</span><span class="na">loginSuccess</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">request</span><span class="o">.</span><span class="na">getSession</span><span class="o">().</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&#34;currentUser&#34;</span><span class="o">,</span> <span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;User id: &#34;</span> <span class="o">+</span> <span class="n">user</span><span class="o">.</span><span class="na">getUserId</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;redirect:u/&#34;</span> <span class="o">+</span> <span class="n">username</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>现在不登录访问 /u, /admin url 路径，都会跳到首页。</p>
 <p>实现一个 Spittle 只有管理员和其作者才可以删除，在 Service 类上应用方法级安全措施</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -423,25 +430,25 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HibSpittleService</span> <span class="o">{</span>
-    <span class="nd">@Autowired</span>
-    <span class="kd">private</span> <span class="n">HibSpittleDao</span> <span class="n">hibSpittleDao</span><span class="o">;</span>
-    <span class="c1">//...
-</span><span class="c1"></span>
-    <span class="nd">@Transactional</span>
-    <span class="nd">@PreAuthorize</span><span class="o">(</span><span class="s">&#34;#spittle.user.userName == authentication.name or hasRole(&#39;ROLE_ADMIN&#39;)&#34;</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">delete</span><span class="o">(</span><span class="nd">@P</span><span class="o">(</span><span class="s">&#34;spittle&#34;</span><span class="o">)</span> <span class="n">Spittle</span> <span class="n">spittle</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">hibSpittleDao</span><span class="o">.</span><span class="na">delSpittle</span><span class="o">(</span><span class="n">spittle</span><span class="o">)</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Service</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HibSpittleService</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">HibSpittleDao</span> <span class="n">hibSpittleDao</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Transactional</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@PreAuthorize</span><span class="o">(</span><span class="s">&#34;#spittle.user.userName == authentication.name or hasRole(&#39;ROLE_ADMIN&#39;)&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">delete</span><span class="o">(</span><span class="nd">@P</span><span class="o">(</span><span class="s">&#34;spittle&#34;</span><span class="o">)</span> <span class="n">Spittle</span> <span class="n">spittle</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hibSpittleDao</span><span class="o">.</span><span class="na">delSpittle</span><span class="o">(</span><span class="n">spittle</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在与 AJAX 技术结合时，如果出现 Could not write JSON: failed to lazily initialize a collection of role，参考</p>
 <p><a href="https://github.com/FasterXML/jackson-datatype-hibernate">https://github.com/FasterXML/jackson-datatype-hibernate</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -457,21 +464,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">com.fasterxml.jackson.databind.ObjectMapper</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.databind.SerializationFeature</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HibernateAwareObjectMapper</span> <span class="kd">extends</span> <span class="n">ObjectMapper</span> <span class="o">{</span>
-
-    <span class="kd">public</span> <span class="nf">HibernateAwareObjectMapper</span><span class="o">(</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">Hibernate4Module</span> <span class="n">hm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Hibernate4Module</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">hm</span><span class="o">.</span><span class="na">configure</span><span class="o">(</span><span class="n">Hibernate4Module</span><span class="o">.</span><span class="na">Feature</span><span class="o">.</span><span class="na">FORCE_LAZY_LOADING</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">registerModule</span><span class="o">(</span><span class="n">hm</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">configure</span><span class="o">(</span><span class="n">SerializationFeature</span><span class="o">.</span><span class="na">INDENT_OUTPUT</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span><span class="o">;</span>
-    <span class="o">}</span>
-
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">com.fasterxml.jackson.databind.ObjectMapper</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">com.fasterxml.jackson.databind.SerializationFeature</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HibernateAwareObjectMapper</span> <span class="kd">extends</span> <span class="n">ObjectMapper</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">HibernateAwareObjectMapper</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Hibernate4Module</span> <span class="n">hm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Hibernate4Module</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hm</span><span class="o">.</span><span class="na">configure</span><span class="o">(</span><span class="n">Hibernate4Module</span><span class="o">.</span><span class="na">Feature</span><span class="o">.</span><span class="na">FORCE_LAZY_LOADING</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">registerModule</span><span class="o">(</span><span class="n">hm</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">configure</span><span class="o">(</span><span class="n">SerializationFeature</span><span class="o">.</span><span class="na">INDENT_OUTPUT</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -555,13 +562,10 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">josephpei</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -572,7 +576,10 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

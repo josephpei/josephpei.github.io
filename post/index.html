@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/post/" />
@@ -36,7 +36,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -44,7 +45,6 @@
 <meta property="og:description" content="常无事，痛饮酒，熟读离骚" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://josephpei.github.io/post/" />
-<meta property="og:updated_time" content="2020-02-01T14:53:46+08:00" />
 <meta itemprop="name" content="Posts">
 <meta itemprop="description" content="常无事，痛饮酒，熟读离骚"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Posts"/>
@@ -83,12 +83,21 @@
         <li class="mobile-menu-item">Categories</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Wolfsky</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -103,6 +112,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -110,6 +120,34 @@
         <div id="content" class="content">
           
 <section id="archive" class="archive">
+      <div class="collection-title">
+        <h2 class="archive-year">2023</h2>
+      </div>
+
+    <div class="archive-post">
+      <span class="archive-post-time">
+        02-19
+      </span>
+      <span class="archive-post-title">
+        <a href="/2023/02/19/homebrew-deprecate-git-speed-up/" class="archive-post-link">
+          Homebrew Deprecate Git, Speed Up
+        </a>
+      </span>
+    </div>
+      <div class="collection-title">
+        <h2 class="archive-year">2021</h2>
+      </div>
+
+    <div class="archive-post">
+      <span class="archive-post-time">
+        06-23
+      </span>
+      <span class="archive-post-title">
+        <a href="/2021/06/23/django-celery-%E6%95%B4%E5%90%88%E8%AF%A6%E8%A7%A3/" class="archive-post-link">
+          Django Celery 整合详解
+        </a>
+      </span>
+    </div>
       <div class="collection-title">
         <h2 class="archive-year">2020</h2>
       </div>
@@ -146,31 +184,6 @@
       <span class="archive-post-title">
         <a href="/2019/12/29/leetcode-49-group-anagrams-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/" class="archive-post-link">
           Leetcode 49 Group Anagrams 字母异位词分组
-        </a>
-      </span>
-    </div>
-
-    <div class="archive-post">
-      <span class="archive-post-time">
-        03-11
-      </span>
-      <span class="archive-post-title">
-        <a href="/2019/03/11/%E8%BF%81%E7%A7%BBhexo%E5%88%B0hugo/" class="archive-post-link">
-          迁移Hexo到Hugo
-        </a>
-      </span>
-    </div>
-      <div class="collection-title">
-        <h2 class="archive-year">2018</h2>
-      </div>
-
-    <div class="archive-post">
-      <span class="archive-post-time">
-        11-08
-      </span>
-      <span class="archive-post-title">
-        <a href="/2018/11/08/ubuntu-18-04-%E4%BF%AE%E5%A4%8D%E4%B8%8E-windows-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%8F%8A%E6%89%93%E5%8D%B0%E6%9C%BA/" class="archive-post-link">
-          Ubuntu 18.04 修复与 Windows 共享文件及打印机
         </a>
       </span>
     </div></section>
@@ -211,13 +224,10 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">josephpei</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -228,7 +238,10 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

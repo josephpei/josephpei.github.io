@@ -27,7 +27,7 @@ n：第1个到第n个物品要放进背包内。 w：背包负重上限。 c(n, 
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/08/06/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-dp-%E5%BA%94%E7%94%A8%E4%B9%8B-01-%E8%83%8C%E5%8C%85/" />
@@ -38,7 +38,8 @@ n：第1个到第n个物品要放进背包内。 w：背包负重上限。 c(n, 
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -54,7 +55,7 @@ c(n, w)：第1个到第n个物品尽量塞进负重限制为w的背包时，最�
 W[n]：第n个物品的重量。
 C[n]：第n个物品的价值。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2014/08/06/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-dp-%E5%BA%94%E7%94%A8%E4%B9%8B-01-%E8%83%8C%E5%8C%85/" />
+<meta property="og:url" content="http://josephpei.github.io/2014/08/06/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-dp-%E5%BA%94%E7%94%A8%E4%B9%8B-01-%E8%83%8C%E5%8C%85/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2014-08-06T10:21:29+08:00" />
 <meta property="article:modified_time" content="2014-08-06T10:21:29+08:00" />
 <meta itemprop="name" content="动态规划 DP 应用之 01 背包">
@@ -67,13 +68,9 @@ n：第1个到第n个物品要放进背包内。
 w：背包负重上限。
 c(n, w)：第1个到第n个物品尽量塞进负重限制为w的背包时，最大价值。
 W[n]：第n个物品的重量。
-C[n]：第n个物品的价值。">
-<meta itemprop="datePublished" content="2014-08-06T10:21:29&#43;08:00" />
-<meta itemprop="dateModified" content="2014-08-06T10:21:29&#43;08:00" />
+C[n]：第n个物品的价值。"><meta itemprop="datePublished" content="2014-08-06T10:21:29+08:00" />
+<meta itemprop="dateModified" content="2014-08-06T10:21:29+08:00" />
 <meta itemprop="wordCount" content="782">
-
-
-
 <meta itemprop="keywords" content="algorithm," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="动态规划 DP 应用之 01 背包"/>
 <meta name="twitter:description" content="问题描述：n 个不同的物品，每个物品只有一个，有价值 value 和重量 weight 两个属性；背包容量 w。求背包所能容纳的最大价值。
@@ -120,12 +117,21 @@ C[n]：第n个物品的价值。"/>
         <li class="mobile-menu-item">Categories</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Wolfsky</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -140,6 +146,7 @@ C[n]：第n个物品的价值。"/>
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -184,7 +191,7 @@ C[n]：第n个物品的价值。</p>
 <p>Bottom UP 递推</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -211,37 +218,37 @@ C[n]：第n个物品的价值。</p>
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// 物品总数上限
-</span><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">MaxN</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
- 
-<span class="c1">// 背包负重上限
-</span><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">MaxW</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">;</span>
- 
-<span class="c1">// 物品
-</span><span class="c1"></span><span class="k">struct</span> <span class="nc">Item</span> <span class="p">{</span><span class="kt">int</span> <span class="n">cost</span><span class="p">,</span> <span class="n">weight</span><span class="p">;</span><span class="p">}</span> <span class="n">items</span><span class="p">[</span><span class="n">MaxN</span><span class="p">]</span><span class="p">;</span>
- 
-<span class="c1">// DP矩阵
-</span><span class="c1"></span><span class="kt">int</span> <span class="n">c</span><span class="p">[</span><span class="n">MaxN</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="p">[</span><span class="n">MaxW</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="p">;</span>
- 
-<span class="kt">void</span> <span class="nf">knapsack</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">)</span>             <span class="c1">// n 为物品数，w 为背包负重上限
-</span><span class="c1"></span><span class="p">{</span>
-    <span class="n">memset</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
- 
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">+</span><span class="o">+</span><span class="n">i</span><span class="p">)</span>         <span class="c1">// 每个物品都试试看
-</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">w</span><span class="p">;</span> <span class="o">+</span><span class="o">+</span><span class="n">j</span><span class="p">)</span>    <span class="c1">// 每个重量都试试看
-</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">.</span><span class="n">weight</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-                <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">;</span>    <span class="c1">// 放不下
-</span><span class="c1"></span>            <span class="k">else</span>
-                <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">,</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">.</span><span class="n">weight</span><span class="p">]</span> <span class="o">+</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">.</span><span class="n">value</span> <span class="p">)</span><span class="p">;</span>
- 
-    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Max Value: </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">c</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 物品总数上限
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">MaxN</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">// 背包负重上限
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="n">MaxW</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">// 物品
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">Item</span> <span class="p">{</span><span class="kt">int</span> <span class="n">cost</span><span class="p">,</span> <span class="n">weight</span><span class="p">;}</span> <span class="n">items</span><span class="p">[</span><span class="n">MaxN</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">// DP矩阵
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">c</span><span class="p">[</span><span class="n">MaxN</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">MaxW</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">knapsack</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">)</span>             <span class="c1">// n 为物品数，w 为背包负重上限
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">memset</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">c</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>         <span class="c1">// 每个物品都试试看
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">w</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>    <span class="c1">// 每个重量都试试看
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>    <span class="c1">// 放不下
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span><span class="p">]</span> <span class="o">+</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">value</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Max Value: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">w</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Top Down 递归</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -255,25 +262,25 @@ C[n]：第n个物品的价值。</p>
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">knapsack</span><span class="p">(</span><span class="kt">int</span> <span class="n">W</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">space</span><span class="p">,</span> <span class="n">max</span><span class="p">,</span> <span class="n">maxi</span><span class="p">,</span> <span class="n">t</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">maxKnow</span><span class="p">[</span><span class="n">W</span><span class="p">]</span> <span class="o">!</span><span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">maxKnown</span><span class="p">[</span><span class="n">W</span><span class="p">]</span><span class="p">;</span>
-    
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="n">sapce</span> <span class="o">=</span> <span class="n">W</span> <span class="o">-</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">.</span><span class="n">weight</span><span class="p">)</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="n">t</span> <span class="o">=</span> <span class="n">knapsack</span><span class="p">(</span><span class="n">space</span><span class="p">)</span> <span class="o">+</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">.</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max</span><span class="p">)</span>
-                <span class="p">{</span> <span class="n">max</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span> <span class="n">maxi</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="p">}</span>
-    <span class="n">maxKnown</span><span class="p">[</span><span class="n">W</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">;</span> <span class="n">itemKnown</span><span class="p">[</span><span class="n">W</span><span class="p">]</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">maxi</span><span class="p">]</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">max</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">knapsack</span><span class="p">(</span><span class="kt">int</span> <span class="n">W</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">space</span><span class="p">,</span> <span class="n">max</span><span class="p">,</span> <span class="n">maxi</span><span class="p">,</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">maxKnow</span><span class="p">[</span><span class="n">W</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">maxKnown</span><span class="p">[</span><span class="n">W</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">((</span><span class="n">sapce</span> <span class="o">=</span> <span class="n">W</span> <span class="o">-</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">((</span><span class="n">t</span> <span class="o">=</span> <span class="n">knapsack</span><span class="p">(</span><span class="n">space</span><span class="p">)</span> <span class="o">+</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span> <span class="n">max</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span> <span class="n">maxi</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">maxKnown</span><span class="p">[</span><span class="n">W</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">;</span> <span class="n">itemKnown</span><span class="p">[</span><span class="n">W</span><span class="p">]</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">maxi</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">max</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="空间优化">空间优化</h2>
 <p>因为计算时只需要用到上方和左上方的格子，所以只需要一个单行数组就可以了。不过计算次序需要改为由后向前，才不会覆盖掉需要用来计算的格子。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -292,29 +299,29 @@ C[n]：第n个物品的价值。</p>
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="kt">int</span> <span class="n">MaxN</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">MaxW</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">;</span>
-<span class="k">struct</span> <span class="nc">Item</span> <span class="p">{</span><span class="kt">int</span> <span class="n">cost</span><span class="p">,</span> <span class="n">weight</span><span class="p">;</span><span class="p">}</span> <span class="n">items</span><span class="p">[</span><span class="n">MaxN</span><span class="p">]</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">c</span><span class="p">[</span><span class="n">MaxW</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="p">;</span>
- 
-<span class="kt">void</span> <span class="nf">knapsack</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">memset</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
- 
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">+</span><span class="o">+</span><span class="n">i</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">.</span><span class="n">weight</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">.</span><span class="n">cost</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">w</span><span class="p">;</span> <span class="n">j</span> <span class="o">-</span> <span class="n">weight</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">-</span><span class="o">-</span><span class="n">j</span><span class="p">)</span>
-            <span class="n">c</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span> <span class="n">c</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">,</span> <span class="n">c</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">weight</span><span class="p">]</span> <span class="o">+</span> <span class="n">cost</span> <span class="p">)</span><span class="p">;</span>
-    <span class="p">}</span>
- 
-    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Max Value: </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">c</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">MaxN</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">MaxW</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Item</span> <span class="p">{</span><span class="kt">int</span> <span class="n">cost</span><span class="p">,</span> <span class="n">weight</span><span class="p">;}</span> <span class="n">items</span><span class="p">[</span><span class="n">MaxN</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">c</span><span class="p">[</span><span class="n">MaxW</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">knapsack</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">memset</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">c</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">weight</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">cost</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">w</span><span class="p">;</span> <span class="n">j</span> <span class="o">-</span> <span class="n">weight</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">j</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span> <span class="n">c</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">weight</span><span class="p">]</span> <span class="o">+</span> <span class="n">cost</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Max Value: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="python">Python</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -346,37 +353,37 @@ C[n]：第n个物品的价值。</p>
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">def</span> <span class="nf">knapsack_iter</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">items</span><span class="p">)</span><span class="p">:</span>
-    <span class="n">A</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">W</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-
-    <span class="k">for</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
-        <span class="n">A</span><span class="p">[</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span><span class="p">]</span><span class="p">[</span><span class="p">:</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="p">]</span><span class="p">[</span><span class="p">:</span><span class="n">w</span><span class="p">]</span>
-        <span class="n">A</span><span class="p">[</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span><span class="p">]</span><span class="p">[</span><span class="n">w</span><span class="p">:</span><span class="p">]</span> <span class="o">=</span> <span class="n">maximum</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="p">]</span><span class="p">[</span><span class="n">w</span><span class="p">:</span><span class="p">]</span><span class="p">,</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="p">]</span><span class="p">[</span><span class="p">:</span><span class="n">W</span><span class="o">-</span><span class="n">w</span><span class="p">]</span> <span class="o">+</span> <span class="n">v</span><span class="p">)</span>
-        <span class="n">i</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="p">]</span><span class="p">[</span><span class="n">W</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-
-<span class="k">def</span> <span class="nf">knapsack_recur</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">items</span><span class="p">)</span><span class="p">:</span>
-    <span class="c1"># top-down solution with memoization via hashtable</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
-    <span class="n">A</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
-    <span class="k">def</span> <span class="nf">A_</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">,</span><span class="s1">&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="p">)</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span> <span class="k">return</span> <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">,</span><span class="s1">&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="p">]</span> <span class="c1"># memoization</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
-        <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">j</span><span class="o">-</span><span class="n">w</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">A_</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
-            <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">,</span><span class="s1">&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span> <span class="c1"># memoization</span>
-            <span class="k">return</span> <span class="n">result</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">A_</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span><span class="p">,</span> <span class="n">A_</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">v</span><span class="p">)</span>
-            <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">,</span><span class="s1">&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span> <span class="c1"># memoization</span>
-            <span class="k">return</span> <span class="n">result</span>
-    <span class="k">return</span> <span class="n">A_</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">W</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">knapsack_iter</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">A</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">W</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">A</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span><span class="p">][:</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="p">][:</span><span class="n">w</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">A</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span><span class="p">][</span><span class="n">w</span><span class="p">:]</span> <span class="o">=</span> <span class="n">maximum</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="p">][</span><span class="n">w</span><span class="p">:],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="p">][:</span><span class="n">W</span><span class="o">-</span><span class="n">w</span><span class="p">]</span> <span class="o">+</span> <span class="n">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="p">][</span><span class="n">W</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">knapsack_recur</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># top-down solution with memoization via hashtable</span>
+</span></span><span class="line"><span class="cl">    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">A</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">A_</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;,&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">))</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span> <span class="k">return</span> <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;,&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)]</span> <span class="c1"># memoization</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">j</span><span class="o">-</span><span class="n">w</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">result</span> <span class="o">=</span> <span class="n">A_</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;,&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">result</span> <span class="c1"># memoization</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">result</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">result</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">A_</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">A_</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">A</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;,&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">result</span> <span class="c1"># memoization</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">result</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">A_</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">W</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -460,13 +467,10 @@ C[n]：第n个物品的价值。</p>
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">josephpei</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -477,7 +481,10 @@ C[n]：第n个物品的价值。</p>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

@@ -17,14 +17,14 @@
 
 
 <meta name="author" content="josephpei" /><meta name="description" content="decorator可作用于函数和类，功能有两个：
- Call proxy Interface proxy " /><meta name="keywords" content="life, linux, program" />
+Call proxy Interface proxy " /><meta name="keywords" content="life, linux, program" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.63.1 with theme even" />
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/09/16/python-%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8decorator/" />
@@ -35,7 +35,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -46,7 +47,7 @@ Call proxy
 Interface proxy
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2013/09/16/python-%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8decorator/" />
+<meta property="og:url" content="http://josephpei.github.io/2013/09/16/python-%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8decorator/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2013-09-16T18:10:41+08:00" />
 <meta property="article:modified_time" content="2013-09-16T18:10:41+08:00" />
 <meta itemprop="name" content="Python 中的装饰器(decorator)">
@@ -54,13 +55,9 @@ Interface proxy
 
 Call proxy
 Interface proxy
-">
-<meta itemprop="datePublished" content="2013-09-16T18:10:41&#43;08:00" />
-<meta itemprop="dateModified" content="2013-09-16T18:10:41&#43;08:00" />
+"><meta itemprop="datePublished" content="2013-09-16T18:10:41+08:00" />
+<meta itemprop="dateModified" content="2013-09-16T18:10:41+08:00" />
 <meta itemprop="wordCount" content="291">
-
-
-
 <meta itemprop="keywords" content="python," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Python 中的装饰器(decorator)"/>
 <meta name="twitter:description" content="decorator可作用于函数和类，功能有两个：
@@ -102,12 +99,21 @@ Interface proxy
         <li class="mobile-menu-item">Categories</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Wolfsky</a>
 </div>
+
+
+
+
 
 <nav class="site-navbar">
   <ul id="menu" class="menu">
@@ -122,6 +128,7 @@ Interface proxy
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -161,41 +168,41 @@ Interface proxy
 <p>语法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@decorator</span>
-<span class="k">def</span> <span class="nf">F</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="p">:</span>
-    <span class="err">…</span>
-
-<span class="n">F</span><span class="p">(</span><span class="mi">99</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@decorator</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">F</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="err">…</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">F</span><span class="p">(</span><span class="mi">99</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>效果：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">F</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="p">:</span>
-    <span class="err">…</span>
-
-<span class="n">F</span> <span class="o">=</span> <span class="n">decorator</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
-<span class="n">F</span><span class="p">(</span><span class="mi">99</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">F</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="err">…</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">F</span> <span class="o">=</span> <span class="n">decorator</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">F</span><span class="p">(</span><span class="mi">99</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Call proxy示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -203,18 +210,18 @@ Interface proxy
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">F</span><span class="p">)</span><span class="p">:</span>
-    <span class="c1"># Process function F</span>
-    <span class="k">return</span> <span class="n">F</span>
-
-<span class="nd">@decorator</span>
-<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="p">)</span><span class="p">:</span> <span class="err">…</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">F</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Process function F</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">F</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@decorator</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func</span><span class="p">():</span> <span class="err">…</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Interface proxy示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -227,23 +234,23 @@ Interface proxy
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">F</span><span class="p">)</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span><span class="p">:</span>
-        <span class="c1"># Use F and args</span>
-        <span class="c1"># F(*args) calls original function</span>
-    <span class="k">return</span> <span class="n">wrapper</span>
-
-<span class="nd">@decorator</span>
-<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="p">:</span>
-    <span class="err">…</span>
-
-<span class="n">func</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>    <span class="c1"># 6, 7 are passed to wrapper&#39;s *args</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">F</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Use F and args</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># F(*args) calls original function</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">wrapper</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@decorator</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="err">…</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">func</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>    <span class="c1"># 6, 7 are passed to wrapper&#39;s *args</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>decorator class:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -257,25 +264,25 @@ Interface proxy
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">decorator</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span><span class="p">:</span>
-        <span class="c1"># Use self.func and args</span>
-        <span class="c1"># self.func(*args) calls original function</span>
-
-<span class="nd">@decorator</span>
-<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="p">:</span>
-    <span class="err">…</span>
-
-<span class="n">func</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">decorator</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Use self.func and args</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># self.func(*args) calls original function</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@decorator</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="err">…</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">func</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="class-decorator">Class Decorator</h2>
 <p>语法与function decorator类似</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -292,27 +299,27 @@ Interface proxy
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span><span class="p">:</span>
-    <span class="k">class</span> <span class="nc">Wrapper</span><span class="p">:</span>
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">wrapped</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-        <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wrapped</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">Wrapper</span>
-
-<span class="nd">@decorator</span>
-<span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">attr</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">spam</span><span class="s1">&#39;</span>
-
-<span class="n">x</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">attr</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Wrapper</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">wrapped</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wrapped</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Wrapper</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@decorator</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">attr</span> <span class="o">=</span> <span class="s1">&#39;spam&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">attr</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="decorator-参数">Decorator 参数</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -321,14 +328,14 @@ Interface proxy
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span><span class="p">:</span>
-    <span class="c1"># save or use A, B</span>
-    <span class="k">def</span> <span class="nf">actualDecorator</span><span class="p">(</span><span class="n">F</span><span class="p">)</span><span class="p">:</span>
-        <span class="c1"># Save or use function F</span>
-        <span class="c1"># Return a callable: nested def, class with __call__, etc.</span>
-        <span class="k">return</span> <span class="nb">callable</span>
-    <span class="k">return</span> <span class="n">actualDecorator</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># save or use A, B</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">actualDecorator</span><span class="p">(</span><span class="n">F</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Save or use function F</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Return a callable: nested def, class with __call__, etc.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">callable</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">actualDecorator</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -412,13 +419,10 @@ Interface proxy
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">josephpei</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -429,7 +433,10 @@ Interface proxy
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 
