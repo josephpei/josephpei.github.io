@@ -17,14 +17,14 @@
 
 
 <meta name="author" content="josephpei" /><meta name="description" content="完整的 Hello World 内核模块 hello.c
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  #include &amp;lt;linux/init.h&amp;gt;#include &amp;lt;linux/module.h&amp;gt;MODULE_LICENSE(&amp;#34;Dual BSD/GPL&amp;#34;); static int hello_init(void) { printk(KERN_ALERT &amp;#34;Hello, world\n&amp;#34;); return 0; } static void hello_exit(void) { printk(KERN_ALERT &amp;#34;Goodbye, cruel world\n&amp;#34;); } module_init(hello_init); module_exit(hello_exit);   " /><meta name="keywords" content="life, linux, program" />
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include &amp;lt;linux/init.h&amp;gt; #include &amp;lt;linux/module.h&amp;gt; MODULE_LICENSE(&amp;#34;Dual BSD/GPL&amp;#34;); static int hello_init(void) { printk(KERN_ALERT &amp;#34;Hello, world\n&amp;#34;); return 0; } static void hello_exit(void) { printk(KERN_ALERT &amp;#34;Goodbye, cruel world\n&amp;#34;); } module_init(hello_init); module_exit(hello_exit); " /><meta name="keywords" content="life, linux, program" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.95.0 with theme even" />
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2015/07/19/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%80-hello-world/" />
@@ -87,7 +87,6 @@ module_exit(hello_exit);
 <meta property="og:url" content="http://josephpei.github.io/2015/07/19/linux%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%80-hello-world/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2015-07-19T10:21:47+08:00" />
 <meta property="article:modified_time" content="2015-07-19T10:21:47+08:00" />
-
 <meta itemprop="name" content="Linux驱动开发之一 Hello World">
 <meta itemprop="description" content="完整的 Hello World 内核模块 hello.c
 
@@ -132,7 +131,7 @@ module_exit(hello_exit);
 
 "><meta itemprop="datePublished" content="2015-07-19T10:21:47+08:00" />
 <meta itemprop="dateModified" content="2015-07-19T10:21:47+08:00" />
-<meta itemprop="wordCount" content="103">
+<meta itemprop="wordCount" content="105">
 <meta itemprop="keywords" content="LinuxDriver," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux驱动开发之一 Hello World"/>
 <meta name="twitter:description" content="完整的 Hello World 内核模块 hello.c
@@ -289,21 +288,21 @@ module_exit(hello_exit);
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/init.h&gt;</span><span class="cp">
 </span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;linux/module.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">&#34;Dual BSD/GPL&#34;</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nf">MODULE_LICENSE</span><span class="p">(</span><span class="s">&#34;Dual BSD/GPL&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">int</span> <span class="nf">hello_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Hello, world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Hello, world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">void</span> <span class="nf">hello_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Goodbye, cruel world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printk</span><span class="p">(</span><span class="n">KERN_ALERT</span> <span class="s">&#34;Goodbye, cruel world</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">module_exit</span><span class="p">(</span><span class="n">hello_exit</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">module_init</span><span class="p">(</span><span class="n">hello_init</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">module_exit</span><span class="p">(</span><span class="n">hello_exit</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Makefile</p>
@@ -430,7 +429,7 @@ module_exit(hello_exit);
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
 
@@ -447,7 +446,7 @@ module_exit(hello_exit);
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

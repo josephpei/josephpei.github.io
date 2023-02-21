@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.95.0 with theme even" />
+<meta name="generator" content="Hugo 0.110.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/08/31/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-spring-security/" />
@@ -46,7 +46,6 @@
 <meta property="og:url" content="http://josephpei.github.io/2014/08/31/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08-spring-security/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2014-08-31T09:23:35+08:00" />
 <meta property="article:modified_time" content="2014-08-31T09:23:35+08:00" />
-
 <meta itemprop="name" content="Spring MVC 学习笔记8 Spring Security">
 <meta itemprop="description" content="Spring Security 是为基于 Spring 的应用程序提供声明式安全保护的安全性框架，基于 Spring AOP 和 Servlet 过滤器实现，能够在 Web 请求级别和方法调用级别处理身份验证和授权。它使用 Servlet 过滤器保护 Web 请求和限制 URL 级别的访问，也可以使用 Spring AOP 保护方法调用——借助于对象代理和使用通知，能够确保只有具备适当权限的用户才能访问安全保护的方法。"><meta itemprop="datePublished" content="2014-08-31T09:23:35+08:00" />
 <meta itemprop="dateModified" content="2014-08-31T09:23:35+08:00" />
@@ -300,7 +299,7 @@
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Entity</span>
 </span></span><span class="line"><span class="cl"><span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_tbl&#34;</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="n">Serializable</span><span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="n">1L</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="nd">@Id</span>
 </span></span><span class="line"><span class="cl">    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_id&#34;</span><span class="o">)</span>
@@ -308,16 +307,16 @@
 </span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Long</span> <span class="n">userId</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_name&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="n">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="mi">3</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">userName</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">fullname</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="n">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="mi">1</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">    <span class="nd">@Email</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">email</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="n">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="mi">3</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">password</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
@@ -391,7 +390,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;index&#34;</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">login</span><span class="o">(</span><span class="n">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">Spittle</span><span class="o">&gt;</span> <span class="n">spittleList</span> <span class="o">=</span> <span class="n">hibSpittleService</span><span class="o">.</span><span class="na">getRecentSpittles</span><span class="o">(</span><span class="n">5</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">Spittle</span><span class="o">&gt;</span> <span class="n">spittleList</span> <span class="o">=</span> <span class="n">hibSpittleService</span><span class="o">.</span><span class="na">getRecentSpittles</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">&#34;spittleList&#34;</span><span class="o">,</span> <span class="n">spittleList</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;index&#34;</span><span class="o">;</span>
@@ -563,7 +562,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
   </span>
 </div>
 
@@ -580,7 +579,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

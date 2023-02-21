@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Kitty Terminal 终端 - 有翅膀的天狼</title>
+  <title>Homebrew Deprecate Git, Speed Up - 有翅膀的天狼</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="josephpei" /><meta name="description" content="Kitty是Calibre作者Kovid Goyal开发的一款GPU加速的Terminal。
+<meta name="author" content="josephpei" /><meta name="description" content="旧版本 homebrew 采用 git 管理，随着时间推移，git 仓库规模越来越大，目前 core/cask 的 .git 目录加起来已经超过 1G 大小。
+homebrew 从 3.5 开始提供新的 API 方式，一个仓库只使用一个 json 文件，用户只需更新这个 json 文件。4.0 开始这种方式成为默认。但是一直使用旧版用户仍需手动切换一下。
 " /><meta name="keywords" content="life, linux, program" />
 
 
@@ -27,7 +28,7 @@
 <meta name="generator" content="Hugo 0.110.0 with theme even" />
 
 
-<link rel="canonical" href="http://josephpei.github.io/2022/04/18/kitty-terminal-%E7%BB%88%E7%AB%AF/" />
+<link rel="canonical" href="http://josephpei.github.io/2023/02/19/homebrew-deprecate-git-speed-up/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,19 +41,22 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Kitty Terminal 终端" />
-<meta property="og:description" content="Kitty是Calibre作者Kovid Goyal开发的一款GPU加速的Terminal。" />
+<meta property="og:title" content="Homebrew Deprecate Git, Speed Up" />
+<meta property="og:description" content="旧版本 homebrew 采用 git 管理，随着时间推移，git 仓库规模越来越大，目前 core/cask 的 .git 目录加起来已经超过 1G 大小。
+homebrew 从 3.5 开始提供新的 API 方式，一个仓库只使用一个 json 文件，用户只需更新这个 json 文件。4.0 开始这种方式成为默认。但是一直使用旧版用户仍需手动切换一下。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2022/04/18/kitty-terminal-%E7%BB%88%E7%AB%AF/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-04-18T19:44:49+08:00" />
-<meta property="article:modified_time" content="2022-04-18T19:44:49+08:00" />
-<meta itemprop="name" content="Kitty Terminal 终端">
-<meta itemprop="description" content="Kitty是Calibre作者Kovid Goyal开发的一款GPU加速的Terminal。"><meta itemprop="datePublished" content="2022-04-18T19:44:49+08:00" />
-<meta itemprop="dateModified" content="2022-04-18T19:44:49+08:00" />
-<meta itemprop="wordCount" content="354">
+<meta property="og:url" content="http://josephpei.github.io/2023/02/19/homebrew-deprecate-git-speed-up/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-19T17:55:08+08:00" />
+<meta property="article:modified_time" content="2023-02-19T17:55:08+08:00" />
+<meta itemprop="name" content="Homebrew Deprecate Git, Speed Up">
+<meta itemprop="description" content="旧版本 homebrew 采用 git 管理，随着时间推移，git 仓库规模越来越大，目前 core/cask 的 .git 目录加起来已经超过 1G 大小。
+homebrew 从 3.5 开始提供新的 API 方式，一个仓库只使用一个 json 文件，用户只需更新这个 json 文件。4.0 开始这种方式成为默认。但是一直使用旧版用户仍需手动切换一下。"><meta itemprop="datePublished" content="2023-02-19T17:55:08+08:00" />
+<meta itemprop="dateModified" content="2023-02-19T17:55:08+08:00" />
+<meta itemprop="wordCount" content="421">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Kitty Terminal 终端"/>
-<meta name="twitter:description" content="Kitty是Calibre作者Kovid Goyal开发的一款GPU加速的Terminal。"/>
+<meta name="twitter:title" content="Homebrew Deprecate Git, Speed Up"/>
+<meta name="twitter:description" content="旧版本 homebrew 采用 git 管理，随着时间推移，git 仓库规模越来越大，目前 core/cask 的 .git 目录加起来已经超过 1G 大小。
+homebrew 从 3.5 开始提供新的 API 方式，一个仓库只使用一个 json 文件，用户只需更新这个 json 文件。4.0 开始这种方式成为默认。但是一直使用旧版用户仍需手动切换一下。"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -125,10 +129,10 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Kitty Terminal 终端</h1>
+      <h1 class="post-title">Homebrew Deprecate Git, Speed Up</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2022-04-18 </span>
+        <span class="post-time"> 2023-02-19 </span>
         
         
       </div>
@@ -137,23 +141,14 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#图标">图标</a></li>
-    <li><a href="#字体">字体</a></li>
-    <li><a href="#主题">主题</a></li>
-    <li><a href="#tmux">Tmux</a></li>
-    <li><a href="#ssh">SSH</a></li>
-  </ul>
-</nav>
+    <nav id="TableOfContents"></nav>
   </div>
 </div>
     <div class="post-content">
-      <p><a href="https://sw.kovidgoyal.net/kitty/">Kitty</a>是Calibre作者Kovid Goyal开发的一款GPU加速的Terminal。</p>
-<h2 id="图标">图标</h2>
-<p><a href="https://sw.kovidgoyal.net/kitty/faq/#i-do-not-like-the-kitty-icon">https://sw.kovidgoyal.net/kitty/faq/#i-do-not-like-the-kitty-icon</a></p>
-<h2 id="字体">字体</h2>
-<p>中文 Unicode Point 参考<a href="https://stackoverflow.com/questions/1366068/whats-the-complete-range-for-chinese-characters-in-unicode">https://stackoverflow.com/questions/1366068/whats-the-complete-range-for-chinese-characters-in-unicode</a></p>
+      <p>旧版本 homebrew 采用 git 管理，随着时间推移，git 仓库规模越来越大，目前 core/cask 的 <code>.git</code> 目录加起来已经超过 1G 大小。</p>
+<p>homebrew 从 3.5 开始提供新的 API 方式，一个仓库只使用一个 json 文件，用户只需更新这个 json 文件。4.0 开始这种方式成为默认。但是一直使用旧版用户仍需手动切换一下。</p>
+<p>自 brew 4.0 起，HOMEBREW_INSTALL_FROM_API 会成为默认行为，无需设置；大部分用户无需再克隆 homebrew/core 仓库，故无需设置 HOMEBREW_CORE_GIT_REMOTE 环境变量。但若需要运行 brew 的开发命令或者 brew 安装在非官方支持的默认 prefix 位置，则仍需设置 HOMEBREW_CORE_GIT_REMOTE 环境变量。</p>
+<p>首先设置环境变量：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -162,60 +157,55 @@
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 英文
-</span></span><span class="line"><span class="cl">font_family      MesloLGMDZ Nerd Font
-</span></span><span class="line"><span class="cl">bold_font        auto
-</span></span><span class="line"><span class="cl">italic_font      auto
-</span></span><span class="line"><span class="cl">bold_italic_font auto
-</span></span><span class="line"><span class="cl"># 中文
-</span></span><span class="line"><span class="cl">symbol_map U+4E00-U+9FFF,U+3400-U+4DBF Sarasa Term SC
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">export HOMEBREW_INSTALL_FROM_API=1
+</span></span><span class="line"><span class="cl">export HOMEBREW_API_DOMAIN=&#34;https://mirrors.bfsu.edu.cn/homebrew-bottles/api&#34;
+</span></span><span class="line"><span class="cl">export HOMEBREW_BOTTLE_DOMAIN=&#34;https://mirrors.bfsu.edu.cn/homebrew-bottles&#34;
+</span></span><span class="line"><span class="cl">export HOMEBREW_BREW_GIT_REMOTE=&#34;https://mirrors.bfsu.edu.cn/git/homebrew/brew.git&#34;
+</span></span><span class="line"><span class="cl">export HOMEBREW_CORE_GIT_REMOTE=&#34;https://mirrors.bfsu.edu.cn/git/homebrew/homebrew-core.git&#34;
+</span></span><span class="line"><span class="cl">export HOMEBREW_PIP_INDEX_URL=&#34;https://mirrors.bfsu.edu.cn/pypi/web/simple&#34;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="主题">主题</h2>
-<p><a href="https://sw.kovidgoyal.net/kitty/kittens/themes/">https://sw.kovidgoyal.net/kitty/kittens/themes/</a></p>
+</div><p>注：这里使用了北京外国语大学开源镜像。网上文章大多是使用清华大学镜像，但是由于使用人数过多，负载太高，近期故障频发。清华大学开源镜像团队与北外合作开设新的镜像站，目前速度较快也较稳定，推荐使用。</p>
+<p>但是除 core/cask 以外的仓库仍然需要使用 git。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kitty +kitten themes <span class="o">[</span>options<span class="o">]</span> <span class="o">[</span>theme name to switch to<span class="o">]</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">for tap in core cask{,-fonts,-drivers,-versions} command-not-found; do
+</span></span><span class="line"><span class="cl">    brew tap --custom-remote --force-auto-update &#34;homebrew/${tap}&#34; &#34;https://mirrors.bfsu.edu.cn/git/homebrew/homebrew-${tap}.git&#34;
+</span></span><span class="line"><span class="cl">done
+</span></span><span class="line"><span class="cl">brew update
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="tmux">Tmux</h2>
-<p>tmux设置终端类型<code>xterm-kitty</code>，终端下vim/neovim等可正确显示斜体。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set -g default-terminal &#34;xterm-kitty&#34;
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>vim 中可能需要加入配置</p>
+</div><p>屏幕输出如下</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="k">let</span> &amp;<span class="nx">t_ZH</span><span class="p">=</span><span class="s2">&#34;\e[3m&#34;</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> &amp;<span class="nx">t_ZR</span><span class="p">=</span><span class="s2">&#34;\e[23m&#34;</span><span class="err">
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">==&gt; Downloading https://formulae.brew.sh/api/formula.json                                                                    
+</span></span><span class="line"><span class="cl">==&gt; Downloading https://formulae.brew.sh/api/cask.json
+</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="ssh">SSH</h2>
-<p>tmux设置终端类型为<code>xterm-kitty</code>后，需要将terminfo复制到ssh远端。</p>
+</div><p>core/cask git 库可以删除了。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kitty +kitten ssh myserver
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">brew untap homebrew/core
+</span></span><span class="line"><span class="cl">brew untap homebrew/cask
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>参考：<a href="https://sw.kovidgoyal.net/kitty/faq/">https://sw.kovidgoyal.net/kitty/faq/</a></p>
+</div>
     </div>
 
     <div class="post-copyright">
@@ -226,7 +216,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2022-04-18
+        2023-02-19
         
     </span>
   </p>
@@ -236,13 +226,9 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/2023/02/19/homebrew-deprecate-git-speed-up/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Homebrew Deprecate Git, Speed Up</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/2021/06/23/django-celery-%E6%95%B4%E5%90%88%E8%AF%A6%E8%A7%A3/">
-            <span class="next-text nav-default">Django Celery 整合详解</span>
+        
+        <a class="next" href="/2022/04/18/kitty-terminal-%E7%BB%88%E7%AB%AF/">
+            <span class="next-text nav-default">Kitty Terminal 终端</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
