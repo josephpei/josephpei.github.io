@@ -1,77 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>leetcode on 有翅膀的天狼</title>
+    <title>Leetcode on 有翅膀的天狼</title>
     <link>http://josephpei.github.io/tags/leetcode/</link>
-    <description>Recent content in leetcode on 有翅膀的天狼</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Leetcode on 有翅膀的天狼</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 07 Jan 2020 10:53:20 +0800</lastBuildDate><atom:link href="http://josephpei.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Jan 2020 10:53:20 +0800</lastBuildDate>
+    <atom:link href="http://josephpei.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Leetcode 23 Merge K Sorted Lists 合并K个排序链表</title>
       <link>http://josephpei.github.io/2020/01/07/leetcode-23-merge-k-sorted-lists%E5%90%88%E5%B9%B6k%E4%B8%AA%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/</link>
       <pubDate>Tue, 07 Jan 2020 10:53:20 +0800</pubDate>
-      
       <guid>http://josephpei.github.io/2020/01/07/leetcode-23-merge-k-sorted-lists%E5%90%88%E5%B9%B6k%E4%B8%AA%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/</guid>
-      <description>&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
-&lt;p&gt;合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。&lt;/p&gt;
-&lt;p&gt;示例:&lt;/p&gt;
-&lt;p&gt;输入:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  1-&amp;gt;4-&amp;gt;5,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  1-&amp;gt;3-&amp;gt;4,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  2-&amp;gt;6
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;]
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;输出: &lt;code&gt;1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;4-&amp;gt;5-&amp;gt;6&lt;/code&gt;&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;&#xA;&lt;p&gt;合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。&lt;/p&gt;&#xA;&lt;p&gt;示例:&lt;/p&gt;&#xA;&lt;p&gt;输入:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  1-&amp;gt;4-&amp;gt;5,&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  1-&amp;gt;3-&amp;gt;4,&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  2-&amp;gt;6&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;输出: &lt;code&gt;1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;4-&amp;gt;5-&amp;gt;6&lt;/code&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Leetcode 49 Group Anagrams 字母异位词分组</title>
       <link>http://josephpei.github.io/2019/12/29/leetcode-49-group-anagrams-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/</link>
       <pubDate>Sun, 29 Dec 2019 22:22:59 +0800</pubDate>
-      
       <guid>http://josephpei.github.io/2019/12/29/leetcode-49-group-anagrams-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/</guid>
-      <description>&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
-&lt;p&gt;给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。&lt;/p&gt;
-&lt;p&gt;示例:&lt;/p&gt;
-&lt;p&gt;输入:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[&amp;quot;eat&amp;quot;, &amp;quot;tea&amp;quot;, &amp;quot;tan&amp;quot;, &amp;quot;ate&amp;quot;, &amp;quot;nat&amp;quot;, &amp;quot;bat&amp;quot;],
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;输出:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[
-  [&amp;quot;ate&amp;quot;,&amp;quot;eat&amp;quot;,&amp;quot;tea&amp;quot;],
-  [&amp;quot;nat&amp;quot;,&amp;quot;tan&amp;quot;],
-  [&amp;quot;bat&amp;quot;]
-]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;说明：&lt;/p&gt;
-&lt;p&gt;所有输入均为小写字母。不考虑答案输出的顺序。&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;&#xA;&lt;p&gt;给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。&lt;/p&gt;&#xA;&lt;p&gt;示例:&lt;/p&gt;&#xA;&lt;p&gt;输入:&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;[&amp;quot;eat&amp;quot;, &amp;quot;tea&amp;quot;, &amp;quot;tan&amp;quot;, &amp;quot;ate&amp;quot;, &amp;quot;nat&amp;quot;, &amp;quot;bat&amp;quot;],&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;输出:&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;[&#xA;  [&amp;quot;ate&amp;quot;,&amp;quot;eat&amp;quot;,&amp;quot;tea&amp;quot;],&#xA;  [&amp;quot;nat&amp;quot;,&amp;quot;tan&amp;quot;],&#xA;  [&amp;quot;bat&amp;quot;]&#xA;]&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;说明：&lt;/p&gt;&#xA;&lt;p&gt;所有输入均为小写字母。不考虑答案输出的顺序。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>leetcode - two-sum</title>
       <link>http://josephpei.github.io/2014/05/04/leetcode---two-sum/</link>
       <pubDate>Sun, 04 May 2014 09:46:02 +0800</pubDate>
-      
       <guid>http://josephpei.github.io/2014/05/04/leetcode---two-sum/</guid>
-      <description>&lt;p&gt;原题：&lt;/p&gt;
-&lt;p&gt;Given an array of integers, find two numbers such that they add up to a specific target number.&lt;/p&gt;
-&lt;p&gt;The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.&lt;/p&gt;
-&lt;p&gt;You may assume that each input would have exactly one solution.&lt;/p&gt;
-&lt;p&gt;Input: numbers={2, 7, 11, 15}, target=9&lt;/p&gt;
-&lt;p&gt;Output: index1=1, index2=2&lt;/p&gt;</description>
+      <description>&lt;p&gt;原题：&lt;/p&gt;&#xA;&lt;p&gt;Given an array of integers, find two numbers such that they add up to a specific target number.&lt;/p&gt;&#xA;&lt;p&gt;The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.&lt;/p&gt;&#xA;&lt;p&gt;You may assume that each input would have exactly one solution.&lt;/p&gt;&#xA;&lt;p&gt;Input: numbers={2, 7, 11, 15}, target=9&lt;/p&gt;&#xA;&lt;p&gt;Output: index1=1, index2=2&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

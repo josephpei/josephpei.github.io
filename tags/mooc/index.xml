@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>mooc on 有翅膀的天狼</title>
+    <title>Mooc on 有翅膀的天狼</title>
     <link>http://josephpei.github.io/tags/mooc/</link>
-    <description>Recent content in mooc on 有翅膀的天狼</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Mooc on 有翅膀的天狼</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 02 Aug 2014 22:31:49 +0800</lastBuildDate><atom:link href="http://josephpei.github.io/tags/mooc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Aug 2014 22:31:49 +0800</lastBuildDate>
+    <atom:link href="http://josephpei.github.io/tags/mooc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>UW 软硬件接口lab3 bufbomb</title>
       <link>http://josephpei.github.io/2014/08/02/uw-%E8%BD%AF%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3lab3-bufbomb/</link>
       <pubDate>Sat, 02 Aug 2014 22:31:49 +0800</pubDate>
-      
       <guid>http://josephpei.github.io/2014/08/02/uw-%E8%BD%AF%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3lab3-bufbomb/</guid>
-      <description>&lt;p&gt;本实验即常见的缓冲区溢出攻击。（注：新的 64bit Win8/Linux 下这种简单方式无效，x86_64 cpu 的可执行标志位 exec-shield，gcc 栈保护选项开关 -fno-stack-protector）&lt;/p&gt;
-&lt;p&gt;主函数为 test()，首先声明一个局部变量 volatile int local = 0xdeadbeef，volatile 是编译时不使用 register 优化，必须分配栈空间，后面的实验过程不能覆盖这个 local 变量。&lt;/p&gt;
-&lt;p&gt;然后就是存在缓冲区溢出漏洞的 getbuf 函数，也就是我们要操作的对象。&lt;/p&gt;</description>
+      <description>&lt;p&gt;本实验即常见的缓冲区溢出攻击。（注：新的 64bit Win8/Linux 下这种简单方式无效，x86_64 cpu 的可执行标志位 exec-shield，gcc 栈保护选项开关 -fno-stack-protector）&lt;/p&gt;&#xA;&lt;p&gt;主函数为 test()，首先声明一个局部变量 volatile int local = 0xdeadbeef，volatile 是编译时不使用 register 优化，必须分配栈空间，后面的实验过程不能覆盖这个 local 变量。&lt;/p&gt;&#xA;&lt;p&gt;然后就是存在缓冲区溢出漏洞的 getbuf 函数，也就是我们要操作的对象。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>UW 软硬件接口lab2 bomb</title>
       <link>http://josephpei.github.io/2014/08/02/uw-%E8%BD%AF%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3lab2-bomb/</link>
       <pubDate>Sat, 02 Aug 2014 22:28:40 +0800</pubDate>
-      
       <guid>http://josephpei.github.io/2014/08/02/uw-%E8%BD%AF%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3lab2-bomb/</guid>
       <description>&lt;p&gt;本实验是解除二进制炸弹。给你一个二进制可执行文件，运行该文件，你需要在没有任何提示的情况下输入6个password，如果都输入正确，则炸弹被解除（完成了实验）；如果输入错误，则炸弹爆炸（当然不是真爆炸了，需要重做）。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

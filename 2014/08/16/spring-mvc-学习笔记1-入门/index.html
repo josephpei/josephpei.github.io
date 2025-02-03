@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="josephpei" /><meta name="description" content="Spring Web MVC是一种基于Java的实现了Web MVC设计模式的请求驱动类型的轻量级Web框架，前端控制器是DispatcherServlet；应用控制器其实拆为处理器映射器(Handler Mapping)进行处理器管理和视图解析器(View Resolver)进行视图管理；页面控制器/动作/处理器为Controller接口（仅包含ModelAndView handleRequest(request, response) 方法）的实现（也可以是任何的POJO类）；支持本地化（Locale）解析、主题（Theme）解析及文件上传等；提供了非常灵活的数据验证、格式化和数据绑定机制；提供了强大的约定大于配置（惯例优先原则）的契约式编程支持。
+<meta name="author" content="" /><meta name="description" content="Spring Web MVC是一种基于Java的实现了Web MVC设计模式的请求驱动类型的轻量级Web框架，前端控制器是DispatcherServlet；应用控制器其实拆为处理器映射器(Handler Mapping)进行处理器管理和视图解析器(View Resolver)进行视图管理；页面控制器/动作/处理器为Controller接口（仅包含ModelAndView handleRequest(request, response) 方法）的实现（也可以是任何的POJO类）；支持本地化（Locale）解析、主题（Theme）解析及文件上传等；提供了非常灵活的数据验证、格式化和数据绑定机制；提供了强大的约定大于配置（惯例优先原则）的契约式编程支持。
 这里我们实现一个简单的登录模块，登录后地址转为 http://domain.com/USER_NAME
 " /><meta name="keywords" content="life, linux, program" />
 
@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.110.0 with theme even" />
+<meta name="generator" content="Hugo 0.131.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/08/16/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%85%A5%E9%97%A8/" />
@@ -41,22 +41,29 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Spring MVC 学习笔记1 入门" />
-<meta property="og:description" content="Spring Web MVC是一种基于Java的实现了Web MVC设计模式的请求驱动类型的轻量级Web框架，前端控制器是DispatcherServlet；应用控制器其实拆为处理器映射器(Handler Mapping)进行处理器管理和视图解析器(View Resolver)进行视图管理；页面控制器/动作/处理器为Controller接口（仅包含ModelAndView handleRequest(request, response) 方法）的实现（也可以是任何的POJO类）；支持本地化（Locale）解析、主题（Theme）解析及文件上传等；提供了非常灵活的数据验证、格式化和数据绑定机制；提供了强大的约定大于配置（惯例优先原则）的契约式编程支持。
-这里我们实现一个简单的登录模块，登录后地址转为 http://domain.com/USER_NAME" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2014/08/16/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%85%A5%E9%97%A8/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2014-08-16T21:30:27+08:00" />
-<meta property="article:modified_time" content="2014-08-16T21:30:27+08:00" />
-<meta itemprop="name" content="Spring MVC 学习笔记1 入门">
-<meta itemprop="description" content="Spring Web MVC是一种基于Java的实现了Web MVC设计模式的请求驱动类型的轻量级Web框架，前端控制器是DispatcherServlet；应用控制器其实拆为处理器映射器(Handler Mapping)进行处理器管理和视图解析器(View Resolver)进行视图管理；页面控制器/动作/处理器为Controller接口（仅包含ModelAndView handleRequest(request, response) 方法）的实现（也可以是任何的POJO类）；支持本地化（Locale）解析、主题（Theme）解析及文件上传等；提供了非常灵活的数据验证、格式化和数据绑定机制；提供了强大的约定大于配置（惯例优先原则）的契约式编程支持。
-这里我们实现一个简单的登录模块，登录后地址转为 http://domain.com/USER_NAME"><meta itemprop="datePublished" content="2014-08-16T21:30:27+08:00" />
-<meta itemprop="dateModified" content="2014-08-16T21:30:27+08:00" />
-<meta itemprop="wordCount" content="697">
-<meta itemprop="keywords" content="SpringMVC," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Spring MVC 学习笔记1 入门"/>
-<meta name="twitter:description" content="Spring Web MVC是一种基于Java的实现了Web MVC设计模式的请求驱动类型的轻量级Web框架，前端控制器是DispatcherServlet；应用控制器其实拆为处理器映射器(Handler Mapping)进行处理器管理和视图解析器(View Resolver)进行视图管理；页面控制器/动作/处理器为Controller接口（仅包含ModelAndView handleRequest(request, response) 方法）的实现（也可以是任何的POJO类）；支持本地化（Locale）解析、主题（Theme）解析及文件上传等；提供了非常灵活的数据验证、格式化和数据绑定机制；提供了强大的约定大于配置（惯例优先原则）的契约式编程支持。
-这里我们实现一个简单的登录模块，登录后地址转为 http://domain.com/USER_NAME"/>
+<meta property="og:url" content="http://josephpei.github.io/2014/08/16/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01-%E5%85%A5%E9%97%A8/">
+  <meta property="og:site_name" content="有翅膀的天狼">
+  <meta property="og:title" content="Spring MVC 学习笔记1 入门">
+  <meta property="og:description" content="Spring Web MVC是一种基于Java的实现了Web MVC设计模式的请求驱动类型的轻量级Web框架，前端控制器是DispatcherServlet；应用控制器其实拆为处理器映射器(Handler Mapping)进行处理器管理和视图解析器(View Resolver)进行视图管理；页面控制器/动作/处理器为Controller接口（仅包含ModelAndView handleRequest(request, response) 方法）的实现（也可以是任何的POJO类）；支持本地化（Locale）解析、主题（Theme）解析及文件上传等；提供了非常灵活的数据验证、格式化和数据绑定机制；提供了强大的约定大于配置（惯例优先原则）的契约式编程支持。
+这里我们实现一个简单的登录模块，登录后地址转为 http://domain.com/USER_NAME">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2014-08-16T21:30:27+08:00">
+    <meta property="article:modified_time" content="2014-08-16T21:30:27+08:00">
+    <meta property="article:tag" content="SpringMVC">
+
+  <meta itemprop="name" content="Spring MVC 学习笔记1 入门">
+  <meta itemprop="description" content="Spring Web MVC是一种基于Java的实现了Web MVC设计模式的请求驱动类型的轻量级Web框架，前端控制器是DispatcherServlet；应用控制器其实拆为处理器映射器(Handler Mapping)进行处理器管理和视图解析器(View Resolver)进行视图管理；页面控制器/动作/处理器为Controller接口（仅包含ModelAndView handleRequest(request, response) 方法）的实现（也可以是任何的POJO类）；支持本地化（Locale）解析、主题（Theme）解析及文件上传等；提供了非常灵活的数据验证、格式化和数据绑定机制；提供了强大的约定大于配置（惯例优先原则）的契约式编程支持。
+这里我们实现一个简单的登录模块，登录后地址转为 http://domain.com/USER_NAME">
+  <meta itemprop="datePublished" content="2014-08-16T21:30:27+08:00">
+  <meta itemprop="dateModified" content="2014-08-16T21:30:27+08:00">
+  <meta itemprop="wordCount" content="697">
+  <meta itemprop="keywords" content="SpringMVC">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Spring MVC 学习笔记1 入门">
+  <meta name="twitter:description" content="Spring Web MVC是一种基于Java的实现了Web MVC设计模式的请求驱动类型的轻量级Web框架，前端控制器是DispatcherServlet；应用控制器其实拆为处理器映射器(Handler Mapping)进行处理器管理和视图解析器(View Resolver)进行视图管理；页面控制器/动作/处理器为Controller接口（仅包含ModelAndView handleRequest(request, response) 方法）的实现（也可以是任何的POJO类）；支持本地化（Locale）解析、主题（Theme）解析及文件上传等；提供了非常灵活的数据验证、格式化和数据绑定机制；提供了强大的约定大于配置（惯例优先原则）的契约式编程支持。
+这里我们实现一个简单的登录模块，登录后地址转为 http://domain.com/USER_NAME">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -350,26 +357,26 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Controller</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HomeController</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">={</span><span class="s">&#34;/&#34;</span><span class="o">,</span> <span class="s">&#34;/home&#34;</span><span class="o">},</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">hello</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;home&#34;</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;/login&#34;</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ModelAndView</span> <span class="nf">loginCheck</span><span class="o">(</span><span class="nd">@RequestParam</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="nd">@RequestParam</span><span class="o">(</span><span class="s">&#34;pass&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">pass</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">userPage</span> <span class="o">=</span> <span class="s">&#34;redirect:&#34;</span> <span class="o">+</span> <span class="n">name</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="n">userPage</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;/{name}&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ModelAndView</span> <span class="nf">userPage</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">,</span> <span class="n">name</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;success&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Controller</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HomeController</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="s">&#34;/&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;/home&#34;</span><span class="p">},</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RequestMethod</span><span class="p">.</span><span class="na">GET</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">hello</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;home&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;/login&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RequestMethod</span><span class="p">.</span><span class="na">POST</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ModelAndView</span><span class="w"> </span><span class="nf">loginCheck</span><span class="p">(</span><span class="nd">@RequestParam</span><span class="p">(</span><span class="s">&#34;name&#34;</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="nd">@RequestParam</span><span class="p">(</span><span class="s">&#34;pass&#34;</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">pass</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">userPage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;redirect:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ModelAndView</span><span class="p">(</span><span class="n">userPage</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;/{name}&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ModelAndView</span><span class="w"> </span><span class="nf">userPage</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">Model</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">model</span><span class="p">.</span><span class="na">addAttribute</span><span class="p">(</span><span class="s">&#34;name&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ModelAndView</span><span class="p">(</span><span class="s">&#34;success&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>home.jsp</p>
 <div class="highlight"><div class="chroma">
@@ -467,7 +474,7 @@
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">josephpei</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -525,7 +532,7 @@
       <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
       <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
       <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
-  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -543,7 +550,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

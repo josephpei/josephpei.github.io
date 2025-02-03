@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="josephpei" /><meta name="description" content="decorator可作用于函数和类，功能有两个：
+<meta name="author" content="" /><meta name="description" content="decorator可作用于函数和类，功能有两个：
 Call proxy Interface proxy " /><meta name="keywords" content="life, linux, program" />
 
 
@@ -24,7 +24,7 @@ Call proxy Interface proxy " /><meta name="keywords" content="life, linux, progr
 
 
 
-<meta name="generator" content="Hugo 0.110.0 with theme even" />
+<meta name="generator" content="Hugo 0.131.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/09/16/python-%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8decorator/" />
@@ -40,31 +40,29 @@ Call proxy Interface proxy " /><meta name="keywords" content="life, linux, progr
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Python 中的装饰器(decorator)" />
-<meta property="og:description" content="decorator可作用于函数和类，功能有两个：
+<meta property="og:url" content="http://josephpei.github.io/2013/09/16/python-%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8decorator/">
+  <meta property="og:site_name" content="有翅膀的天狼">
+  <meta property="og:title" content="Python 中的装饰器(decorator)">
+  <meta property="og:description" content="decorator可作用于函数和类，功能有两个：
+Call proxy Interface proxy ">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2013-09-16T18:10:41+08:00">
+    <meta property="article:modified_time" content="2013-09-16T18:10:41+08:00">
+    <meta property="article:tag" content="Python">
 
-Call proxy
-Interface proxy
-" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2013/09/16/python-%E4%B8%AD%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8decorator/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2013-09-16T18:10:41+08:00" />
-<meta property="article:modified_time" content="2013-09-16T18:10:41+08:00" />
-<meta itemprop="name" content="Python 中的装饰器(decorator)">
-<meta itemprop="description" content="decorator可作用于函数和类，功能有两个：
-
-Call proxy
-Interface proxy
-"><meta itemprop="datePublished" content="2013-09-16T18:10:41+08:00" />
-<meta itemprop="dateModified" content="2013-09-16T18:10:41+08:00" />
-<meta itemprop="wordCount" content="291">
-<meta itemprop="keywords" content="python," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Python 中的装饰器(decorator)"/>
-<meta name="twitter:description" content="decorator可作用于函数和类，功能有两个：
-
-Call proxy
-Interface proxy
-"/>
+  <meta itemprop="name" content="Python 中的装饰器(decorator)">
+  <meta itemprop="description" content="decorator可作用于函数和类，功能有两个：
+Call proxy Interface proxy ">
+  <meta itemprop="datePublished" content="2013-09-16T18:10:41+08:00">
+  <meta itemprop="dateModified" content="2013-09-16T18:10:41+08:00">
+  <meta itemprop="wordCount" content="291">
+  <meta itemprop="keywords" content="Python">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python 中的装饰器(decorator)">
+  <meta name="twitter:description" content="decorator可作用于函数和类，功能有两个：
+Call proxy Interface proxy ">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -343,7 +341,7 @@ Interface proxy
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">josephpei</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -401,7 +399,7 @@ Interface proxy
       <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
       <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
       <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
-  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -419,7 +417,7 @@ Interface proxy
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

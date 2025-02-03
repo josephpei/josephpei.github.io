@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>design pattern on 有翅膀的天狼</title>
+    <title>Design Pattern on 有翅膀的天狼</title>
     <link>http://josephpei.github.io/tags/design-pattern/</link>
-    <description>Recent content in design pattern on 有翅膀的天狼</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Design Pattern on 有翅膀的天狼</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 21 Feb 2014 10:35:29 +0800</lastBuildDate><atom:link href="http://josephpei.github.io/tags/design-pattern/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 Feb 2014 10:35:29 +0800</lastBuildDate>
+    <atom:link href="http://josephpei.github.io/tags/design-pattern/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>设计模式之工厂模式(Java实现)</title>
       <link>http://josephpei.github.io/2014/02/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8Fjava%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Fri, 21 Feb 2014 10:35:29 +0800</pubDate>
-      
       <guid>http://josephpei.github.io/2014/02/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8Fjava%E5%AE%9E%E7%8E%B0/</guid>
       <description>&lt;p&gt;GoF 经典定义：Define an interface for creating an object, but let subclasses decide which class to initiate. Factory Method lets a class defer instantiation to subclasses.(定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法使一个类的实例化延迟到子类。)&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

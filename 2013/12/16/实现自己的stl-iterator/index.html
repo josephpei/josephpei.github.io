@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="josephpei" /><meta name="description" content="STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。
+<meta name="author" content="" /><meta name="description" content="STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。
 " /><meta name="keywords" content="life, linux, program" />
 
 
@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.110.0 with theme even" />
+<meta name="generator" content="Hugo 0.131.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/12/16/%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%B7%B1%E7%9A%84stl-iterator/" />
@@ -40,19 +40,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="实现自己的STL Iterator" />
-<meta property="og:description" content="STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2013/12/16/%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%B7%B1%E7%9A%84stl-iterator/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2013-12-16T11:10:08+08:00" />
-<meta property="article:modified_time" content="2013-12-16T11:10:08+08:00" />
-<meta itemprop="name" content="实现自己的STL Iterator">
-<meta itemprop="description" content="STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。"><meta itemprop="datePublished" content="2013-12-16T11:10:08+08:00" />
-<meta itemprop="dateModified" content="2013-12-16T11:10:08+08:00" />
-<meta itemprop="wordCount" content="1937">
-<meta itemprop="keywords" content="cpp," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="实现自己的STL Iterator"/>
-<meta name="twitter:description" content="STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。"/>
+<meta property="og:url" content="http://josephpei.github.io/2013/12/16/%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%B7%B1%E7%9A%84stl-iterator/">
+  <meta property="og:site_name" content="有翅膀的天狼">
+  <meta property="og:title" content="实现自己的STL Iterator">
+  <meta property="og:description" content="STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2013-12-16T11:10:08+08:00">
+    <meta property="article:modified_time" content="2013-12-16T11:10:08+08:00">
+    <meta property="article:tag" content="Cpp">
+
+  <meta itemprop="name" content="实现自己的STL Iterator">
+  <meta itemprop="description" content="STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。">
+  <meta itemprop="datePublished" content="2013-12-16T11:10:08+08:00">
+  <meta itemprop="dateModified" content="2013-12-16T11:10:08+08:00">
+  <meta itemprop="wordCount" content="1937">
+  <meta itemprop="keywords" content="Cpp">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="实现自己的STL Iterator">
+  <meta name="twitter:description" content="STL表现的如此出色的，迭代器（iterator）做出了很大的贡献，功不可没。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -804,8 +811,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
 </span></span><span class="line"><span class="cl"><span class="cp">#ifndef _MITERATOR_BASE_H
 </span></span></span><span class="line"><span class="cl"><span class="cp">#define _MITERATOR_BASE_H
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;cassert&gt; //for debug</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">namespace</span> <span class="n">numb</span>
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;cassert&gt; </span><span class="c1">//for debug
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">namespace</span> <span class="n">numb</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">ptrdiff_t</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="cm">/* Abstructions for uniform iterator,
@@ -1174,7 +1181,7 @@
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">josephpei</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -1232,7 +1239,7 @@
       <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
       <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
       <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
-  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -1250,7 +1257,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

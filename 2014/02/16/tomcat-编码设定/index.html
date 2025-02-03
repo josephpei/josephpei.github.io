@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="josephpei" /><meta name="description" content="大部分网上文章都是Connector标签里面添加 URIEncoding=&amp;ldquo;utf-8&amp;rdquo;，这种方法过于暴力。
+<meta name="author" content="" /><meta name="description" content="大部分网上文章都是Connector标签里面添加 URIEncoding=&amp;ldquo;utf-8&amp;rdquo;，这种方法过于暴力。
 正确的做法是添加 useBodyEncodingForURI=&amp;ldquo;true&amp;rdquo;，这句的话告诉tomcat用页面的编码去处理post，推荐使用。
 JSP页面头
 &amp;lt;%@ page language=&amp;quot;java&amp;quot; pageEncoding=&amp;quot;UTF-8&amp;quot;%&amp;gt; html标签的head标签里加上
@@ -27,7 +27,7 @@ JSP页面头
 
 
 
-<meta name="generator" content="Hugo 0.110.0 with theme even" />
+<meta name="generator" content="Hugo 0.131.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/02/16/tomcat-%E7%BC%96%E7%A0%81%E8%AE%BE%E5%AE%9A/" />
@@ -43,40 +43,38 @@ JSP页面头
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Tomcat 编码设定" />
-<meta property="og:description" content="大部分网上文章都是Connector标签里面添加 URIEncoding=&ldquo;utf-8&rdquo;，这种方法过于暴力。
-正确的做法是添加 useBodyEncodingForURI=&ldquo;true&rdquo;，这句的话告诉tomcat用页面的编码去处理post，推荐使用。
+<meta property="og:url" content="http://josephpei.github.io/2014/02/16/tomcat-%E7%BC%96%E7%A0%81%E8%AE%BE%E5%AE%9A/">
+  <meta property="og:site_name" content="有翅膀的天狼">
+  <meta property="og:title" content="Tomcat 编码设定">
+  <meta property="og:description" content="大部分网上文章都是Connector标签里面添加 URIEncoding=“utf-8”，这种方法过于暴力。
+正确的做法是添加 useBodyEncodingForURI=“true”，这句的话告诉tomcat用页面的编码去处理post，推荐使用。
 JSP页面头
-&lt;%@ page language=&quot;java&quot;  pageEncoding=&quot;UTF-8&quot;%&gt;
+&lt;%@ page language=&#34;java&#34; pageEncoding=&#34;UTF-8&#34;%&gt; html标签的head标签里加上
+&lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;&gt; ">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2014-02-16T12:51:13+08:00">
+    <meta property="article:modified_time" content="2014-02-16T12:51:13+08:00">
+    <meta property="article:tag" content="Java">
 
-html标签的head标签里加上
-&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
-" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2014/02/16/tomcat-%E7%BC%96%E7%A0%81%E8%AE%BE%E5%AE%9A/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2014-02-16T12:51:13+08:00" />
-<meta property="article:modified_time" content="2014-02-16T12:51:13+08:00" />
-<meta itemprop="name" content="Tomcat 编码设定">
-<meta itemprop="description" content="大部分网上文章都是Connector标签里面添加 URIEncoding=&ldquo;utf-8&rdquo;，这种方法过于暴力。
-正确的做法是添加 useBodyEncodingForURI=&ldquo;true&rdquo;，这句的话告诉tomcat用页面的编码去处理post，推荐使用。
+  <meta itemprop="name" content="Tomcat 编码设定">
+  <meta itemprop="description" content="大部分网上文章都是Connector标签里面添加 URIEncoding=“utf-8”，这种方法过于暴力。
+正确的做法是添加 useBodyEncodingForURI=“true”，这句的话告诉tomcat用页面的编码去处理post，推荐使用。
 JSP页面头
-&lt;%@ page language=&quot;java&quot;  pageEncoding=&quot;UTF-8&quot;%&gt;
-
-html标签的head标签里加上
-&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
-"><meta itemprop="datePublished" content="2014-02-16T12:51:13+08:00" />
-<meta itemprop="dateModified" content="2014-02-16T12:51:13+08:00" />
-<meta itemprop="wordCount" content="175">
-<meta itemprop="keywords" content="java," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Tomcat 编码设定"/>
-<meta name="twitter:description" content="大部分网上文章都是Connector标签里面添加 URIEncoding=&ldquo;utf-8&rdquo;，这种方法过于暴力。
-正确的做法是添加 useBodyEncodingForURI=&ldquo;true&rdquo;，这句的话告诉tomcat用页面的编码去处理post，推荐使用。
+&lt;%@ page language=&#34;java&#34; pageEncoding=&#34;UTF-8&#34;%&gt; html标签的head标签里加上
+&lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;&gt; ">
+  <meta itemprop="datePublished" content="2014-02-16T12:51:13+08:00">
+  <meta itemprop="dateModified" content="2014-02-16T12:51:13+08:00">
+  <meta itemprop="wordCount" content="175">
+  <meta itemprop="keywords" content="Java">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Tomcat 编码设定">
+  <meta name="twitter:description" content="大部分网上文章都是Connector标签里面添加 URIEncoding=“utf-8”，这种方法过于暴力。
+正确的做法是添加 useBodyEncodingForURI=“true”，这句的话告诉tomcat用页面的编码去处理post，推荐使用。
 JSP页面头
-&lt;%@ page language=&quot;java&quot;  pageEncoding=&quot;UTF-8&quot;%&gt;
-
-html标签的head标签里加上
-&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
-"/>
+&lt;%@ page language=&#34;java&#34; pageEncoding=&#34;UTF-8&#34;%&gt; html标签的head标签里加上
+&lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;&gt; ">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -178,7 +176,7 @@ html标签的head标签里加上
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">josephpei</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -236,7 +234,7 @@ html标签的head标签里加上
       <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
       <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
       <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
-  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -254,7 +252,7 @@ html标签的head标签里加上
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

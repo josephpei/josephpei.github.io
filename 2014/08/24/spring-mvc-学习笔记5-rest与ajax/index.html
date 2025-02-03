@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="josephpei" /><meta name="description" content="近来，以信息为中心的表述性状态转移(Representational State Transfer, REST)已成为替换传统 SOAP Web 服务的流行方案，Spring MVC 封装了对 REST 的良好支持。
+<meta name="author" content="" /><meta name="description" content="近来，以信息为中心的表述性状态转移(Representational State Transfer, REST)已成为替换传统 SOAP Web 服务的流行方案，Spring MVC 封装了对 REST 的良好支持。
 当谈论REST时，有一种常见的错误就是将其视为“基于 URL 的 Web 服务”，将 REST 作为另一种类型的远程过程调用(RPC)机制。恰好相反，REST 与 RPC 几乎没有任何关系，RPC 是面向服务的，并关注于行为和动作，而 REST 是面向资源的，强调描述应用程序的事物和名词。REST 就是将资源的状态以最合适的形式从服务器端转移到客户端（或者反之）。
 本节应用 @ResponseBody 注解实现简单的 RESTless URL，并与 JQuery AJAX 结合。
 " /><meta name="keywords" content="life, linux, program" />
@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.110.0 with theme even" />
+<meta name="generator" content="Hugo 0.131.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/08/24/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05-rest%E4%B8%8Eajax/" />
@@ -42,25 +42,32 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Spring MVC 学习笔记5 REST与AJAX" />
-<meta property="og:description" content="近来，以信息为中心的表述性状态转移(Representational State Transfer, REST)已成为替换传统 SOAP Web 服务的流行方案，Spring MVC 封装了对 REST 的良好支持。
+<meta property="og:url" content="http://josephpei.github.io/2014/08/24/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05-rest%E4%B8%8Eajax/">
+  <meta property="og:site_name" content="有翅膀的天狼">
+  <meta property="og:title" content="Spring MVC 学习笔记5 REST与AJAX">
+  <meta property="og:description" content="近来，以信息为中心的表述性状态转移(Representational State Transfer, REST)已成为替换传统 SOAP Web 服务的流行方案，Spring MVC 封装了对 REST 的良好支持。
 当谈论REST时，有一种常见的错误就是将其视为“基于 URL 的 Web 服务”，将 REST 作为另一种类型的远程过程调用(RPC)机制。恰好相反，REST 与 RPC 几乎没有任何关系，RPC 是面向服务的，并关注于行为和动作，而 REST 是面向资源的，强调描述应用程序的事物和名词。REST 就是将资源的状态以最合适的形式从服务器端转移到客户端（或者反之）。
-本节应用 @ResponseBody 注解实现简单的 RESTless URL，并与 JQuery AJAX 结合。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2014/08/24/spring-mvc-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05-rest%E4%B8%8Eajax/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2014-08-24T11:14:55+08:00" />
-<meta property="article:modified_time" content="2014-08-24T11:14:55+08:00" />
-<meta itemprop="name" content="Spring MVC 学习笔记5 REST与AJAX">
-<meta itemprop="description" content="近来，以信息为中心的表述性状态转移(Representational State Transfer, REST)已成为替换传统 SOAP Web 服务的流行方案，Spring MVC 封装了对 REST 的良好支持。
+本节应用 @ResponseBody 注解实现简单的 RESTless URL，并与 JQuery AJAX 结合。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2014-08-24T11:14:55+08:00">
+    <meta property="article:modified_time" content="2014-08-24T11:14:55+08:00">
+    <meta property="article:tag" content="SpringMVC">
+
+  <meta itemprop="name" content="Spring MVC 学习笔记5 REST与AJAX">
+  <meta itemprop="description" content="近来，以信息为中心的表述性状态转移(Representational State Transfer, REST)已成为替换传统 SOAP Web 服务的流行方案，Spring MVC 封装了对 REST 的良好支持。
 当谈论REST时，有一种常见的错误就是将其视为“基于 URL 的 Web 服务”，将 REST 作为另一种类型的远程过程调用(RPC)机制。恰好相反，REST 与 RPC 几乎没有任何关系，RPC 是面向服务的，并关注于行为和动作，而 REST 是面向资源的，强调描述应用程序的事物和名词。REST 就是将资源的状态以最合适的形式从服务器端转移到客户端（或者反之）。
-本节应用 @ResponseBody 注解实现简单的 RESTless URL，并与 JQuery AJAX 结合。"><meta itemprop="datePublished" content="2014-08-24T11:14:55+08:00" />
-<meta itemprop="dateModified" content="2014-08-24T11:14:55+08:00" />
-<meta itemprop="wordCount" content="1187">
-<meta itemprop="keywords" content="SpringMVC," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Spring MVC 学习笔记5 REST与AJAX"/>
-<meta name="twitter:description" content="近来，以信息为中心的表述性状态转移(Representational State Transfer, REST)已成为替换传统 SOAP Web 服务的流行方案，Spring MVC 封装了对 REST 的良好支持。
+本节应用 @ResponseBody 注解实现简单的 RESTless URL，并与 JQuery AJAX 结合。">
+  <meta itemprop="datePublished" content="2014-08-24T11:14:55+08:00">
+  <meta itemprop="dateModified" content="2014-08-24T11:14:55+08:00">
+  <meta itemprop="wordCount" content="1187">
+  <meta itemprop="keywords" content="SpringMVC">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Spring MVC 学习笔记5 REST与AJAX">
+  <meta name="twitter:description" content="近来，以信息为中心的表述性状态转移(Representational State Transfer, REST)已成为替换传统 SOAP Web 服务的流行方案，Spring MVC 封装了对 REST 的良好支持。
 当谈论REST时，有一种常见的错误就是将其视为“基于 URL 的 Web 服务”，将 REST 作为另一种类型的远程过程调用(RPC)机制。恰好相反，REST 与 RPC 几乎没有任何关系，RPC 是面向服务的，并关注于行为和动作，而 REST 是面向资源的，强调描述应用程序的事物和名词。REST 就是将资源的状态以最合适的形式从服务器端转移到客户端（或者反之）。
-本节应用 @ResponseBody 注解实现简单的 RESTless URL，并与 JQuery AJAX 结合。"/>
+本节应用 @ResponseBody 注解实现简单的 RESTless URL，并与 JQuery AJAX 结合。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -214,31 +221,31 @@
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Entity</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;spittle_tbl&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Spittle</span> <span class="kd">implements</span> <span class="n">Serializable</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">//omit getter and setter
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@Id</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;spittle_id&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Long</span> <span class="n">spittleId</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;text&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">text</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;push_time&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@JsonFormat</span><span class="o">(</span><span class="n">shape</span><span class="o">=</span><span class="n">JsonFormat</span><span class="o">.</span><span class="na">Shape</span><span class="o">.</span><span class="na">STRING</span><span class="o">,</span> <span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;yyyy-MM-dd HH:mm:ss&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Date</span> <span class="n">pushTime</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_id&#34;</span><span class="o">,</span> <span class="n">referencedColumnName</span> <span class="o">=</span> <span class="s">&#34;user_id&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">optional</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">User</span> <span class="n">user</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Entity</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;spittle_tbl&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Spittle</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">serialVersionUID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">1L</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//omit getter and setter</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Column</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;spittle_id&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">spittleId</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Column</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;text&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Column</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;push_time&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@JsonFormat</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">JsonFormat</span><span class="p">.</span><span class="na">Shape</span><span class="p">.</span><span class="na">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;yyyy-MM-dd HH:mm:ss&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">pushTime</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;user_id&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">referencedColumnName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;user_id&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@ManyToOne</span><span class="p">(</span><span class="n">optional</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>用户页面 Controller</p>
 <div class="highlight"><div class="chroma">
@@ -293,55 +300,55 @@
 </span><span class="lnt">48
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Controller</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;/u/{username}&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpitterController</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@Autowired</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">HibSpittleService</span> <span class="n">hibSpittleService</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ModelAndView</span> <span class="nf">userPage</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="n">String</span> <span class="n">username</span><span class="o">,</span> <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="o">(</span><span class="n">User</span><span class="o">)</span> <span class="n">request</span><span class="o">.</span><span class="na">getSession</span><span class="o">().</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">user</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;redirect:/&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">Spittle</span><span class="o">&gt;</span> <span class="n">spittles</span> <span class="o">=</span> <span class="n">hibSpittleService</span><span class="o">.</span><span class="na">getSpittlesForUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">&#34;spittle&#34;</span><span class="o">,</span> <span class="k">new</span> <span class="n">Spittle</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">&#34;spittles&#34;</span><span class="o">,</span> <span class="n">spittles</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;user_page&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">,</span> <span class="n">produces</span> <span class="o">=</span> <span class="s">&#34;application/json; charset=utf-8&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@ResponseStatus</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nd">@ResponseBody</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Spittle</span> <span class="nf">pushSpittle</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="n">String</span> <span class="n">username</span><span class="o">,</span> <span class="nd">@RequestBody</span> <span class="n">Spittle</span> <span class="n">spittle</span><span class="o">,</span>
-</span></span><span class="line"><span class="cl">                              <span class="n">HttpServletRequest</span> <span class="n">request</span> <span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="o">(</span><span class="n">User</span><span class="o">)</span> <span class="n">request</span><span class="o">.</span><span class="na">getSession</span><span class="o">().</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">spittle</span><span class="o">.</span><span class="na">setPushTime</span><span class="o">(</span><span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">Timestamp</span><span class="o">((</span><span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Date</span><span class="o">()).</span><span class="na">getTime</span><span class="o">()));</span>
-</span></span><span class="line"><span class="cl">        <span class="n">spittle</span><span class="o">.</span><span class="na">setUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">hibSpittleService</span><span class="o">.</span><span class="na">addSpittle</span><span class="o">(</span><span class="n">spittle</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">spittle</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;/delete/{id}&#34;</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">DELETE</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@ResponseBody</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Long</span> <span class="nf">delSpittleByID</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="n">String</span> <span class="n">username</span><span class="o">,</span> <span class="nd">@PathVariable</span> <span class="n">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">hibSpittleService</span><span class="o">.</span><span class="na">delSpittleById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;logout&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">logout</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">request</span><span class="o">.</span><span class="na">getSession</span><span class="o">().</span><span class="na">invalidate</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;redirect:/&#34;</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Controller</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;/u/{username}&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SpitterController</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Autowired</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">HibSpittleService</span><span class="w"> </span><span class="n">hibSpittleService</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RequestMethod</span><span class="p">.</span><span class="na">GET</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ModelAndView</span><span class="w"> </span><span class="nf">userPage</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">Model</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="na">getSession</span><span class="p">().</span><span class="na">getAttribute</span><span class="p">(</span><span class="s">&#34;user&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">user</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ModelAndView</span><span class="p">(</span><span class="s">&#34;redirect:/&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Spittle</span><span class="o">&gt;</span><span class="w"> </span><span class="n">spittles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hibSpittleService</span><span class="p">.</span><span class="na">getSpittlesForUser</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">model</span><span class="p">.</span><span class="na">addAttribute</span><span class="p">(</span><span class="s">&#34;spittle&#34;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Spittle</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">model</span><span class="p">.</span><span class="na">addAttribute</span><span class="p">(</span><span class="s">&#34;spittles&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">spittles</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ModelAndView</span><span class="p">(</span><span class="s">&#34;user_page&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="p">.</span><span class="na">POST</span><span class="p">,</span><span class="w"> </span><span class="n">produces</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;application/json; charset=utf-8&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@ResponseStatus</span><span class="p">(</span><span class="n">HttpStatus</span><span class="p">.</span><span class="na">CREATED</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nd">@ResponseBody</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Spittle</span><span class="w"> </span><span class="nf">pushSpittle</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">Spittle</span><span class="w"> </span><span class="n">spittle</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                              </span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="na">getSession</span><span class="p">().</span><span class="na">getAttribute</span><span class="p">(</span><span class="s">&#34;user&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">spittle</span><span class="p">.</span><span class="na">setPushTime</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">Timestamp</span><span class="p">((</span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">Date</span><span class="p">()).</span><span class="na">getTime</span><span class="p">()));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">spittle</span><span class="p">.</span><span class="na">setUser</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">hibSpittleService</span><span class="p">.</span><span class="na">addSpittle</span><span class="p">(</span><span class="n">spittle</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">spittle</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;/delete/{id}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RequestMethod</span><span class="p">.</span><span class="na">DELETE</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@ResponseBody</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="nf">delSpittleByID</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">hibSpittleService</span><span class="p">.</span><span class="na">delSpittleById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s">&#34;logout&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">logout</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">request</span><span class="p">.</span><span class="na">getSession</span><span class="p">().</span><span class="na">invalidate</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;redirect:/&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>用户页面 jsp</p>
 <div class="highlight"><div class="chroma">
@@ -644,7 +651,7 @@
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">josephpei</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -702,7 +709,7 @@
       <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
       <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
       <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
-  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -720,7 +727,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

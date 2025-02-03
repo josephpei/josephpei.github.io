@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="josephpei" /><meta name="description" content="这也是Google面试题
+<meta name="author" content="" /><meta name="description" content="这也是Google面试题
 股市上一个股票的价格从开市开始是不停的变化的，需要开发一个系统，给定一个股票，它能实时显示从开市到当前时间的这个股票的价格的中位数（中值）。
 用双堆存储，一个大根堆，一个小根堆，则Inert为O(logn)，Median为O(1)
 " /><meta name="keywords" content="life, linux, program" />
@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.110.0 with theme even" />
+<meta name="generator" content="Hugo 0.131.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/12/20/poj-2388-%E5%AF%BB%E6%89%BE%E4%B8%AD%E4%BD%8D%E6%95%B0/" />
@@ -42,25 +42,33 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="poj 2388 寻找中位数" />
-<meta property="og:description" content="这也是Google面试题
+<meta property="og:url" content="http://josephpei.github.io/2013/12/20/poj-2388-%E5%AF%BB%E6%89%BE%E4%B8%AD%E4%BD%8D%E6%95%B0/">
+  <meta property="og:site_name" content="有翅膀的天狼">
+  <meta property="og:title" content="poj 2388 寻找中位数">
+  <meta property="og:description" content="这也是Google面试题
 股市上一个股票的价格从开市开始是不停的变化的，需要开发一个系统，给定一个股票，它能实时显示从开市到当前时间的这个股票的价格的中位数（中值）。
-用双堆存储，一个大根堆，一个小根堆，则Inert为O(logn)，Median为O(1)" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2013/12/20/poj-2388-%E5%AF%BB%E6%89%BE%E4%B8%AD%E4%BD%8D%E6%95%B0/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2013-12-20T13:09:27+08:00" />
-<meta property="article:modified_time" content="2013-12-20T13:09:27+08:00" />
-<meta itemprop="name" content="poj 2388 寻找中位数">
-<meta itemprop="description" content="这也是Google面试题
+用双堆存储，一个大根堆，一个小根堆，则Inert为O(logn)，Median为O(1)">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2013-12-20T13:09:27+08:00">
+    <meta property="article:modified_time" content="2013-12-20T13:09:27+08:00">
+    <meta property="article:tag" content="Poj">
+    <meta property="article:tag" content="Algorithm">
+
+  <meta itemprop="name" content="poj 2388 寻找中位数">
+  <meta itemprop="description" content="这也是Google面试题
 股市上一个股票的价格从开市开始是不停的变化的，需要开发一个系统，给定一个股票，它能实时显示从开市到当前时间的这个股票的价格的中位数（中值）。
-用双堆存储，一个大根堆，一个小根堆，则Inert为O(logn)，Median为O(1)"><meta itemprop="datePublished" content="2013-12-20T13:09:27+08:00" />
-<meta itemprop="dateModified" content="2013-12-20T13:09:27+08:00" />
-<meta itemprop="wordCount" content="371">
-<meta itemprop="keywords" content="poj,algorithm," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="poj 2388 寻找中位数"/>
-<meta name="twitter:description" content="这也是Google面试题
+用双堆存储，一个大根堆，一个小根堆，则Inert为O(logn)，Median为O(1)">
+  <meta itemprop="datePublished" content="2013-12-20T13:09:27+08:00">
+  <meta itemprop="dateModified" content="2013-12-20T13:09:27+08:00">
+  <meta itemprop="wordCount" content="371">
+  <meta itemprop="keywords" content="Poj,Algorithm">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="poj 2388 寻找中位数">
+  <meta name="twitter:description" content="这也是Google面试题
 股市上一个股票的价格从开市开始是不停的变化的，需要开发一个系统，给定一个股票，它能实时显示从开市到当前时间的这个股票的价格的中位数（中值）。
-用双堆存储，一个大根堆，一个小根堆，则Inert为O(logn)，Median为O(1)"/>
+用双堆存储，一个大根堆，一个小根堆，则Inert为O(logn)，Median为O(1)">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -221,72 +229,72 @@
 </span><span class="lnt">65
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FindMedian</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">maxHeap</span><span class="o">,</span> <span class="n">minHeap</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">FindMedian</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">revCmp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Integer</span> <span class="n">left</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">right</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">left</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="o">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">// Or you can use Collections&#39; reverseOrder method as follows.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// Comparator&lt;Integer&gt; revCmp = Collections.reverseOrder();
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">maxHeap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;(</span><span class="n">n</span><span class="o">,</span> <span class="n">revCmp</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">minHeap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;(</span><span class="n">n</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addNewNumber</span><span class="o">(</span><span class="kt">int</span> <span class="n">randomNumber</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">maxHeap</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="n">minHeap</span><span class="o">.</span><span class="na">size</span><span class="o">())</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">((</span><span class="n">minHeap</span><span class="o">.</span><span class="na">peek</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">randomNumber</span> <span class="o">&gt;</span> <span class="n">minHeap</span><span class="o">.</span><span class="na">peek</span><span class="o">())</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">maxHeap</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">minHeap</span><span class="o">.</span><span class="na">poll</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">                <span class="n">minHeap</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">randomNumber</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">maxHeap</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">randomNumber</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="o">{</span>  <span class="c1">// trick
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span><span class="o">(</span><span class="n">randomNumber</span> <span class="o">&lt;</span> <span class="n">maxHeap</span><span class="o">.</span><span class="na">peek</span><span class="o">())</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">minHeap</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">maxHeap</span><span class="o">.</span><span class="na">poll</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">                <span class="n">maxHeap</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">randomNumber</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span>
-</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">minHeap</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">randomNumber</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getMedian</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">maxHeap</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="k">return</span> <span class="n">minHeap</span><span class="o">.</span><span class="na">peek</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">minHeap</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="k">return</span> <span class="n">maxHeap</span><span class="o">.</span><span class="na">peek</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">maxHeap</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="n">minHeap</span><span class="o">.</span><span class="na">size</span><span class="o">())</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="o">(</span><span class="n">minHeap</span><span class="o">.</span><span class="na">peek</span><span class="o">()</span> <span class="o">+</span> <span class="n">maxHeap</span><span class="o">.</span><span class="na">peek</span><span class="o">())</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">maxHeap</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">minHeap</span><span class="o">.</span><span class="na">size</span><span class="o">())</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">maxHeap</span><span class="o">.</span><span class="na">peek</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">minHeap</span><span class="o">.</span><span class="na">peek</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">Scanner</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">FindMedian</span> <span class="n">fm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FindMedian</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">            <span class="n">fm</span><span class="o">.</span><span class="na">addNewNumber</span><span class="o">(</span><span class="n">num</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">fm</span><span class="o">.</span><span class="na">getMedian</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.*</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">FindMedian</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">maxHeap</span><span class="p">,</span><span class="w"> </span><span class="n">minHeap</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">FindMedian</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">revCmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">compare</span><span class="p">(</span><span class="n">Integer</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">right</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">left</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// Or you can use Collections&#39; reverseOrder method as follows.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// Comparator&lt;Integer&gt; revCmp = Collections.reverseOrder();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">maxHeap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">revCmp</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">minHeap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addNewNumber</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">randomNumber</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">maxHeap</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">minHeap</span><span class="p">.</span><span class="na">size</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">minHeap</span><span class="p">.</span><span class="na">peek</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">randomNumber</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">minHeap</span><span class="p">.</span><span class="na">peek</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">maxHeap</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">minHeap</span><span class="p">.</span><span class="na">poll</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">minHeap</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">randomNumber</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">maxHeap</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">randomNumber</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// trick</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">randomNumber</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">maxHeap</span><span class="p">.</span><span class="na">peek</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">minHeap</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">maxHeap</span><span class="p">.</span><span class="na">poll</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">maxHeap</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">randomNumber</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">minHeap</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">randomNumber</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getMedian</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">maxHeap</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">minHeap</span><span class="p">.</span><span class="na">peek</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">minHeap</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">maxHeap</span><span class="p">.</span><span class="na">peek</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">maxHeap</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">minHeap</span><span class="p">.</span><span class="na">size</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">minHeap</span><span class="p">.</span><span class="na">peek</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">maxHeap</span><span class="p">.</span><span class="na">peek</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">2</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">maxHeap</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">minHeap</span><span class="p">.</span><span class="na">size</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">maxHeap</span><span class="p">.</span><span class="na">peek</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">minHeap</span><span class="p">.</span><span class="na">peek</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Scanner</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">FindMedian</span><span class="w"> </span><span class="n">fm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FindMedian</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">fm</span><span class="p">.</span><span class="na">addNewNumber</span><span class="p">(</span><span class="n">num</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">fm</span><span class="p">.</span><span class="na">getMedian</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -294,7 +302,7 @@
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">josephpei</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -353,7 +361,7 @@
       <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
       <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
       <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
-  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -371,7 +379,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

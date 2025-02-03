@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="josephpei" /><meta name="description" content="建立web应用 使用eclipse建立maven的web工程
+<meta name="author" content="" /><meta name="description" content="建立web应用 使用eclipse建立maven的web工程
 配置web工程 完善目录
 让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。
 " /><meta name="keywords" content="life, linux, program" />
@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.110.0 with theme even" />
+<meta name="generator" content="Hugo 0.131.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/" />
@@ -42,31 +42,32 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Eclipse中使用Maven Tomcat构建Web应用" />
-<meta property="og:description" content="建立web应用
-使用eclipse建立maven的web工程
-配置web工程
-完善目录
-让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2014-02-08T11:33:22+08:00" />
-<meta property="article:modified_time" content="2014-02-08T11:33:22+08:00" />
-<meta itemprop="name" content="Eclipse中使用Maven Tomcat构建Web应用">
-<meta itemprop="description" content="建立web应用
-使用eclipse建立maven的web工程
-配置web工程
-完善目录
-让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。"><meta itemprop="datePublished" content="2014-02-08T11:33:22+08:00" />
-<meta itemprop="dateModified" content="2014-02-08T11:33:22+08:00" />
-<meta itemprop="wordCount" content="548">
-<meta itemprop="keywords" content="java," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Eclipse中使用Maven Tomcat构建Web应用"/>
-<meta name="twitter:description" content="建立web应用
-使用eclipse建立maven的web工程
-配置web工程
-完善目录
-让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。"/>
+<meta property="og:url" content="http://josephpei.github.io/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/">
+  <meta property="og:site_name" content="有翅膀的天狼">
+  <meta property="og:title" content="Eclipse中使用Maven Tomcat构建Web应用">
+  <meta property="og:description" content="建立web应用 使用eclipse建立maven的web工程
+配置web工程 完善目录
+让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2014-02-08T11:33:22+08:00">
+    <meta property="article:modified_time" content="2014-02-08T11:33:22+08:00">
+    <meta property="article:tag" content="Java">
+
+  <meta itemprop="name" content="Eclipse中使用Maven Tomcat构建Web应用">
+  <meta itemprop="description" content="建立web应用 使用eclipse建立maven的web工程
+配置web工程 完善目录
+让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。">
+  <meta itemprop="datePublished" content="2014-02-08T11:33:22+08:00">
+  <meta itemprop="dateModified" content="2014-02-08T11:33:22+08:00">
+  <meta itemprop="wordCount" content="548">
+  <meta itemprop="keywords" content="Java">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Eclipse中使用Maven Tomcat构建Web应用">
+  <meta name="twitter:description" content="建立web应用 使用eclipse建立maven的web工程
+配置web工程 完善目录
+让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -311,32 +312,32 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.example.simpledb</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javax.servlet.ServletException</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServlet</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletRequest</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletResponse</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestServlet</span>  <span class="kd">extends</span> <span class="n">HttpServlet</span>
-</span></span><span class="line"><span class="cl"><span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span><span class="n">HttpServletResponse</span> <span class="n">res</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                 <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span>
-</span></span><span class="line"><span class="cl">  <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">hello</span><span class="o">=</span><span class="s">&#34;Test : Hello April!&#34;</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">hello</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">res</span><span class="o">.</span><span class="na">getWriter</span><span class="o">().</span><span class="na">write</span><span class="o">(</span><span class="n">hello</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span><span class="n">HttpServletResponse</span> <span class="n">res</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                 <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span>
-</span></span><span class="line"><span class="cl">  <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">doPost</span><span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="n">res</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.simpledb</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.IOException</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javax.servlet.ServletException</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javax.servlet.http.HttpServlet</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javax.servlet.http.HttpServletRequest</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javax.servlet.http.HttpServletResponse</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TestServlet</span><span class="w">  </span><span class="kd">extends</span><span class="w"> </span><span class="n">HttpServlet</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">serialVersionUID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">1L</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doPost</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">req</span><span class="p">,</span><span class="n">HttpServletResponse</span><span class="w"> </span><span class="n">res</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                 </span><span class="kd">throws</span><span class="w"> </span><span class="n">ServletException</span><span class="p">,</span><span class="w"> </span><span class="n">IOException</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">hello</span><span class="o">=</span><span class="s">&#34;Test : Hello April!&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">hello</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">res</span><span class="p">.</span><span class="na">getWriter</span><span class="p">().</span><span class="na">write</span><span class="p">(</span><span class="n">hello</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doGet</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">req</span><span class="p">,</span><span class="n">HttpServletResponse</span><span class="w"> </span><span class="n">res</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                 </span><span class="kd">throws</span><span class="w"> </span><span class="n">ServletException</span><span class="p">,</span><span class="w"> </span><span class="n">IOException</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">doPost</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>src/main/webapp/WEB-INF/web.xml</p>
 <div class="highlight"><div class="chroma">
@@ -402,7 +403,7 @@ Step 4 : Edit Jre &gt; Set JRE Home = JDK_HOME
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">josephpei</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -460,7 +461,7 @@ Step 4 : Edit Jre &gt; Set JRE Home = JDK_HOME
       <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
       <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
       <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
-  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -478,7 +479,7 @@ Step 4 : Edit Jre &gt; Set JRE Home = JDK_HOME
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

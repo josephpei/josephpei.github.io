@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="josephpei" /><meta name="description" content="首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 https://support.microsoft.com/en-us/help/12387/windows-10-update-history 手动升级。
+<meta name="author" content="" /><meta name="description" content="首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 https://support.microsoft.com/en-us/help/12387/windows-10-update-history 手动升级。
 Step 0: 安装 WSL Ubuntu 在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。
 Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。
 " /><meta name="keywords" content="life, linux, program" />
@@ -26,7 +26,7 @@ Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提�
 
 
 
-<meta name="generator" content="Hugo 0.110.0 with theme even" />
+<meta name="generator" content="Hugo 0.131.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2016/08/18/pycharm-%E4%BD%BF%E7%94%A8-windows-10-wsl-ubuntu-%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84-python/" />
@@ -42,28 +42,30 @@ Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提�
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python" />
-<meta property="og:description" content="首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 https://support.microsoft.com/en-us/help/12387/windows-10-update-history 手动升级。
-Step 0: 安装 WSL Ubuntu
-在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。
-Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2016/08/18/pycharm-%E4%BD%BF%E7%94%A8-windows-10-wsl-ubuntu-%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84-python/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2016-08-18T09:30:18+08:00" />
-<meta property="article:modified_time" content="2016-08-18T09:30:18+08:00" />
-<meta itemprop="name" content="PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python">
-<meta itemprop="description" content="首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 https://support.microsoft.com/en-us/help/12387/windows-10-update-history 手动升级。
-Step 0: 安装 WSL Ubuntu
-在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。
-Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。"><meta itemprop="datePublished" content="2016-08-18T09:30:18+08:00" />
-<meta itemprop="dateModified" content="2016-08-18T09:30:18+08:00" />
-<meta itemprop="wordCount" content="314">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python"/>
-<meta name="twitter:description" content="首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 https://support.microsoft.com/en-us/help/12387/windows-10-update-history 手动升级。
-Step 0: 安装 WSL Ubuntu
-在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。
-Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。"/>
+<meta property="og:url" content="http://josephpei.github.io/2016/08/18/pycharm-%E4%BD%BF%E7%94%A8-windows-10-wsl-ubuntu-%E5%AD%90%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84-python/">
+  <meta property="og:site_name" content="有翅膀的天狼">
+  <meta property="og:title" content="PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python">
+  <meta property="og:description" content="首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 https://support.microsoft.com/en-us/help/12387/windows-10-update-history 手动升级。
+Step 0: 安装 WSL Ubuntu 在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。
+Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2016-08-18T09:30:18+08:00">
+    <meta property="article:modified_time" content="2016-08-18T09:30:18+08:00">
+
+  <meta itemprop="name" content="PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python">
+  <meta itemprop="description" content="首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 https://support.microsoft.com/en-us/help/12387/windows-10-update-history 手动升级。
+Step 0: 安装 WSL Ubuntu 在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。
+Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。">
+  <meta itemprop="datePublished" content="2016-08-18T09:30:18+08:00">
+  <meta itemprop="dateModified" content="2016-08-18T09:30:18+08:00">
+  <meta itemprop="wordCount" content="314">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="PyCharm 使用 Windows 10 WSL Ubuntu 子系统中的 Python">
+  <meta name="twitter:description" content="首先升级 Windows 10 Anniversary 周年纪念版，又称 RedStone1。如果没有收到推送，可以到这个网址 https://support.microsoft.com/en-us/help/12387/windows-10-update-history 手动升级。
+Step 0: 安装 WSL Ubuntu 在设置中开启开发人员模式，添加 Windows Subsystem for Linux (Beta)，嗯，目前还是 Beta。
+Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提示是否安装 Ubuntu，完成之后会提示输入用户名和密码。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -208,7 +210,7 @@ Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提�
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">josephpei</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -264,7 +266,7 @@ Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提�
       <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
       <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
       <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
-  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -282,7 +284,7 @@ Win &#43; X 打开 CMD 管理员，输入 bash 或者 lxrun /install,会有提�
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

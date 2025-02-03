@@ -1,69 +1,47 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>java on 有翅膀的天狼</title>
+    <title>Java on 有翅膀的天狼</title>
     <link>http://josephpei.github.io/tags/java/</link>
-    <description>Recent content in java on 有翅膀的天狼</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Java on 有翅膀的天狼</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 21 Feb 2014 10:35:29 +0800</lastBuildDate><atom:link href="http://josephpei.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 Feb 2014 10:35:29 +0800</lastBuildDate>
+    <atom:link href="http://josephpei.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>设计模式之工厂模式(Java实现)</title>
       <link>http://josephpei.github.io/2014/02/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8Fjava%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Fri, 21 Feb 2014 10:35:29 +0800</pubDate>
-      
       <guid>http://josephpei.github.io/2014/02/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8Fjava%E5%AE%9E%E7%8E%B0/</guid>
       <description>&lt;p&gt;GoF 经典定义：Define an interface for creating an object, but let subclasses decide which class to initiate. Factory Method lets a class defer instantiation to subclasses.(定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法使一个类的实例化延迟到子类。)&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Tomcat 编码设定</title>
       <link>http://josephpei.github.io/2014/02/16/tomcat-%E7%BC%96%E7%A0%81%E8%AE%BE%E5%AE%9A/</link>
       <pubDate>Sun, 16 Feb 2014 12:51:13 +0800</pubDate>
-      
       <guid>http://josephpei.github.io/2014/02/16/tomcat-%E7%BC%96%E7%A0%81%E8%AE%BE%E5%AE%9A/</guid>
-      <description>&lt;p&gt;大部分网上文章都是Connector标签里面添加 URIEncoding=&amp;ldquo;utf-8&amp;rdquo;，这种方法过于暴力。&lt;/p&gt;
-&lt;p&gt;正确的做法是添加 useBodyEncodingForURI=&amp;ldquo;true&amp;rdquo;，这句的话告诉tomcat用页面的编码去处理post，推荐使用。&lt;/p&gt;
-&lt;p&gt;JSP页面头&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;%@ page language=&amp;quot;java&amp;quot;  pageEncoding=&amp;quot;UTF-8&amp;quot;%&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;html标签的head标签里加上&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;meta http-equiv=&amp;quot;Content-Type&amp;quot; content=&amp;quot;text/html; charset=utf-8&amp;quot;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;</description>
+      <description>&lt;p&gt;大部分网上文章都是Connector标签里面添加 URIEncoding=&amp;ldquo;utf-8&amp;rdquo;，这种方法过于暴力。&lt;/p&gt;&#xA;&lt;p&gt;正确的做法是添加 useBodyEncodingForURI=&amp;ldquo;true&amp;rdquo;，这句的话告诉tomcat用页面的编码去处理post，推荐使用。&lt;/p&gt;&#xA;&lt;p&gt;JSP页面头&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;&amp;lt;%@ page language=&amp;quot;java&amp;quot;  pageEncoding=&amp;quot;UTF-8&amp;quot;%&amp;gt;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;html标签的head标签里加上&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;&amp;lt;meta http-equiv=&amp;quot;Content-Type&amp;quot; content=&amp;quot;text/html; charset=utf-8&amp;quot;&amp;gt;&#xA;&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
-    
     <item>
       <title>Eclipse中使用Maven Tomcat构建Web应用</title>
       <link>http://josephpei.github.io/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/</link>
       <pubDate>Sat, 08 Feb 2014 11:33:22 +0800</pubDate>
-      
       <guid>http://josephpei.github.io/2014/02/08/eclipse%E4%B8%AD%E4%BD%BF%E7%94%A8maven-tomcat%E6%9E%84%E5%BB%BAweb%E5%BA%94%E7%94%A8/</guid>
-      <description>&lt;h2 id=&#34;建立web应用&#34;&gt;建立web应用&lt;/h2&gt;
-&lt;p&gt;使用eclipse建立maven的web工程&lt;/p&gt;
-&lt;h2 id=&#34;配置web工程&#34;&gt;配置web工程&lt;/h2&gt;
-&lt;p&gt;完善目录&lt;/p&gt;
-&lt;p&gt;让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;建立web应用&#34;&gt;建立web应用&lt;/h2&gt;&#xA;&lt;p&gt;使用eclipse建立maven的web工程&lt;/p&gt;&#xA;&lt;h2 id=&#34;配置web工程&#34;&gt;配置web工程&lt;/h2&gt;&#xA;&lt;p&gt;完善目录&lt;/p&gt;&#xA;&lt;p&gt;让目录变成标准的maven结构，增加Maven项目必要的主目录（src/main/java）和测试目录（src/test/java）。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Maven 入门</title>
       <link>http://josephpei.github.io/2014/02/08/maven-%E5%85%A5%E9%97%A8/</link>
       <pubDate>Sat, 08 Feb 2014 11:23:47 +0800</pubDate>
-      
       <guid>http://josephpei.github.io/2014/02/08/maven-%E5%85%A5%E9%97%A8/</guid>
-      <description>&lt;p&gt;Maven是构建Java应用的优秀管理工具，是Apache软件基金会的顶级项目。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。&lt;/p&gt;
-&lt;p&gt;官网地址  &lt;a href=&#34;http://maven.apache.org/&#34;&gt;http://maven.apache.org/&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Maven是构建Java应用的优秀管理工具，是Apache软件基金会的顶级项目。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。&lt;/p&gt;&#xA;&lt;p&gt;官网地址  &lt;a href=&#34;http://maven.apache.org/&#34;&gt;http://maven.apache.org/&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Mac OSX 下 java 环境</title>
       <link>http://josephpei.github.io/2013/09/28/mac-osx-%E4%B8%8B-java-%E7%8E%AF%E5%A2%83/</link>
       <pubDate>Sat, 28 Sep 2013 13:37:52 +0800</pubDate>
-      
       <guid>http://josephpei.github.io/2013/09/28/mac-osx-%E4%B8%8B-java-%E7%8E%AF%E5%A2%83/</guid>
-      <description>&lt;h2 id=&#34;解决javac和java命令在mac-osx终端里的乱码问题&#34;&gt;解决javac和java命令在Mac OSX终端里的乱码问题&lt;/h2&gt;
-&lt;p&gt;解决方法有3个：&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;解决javac和java命令在mac-osx终端里的乱码问题&#34;&gt;解决javac和java命令在Mac OSX终端里的乱码问题&lt;/h2&gt;&#xA;&lt;p&gt;解决方法有3个：&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

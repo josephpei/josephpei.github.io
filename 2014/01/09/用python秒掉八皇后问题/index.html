@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="josephpei" /><meta name="description" content="来源：http://www.iteye.com/topic/106747
+<meta name="author" content="" /><meta name="description" content="来源：http://www.iteye.com/topic/106747
 在 函数式编程语言曲高和寡？ 一文中，我们看到 Haskell 能用两行代码
 1 2 sort [] = [] sort (x:xs) = sort [y | y &amp;lt;- xs, y &amp;lt; x] &#43;&#43; [x] &#43;&#43; sort [y | y &amp;lt;- xs, y &amp;gt;= x] 搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。
 " /><meta name="keywords" content="life, linux, program" />
@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.110.0 with theme even" />
+<meta name="generator" content="Hugo 0.131.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2014/01/09/%E7%94%A8python%E7%A7%92%E6%8E%89%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" />
@@ -42,55 +42,33 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="用Python秒掉八皇后问题" />
-<meta property="og:description" content="来源：http://www.iteye.com/topic/106747
+<meta property="og:url" content="http://josephpei.github.io/2014/01/09/%E7%94%A8python%E7%A7%92%E6%8E%89%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/">
+  <meta property="og:site_name" content="有翅膀的天狼">
+  <meta property="og:title" content="用Python秒掉八皇后问题">
+  <meta property="og:description" content="来源：http://www.iteye.com/topic/106747
 在 函数式编程语言曲高和寡？ 一文中，我们看到 Haskell 能用两行代码
+1 2 sort [] = [] sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y | y &lt;- xs, y &gt;= x] 搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2014-01-09T12:10:41+08:00">
+    <meta property="article:modified_time" content="2014-01-09T12:10:41+08:00">
+    <meta property="article:tag" content="FP">
+    <meta property="article:tag" content="Python">
 
-
-1
-2
-
-
-sort [] = []
-sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y | y &lt;- xs, y &gt;= x]
-
-
-搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2014/01/09/%E7%94%A8python%E7%A7%92%E6%8E%89%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2014-01-09T12:10:41+08:00" />
-<meta property="article:modified_time" content="2014-01-09T12:10:41+08:00" />
-<meta itemprop="name" content="用Python秒掉八皇后问题">
-<meta itemprop="description" content="来源：http://www.iteye.com/topic/106747
+  <meta itemprop="name" content="用Python秒掉八皇后问题">
+  <meta itemprop="description" content="来源：http://www.iteye.com/topic/106747
 在 函数式编程语言曲高和寡？ 一文中，我们看到 Haskell 能用两行代码
-
-
-1
-2
-
-
-sort [] = []
-sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y | y &lt;- xs, y &gt;= x]
-
-
-搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。"><meta itemprop="datePublished" content="2014-01-09T12:10:41+08:00" />
-<meta itemprop="dateModified" content="2014-01-09T12:10:41+08:00" />
-<meta itemprop="wordCount" content="3514">
-<meta itemprop="keywords" content="FP,python," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="用Python秒掉八皇后问题"/>
-<meta name="twitter:description" content="来源：http://www.iteye.com/topic/106747
+1 2 sort [] = [] sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y | y &lt;- xs, y &gt;= x] 搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。">
+  <meta itemprop="datePublished" content="2014-01-09T12:10:41+08:00">
+  <meta itemprop="dateModified" content="2014-01-09T12:10:41+08:00">
+  <meta itemprop="wordCount" content="3514">
+  <meta itemprop="keywords" content="FP,Python">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="用Python秒掉八皇后问题">
+  <meta name="twitter:description" content="来源：http://www.iteye.com/topic/106747
 在 函数式编程语言曲高和寡？ 一文中，我们看到 Haskell 能用两行代码
-
-
-1
-2
-
-
-sort [] = []
-sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y | y &lt;- xs, y &gt;= x]
-
-
-搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。"/>
+1 2 sort [] = [] sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y | y &lt;- xs, y &gt;= x] 搞定快速排序算法。这是偶然，还是必然？在这篇文章中，lichray 用我们所熟悉的 Python 语言，几行代码搞定很多学编程几年的人都只是一知半解的算法——八皇后问题，展示和上篇文章中的快速排序一样清晰的、令人耳目一新的函数式算法思想。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -236,11 +214,11 @@ sort (x:xs) = sort [y | y &lt;- xs, y &lt; x] &#43;&#43; [x] &#43;&#43; sort [y 
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">sort</span> <span class="p">(</span><span class="n">ls</span><span class="p">):</span> 
-</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="p">[]</span> \
-</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">else</span> <span class="n">sort</span><span class="p">([</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span> <span class="o">+</span> \
-</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="p">[</span><span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> \
-</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="n">sort</span><span class="p">([</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
-</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="c1"># 别忘了 python-2.5 的新特性条件分支表达式哦！可惜太长，不得不强制换行。</span>
+</span></span><span class="line"><span class="cl">　　<span class="k">return</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="p">[]</span> \
+</span></span><span class="line"><span class="cl">　　　<span class="k">else</span> <span class="n">sort</span><span class="p">([</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span> <span class="o">+</span> \
+</span></span><span class="line"><span class="cl">　　　<span class="p">[</span><span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> \
+</span></span><span class="line"><span class="cl">　　　<span class="n">sort</span><span class="p">([</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl">　　<span class="c1"># 别忘了 python-2.5 的新特性条件分支表达式哦！可惜太长，不得不强制换行。</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="算法描述">算法描述</h2>
@@ -271,11 +249,11 @@ f (n) = 1 + f (n - 1)
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">queens</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="p">[[]]</span> <span class="k">if</span> <span class="n">col</span> <span class="o">==</span> <span class="mi">0</span> \
-</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">else</span> <span class="p">[[</span><span class="n">ran</span><span class="p">]</span> <span class="o">+</span> <span class="n">rst</span> \  <span class="c1"># 在 Python 中，g(x,y)=[x]+y </span>
-</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">for</span> <span class="n">ran</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> \
-</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">for</span> <span class="n">rst</span> <span class="ow">in</span> <span class="n">queens</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> \
-</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">if</span> <span class="n">safe</span><span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">　　<span class="k">return</span> <span class="p">[[]]</span> <span class="k">if</span> <span class="n">col</span> <span class="o">==</span> <span class="mi">0</span> \
+</span></span><span class="line"><span class="cl">　　　<span class="k">else</span> <span class="p">[[</span><span class="n">ran</span><span class="p">]</span> <span class="o">+</span> <span class="n">rst</span> \  <span class="c1"># 在 Python 中，g(x,y)=[x]+y </span>
+</span></span><span class="line"><span class="cl">　　　<span class="k">for</span> <span class="n">ran</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> \
+</span></span><span class="line"><span class="cl">　　　<span class="k">for</span> <span class="n">rst</span> <span class="ow">in</span> <span class="n">queens</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> \
+</span></span><span class="line"><span class="cl">　　　<span class="k">if</span> <span class="n">safe</span><span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">)]</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>不难看出，有了列表领悟这个强大的武器，我们就可以放心大胆地利用描述一个元素形式的思路来解决这类列表输出的问题。这就是列表领悟最根本的思想：“形式化的思维方式”。</p>
@@ -289,9 +267,9 @@ f (n) = 1 + f (n - 1)
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">　　</span><span class="k">def</span> <span class="nf">check</span> <span class="p">(</span><span class="n">pos</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl"><span class="err">　　　　</span><span class="c1"># 表达式变个形式，少打点字</span>
-</span></span><span class="line"><span class="cl"><span class="err">　　　　</span><span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="n">ran</span> <span class="o">==</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ran</span> <span class="o">-</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">])</span> <span class="o">==</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">　　<span class="k">def</span> <span class="nf">check</span> <span class="p">(</span><span class="n">pos</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">　　　　<span class="c1"># 表达式变个形式，少打点字</span>
+</span></span><span class="line"><span class="cl">　　　　<span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="n">ran</span> <span class="o">==</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ran</span> <span class="o">-</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">])</span> <span class="o">==</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>值得注意的是，由于这里 check() 用到了逃逸变量 ran 和 rst，check 函数体就必须写在 safe() 函数体内部以使这它们在其闭包环境中出现。</p>
@@ -305,9 +283,9 @@ f (n) = 1 + f (n - 1)
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">safe</span> <span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">def</span> <span class="nf">check</span> <span class="p">(</span><span class="n">pos</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl"><span class="err">　　　　</span><span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="n">ran</span> <span class="o">==</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ran</span> <span class="o">-</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">])</span> <span class="o">==</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="n">ands</span><span class="p">([</span><span class="n">check</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rst</span><span class="p">))])</span>
+</span></span><span class="line"><span class="cl">　　<span class="k">def</span> <span class="nf">check</span> <span class="p">(</span><span class="n">pos</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">　　　　<span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="n">ran</span> <span class="o">==</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ran</span> <span class="o">-</span> <span class="n">rst</span><span class="p">[</span><span class="n">pos</span><span class="p">])</span> <span class="o">==</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">　　<span class="k">return</span> <span class="n">ands</span><span class="p">([</span><span class="n">check</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rst</span><span class="p">))])</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>前文已经说明，ands() 函数接受一个列表为参数，如果列表中每一项都为 True 则返回 True，否则返回 False。还是直接把数学定义抄一遍</p>
@@ -320,9 +298,9 @@ f (n) = 1 + f (n - 1)
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ands</span> <span class="p">(</span><span class="n">ls</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="p">[]</span> \
-</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">else</span> <span class="p">(</span><span class="kc">False</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> \
-</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">else</span> <span class="n">ands</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+</span></span><span class="line"><span class="cl">　　<span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="p">[]</span> \
+</span></span><span class="line"><span class="cl">　　　<span class="k">else</span> <span class="p">(</span><span class="kc">False</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> \
+</span></span><span class="line"><span class="cl">　　　<span class="k">else</span> <span class="n">ands</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>于是，我们的程序就写完啦！试着跑一下 queens(4,4)，</p>
@@ -351,9 +329,9 @@ f (n) = 1 + f (n - 1)
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">	<span class="p">[[</span><span class="n">ran</span><span class="p">]</span> <span class="o">+</span> <span class="n">rst</span> \
-</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">for</span> <span class="n">ran</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> \
-</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">for</span> <span class="n">rst</span> <span class="ow">in</span> <span class="n">queens</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> \
-</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">if</span> <span class="n">safe</span><span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">　　　<span class="k">for</span> <span class="n">ran</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> \
+</span></span><span class="line"><span class="cl">　　　<span class="k">for</span> <span class="n">rst</span> <span class="ow">in</span> <span class="n">queens</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> \
+</span></span><span class="line"><span class="cl">　　　<span class="k">if</span> <span class="n">safe</span><span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">)]</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>首先对最耗时的列表 queens(row, col - 1) 应用群体操作 flatmap(newcol, queens(row, col - 1))。这里需要注意的是，光用 map() 是不够的，因为下面会根据另一个列表 rang(row) 中的每一项产生一个新列表，导致多出一个列表层。所以我们需要用 flatmap() 函数，它在普通的 map() 操作之后会用 append() 把产生的列表联结起来（所以叫“展平”的 map），把多出的一层列表消去：</p>
@@ -366,9 +344,9 @@ f (n) = 1 + f (n - 1)
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">flatmap</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="n">ls</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="c1"># 小技巧：累积器在连接列表时可以不用 lambda x,y: x+y，直接用 list.__add__，</span>
-</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="c1"># 重点是类型出错时有报警</span>
-</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="fm">__add__</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="n">ls</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">　　<span class="c1"># 小技巧：累积器在连接列表时可以不用 lambda x,y: x+y，直接用 list.__add__，</span>
+</span></span><span class="line"><span class="cl">　　<span class="c1"># 重点是类型出错时有报警</span>
+</span></span><span class="line"><span class="cl">　　<span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="fm">__add__</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="n">ls</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>接下来，根据列表和列表生成列表（在通用列表操作的世界中，就是 list, list, and list），注意原来的形式 [ran] + rst 是怎么被函数封装掉的：</p>
@@ -380,8 +358,8 @@ f (n) = 1 + f (n - 1)
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">newcol</span> <span class="p">(</span><span class="n">rst</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="c1"># 顺手解决 filter 只能传递一个参数的限制，用 lambda 代掉</span>
-</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">ls</span><span class="p">:</span> <span class="n">safe</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rst</span><span class="p">),</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">rst</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">　　<span class="c1"># 顺手解决 filter 只能传递一个参数的限制，用 lambda 代掉</span>
+</span></span><span class="line"><span class="cl">　　<span class="k">return</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">ls</span><span class="p">:</span> <span class="n">safe</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rst</span><span class="p">),</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">rst</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)))</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>其它什么内容都不用改了（当然了，如果你有心情，还可以把另一个列表领悟替换掉</p>
@@ -397,12 +375,12 @@ f (n) = 1 + f (n - 1)
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">safe</span> <span class="p">(</span><span class="n">ran</span><span class="p">,</span> <span class="n">rst</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="n">every</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rst</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">　　<span class="k">return</span> <span class="n">every</span><span class="p">(</span><span class="n">check</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rst</span><span class="p">)))</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># every() 函数相当于打过兴奋剂的 ands</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">every</span> <span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">ls</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl"><span class="err">　　</span><span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="p">[]</span> \
-</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">else</span> <span class="p">(</span><span class="kc">False</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> \
-</span></span><span class="line"><span class="cl"><span class="err">　　　</span><span class="k">else</span> <span class="n">every</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+</span></span><span class="line"><span class="cl">　　<span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">ls</span> <span class="o">==</span> <span class="p">[]</span> \
+</span></span><span class="line"><span class="cl">　　　<span class="k">else</span> <span class="p">(</span><span class="kc">False</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> \
+</span></span><span class="line"><span class="cl">　　　<span class="k">else</span> <span class="n">every</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">ls</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>不过单层的列表领悟没有性能问题）。现在可以完美地输出八皇后问题的 92 个解了（这里就不列了，太长了）。</p>
@@ -510,7 +488,7 @@ f (n) = 1 + f (n - 1)
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">josephpei</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -569,7 +547,7 @@ f (n) = 1 + f (n - 1)
       <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
       <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
       <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
-  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -587,7 +565,7 @@ f (n) = 1 + f (n - 1)
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 

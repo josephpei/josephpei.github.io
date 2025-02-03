@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="josephpei" /><meta name="description" content="问题：对一个实数R( 0.0 &amp;lt; R &amp;lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &amp;lt; n &amp;lt;= 25。
+<meta name="author" content="" /><meta name="description" content="问题：对一个实数R( 0.0 &amp;lt; R &amp;lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &amp;lt; n &amp;lt;= 25。
 计算结果位数的确定 两数之和的最大为较大的数的位数加1 乘积的位数最大为两个因子的位数之和 阶乘：lgn! = lgn &#43; lg(n-1) &#43; &amp;hellip; &#43; lg1 = lnn/ln10 &#43; ln(n-1)/ln10 &#43; &amp;hellip; &#43; ln1/ln10 = trunc(1/ln10 * (lnn &#43; ln(n-1) &#43; &amp;hellip; &#43; ln1)) 乘方：lg(a^b) = trunc(lg(a^b)) &#43; 1 = trunc(b * lga) &#43; 1 = trunc(b * lna/ln10) &#43; 1 " /><meta name="keywords" content="life, linux, program" />
 
 
@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.110.0 with theme even" />
+<meta name="generator" content="Hugo 0.131.0 with theme even" />
 
 
 <link rel="canonical" href="http://josephpei.github.io/2013/09/25/poj-1001-%E6%B1%82%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%B9%82/" />
@@ -40,40 +40,29 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="POJ 1001 求高精度幂" />
-<meta property="og:description" content="问题：对一个实数R( 0.0 &lt; R &lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &lt; n &lt;= 25。
-计算结果位数的确定
+<meta property="og:url" content="http://josephpei.github.io/2013/09/25/poj-1001-%E6%B1%82%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%B9%82/">
+  <meta property="og:site_name" content="有翅膀的天狼">
+  <meta property="og:title" content="POJ 1001 求高精度幂">
+  <meta property="og:description" content="问题：对一个实数R( 0.0 &lt; R &lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &lt; n &lt;= 25。
+计算结果位数的确定 两数之和的最大为较大的数的位数加1 乘积的位数最大为两个因子的位数之和 阶乘：lgn! = lgn &#43; lg(n-1) &#43; … &#43; lg1 = lnn/ln10 &#43; ln(n-1)/ln10 &#43; … &#43; ln1/ln10 = trunc(1/ln10 * (lnn &#43; ln(n-1) &#43; … &#43; ln1)) 乘方：lg(a^b) = trunc(lg(a^b)) &#43; 1 = trunc(b * lga) &#43; 1 = trunc(b * lna/ln10) &#43; 1 ">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2013-09-25T16:11:48+08:00">
+    <meta property="article:modified_time" content="2013-09-25T16:11:48+08:00">
+    <meta property="article:tag" content="Poj">
 
-两数之和的最大为较大的数的位数加1
-乘积的位数最大为两个因子的位数之和
-阶乘：lgn! = lgn &#43; lg(n-1) &#43; &hellip; &#43; lg1 = lnn/ln10 &#43; ln(n-1)/ln10 &#43; &hellip; &#43; ln1/ln10 = trunc(1/ln10 * (lnn &#43; ln(n-1) &#43; &hellip; &#43; ln1))
-乘方：lg(a^b) = trunc(lg(a^b)) &#43; 1 = trunc(b * lga) &#43; 1 = trunc(b * lna/ln10) &#43; 1
-" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://josephpei.github.io/2013/09/25/poj-1001-%E6%B1%82%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%B9%82/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2013-09-25T16:11:48+08:00" />
-<meta property="article:modified_time" content="2013-09-25T16:11:48+08:00" />
-<meta itemprop="name" content="POJ 1001 求高精度幂">
-<meta itemprop="description" content="问题：对一个实数R( 0.0 &lt; R &lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &lt; n &lt;= 25。
-计算结果位数的确定
-
-两数之和的最大为较大的数的位数加1
-乘积的位数最大为两个因子的位数之和
-阶乘：lgn! = lgn &#43; lg(n-1) &#43; &hellip; &#43; lg1 = lnn/ln10 &#43; ln(n-1)/ln10 &#43; &hellip; &#43; ln1/ln10 = trunc(1/ln10 * (lnn &#43; ln(n-1) &#43; &hellip; &#43; ln1))
-乘方：lg(a^b) = trunc(lg(a^b)) &#43; 1 = trunc(b * lga) &#43; 1 = trunc(b * lna/ln10) &#43; 1
-"><meta itemprop="datePublished" content="2013-09-25T16:11:48+08:00" />
-<meta itemprop="dateModified" content="2013-09-25T16:11:48+08:00" />
-<meta itemprop="wordCount" content="1039">
-<meta itemprop="keywords" content="poj," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="POJ 1001 求高精度幂"/>
-<meta name="twitter:description" content="问题：对一个实数R( 0.0 &lt; R &lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &lt; n &lt;= 25。
-计算结果位数的确定
-
-两数之和的最大为较大的数的位数加1
-乘积的位数最大为两个因子的位数之和
-阶乘：lgn! = lgn &#43; lg(n-1) &#43; &hellip; &#43; lg1 = lnn/ln10 &#43; ln(n-1)/ln10 &#43; &hellip; &#43; ln1/ln10 = trunc(1/ln10 * (lnn &#43; ln(n-1) &#43; &hellip; &#43; ln1))
-乘方：lg(a^b) = trunc(lg(a^b)) &#43; 1 = trunc(b * lga) &#43; 1 = trunc(b * lna/ln10) &#43; 1
-"/>
+  <meta itemprop="name" content="POJ 1001 求高精度幂">
+  <meta itemprop="description" content="问题：对一个实数R( 0.0 &lt; R &lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &lt; n &lt;= 25。
+计算结果位数的确定 两数之和的最大为较大的数的位数加1 乘积的位数最大为两个因子的位数之和 阶乘：lgn! = lgn &#43; lg(n-1) &#43; … &#43; lg1 = lnn/ln10 &#43; ln(n-1)/ln10 &#43; … &#43; ln1/ln10 = trunc(1/ln10 * (lnn &#43; ln(n-1) &#43; … &#43; ln1)) 乘方：lg(a^b) = trunc(lg(a^b)) &#43; 1 = trunc(b * lga) &#43; 1 = trunc(b * lna/ln10) &#43; 1 ">
+  <meta itemprop="datePublished" content="2013-09-25T16:11:48+08:00">
+  <meta itemprop="dateModified" content="2013-09-25T16:11:48+08:00">
+  <meta itemprop="wordCount" content="1039">
+  <meta itemprop="keywords" content="Poj">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="POJ 1001 求高精度幂">
+  <meta name="twitter:description" content="问题：对一个实数R( 0.0 &lt; R &lt; 99.999 )，要求写程序精确计算 R 的 n 次方(Rn)，其中n 是整数并且 0 &lt; n &lt;= 25。
+计算结果位数的确定 两数之和的最大为较大的数的位数加1 乘积的位数最大为两个因子的位数之和 阶乘：lgn! = lgn &#43; lg(n-1) &#43; … &#43; lg1 = lnn/ln10 &#43; ln(n-1)/ln10 &#43; … &#43; ln1/ln10 = trunc(1/ln10 * (lnn &#43; ln(n-1) &#43; … &#43; ln1)) 乘方：lg(a^b) = trunc(lg(a^b)) &#43; 1 = trunc(b * lga) &#43; 1 = trunc(b * lna/ln10) &#43; 1 ">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -512,7 +501,7 @@
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">josephpei</span>
+    <span class="item-content"></span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -570,7 +559,7 @@
       <a href="mailto:josephpei@email.com" class="iconfont icon-email" title="email"></a>
       <a href="https://twitter.com/josephpei" class="iconfont icon-twitter" title="twitter"></a>
       <a href="https://github.com/josephpei" class="iconfont icon-github" title="github"></a>
-  <a href="http://josephpei.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -588,7 +577,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>josephpei</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
   </span>
 </div>
 
